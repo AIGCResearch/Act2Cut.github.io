@@ -419,3 +419,12 @@ html:not(.dark) .film-strip-divider {
 html:not(.dark) .backdrop-blur-xl {
   --tw-backdrop-blur: blur(24px);
 }
+
+/* --- Additional light-mode overrides (nav guide line, hover states) --- */
+html:not(.dark) .bg-white\/\[0\.05\]  { background-color: rgb(0 0 0 / 0.03) !important; }
+html:not(.dark) .bg-white\/\[0\.08\]  { background-color: rgb(0 0 0 / 0.05) !important; }
+html:not(.dark) .hover\:text-white\/80:hover   { color: rgb(15 12 10 / 0.8) !important; }
+html:not(.dark) .hover\:border-white\/40:hover { border-color: rgb(0 0 0 / 0.35) !important; }
+html:not(.dark) .group:hover .group-hover\:border-white\/50       { border-color: rgb(0 0 0 / 0.4) !important; }
+html:not(.dark) .group:hover .group-hover\:bg-white\/\[0\.05\]    { background-color: rgb(0 0 0 / 0.03) !important; }
+html:not(.dark) .group:hover .group-hover\:text-white\/70         { color: rgb(15 12 10 / 0.7) !important; }

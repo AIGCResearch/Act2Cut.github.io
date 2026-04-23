@@ -64,9 +64,9 @@ const affiliations = [
 
 <!-- HERO VIDEO with letterbox + timecode -->
 <!-- overflow-hidden lives on an inner div, separate from backdrop-blur-xl to prevent rounded-corner flash on hover -->
-<section class="rounded-[2rem] border border-white/20 bg-black/40 backdrop-blur-xl shadow-2xl relative group aspect-[21/9] flex items-center justify-center" data-reveal style="transition-delay:300ms">
-  <!-- Image clipping layer (isolated from backdrop-blur to prevent WebKit border-radius bug) -->
-  <div class="absolute inset-0 rounded-[2rem] overflow-hidden pointer-events-none">
+<section class="rounded-[2rem] overflow-hidden border border-white/20 bg-black/40 backdrop-blur-xl shadow-2xl relative group aspect-[21/9] flex items-center justify-center" data-reveal style="transition-delay:300ms">
+  <!-- Pre-promote image to GPU compositing layer to prevent WebKit border-radius flash during scale -->
+  <div class="absolute inset-0 pointer-events-none" style="will-change:transform;transform:translateZ(0);">
     <img src="https://images.unsplash.com/photo-1578589318433-39b5de440c3f?q=80&w=2939&auto=format&fit=crop" class="w-full h-full object-cover opacity-70 mix-blend-luminosity transform group-hover:scale-105 transition-transform duration-[10s]" alt="Demo Video Placeholder">
   </div>
 
