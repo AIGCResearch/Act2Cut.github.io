@@ -94,6 +94,7 @@ html:not(.dark) ::selection {
 
 .nav-dot-active {
   background: linear-gradient(to bottom, #ff4d4d, #ffb84d);
+  border-color: transparent;
 }
 .nav-num-active {
   background: linear-gradient(to right, #ff4d4d, #ffb84d);
@@ -308,6 +309,7 @@ html:not(.dark) .backdrop-blur-xl {
 
 .nav-dot-active {
   background: linear-gradient(to bottom, #ff4d4d, #ffb84d);
+  border-color: transparent;
 }
 .nav-num-active {
   background: linear-gradient(to right, #ff4d4d, #ffb84d);
