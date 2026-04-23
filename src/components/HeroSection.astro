@@ -1,0 +1,98 @@
+---
+const authors = [
+  { name: 'Cailin Zhuang', affil: '1,2*' },
+  { name: 'Yaoqi Hu',      affil: '3*'   },
+  { name: 'Zheng Dong',    affil: '3'    },
+  { name: 'Shiwen Zhang',  affil: '4'    },
+  { name: 'Haibin Huang',  affil: '4†'   },
+  { name: 'Chi Zhang',     affil: '4†'   },
+  { name: 'Xuelong Li',    affil: '4†'   },
+];
+
+const affiliations = [
+  { id: '1', name: 'ShanghaiTech University' },
+  { id: '2', name: 'AIGC Research, China Telecom' },
+  { id: '3', name: 'Chongqing University of Technology' },
+  { id: '4', name: 'Institute of Artificial Intelligence, China Telecom (TeleAI)' },
+];
+---
+
+<!-- HEADER / TITLE -->
+<header class="text-center space-y-10 mt-16 mb-12 px-4 animate-flicker">
+  <div data-reveal>
+    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.15] max-w-5xl mx-auto">
+      <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] mb-4">Act2Cut</span>
+      <span class="block mb-1">Continuous <span class="font-normal italic text-white/90">Next-Shot</span> Video</span>
+      <span class="block whitespace-nowrap">Narrative Match on <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30">Action-Cut</span></span>
+    </h1>
+  </div>
+
+  <div class="space-y-6" data-reveal style="transition-delay:100ms">
+    <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-[17px]">
+      {authors.map(author => (
+        <span class="font-medium text-white/90">
+          {author.name}<sup class="text-white/70 ml-0.5">{author.affil}</sup>
+        </span>
+      ))}
+    </div>
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[15px] text-white/60">
+      {affiliations.map(affil => (
+        <span><sup class="mr-0.5">{affil.id}</sup>{affil.name}</span>
+      ))}
+    </div>
+    <div class="text-[13px] text-white/40 mt-4 font-light">
+      * Equal contributions. &nbsp;&nbsp;&nbsp; † Corresponding authors.
+    </div>
+  </div>
+
+  <!-- ACTION BUTTONS -->
+  <div class="flex justify-center gap-6 pt-10" data-reveal style="transition-delay:200ms">
+    <a href="#" class="px-8 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300 flex items-center gap-2.5 text-sm font-medium backdrop-blur-md group">
+      <svg class="w-4 h-4 opacity-70 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+      Paper
+    </a>
+    <a href="#" class="px-8 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300 flex items-center gap-2.5 text-sm font-medium backdrop-blur-md group">
+      <svg class="w-4 h-4 opacity-70 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+      Code
+    </a>
+    <a href="#" class="px-8 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300 flex items-center gap-2.5 text-sm font-medium backdrop-blur-md group">
+      <svg class="w-4 h-4 opacity-70 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      Video
+    </a>
+  </div>
+</header>
+
+<!-- HERO VIDEO with letterbox + timecode -->
+<section class="rounded-[2rem] overflow-hidden border border-white/20 bg-black/40 backdrop-blur-xl shadow-2xl relative group aspect-[21/9] flex items-center justify-center" data-reveal style="transition-delay:300ms">
+  <!-- Light leak top-left -->
+  <div class="absolute -top-10 -left-10 w-64 h-64 rounded-full pointer-events-none z-10"
+    style="background: radial-gradient(circle, rgba(255,77,77,0.15) 0%, transparent 70%); mix-blend-mode: screen;"></div>
+
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 pointer-events-none"></div>
+
+  <!-- Letterbox bars -->
+  <div class="absolute top-0 left-0 right-0 h-8 bg-black z-20 pointer-events-none shadow-[0_4px_12px_rgba(0,0,0,0.6)]"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-8 bg-black z-20 pointer-events-none shadow-[0_-4px_12px_rgba(0,0,0,0.6)]"></div>
+
+  <!-- Play button -->
+  <div class="absolute inset-0 flex items-center justify-center z-20">
+    <button class="w-24 h-24 rounded-full bg-[#ff4d4d]/90 hover:bg-[#ff4d4d] text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-[0_0_40px_rgba(255,77,77,0.5)] backdrop-blur-md">
+      <svg class="w-10 h-10 ml-2" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+  </div>
+
+  <img src="https://images.unsplash.com/photo-1578589318433-39b5de440c3f?q=80&w=2939&auto=format&fit=crop" class="w-full h-full object-cover opacity-70 mix-blend-luminosity transform group-hover:scale-105 transition-transform duration-[10s]" alt="Demo Video Placeholder">
+
+  <div class="absolute bottom-12 left-8 z-20">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="px-3 py-1 rounded-full border border-[#ff4d4d]/50 bg-[#ff4d4d]/20 text-red-200 text-xs font-medium backdrop-blur-md">Match on Action</span>
+    </div>
+    <h2 class="text-3xl font-bold tracking-tight text-white">Continuous Narrative Generation</h2>
+    <p class="text-white/70 font-light mt-1 max-w-xl">Demonstrating seamless shot transitions ensuring physical logic and action continuity across cinematic cuts.</p>
+  </div>
+
+  <!-- Timecode decoration -->
+  <div class="absolute bottom-12 right-8 z-20 font-mono text-[11px] text-white/15 tracking-widest select-none pointer-events-none">
+    00:00:24:00
+  </div>
+</section>
