@@ -1,0 +1,35 @@
+---
+---
+
+<section id="citation" class="space-y-6 pb-24">
+  <div data-reveal>
+    <span class="act-marker">ACT Ⅴ</span>
+    <h2 class="text-3xl font-semibold tracking-tight mt-1">BibTeX</h2>
+  </div>
+
+  <div class="rounded-3xl p-8 border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl relative group" data-reveal style="transition-delay:80ms">
+    <!-- Light leak -->
+    <div class="absolute -bottom-10 -right-10 w-48 h-48 rounded-full pointer-events-none"
+      style="background: radial-gradient(circle, rgba(255,184,77,0.1) 0%, transparent 70%); mix-blend-mode: screen;"></div>
+
+    <div id="copy-bibtex" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 cursor-pointer p-2 rounded-lg backdrop-blur-sm transition-colors border border-white/10" title="Copy BibTeX">
+      <svg class="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+    </div>
+    <pre id="bibtex-content" class="text-xs md:text-sm font-mono text-white/70 overflow-x-auto pt-2"><code>@article&#123;zhuang2026act2cut,
+  title=&#123;Act2Cut: Continuous Next-Shot Video Narrative Match on Action-Cut&#125;,
+  author=&#123;Zhuang, Cailin and Hu, Yaoqi and Dong, Zheng and Zhang, Shiwen and Huang, Haibin and Zhang, Chi and Li, Xuelong&#125;,
+  journal=&#123;ACM Transactions on Graphics (TOG)&#125;,
+  volume=&#123;1&#125;,
+  number=&#123;1&#125;,
+  year=&#123;2026&#125;,
+  publisher=&#123;ACM New York, NY, USA&#125;
+&#125;</code></pre>
+  </div>
+</section>
+
+<script>
+  document.getElementById('copy-bibtex')?.addEventListener('click', () => {
+    const text = document.getElementById('bibtex-content')?.textContent ?? '';
+    navigator.clipboard.writeText(text);
+  });
+</script>
