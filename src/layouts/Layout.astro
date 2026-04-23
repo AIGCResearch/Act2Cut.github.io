@@ -20,15 +20,27 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>{title}</title>
+    <!-- Anti-FOUC: apply saved theme before first paint -->
+    <script is:inline>
+      (function() {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'light' || (!saved && !prefersDark)) {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-screen text-white font-sans antialiased bg-black selection:bg-white/30 selection:text-white">
 
     <!-- Fixed background layer -->
     <div class="fixed inset-0 w-full h-full -z-50 pointer-events-none overflow-hidden">
-      <div class="absolute inset-0 bg-black/70 z-10"></div>
+      <div class="theme-overlay absolute inset-0 bg-black/30 z-10"></div>
       <img
         src="https://images.unsplash.com/photo-1440407876336-62333a6f010f?q=80&w=2942&auto=format&fit=crop"
-        class="parallax-bg absolute inset-x-0 top-0 w-full opacity-50 mix-blend-luminosity"
+        class="parallax-bg absolute inset-x-0 top-0 w-full opacity-55 mix-blend-screen"
         style="height: 180%; object-fit: cover; will-change: transform;"
         alt=""
       />
@@ -36,7 +48,7 @@ const { title } = Astro.props;
 
     <!-- Global vignette -->
     <div
-      class="fixed inset-0 pointer-events-none z-40"
+      class="theme-vignette fixed inset-0 pointer-events-none z-40"
       style="background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);"
     ></div>
 
