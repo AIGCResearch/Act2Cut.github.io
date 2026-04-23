@@ -1,0 +1,203 @@
+---
+const methodCards = [
+  {
+    abbr: 'TBR',
+    title: 'Transitional Boundary Residual',
+    desc: `Enhances spatial and kinetic consistency at the edit point between adjacent shots. Ensures the terminal frame of shot <em>n</em> and the initial frame of shot <em>n+1</em> maintain rigorous 3D spatial alignment and smooth momentum continuity, preventing visual "popping" at hard cuts.`
+  },
+  {
+    abbr: 'GLoS-RoPE',
+    title: 'Global-Local Shot RoPE',
+    desc: `Decouples temporal position encoding across shot boundaries. Global tokens carry sequence-level context while local tokens remain precisely positioned within their own shot — enabling cross-shot coherence without RoPE bleed between unrelated frames.`
+  },
+  {
+    abbr: 'SCM',
+    title: 'Shot Causal Mask',
+    desc: `Applies a unidirectional causal constraint in self-attention so that shot <em>x<sub>i</sub></em> can attend to the history of <em>x<sub>i−1</sub></em>, but not vice versa. Prevents "semantic leakage" where future shot compositions contaminate earlier frames.`
+  },
+  {
+    abbr: 'HCM',
+    title: 'Hierarchical Context Mask',
+    desc: `Partitions cross-attention into global, relational, and local windows. Global tokens act as universal anchors; per-shot cinematic language remains independently modulated, ensuring precise control over "what happens" vs. "how it is framed" for each shot.`
+  },
+];
+
+const t2v_items = [
+  { num: 'T01', action: 'Character is tying up her hair. Shot 1 → Shot 2 (Match on Action).' },
+  { num: 'T02', action: 'Character walks toward another character across the room.' },
+  { num: 'T03', action: 'Character performs a dance move with arm and leg coordination.' },
+  { num: 'T04', action: 'Character sits down and opens a book on the table.' },
+  { num: 'T05', action: 'Character crouches down to pick up an object from the floor.' },
+  { num: 'T06', action: 'Character turns and looks out of the window thoughtfully.' },
+  { num: 'T07', action: 'Two characters face each other; character 1 speaks while character 2 listens.' },
+  { num: 'T08', action: 'Character runs through a narrow corridor, turns a corner.' },
+  { num: 'T09', action: 'Character reaches for something on the top shelf, struggles briefly.' },
+  { num: 'T10', action: 'Character enters a room, pauses, and looks around taking in the scene.' },
+];
+
+const i2v_items = [
+  { num: 'I01', action: 'Given first frame — character tying hair, action continues through cut.' },
+  { num: 'I02', action: 'Given first frame — character standing up from chair, Mid-Shot → Close-Up.' },
+  { num: 'I03', action: 'Given first frame — two characters shaking hands; Cut-In on hands.' },
+  { num: 'I04', action: 'Given first frame — character writing at desk, zoom from Wide to MCU.' },
+  { num: 'I05', action: 'Given first frame — character opening a door and stepping through.' },
+  { num: 'I06', action: 'Given first frame — character pouring drink, Over-Shoulder reaction shot.' },
+  { num: 'I07', action: 'Given first frame — character throwing an object, Cut-Out to wide establishing.' },
+  { num: 'I08', action: 'Given first frame — character pointing; Cut-In to detail of finger.' },
+  { num: 'I09', action: 'Given first frame — outdoor scene, character climbing stairs, Low-Angle to Eye-Level.' },
+  { num: 'I10', action: 'Given first frame — character reading, slow pan to close-up on face expression.' },
+];
+
+const v2v_items = [
+  { num: 'V01', action: 'Given prev-shot clip — character standing up; predict Match on Action cut to next shot.' },
+  { num: 'V02', action: 'Given prev-shot clip — character crouching down; Shot-Reverse-Shot prediction.' },
+  { num: 'V03', action: 'Given prev-shot clip — character approaching table; Cut-In to hands on object.' },
+  { num: 'V04', action: 'Given prev-shot clip — complex fight sequence; multi-step action continuation.' },
+  { num: 'V05', action: 'Given prev-shot clip — two-character scene; predict reaction shot with correct framing.' },
+  { num: 'V06', action: 'Given prev-shot clip — OOD anime style; character dodging; zero-shot generalization.' },
+  { num: 'V07', action: 'Given prev-shot clip — group shot, character action decoupling across multiple subjects.' },
+  { num: 'V08', action: 'Given prev-shot clip — extreme close-up, character blinking; predict complementary wide shot.' },
+  { num: 'V09', action: 'Given prev-shot clip — character walking outdoors; Dutch angle to Eye-Level continuity.' },
+  { num: 'V10', action: 'Given prev-shot clip — 14B model scaling test; complex sequence with 5 shots.' },
+];
+
+const allTabs = [
+  { id: 'otab-t2v', label: 'Text → Video', items: t2v_items },
+  { id: 'otab-i2v', label: 'Image → Video', items: i2v_items },
+  { id: 'otab-v2v', label: 'Video → Video', items: v2v_items },
+];
+---
+
+<section id="overview" class="space-y-12">
+
+  <!-- Section header -->
+  <div data-reveal>
+    <span class="act-marker">ACT Ⅱ</span>
+    <h2 class="text-3xl font-semibold tracking-tight flex items-center gap-3 mt-1">
+      <span class="inline-block w-1 h-7 bg-gradient-to-b from-[#ff4d4d] to-[#ffb84d] rounded-sm" style="transform: skewX(-6deg);"></span>
+      Method &amp; Results
+    </h2>
+    <p class="text-white/50 text-sm mt-2">Demo video, architecture overview, and qualitative comparison.</p>
+  </div>
+
+  <!-- Demo video placeholder -->
+  <div class="rounded-3xl overflow-hidden border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl relative aspect-video flex items-center justify-center" data-reveal style="transition-delay:100ms">
+    <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 text-white/40">
+      <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center">
+        <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <span class="text-[9px] tracking-[0.28em] uppercase font-semibold">Demo Video — Replace with actual video</span>
+    </div>
+  </div>
+
+  <!-- Architecture diagram placeholder -->
+  <div class="rounded-3xl overflow-hidden border border-white/10 bg-black/40 backdrop-blur-xl shadow-lg relative flex items-center justify-center text-white/30 p-8" style="aspect-ratio:16/7;" data-reveal style="transition-delay:150ms">
+    <div class="text-center">
+      <div class="text-[10px] tracking-[0.28em] uppercase font-semibold mb-1">Architecture Diagram</div>
+      <div class="text-[11px] text-white/20 italic">Fig. 3 — Replace with actual figure</div>
+    </div>
+  </div>
+
+  <div class="film-strip-divider"></div>
+
+  <!-- Method cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    {methodCards.map((card, i) => (
+      <div
+        class="rounded-3xl p-8 border border-white/10 bg-black/40 backdrop-blur-xl shadow-lg hover:bg-white/5 hover:border-[#ff4d4d]/30 transition-all duration-300 chroma-hover"
+        data-reveal
+        style={`transition-delay:${i * 80}ms`}
+      >
+        <span class="text-[10px] font-bold tracking-[0.28em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] block mb-2">{card.abbr}</span>
+        <h3 class="text-xl font-semibold mb-3 text-white">{card.title}</h3>
+        <p class="text-sm text-white/70 leading-relaxed font-light" set:html={card.desc}></p>
+      </div>
+    ))}
+  </div>
+
+  <div class="film-strip-divider"></div>
+
+  <!-- Qualitative Results tabs -->
+  <div>
+    <div data-reveal>
+      <span class="text-[10px] font-bold tracking-[0.28em] uppercase text-white/40 block mb-2">Qualitative Results</span>
+      <h3 class="text-2xl font-semibold tracking-tight mb-6">Generated Sequences vs. Baseline</h3>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="flex gap-0 border-b border-white/10 mb-8" data-reveal style="transition-delay:80ms">
+      {allTabs.map((tab, i) => (
+        <button
+          class={`overview-tab-btn px-0 mr-9 py-4 text-[11px] font-bold tracking-[0.18em] uppercase border-b-2 transition-all duration-200 whitespace-nowrap ${i === 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border-[#ff4d4d]' : 'text-white/40 hover:text-white border-transparent'}`}
+          data-tab={tab.id}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Tab panels -->
+    {allTabs.map((tab, tabIdx) => (
+      <div id={tab.id} class={`overview-tab-panel grid grid-cols-1 md:grid-cols-2 gap-0.5 ${tabIdx !== 0 ? 'hidden' : ''}`}>
+        {tab.items.map((item, i) => (
+          <div class="bg-white/[0.03] border border-white/[0.08] p-5 hover:border-white/20 transition-all duration-300" data-reveal style={`transition-delay:${i * 50}ms`}>
+            <div class="flex items-start gap-3 mb-3">
+              <span class="text-[9px] font-bold tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] pt-0.5 shrink-0">{item.num}</span>
+              <span class="text-[13px] text-white/60 leading-snug italic">{item.action}</span>
+            </div>
+            <div class="mt-2">
+              <div class="text-[8px] font-semibold tracking-[0.18em] uppercase text-white/30 mb-1.5">MSM-14B</div>
+              <div class="grid grid-cols-3 gap-0.5">
+                {['S1-end','S2-start','S2-end'].map(label => (
+                  <div class="aspect-video bg-black/40 border border-white/[0.08] rounded-sm flex items-center justify-center">
+                    <span class="text-[7px] tracking-[0.15em] text-white/30 uppercase">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-2">
+              <div class="text-[8px] font-semibold tracking-[0.18em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] mb-1.5">★ Act2Cut (Ours)</div>
+              <div class="grid grid-cols-3 gap-0.5">
+                {['S1-end','S2-start','S2-end'].map(label => (
+                  <div class="aspect-video bg-black/40 border border-[#ff4d4d]/25 rounded-sm flex items-center justify-center">
+                    <span class="text-[7px] tracking-[0.15em] text-white/40 uppercase">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.overview-tab-btn');
+    const panels = document.querySelectorAll<HTMLElement>('.overview-tab-panel');
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => {
+          b.classList.remove('text-transparent', 'bg-clip-text', 'bg-gradient-to-r', 'from-[#ff4d4d]', 'to-[#ffb84d]', 'border-[#ff4d4d]');
+          b.classList.add('text-white/40', 'border-transparent');
+        });
+        btn.classList.remove('text-white/40', 'border-transparent');
+        btn.classList.add('text-transparent', 'bg-clip-text', 'bg-gradient-to-r', 'from-[#ff4d4d]', 'to-[#ffb84d]', 'border-[#ff4d4d]');
+
+        panels.forEach(p => p.classList.add('hidden'));
+        const target = document.getElementById(btn.dataset.tab!);
+        if (target) {
+          target.classList.remove('hidden');
+          target.style.opacity = '0';
+          requestAnimationFrame(() => {
+            target.style.transition = 'opacity 500ms ease-in-out';
+            target.style.opacity = '1';
+          });
+        }
+      });
+    });
+  });
+</script>
