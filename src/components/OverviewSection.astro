@@ -191,10 +191,13 @@ const allTabs = [
         const target = document.getElementById(btn.dataset.tab!);
         if (target) {
           target.classList.remove('hidden');
+          target.style.transition = '';
           target.style.opacity = '0';
           requestAnimationFrame(() => {
-            target.style.transition = 'opacity 500ms ease-in-out';
-            target.style.opacity = '1';
+            requestAnimationFrame(() => {
+              target.style.transition = 'opacity 500ms ease-in-out';
+              target.style.opacity = '1';
+            });
           });
         }
       });

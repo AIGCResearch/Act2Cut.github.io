@@ -30,6 +30,6 @@
 <script>
   document.getElementById('copy-bibtex')?.addEventListener('click', () => {
     const text = document.getElementById('bibtex-content')?.textContent ?? '';
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).catch(() => {});
   });
 </script>
