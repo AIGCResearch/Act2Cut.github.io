@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Act2Cut: Continuous Next-Shot Video Narrative Match on Action-Cut" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+    
+    <!-- Google Fonts for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+		<title>{title}</title>
+	</head>
+	<body class="min-h-screen text-white font-sans antialiased bg-black selection:bg-white/30 selection:text-white">
+    
+    <!-- Fixed Continuous Background -->
+    <div class="fixed inset-0 w-full h-full -z-50 pointer-events-none">
+      <div class="absolute inset-0 bg-black/60 z-10"></div>
+      <!-- Simulating a continuous collage background (like the reference image) -->
+      <img 
+        src="https://images.unsplash.com/photo-1440407876336-62333a6f010f?q=80&w=2942&auto=format&fit=crop" 
+        class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity"
+        alt="Continuous Background Collage" 
+      />
+      <!-- Film grain overlay -->
+      <div class="absolute inset-0 z-20 opacity-20" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E&quot;);"></div>
+    </div>
+
+    <!-- Centralized Single Column Layout -->
+    <main class="w-full max-w-5xl mx-auto px-4 py-16 md:py-24 flex flex-col gap-12 relative z-10">
+		  <slot />
+    </main>
+
+	</body>
+</html>

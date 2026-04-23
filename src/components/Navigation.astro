@@ -1,0 +1,18 @@
+---
+const links = [
+  { name: 'Overview', href: '#overview' },
+  { name: 'Dataset', href: '#dataset' },
+  { name: 'Benchmark', href: '#benchmark' },
+];
+---
+
+<nav class="flex flex-col items-end gap-2">
+  {links.map((link) => (
+    <a 
+      href={link.href}
+      class="text-sm tracking-widest uppercase transition-opacity duration-300 opacity-50 hover:opacity-100"
+    >
+      {link.name}
+    </a>
+  ))}
+</nav>
