@@ -24,28 +24,21 @@ const { title } = Astro.props;
   <body class="min-h-screen text-white font-sans antialiased bg-black selection:bg-white/30 selection:text-white">
 
     <!-- Fixed background layer -->
-    <div class="fixed inset-0 w-full h-full -z-50 pointer-events-none">
-      <div class="absolute inset-0 bg-black/60 z-10"></div>
+    <div class="fixed inset-0 w-full h-full -z-50 pointer-events-none overflow-hidden">
+      <div class="absolute inset-0 bg-black/70 z-10"></div>
       <img
         src="https://images.unsplash.com/photo-1440407876336-62333a6f010f?q=80&w=2942&auto=format&fit=crop"
-        class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity"
+        class="parallax-bg absolute inset-x-0 top-0 w-full opacity-50 mix-blend-luminosity"
+        style="height: 180%; object-fit: cover; will-change: transform;"
         alt=""
       />
-      <!-- Animated film grain -->
-      <div
-        class="absolute inset-0 z-20 opacity-20 animate-grain"
-        style="background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E&quot;);"
-      ></div>
     </div>
 
     <!-- Global vignette -->
     <div
       class="fixed inset-0 pointer-events-none z-40"
-      style="background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.65) 100%);"
+      style="background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);"
     ></div>
-
-    <!-- Scanlines overlay -->
-    <div class="fixed inset-0 pointer-events-none z-40 scanlines opacity-[0.6]"></div>
 
     <slot />
 
@@ -61,6 +54,22 @@ const { title } = Astro.props;
       }, { threshold: 0.1 });
 
       document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+    </script>
+
+    <!-- Parallax background -->
+    <script>
+      const parallaxBg = document.querySelector<HTMLElement>('.parallax-bg');
+      if (parallaxBg) {
+        let raf: number | null = null;
+        window.addEventListener('scroll', () => {
+          if (!raf) {
+            raf = requestAnimationFrame(() => {
+              parallaxBg.style.transform = `translateY(-${window.scrollY * 0.08}px)`;
+              raf = null;
+            });
+          }
+        }, { passive: true });
+      }
     </script>
   </body>
 </html>
