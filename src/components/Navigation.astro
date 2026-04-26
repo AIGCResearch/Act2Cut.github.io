@@ -26,7 +26,7 @@ const pageLinks = [
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
 >
   <div class="nav-glass border-b border-white/[0.06] backdrop-blur-2xl bg-black/40">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
 
       <!-- Brand — typographic wordmark, no icon -->
       <a href={url('/')} class="brand-mark group flex items-baseline gap-0.5 shrink-0 select-none" aria-label="Act2Cut — Home">
@@ -41,8 +41,8 @@ const pageLinks = [
         <span class="hidden sm:inline-block ml-2.5 self-center text-[8.5px] tracking-[0.32em] uppercase text-white/30 font-semibold border-l border-white/15 pl-2.5">Match&nbsp;on&nbsp;Action</span>
       </a>
 
-      <!-- Center: page nav (desktop) -->
-      <nav class="hidden md:flex items-center gap-1 p-1 rounded-full border border-white/[0.08] bg-white/[0.03]" aria-label="Primary">
+      <!-- Center: page nav (desktop) — absolutely centered so position never shifts between pages -->
+      <nav class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-1 p-1 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl pointer-events-auto" aria-label="Primary">
         {pageLinks.map(link => (
           <a
             href={link.href}
