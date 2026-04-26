@@ -1,140 +1,164 @@
 ---
-const navItems = [
-  { label: 'Abstract',  href: '#abstract',  num: '01' },
-  { label: 'Overview',  href: '#overview',  num: '02' },
-  { label: 'Dataset',   href: '#dataset',   num: '03' },
-  { label: 'Benchmark', href: '#benchmark', num: '04' },
-  { label: 'Citation',  href: '#citation',  num: '05' },
+interface Props {
+  page?: 'home' | 'dataset' | 'benchmark';
+}
+const { page = 'home' } = Astro.props;
+
+const homeAnchors = [
+  { label: 'Abstract', href: '/#abstract'  },
+  { label: 'Method',   href: '/#overview'  },
+  { label: 'Citation', href: '/#citation'  },
+];
+
+const pageLinks = [
+  { id: 'home',      label: 'Home',     href: '/' },
+  { id: 'dataset',   label: 'Dataset',  href: '/dataset' },
+  { id: 'benchmark', label: 'Benchmark',href: '/benchmark' },
 ];
 ---
 
-<!-- Left side dot nav — group/nav makes ALL labels appear on any hover inside -->
-<nav class="hidden xl:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 group/nav" aria-label="Page sections">
-  <div class="flex flex-col items-start">
+<!-- Top horizontal glassmorphism navbar -->
+<header
+  id="top-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="nav-glass border-b border-white/[0.06] backdrop-blur-2xl bg-black/40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
 
-    <!-- Nav links with vertical guide line -->
-    <div class="relative flex flex-col items-start">
-      <div class="absolute top-0 bottom-0 left-[3px] w-px bg-black/[0.08] dark:bg-white/[0.08]"></div>
+      <!-- Brand — typographic wordmark, no icon -->
+      <a href="/" class="brand-mark group flex items-baseline gap-0.5 shrink-0 select-none" aria-label="Act2Cut — Home">
+        <span class="font-semibold text-[20px] sm:text-[22px] tracking-tight text-white/95 leading-none">Act</span>
+        <span class="brand-two relative font-bold text-[22px] sm:text-[24px] italic leading-none -mx-[1px] text-transparent bg-clip-text bg-gradient-to-br from-[#ff4d4d] via-[#ff7a3d] to-[#ffb84d]">
+          2
+          <!-- subtle cut-line accent -->
+          <span class="brand-cut absolute -left-0.5 right-0 -bottom-0.5 h-px bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" aria-hidden="true"></span>
+        </span>
+        <span class="font-semibold text-[20px] sm:text-[22px] tracking-tight text-white/95 leading-none">Cut</span>
+        <!-- micro tagline -->
+        <span class="hidden sm:inline-block ml-2.5 self-center text-[8.5px] tracking-[0.32em] uppercase text-white/30 font-semibold border-l border-white/15 pl-2.5">Match&nbsp;on&nbsp;Action</span>
+      </a>
 
-      {navItems.map(item => (
-        <a
-          href={item.href}
-          data-nav-link
-          class="relative flex items-center cursor-pointer py-3 pr-2"
+      <!-- Center: page nav (desktop) -->
+      <nav class="hidden md:flex items-center gap-1 p-1 rounded-full border border-white/[0.08] bg-white/[0.03]" aria-label="Primary">
+        {pageLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'relative px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.18em] uppercase transition-all duration-300',
+              page === link.id
+                ? 'text-black bg-white shadow-[0_2px_14px_rgba(255,255,255,0.18)]'
+                : 'text-white/55 hover:text-white/90 hover:bg-white/[0.05]',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right: anchor links + theme toggle -->
+      <div class="flex items-center gap-2 shrink-0">
+
+        <!-- Home anchors only on home page (desktop) -->
+        {page === 'home' && (
+          <nav class="hidden lg:flex items-center gap-0.5 mr-1" aria-label="On-page sections">
+            {homeAnchors.map(link => (
+              <a
+                href={link.href}
+                data-nav-link
+                class="nav-link px-2.5 py-1.5 rounded-md text-[10px] font-semibold tracking-[0.16em] uppercase text-white/40 hover:text-white/85 hover:bg-white/[0.05] transition-all duration-200"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )}
+
+        <!-- Theme toggle -->
+        <button
+          id="theme-toggle"
+          aria-label="Toggle light/dark mode"
+          class="w-9 h-9 rounded-xl border border-white/[0.1] hover:border-white/30 bg-white/[0.04] hover:bg-white/[0.09] flex items-center justify-center text-white/45 hover:text-white/80 transition-all duration-200 shrink-0"
         >
-          <span class="nav-dot w-2 h-2 rounded-full border border-black/20 dark:border-white/25 shrink-0 z-10 relative transition-all duration-300"></span>
-          <!-- Label pill — visible whenever the nav is hovered -->
-          <span class="nav-lbl absolute left-5 whitespace-nowrap
-                       text-[8px] font-bold tracking-[0.24em] uppercase
-                       text-white/85
-                       bg-black/85 backdrop-blur-md border border-white/10
-                       px-3 py-1.5 rounded-full shadow-lg
-                       opacity-0 -translate-x-1 pointer-events-none
-                       group-hover/nav:opacity-100 group-hover/nav:translate-x-0
-                       transition-all duration-200 ease-out">
-            {item.label}
-          </span>
-        </a>
-      ))}
+          <svg class="theme-icon-dark w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+          <svg class="theme-icon-light w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        </button>
+
+        <!-- Hamburger (mobile) -->
+        <button
+          id="nav-hamburger"
+          aria-label="Open menu"
+          aria-expanded="false"
+          class="md:hidden w-9 h-9 rounded-xl border border-white/[0.1] hover:border-white/30 bg-white/[0.04] hover:bg-white/[0.09] flex items-center justify-center text-white/55 hover:text-white/85 transition-all duration-200"
+        >
+          <svg id="hamburger-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 13h16M4 19h16"/>
+          </svg>
+          <svg id="close-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+      </div>
     </div>
 
-    <!-- Separator -->
-    <div class="w-3 h-px bg-black/[0.08] dark:bg-white/[0.08] ml-0 my-2"></div>
-
-    <!-- Theme toggle — keeps own group for icon hover effect -->
-    <button
-      id="theme-toggle"
-      aria-label="Toggle light/dark mode"
-      class="relative flex items-center group cursor-pointer py-2 pr-2"
+    <!-- Mobile dropdown -->
+    <div
+      id="mobile-menu"
+      class="md:hidden hidden border-t border-white/[0.06] bg-black/70 backdrop-blur-2xl overflow-hidden"
     >
-      <span class="w-5 h-5 rounded-full
-                   border border-black/15 dark:border-white/20
-                   flex items-center justify-center
-                   transition-all duration-300
-                   group-hover:border-black/35 dark:group-hover:border-white/50
-                   group-hover:bg-black/[0.04] dark:group-hover:bg-white/[0.05]">
-        <svg class="theme-icon-dark w-2.5 h-2.5
-                    text-black/35 dark:text-white/40
-                    group-hover:text-black/60 dark:group-hover:text-white/70
-                    transition-colors"
-             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-        </svg>
-        <svg class="theme-icon-light w-2.5 h-2.5
-                    text-black/35 dark:text-white/40
-                    group-hover:text-black/60 dark:group-hover:text-white/70
-                    transition-colors hidden"
-             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-        </svg>
-      </span>
-      <!-- Label — also appears on nav hover -->
-      <span class="theme-toggle-lbl absolute left-6 whitespace-nowrap
-                   text-[8px] font-bold tracking-[0.24em] uppercase
-                   text-white/85
-                   bg-black/85 backdrop-blur-md border border-white/10
-                   px-3 py-1.5 rounded-full shadow-lg
-                   opacity-0 -translate-x-1 pointer-events-none
-                   group-hover/nav:opacity-100 group-hover/nav:translate-x-0
-                   transition-all duration-250 ease-out">
-        Light
-      </span>
-    </button>
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
+        <div class="text-[8.5px] font-bold tracking-[0.32em] uppercase text-white/30 px-3 pb-2 pt-1">Pages</div>
+        {pageLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'mobile-nav-link group flex items-center justify-between px-3 py-3 rounded-xl text-[12px] font-bold tracking-[0.14em] uppercase transition-all duration-200',
+              page === link.id
+                ? 'bg-gradient-to-r from-[#ff4d4d]/15 to-[#ffb84d]/[0.08] border border-[#ff4d4d]/20 text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]'
+                : 'text-white/65 hover:text-white border border-transparent hover:bg-white/[0.05] hover:border-white/[0.08]',
+            ]}
+          >
+            <span>{link.label}</span>
+            <svg class="w-3.5 h-3.5 opacity-50 group-hover:opacity-90 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        ))}
 
+        {page === 'home' && (
+          <>
+            <div class="text-[8.5px] font-bold tracking-[0.32em] uppercase text-white/30 px-3 pt-3 pb-1">On this page</div>
+            {homeAnchors.map(link => (
+              <a
+                href={link.href}
+                data-nav-link
+                class="mobile-nav-link px-3 py-2.5 rounded-lg text-[11px] font-semibold tracking-[0.14em] uppercase text-white/55 hover:text-white hover:bg-white/[0.05] transition-all duration-200"
+              >
+                {link.label}
+              </a>
+            ))}
+          </>
+        )}
+      </div>
+    </div>
   </div>
-</nav>
+</header>
 
-<!-- Floating toggle for non-xl screens -->
-<button
-  id="theme-toggle-mobile"
-  aria-label="Toggle light/dark mode"
-  class="xl:hidden fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full
-         border border-black/15 dark:border-white/20
-         bg-white/60 dark:bg-black/40
-         backdrop-blur-md flex items-center justify-center
-         text-black/45 dark:text-white/50
-         hover:text-black/70 dark:hover:text-white/80
-         hover:border-black/30 dark:hover:border-white/40
-         transition-all duration-300"
->
-  <svg class="theme-icon-dark w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-  </svg>
-  <svg class="theme-icon-light w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-  </svg>
-</button>
+<!-- Spacer so content doesn't hide under fixed nav -->
+<div class="h-16"></div>
 
 <script>
-  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
-  const sections  = document.querySelectorAll<HTMLElement>('section[id]');
-
-  const spy = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.id;
-      navLinks.forEach(link => {
-        const active = link.getAttribute('href') === `#${id}`;
-        const dot = link.querySelector('.nav-dot');
-        if (dot) {
-          dot.classList.toggle('nav-dot-active', active);
-          dot.classList.toggle('scale-125', active);
-        }
-      });
-    });
-  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
-
-  sections.forEach(s => spy.observe(s));
-
-  // ── Theme toggle ──────────────────────────────────────────
+  // ── Theme toggle ──────────────────────────────────────────────────────────
   function isDark() { return document.documentElement.classList.contains('dark'); }
 
   function syncUI() {
     const dark = isDark();
     document.querySelectorAll<HTMLElement>('.theme-icon-dark').forEach(el => el.classList.toggle('hidden', !dark));
     document.querySelectorAll<HTMLElement>('.theme-icon-light').forEach(el => el.classList.toggle('hidden', dark));
-    const lbl = document.querySelector<HTMLElement>('.theme-toggle-lbl');
-    if (lbl) lbl.textContent = dark ? 'Light' : 'Dark';
   }
 
   function toggleTheme() {
@@ -145,7 +169,100 @@ const navItems = [
   }
 
   document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
-  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
-
   syncUI();
+
+  // ── Hamburger menu ────────────────────────────────────────────────────────
+  const hamburger     = document.getElementById('nav-hamburger');
+  const mobileMenu    = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon     = document.getElementById('close-icon');
+
+  function setMobileMenu(open: boolean) {
+    if (!mobileMenu || !hamburger) return;
+    if (open) {
+      mobileMenu.classList.remove('hidden');
+      // Animate open
+      mobileMenu.style.maxHeight = '0px';
+      mobileMenu.style.opacity = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        mobileMenu.style.transition = 'max-height 320ms cubic-bezier(0.22,1,0.36,1), opacity 260ms ease';
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+        mobileMenu.style.opacity = '1';
+      }));
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      hamburger.setAttribute('aria-expanded', 'true');
+    } else {
+      mobileMenu.style.transition = 'max-height 240ms ease, opacity 180ms ease';
+      mobileMenu.style.maxHeight = '0px';
+      mobileMenu.style.opacity = '0';
+      setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.style.transition = '';
+        mobileMenu.style.maxHeight = '';
+        mobileMenu.style.opacity = '';
+      }, 250);
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('hidden') === false;
+    setMobileMenu(!isOpen);
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => setMobileMenu(false));
+  });
+
+  // ── Scroll spy (homepage anchor links) ───────────────────────────────────
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+  const sections = document.querySelectorAll<HTMLElement>('section[id]');
+
+  if (navLinks.length > 0 && sections.length > 0) {
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href') || '';
+          const active = href.endsWith(`#${id}`);
+          link.classList.toggle('text-white/85', active);
+          link.classList.toggle('bg-white/[0.05]', active);
+          link.classList.toggle('text-white/40', !active);
+        });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(s => spy.observe(s));
+  }
+
+  // ── Scroll shadow on nav ──────────────────────────────────────────────────
+  const header = document.getElementById('top-nav');
+  function onScroll() {
+    if (window.scrollY > 8) {
+      header?.classList.add('nav-scrolled');
+    } else {
+      header?.classList.remove('nav-scrolled');
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
+
+<style>
+  #top-nav.nav-scrolled .nav-glass {
+    background-color: rgb(0 0 0 / 0.62);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255,255,255,0.04) inset;
+  }
+  html:not(.dark) #top-nav .nav-glass {
+    background-color: rgba(245, 240, 232, 0.78) !important;
+    border-bottom-color: rgba(0,0,0,0.08) !important;
+  }
+  html:not(.dark) #top-nav.nav-scrolled .nav-glass {
+    background-color: rgba(245, 240, 232, 0.92) !important;
+    box-shadow: 0 6px 24px rgba(120, 90, 50, 0.18);
+  }
+</style>

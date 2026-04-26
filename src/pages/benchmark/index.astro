@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import ComparisonSection from '../../components/ComparisonSection.astro';
+import BenchmarkTablesSection from '../../components/BenchmarkTablesSection.astro';
+import CitationSection from '../../components/CitationSection.astro';
+---
+
+<Layout title="Act2Cut — Comparison & Benchmark">
+  <Navigation page="benchmark" />
+  <main class="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-16 md:pb-24 flex flex-col gap-16 relative z-10">
+    <ComparisonSection />
+    <div class="film-strip-divider"></div>
+    <BenchmarkTablesSection />
+    <CitationSection />
+  </main>
+</Layout>

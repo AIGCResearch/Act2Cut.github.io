@@ -1,0 +1,222 @@
+---
+// T2V-only qualitative comparison vs. baselines.
+// Used on the /benchmark sub-page.
+
+const t2v_items = [
+  { num: 'T01', short: 'Tying hair',  action: 'Action: [Character 1] is tying up her hair. Shot 1: MCU on hand. Shot 2: OTS on face.' },
+  { num: 'T02', short: 'Walk toward', action: 'Action: [Character 1] walks toward [Character 2]. Shot 1: Wide. Shot 2: Mid-Shot, dolly-in.' },
+  { num: 'T03', short: 'Dance move',  action: 'Action: [Character 1] performs a dance move. Shot 1: Wide. Shot 2: Low-Angle Mid-Shot.' },
+  { num: 'T04', short: 'Sits, opens', action: 'Action: [Character 1] sits and opens a book. Shot 1: Mid-Shot. Shot 2: Cut-In on hands.' },
+  { num: 'T05', short: 'Crouches',    action: 'Action: [Character 1] crouches to pick up an object. Shot 1: Mid-Shot. Shot 2: ECU.' },
+  { num: 'T06', short: 'To window',   action: 'Action: [Character 1] turns to the window. Shot 1: Mid-Shot. Shot 2: OTS.' },
+];
+
+const PAGE = 3;
+function chunk<T>(arr: T[], n: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
+  return out;
+}
+const pages = chunk(t2v_items, PAGE);
+
+const rows = [
+  { label: 'HoloCine-14B', isAccent: false },
+  { label: 'MSM-14B',      isAccent: false },
+  { label: 'Act2Cut',      isAccent: true  },
+];
+---
+
+<section id="comparison" class="space-y-10">
+  <!-- Section header -->
+  <div data-reveal>
+    <span class="act-marker">ACT Ⅴ</span>
+    <h2 class="text-3xl font-semibold tracking-tight flex items-center gap-3 mt-1">
+      <span class="inline-block w-1 h-7 bg-gradient-to-b from-[#ff4d4d] to-[#ffb84d] rounded-sm" style="transform: skewX(-6deg);"></span>
+      Qualitative Comparison
+    </h2>
+    <p class="text-white/50 text-sm mt-2">Text&nbsp;→&nbsp;Video, side-by-side against open-source baselines.</p>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex items-center justify-between" data-pager="bench-cmp" data-reveal style="transition-delay:60ms">
+    <button
+      data-pager-prev
+      class="flex items-center gap-1.5 text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 hover:text-white/70 transition-all duration-200"
+      style="opacity:0.25"
+    >
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Prev
+    </button>
+
+    <div class="flex items-center gap-2">
+      {pages.map((_, pi) => (
+        <button
+          data-pager-dot={pi}
+          class:list={[
+            'pager-dot rounded-full transition-all duration-300 cursor-pointer',
+            pi === 0
+              ? 'w-4 h-1.5 bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]'
+              : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40',
+          ]}
+        ></button>
+      ))}
+    </div>
+
+    <button
+      data-pager-next
+      class="flex items-center gap-1.5 text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 hover:text-white/70 transition-all duration-200"
+    >
+      Next
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Glass comparison table -->
+  <div
+    class="rounded-3xl overflow-hidden border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl shadow-2xl"
+    data-reveal
+    style="transition-delay:120ms"
+  >
+    {pages.map((pageItems, pi) => (
+      <div class={`bench-cmp-page ${pi !== 0 ? 'hidden' : ''}`} data-page={pi}>
+
+        <!-- Column headers -->
+        <div
+          class="grid border-b border-white/[0.08] bg-white/[0.02]"
+          style={`grid-template-columns: 110px repeat(${pageItems.length}, 1fr)`}
+        >
+          <div class="px-3 sm:px-4 py-3 border-r border-white/[0.05] flex items-end">
+            <span class="text-[8px] font-bold tracking-[0.28em] uppercase text-white/30">Model</span>
+          </div>
+          {pageItems.map((item) => (
+            <div class="px-2 pt-3 pb-2.5 text-center border-r border-white/[0.04] last:border-r-0">
+              <div class="text-[11px] font-bold tracking-[0.14em] text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] leading-none">
+                {item.num}
+              </div>
+              <div class="text-[8.5px] text-white/35 mt-1 leading-tight">{item.short}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Model rows -->
+        {rows.map((row, rowIdx) => (
+          <div
+            class:list={[
+              'grid',
+              rowIdx > 0 && 'border-t border-white/[0.06]',
+              row.isAccent && 'bg-gradient-to-r from-[#ff4d4d]/[0.06] to-transparent',
+            ]}
+            style={`grid-template-columns: 110px repeat(${pageItems.length}, 1fr)`}
+          >
+            <div class="px-3 sm:px-4 py-2.5 flex items-center border-r border-white/[0.05]">
+              {row.isAccent ? (
+                <span class="text-[9px] font-bold tracking-[0.14em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]">
+                  ★ Act2Cut
+                </span>
+              ) : (
+                <span class="text-[9px] font-semibold tracking-[0.14em] uppercase text-white/45">
+                  {row.label}
+                </span>
+              )}
+            </div>
+
+            {pageItems.map(() => (
+              <div class="p-1.5 sm:p-2 border-r border-white/[0.04] last:border-r-0">
+                <div class:list={[
+                  'aspect-video rounded-lg flex items-center justify-center transition-all duration-300 cursor-pointer group',
+                  row.isAccent
+                    ? 'bg-black/50 border border-[#ff4d4d]/20 hover:border-[#ff4d4d]/55 hover:shadow-[0_0_22px_rgba(255,77,77,0.16)]'
+                    : 'bg-black/50 border border-white/[0.07] hover:border-white/25',
+                ]}>
+                  <svg
+                    class:list={[
+                      'w-4 h-4 ml-0.5 transition-all duration-300 group-hover:scale-110',
+                      row.isAccent ? 'text-[#ff4d4d]/25 group-hover:text-[#ff4d4d]/65' : 'text-white/15 group-hover:text-white/35',
+                    ]}
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+
+        <!-- Per-page captions -->
+        <div
+          class="grid border-t border-white/[0.06] bg-white/[0.015] px-2 py-3"
+          style={`grid-template-columns: 110px repeat(${pageItems.length}, 1fr)`}
+        >
+          <div></div>
+          {pageItems.map((item) => (
+            <div class="px-2">
+              <p class="text-[9.5px] text-white/40 leading-snug text-center line-clamp-3">{item.action}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  function initBenchPager() {
+    const bar = document.querySelector<HTMLElement>('[data-pager="bench-cmp"]');
+    if (!bar) return;
+    const pages = document.querySelectorAll<HTMLElement>('.bench-cmp-page');
+    const dots  = bar.querySelectorAll<HTMLElement>('[data-pager-dot]');
+    const prev  = bar.querySelector<HTMLButtonElement>('[data-pager-prev]');
+    const next  = bar.querySelector<HTMLButtonElement>('[data-pager-next]');
+    let cur = 0;
+
+    function goTo(idx: number) {
+      if (idx < 0 || idx >= pages.length) return;
+      const oldP = pages[cur];
+      const newP = pages[idx];
+      cur = idx;
+
+      oldP.style.transition = 'opacity 180ms ease';
+      oldP.style.opacity = '0';
+      setTimeout(() => {
+        oldP.classList.add('hidden');
+        oldP.style.opacity = '';
+        oldP.style.transition = '';
+        newP.classList.remove('hidden');
+        newP.style.opacity = '0';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          newP.style.transition = 'opacity 320ms cubic-bezier(0.22,1,0.36,1)';
+          newP.style.opacity = '1';
+          setTimeout(() => { newP.style.transition = ''; newP.style.opacity = ''; }, 350);
+        }));
+      }, 190);
+
+      dots.forEach((d, i) => {
+        if (i === idx) {
+          d.classList.remove('w-1.5','h-1.5','bg-white/20','hover:bg-white/40');
+          d.classList.add('w-4','h-1.5','bg-gradient-to-r','from-[#ff4d4d]','to-[#ffb84d]');
+        } else {
+          d.classList.remove('w-4','bg-gradient-to-r','from-[#ff4d4d]','to-[#ffb84d]');
+          d.classList.add('w-1.5','h-1.5','bg-white/20','hover:bg-white/40');
+        }
+      });
+
+      if (prev) prev.style.opacity = idx === 0 ? '0.25' : '1';
+      if (next) next.style.opacity = idx === pages.length - 1 ? '0.25' : '1';
+    }
+
+    prev?.addEventListener('click', () => goTo(cur - 1));
+    next?.addEventListener('click', () => goTo(cur + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+    if (next) next.style.opacity = pages.length <= 1 ? '0.25' : '1';
+    if (prev) prev.style.opacity = '0.25';
+  }
+
+  document.addEventListener('DOMContentLoaded', initBenchPager);
+</script>

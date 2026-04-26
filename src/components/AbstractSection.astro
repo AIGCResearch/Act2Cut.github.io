@@ -1,16 +1,16 @@
 ---
 ---
 
-<section id="abstract" class="rounded-3xl p-8 md:p-12 border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl space-y-6">
-  <div class="flex items-center gap-3 mb-2">
+<section id="abstract" class="rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl space-y-5 sm:space-y-6">
+  <div class="flex items-center gap-3 mb-1 sm:mb-2">
     <span class="act-marker">ACT Ⅰ</span>
   </div>
-  <h2 class="text-2xl font-semibold tracking-tight text-white/90 mb-4">Abstract</h2>
+  <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-white/90 mb-3 sm:mb-4">Abstract</h2>
 
-  <p class="text-lg leading-relaxed text-white/90 font-light text-justify" data-reveal>
+  <p class="text-[15px] sm:text-base md:text-lg leading-relaxed text-white/90 font-light text-justify" data-reveal>
     Achieving cinematic coherence in video generation requires more than just identity or scene consistency—it demands <strong class="font-semibold text-white">Action Continuity</strong>. In filmmaking, the Match on Action (Action-Cut) technique is essential for narrative flow. Current multi-shot models frequently suffer from action reset, instantaneous flickering, or disruptions in physical logic during abrupt shot transitions.
   </p>
-  <p class="text-lg leading-relaxed text-white/90 font-light text-justify" data-reveal style="transition-delay:100ms">
+  <p class="text-[15px] sm:text-base md:text-lg leading-relaxed text-white/90 font-light text-justify" data-reveal style="transition-delay:100ms">
     We introduce <strong class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]">Act2Cut</strong>, the first specialized framework for continuous action-driven multi-shot video generation. Act2Cut introduces <strong class="font-semibold text-white">Transitional Boundary Residual (TBR)</strong> and <strong class="font-semibold text-white">GLoS-RoPE</strong> to enhance adjacent shot spatio-temporal coherence, alongside <strong class="font-semibold text-white">Shot Causal Mask (SCM)</strong> and <strong class="font-semibold text-white">Hierarchical Context Mask (HCM)</strong> to achieve global temporal causality and local element isolation. It unifies Text-to-Video, Image-to-Video, and Video-to-Video generation into a single native pass.
   </p>
 </section>
