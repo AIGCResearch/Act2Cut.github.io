@@ -4,16 +4,19 @@ interface Props {
 }
 const { page = 'home' } = Astro.props;
 
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
+const url  = (p: string) => `${base}${p}`;
+
 const homeAnchors = [
-  { label: 'Abstract', href: '/#abstract'  },
-  { label: 'Method',   href: '/#overview'  },
-  { label: 'Citation', href: '/#citation'  },
+  { label: 'Abstract', href: url('/#abstract') },
+  { label: 'Method',   href: url('/#overview') },
+  { label: 'Citation', href: url('/#citation') },
 ];
 
 const pageLinks = [
-  { id: 'home',      label: 'Home',     href: '/' },
-  { id: 'dataset',   label: 'Dataset',  href: '/dataset' },
-  { id: 'benchmark', label: 'Benchmark',href: '/benchmark' },
+  { id: 'home',      label: 'Home',      href: url('/') },
+  { id: 'dataset',   label: 'Dataset',   href: url('/dataset') },
+  { id: 'benchmark', label: 'Benchmark', href: url('/benchmark') },
 ];
 ---
 
@@ -26,7 +29,7 @@ const pageLinks = [
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
 
       <!-- Brand — typographic wordmark, no icon -->
-      <a href="/" class="brand-mark group flex items-baseline gap-0.5 shrink-0 select-none" aria-label="Act2Cut — Home">
+      <a href={url('/')} class="brand-mark group flex items-baseline gap-0.5 shrink-0 select-none" aria-label="Act2Cut — Home">
         <span class="font-semibold text-[20px] sm:text-[22px] tracking-tight text-white/95 leading-none">Act</span>
         <span class="brand-two relative font-bold text-[22px] sm:text-[24px] italic leading-none -mx-[1px] text-transparent bg-clip-text bg-gradient-to-br from-[#ff4d4d] via-[#ff7a3d] to-[#ffb84d]">
           2

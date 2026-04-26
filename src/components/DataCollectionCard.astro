@@ -3,6 +3,8 @@
 // Right pane shows an actual visual demo of hierarchical prompting,
 // not a screenshot.
 
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
 const layers = [
   { tag: 'Global',     dot: '#ff4d4d', body: 'Soft, warm sunlight filters through large windows of a quiet apartment.', sub: 'Env · Scene · Style' },
   { tag: 'Local',      dot: '#ff7a3d', body: 'Shot 1: Medium Close-Up, focus on hand.   Shot 2: Over-the-Shoulder, focus on face.', sub: 'Static / Dynamic Cinematography' },
@@ -48,7 +50,7 @@ const layers = [
       </ul>
 
       <div class="mt-auto pt-2">
-        <a href="/dataset" class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.22em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] hover:opacity-80 transition-opacity">
+        <a href={`${base}/dataset`} class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.22em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] hover:opacity-80 transition-opacity">
           Explore the dataset
           <svg class="w-3 h-3 text-[#ffb84d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
         </a>

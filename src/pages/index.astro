@@ -6,6 +6,8 @@ import AbstractSection from '../components/AbstractSection.astro';
 import OverviewSection from '../components/OverviewSection.astro';
 import DataCollectionCard from '../components/DataCollectionCard.astro';
 import CitationSection from '../components/CitationSection.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 ---
 
 <Layout title="Act2Cut: Continuous Next-Shot Video Narrative Match on Action-Cut">
@@ -103,7 +105,7 @@ import CitationSection from '../components/CitationSection.astro';
           <p class="text-[11px] text-white/35 leading-snug">
             Numbers are placeholder values for layout demonstration.
           </p>
-          <a href="/benchmark" class="shrink-0 inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.22em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] hover:opacity-80 transition-opacity">
+          <a href={`${base}/benchmark`} class="shrink-0 inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.22em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] hover:opacity-80 transition-opacity">
             Full benchmarks
             <svg class="w-3 h-3 text-[#ffb84d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
           </a>
