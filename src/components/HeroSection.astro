@@ -1,12 +1,12 @@
 ---
 const authors = [
-  { name: 'Cailin Zhuang', affil: '2,3*' },
-  { name: 'Yaoqi Hu',      affil: '4*'   },
-  { name: 'Zheng Dong',    affil: '4'    },
-  { name: 'Shiwen Zhang',  affil: '1'    },
-  { name: 'Haibin Huang',  affil: '1†'   },
-  { name: 'Chi Zhang',     affil: '1†'   },
-  { name: 'Xuelong Li',    affil: '1†'   },
+  { name: 'Cailin Zhuang', affil: '1,2,3*†' },
+  { name: 'Yaoqi Hu',      affil: '2,4*'   },
+  { name: 'Zheng Dong',    affil: '2,4'    },
+  { name: 'Shiwen Zhang',  affil: '1'      },
+  { name: 'Haibin Huang',  affil: '1‡'     },
+  { name: 'Chi Zhang',     affil: '1‡'     },
+  { name: 'Xuelong Li',    affil: '1‡'     },
 ];
 
 const affiliations = [
@@ -64,8 +64,10 @@ const affiliations = [
         <span><sup class="mr-0.5">{affil.id}</sup>{affil.name}</span>
       ))}
     </div>
-    <div class="text-[11.5px] sm:text-[13px] text-white/40 mt-3 sm:mt-4 font-light">
-      * Equal contributions. &nbsp;&nbsp;&nbsp; † Corresponding authors.
+    <div class="text-[11.5px] sm:text-[13px] text-white/40 mt-3 sm:mt-4 font-light flex flex-wrap justify-center gap-x-5 gap-y-1">
+      <span>* Equal contribution.</span>
+      <span>† Work done during internship at TeleAI.</span>
+      <span>‡ Corresponding author.</span>
     </div>
   </div>
 
