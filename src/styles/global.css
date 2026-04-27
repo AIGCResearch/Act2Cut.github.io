@@ -118,13 +118,13 @@ html:not(.dark) ::selection {
 .site-bg-image {
   height: 180%;
   object-fit: cover;
-  object-position: 50% 18%;
+  object-position: 50% 0%;
 }
 
 @media (max-width: 640px) {
   .site-bg-image {
     height: 140%;
-    object-position: 50% 8%;
+    object-position: 50% 0%;
   }
 }
 
