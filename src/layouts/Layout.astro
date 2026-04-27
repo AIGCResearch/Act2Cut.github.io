@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 ---
 
 <!doctype html>
@@ -39,9 +40,9 @@ const { title } = Astro.props;
     <div class="fixed inset-0 w-full h-full -z-50 pointer-events-none overflow-hidden">
       <div class="theme-overlay absolute inset-0 bg-black/30 z-10"></div>
       <img
-        src="https://images.unsplash.com/photo-1440407876336-62333a6f010f?q=80&w=2942&auto=format&fit=crop"
-        class="parallax-bg absolute inset-x-0 top-0 w-full opacity-55 mix-blend-screen"
-        style="height: 180%; object-fit: cover; will-change: transform;"
+        src={`${base}/images/act2cut-background.jpg`}
+        class="parallax-bg site-bg-image absolute inset-x-0 top-0 w-full opacity-55 mix-blend-screen"
+        style="will-change: transform;"
         alt=""
       />
     </div>

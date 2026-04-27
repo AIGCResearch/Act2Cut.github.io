@@ -115,6 +115,19 @@ html:not(.dark) ::selection {
      1px 0 rgba(74,144,226,0.4);
 }
 
+.site-bg-image {
+  height: 180%;
+  object-fit: cover;
+  object-position: 50% 18%;
+}
+
+@media (max-width: 640px) {
+  .site-bg-image {
+    height: 140%;
+    object-position: 50% 8%;
+  }
+}
+
 /* ===== LIGHT MODE ===== */
 
 html:not(.dark) body {
