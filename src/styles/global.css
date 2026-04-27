@@ -123,7 +123,7 @@ html:not(.dark) ::selection {
 
 @media (max-width: 640px) {
   .site-bg-image {
-    height: 140%;
+    height: 240%;
     object-position: 50% 0%;
   }
 }

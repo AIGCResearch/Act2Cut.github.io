@@ -77,7 +77,8 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
         window.addEventListener('scroll', () => {
           if (!raf) {
             raf = requestAnimationFrame(() => {
-              parallaxBg.style.transform = `translateY(-${window.scrollY * 0.08}px)`;
+              const parallaxRate = window.matchMedia('(max-width: 640px)').matches ? 0.035 : 0.08;
+              parallaxBg.style.transform = `translateY(-${window.scrollY * parallaxRate}px)`;
               raf = null;
             });
           }
