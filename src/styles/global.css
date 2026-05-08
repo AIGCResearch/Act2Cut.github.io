@@ -327,6 +327,9 @@ html:not(.dark) .rank-5 { color: #861f4f; background: rgba(255, 120, 180, 0.25);
   min-height: 100%;
   object-fit: cover;
   object-position: 50% 0%;
+  /* Parallax offset is exposed as a custom property so the CSS can compose it with any
+     baseline transform (e.g. the mobile centering translateX). The JS just updates --parallax-y. */
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
 }
 
 @media (max-width: 640px) {
@@ -335,7 +338,9 @@ html:not(.dark) .rank-5 { color: #861f4f; background: rgba(255, 120, 180, 0.25);
     max-width: none;
     left: 50%;
     right: auto;
-    transform: translateX(-50%);
+    /* Compose centering with parallax; without this the JS would clobber translateX(-50%)
+       and the background would jump to the left edge after the first scroll on mobile. */
+    transform: translate3d(-50%, var(--parallax-y, 0px), 0);
     object-position: 50% 0%;
   }
 }

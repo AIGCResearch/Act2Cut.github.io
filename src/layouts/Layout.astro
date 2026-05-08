@@ -68,19 +68,21 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
     </script>
 
-    <!-- Parallax background -->
+    <!-- Parallax background.
+         Mobile is intentionally skipped: the URL-bar show/hide animation re-runs layout on every
+         scroll and makes any parallax movement look jittery. Desktop uses a CSS custom property
+         so the offset composes with the mobile centering transform without clobbering it. -->
     <script>
       const parallaxBg = document.querySelector<HTMLElement>('.parallax-bg');
-      if (parallaxBg) {
+      const isMobile   = window.matchMedia('(max-width: 640px)').matches;
+      if (parallaxBg && !isMobile) {
         let raf: number | null = null;
         window.addEventListener('scroll', () => {
-          if (!raf) {
-            raf = requestAnimationFrame(() => {
-              const parallaxRate = window.matchMedia('(max-width: 640px)').matches ? 0.035 : 0.08;
-              parallaxBg.style.transform = `translateY(-${window.scrollY * parallaxRate}px)`;
-              raf = null;
-            });
-          }
+          if (raf !== null) return;
+          raf = requestAnimationFrame(() => {
+            parallaxBg.style.setProperty('--parallax-y', `-${window.scrollY * 0.08}px`);
+            raf = null;
+          });
         }, { passive: true });
       }
     </script>
