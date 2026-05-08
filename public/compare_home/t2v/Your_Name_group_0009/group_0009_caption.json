@@ -1,0 +1,10 @@
+{
+  "global_setting": "Global Setting: Daytime, well-lit indoor environment with bright natural light illuminating the comfortable room. A traditional Japanese-style room featuring a wooden dining table, a rice cooker, and sliding doors. 2D anime style with vibrant colors, soft lighting, and highly detailed background artwork.",
+  "global_action": "Global Action/Motion: [character1] reaches out her hand to pick up the grey remote control from the wooden table, then holds it up in front of her and presses a button. [character2] sits comfortably at the wooden dining table, continuously using her chopsticks to eat food from a bowl. [character3] remains seated quietly in the background behind the table, observing the room while looking steadily towards the right. null. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+  "character1": "[character1] is A teenage girl with dark hair wearing a white school shirt and a red bow.",
+  "character2": "[character2] is A younger girl with dark pigtails, dressed in a bright yellow hoodie.",
+  "character3": "[character3] is An older woman with grey hair and glasses, wearing a green traditional top.",
+  "shot1": "Shot1 is a close-up focused on [character1]'s hand and the remote control. It uses normal-standard lensing, high-angle left-three-quarter-front-view camera angle, direct-view insert framing, and shallow depth of field. The camera tilts up, and uses locked-off tripod stability.",
+  "shot2": "Shot2 is a medium shot focused on [character1], [character2], and [character3]. It uses normal-standard lensing, eye-level right-three-quarter-front-view camera angle, direct-view three-character framing, and deep depth of field. The camera pushes in, and uses stabilized Steadicam-style movement.",
+  "shot1-2": "From Shot1 to Shot2, the transition is hard cut, cut-out, and action match."
+}

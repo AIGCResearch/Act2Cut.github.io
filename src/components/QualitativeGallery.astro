@@ -7,6 +7,7 @@
 //   V2V: condition_video.mp4 above generated mp4.
 
 import { galleryData } from '../data/galleryData';
+import DualVideo from './DualVideo.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
@@ -88,11 +89,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                   <span class="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-[8px] font-bold tracking-[0.18em] uppercase bg-[#ff4d4d]/85 text-white shadow-lg shadow-[#ff4d4d]/20 backdrop-blur-sm">
                     Generated
                   </span>
-                  <video
-                    src={`${base}/${item.video}`}
-                    class="qg-video absolute inset-0 w-full h-full object-cover"
-                    muted loop playsinline preload="metadata"
-                  ></video>
+                  <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
                   <div class="qg-scrub" data-scrub>
                     <div class="qg-scrub-fill"></div>
                     <div class="qg-scrub-thumb"></div>
@@ -118,11 +115,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                     <span class="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-[8px] font-bold tracking-[0.18em] uppercase bg-[#ff4d4d]/85 text-white shadow-lg shadow-[#ff4d4d]/20 backdrop-blur-sm">
                       Generated
                     </span>
-                    <video
-                      src={`${base}/${item.video}`}
-                      class="qg-video absolute inset-0 w-full h-full object-cover"
-                      muted loop playsinline preload="metadata"
-                    ></video>
+                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
                     <div class="qg-scrub" data-scrub>
                       <div class="qg-scrub-fill"></div>
                       <div class="qg-scrub-thumb"></div>
@@ -156,11 +149,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                     <span class="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-[8px] font-bold tracking-[0.18em] uppercase bg-[#ff4d4d]/85 text-white shadow-lg shadow-[#ff4d4d]/20 backdrop-blur-sm">
                       Generated
                     </span>
-                    <video
-                      src={`${base}/${item.video}`}
-                      class="qg-video absolute inset-0 w-full h-full object-cover"
-                      muted loop playsinline preload="metadata"
-                    ></video>
+                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
                     <div class="qg-scrub" data-scrub>
                       <div class="qg-scrub-fill"></div>
                       <div class="qg-scrub-thumb"></div>
@@ -177,11 +166,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                       Prev Shot
                     </span>
                     {item.condVideo && (
-                      <video
-                        src={`${base}/${item.condVideo}`}
-                        class="qg-video absolute inset-0 w-full h-full object-cover"
-                        muted loop playsinline preload="metadata"
-                      ></video>
+                      <DualVideo src={`${base}/${item.condVideo}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
                     )}
                     <div class="qg-scrub" data-scrub>
                       <div class="qg-scrub-fill"></div>
@@ -192,11 +177,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                     <span class="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-[8px] font-bold tracking-[0.18em] uppercase bg-[#ff4d4d]/85 text-white shadow-lg shadow-[#ff4d4d]/20 backdrop-blur-sm">
                       Generated
                     </span>
-                    <video
-                      src={`${base}/${item.video}`}
-                      class="qg-video absolute inset-0 w-full h-full object-cover"
-                      muted loop playsinline preload="metadata"
-                    ></video>
+                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
                     <div class="qg-scrub" data-scrub>
                       <div class="qg-scrub-fill"></div>
                       <div class="qg-scrub-thumb"></div>
@@ -220,9 +201,8 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                     All Prompts
                   </button>
                 </div>
-                <p class="qg-prompt-summary text-[11.5px] leading-relaxed text-white/65 font-light cursor-help">
-                  <span class="text-white/85 font-medium">Setting.</span> {item.setting}.{' '}
-                  <span class="text-white/85 font-medium">Action.</span> {item.action}
+                <p class="qg-prompt-summary text-[11.5px] leading-relaxed text-white/65 font-light cursor-help line-clamp-3">
+                  {item.caption}
                 </p>
 
                 <!-- Hover/click popover with full per-shot prompts -->
@@ -292,29 +272,18 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
       });
     });
 
-    // Hover-to-play videos. On touch devices, autoplay visible videos via IntersectionObserver.
-    const isTouch = window.matchMedia('(hover: none)').matches;
-
-    if (isTouch) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          const v = e.target as HTMLVideoElement;
-          if (e.isIntersecting) v.play().catch(() => {});
-          else v.pause();
-        });
-      }, { threshold: 0.4 });
-      gallery.querySelectorAll<HTMLVideoElement>('video.qg-video').forEach(v => io.observe(v));
-    } else {
-      gallery.querySelectorAll<HTMLElement>('.qg-card').forEach(card => {
-        const videos = card.querySelectorAll<HTMLVideoElement>('video.qg-video');
-        card.addEventListener('mouseenter', () => {
-          videos.forEach(v => { if (!(v as any)._scrubbing) v.play().catch(() => {}); });
-        });
-        card.addEventListener('mouseleave', () => {
-          videos.forEach(v => { if (!(v as any)._scrubbing) v.pause(); });
-        });
+    // Autoplay any video that scrolls into view; pause it as soon as it leaves. Same behavior on
+     // every device — no hover dance — and the browser only decodes what's actually on screen.
+    // The `_scrubbing` guard keeps the user's manual seek from being overridden by the observer.
+    const playObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const v = e.target as HTMLVideoElement;
+        if ((v as any)._scrubbing) return;
+        if (e.isIntersecting) v.play().catch(() => {});
+        else v.pause();
       });
-    }
+    }, { threshold: 0.35 });
+    gallery.querySelectorAll<HTMLVideoElement>('video.qg-video').forEach(v => playObserver.observe(v));
 
     // Per-shot prompt popover: hover-triggered (CSS) + click-to-pin via toggle button. ESC / outside-click unpins.
     gallery.querySelectorAll<HTMLElement>('.qg-prompt-block').forEach(block => {

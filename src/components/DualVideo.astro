@@ -1,0 +1,31 @@
+---
+// <video> wrapper that ships an AV1 MP4 plus an H.264 MP4 fallback so Safari (which can't
+// decode AV1 reliably, especially on iOS / older Macs) still plays the clip.
+//
+// Convention: pass the H.264 source path; the AV1 sibling is derived by swapping `.mp4`
+// for `.av1.mp4`. Files on disk follow this naming pair (created by scripts/encode pipeline).
+
+interface Props {
+  src: string;
+  /** Tailwind classes applied to the underlying <video> element. */
+  class?: string;
+  /** Optional poster image; usually omitted for these auto-loop previews. */
+  poster?: string;
+}
+
+const { src, class: cls = '', poster } = Astro.props;
+
+const av1 = src.replace(/\.mp4(\?.*)?$/, '.av1.mp4$1');
+---
+
+<video
+  class={cls}
+  muted
+  loop
+  playsinline
+  preload="metadata"
+  poster={poster}
+>
+  <source src={av1} type='video/mp4; codecs="av01.0.05M.08"' />
+  <source src={src} type='video/mp4; codecs="avc1.4D401E"' />
+</video>

@@ -1,0 +1,12 @@
+{
+  "global_setting": "Global Setting: Brightly lit daytime atmosphere with warm sunlight streaming into an indoor space. An indoor gymnasium featuring tiled walls, glass doors, and a fire alarm box. 2D anime style with vibrant colors, cinematic lighting, and smooth dynamic animation.",
+  "global_action": "Global Action/Motion: [character1] holding a basketball, she playfully interacts with the boy, then turns to execute a high jump. She lands with a radiant smile, enthusiastically running forward toward the camera. [character2] initially reacting defensively with raised hands and a surprised expression, he shifts to the background, watching the girl's impressive jump shot in continuous astonishment throughout the ongoing play. [character3] standing behind the main action, she continuously observes the jumping girl with wide-eyed shock and open-mouthed awe as the dynamic sequence unfolds on the bright basketball court. The basketball is held firmly before being thrown upwards in a high arc during the jump. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+  "character1": "[character1] is A girl with a black ponytail wearing a yellow and red basketball uniform.",
+  "character2": "[character2] is A boy with short brown hair in a yellow and red basketball uniform.",
+  "character3": "[character3] is A short-haired girl wearing a yellow and red basketball uniform.",
+  "shot1": "Shot1 is a medium shot focused on [character1] and [character2]. It uses normal-standard lensing, eye-level back-view camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+  "shot2": "Shot2 is a medium full shot focused on [character1] and the basketball. It uses normal-standard lensing, hip-level right-three-quarter-back-view camera angle, direct-view two-character framing, and deep depth of field. The camera tilts up, and uses locked-off tripod stability.",
+  "shot3": "Shot3 begins as a close-up focused on [character1], then widens to a medium close-up. It uses normal-standard lensing, low-angle front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera tilts up, and uses stabilized Steadicam-style movement.",
+  "shot1-2": "From Shot1 to Shot2, the transition is hard cut, cut-out, no continuity editing, and cause-effect.",
+  "shot2-3": "From Shot2 to Shot3, the transition is hard cut, cut-in, no continuity editing, cause-effect, and montage sequence."
+}

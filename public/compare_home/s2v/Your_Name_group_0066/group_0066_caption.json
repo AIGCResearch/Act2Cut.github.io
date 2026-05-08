@@ -1,0 +1,14 @@
+{
+  "global_setting": "Global Setting: A dark, dimly lit rocky cave environment with a mysterious and awe-inspiring atmosphere. A rugged stone crevice featuring a glowing, mystical depiction of a comet on its ceiling. 2D anime style featuring dramatic lighting, lens flares, and highly expressive, detailed character animation.",
+  "global_action": "Global Action/Motion: [character1] he slips backward down the rocky slope, flailing his arms, then stares wide-eyed in profound shock, raising both hands towards the glowing comet mural on the cave ceiling above. Floating dust particles and water droplets catch the light as they drift through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+  "character1": "[character1] is A young man with dark messy hair, wearing a dark jacket, holding a smartphone.",
+  "shot1": "Shot1 is a medium close-up focused on [character1]'s face. It uses normal-standard lensing, low-angle left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+  "shot2": "Shot2 is a full shot focused on [character1]. It uses normal-standard lensing, eye-level left-side-view camera angle, direct-view single-subject framing, and deep depth of field. The camera booms down, uses stabilized Steadicam-style movement, and uses high-frame-rate slow motion.",
+  "shot3": "Shot3 is a medium close-up focused on [character1]'s face. It uses normal-standard lensing, low-angle front-view camera angle, direct-view single-subject framing, shallow depth of field, and lens flare. The camera pushes in, and uses stabilized Steadicam-style movement.",
+  "shot4": "Shot4 is an extreme close-up focused on [character1]'s eyes. It uses normal-standard lensing, eye-level front-view camera angle, direct-view single-subject framing, shallow depth of field, and lens flare. The camera pushes in, zooms in, and uses locked-off tripod stability.",
+  "shot5": "Shot5 is a medium close-up focused on [character1]'s back and the glowing patterns on the wall. It uses normal-standard lensing, eye-level back-view camera angle, direct-view single-subject framing, and deep depth of field. The camera pushes in, and uses stabilized Steadicam-style movement.",
+  "shot1-2": "From Shot1 to Shot2, the transition is hard cut, cut-out, and action match.",
+  "shot2-3": "From Shot2 to Shot3, the transition is hard cut, cut-in, action match, and reaction shot.",
+  "shot3-4": "From Shot3 to Shot4, the transition is hard cut, cut-in, action match, and reaction shot.",
+  "shot4-5": "From Shot4 to Shot5, the transition is hard cut, cut-out, eyeline match, and cause-effect."
+}

@@ -1,0 +1,12 @@
+{
+  "global_setting": "Global Setting: A warm, dimly lit interior room at night. A cozy living room with sofas, lamps, and a fireplace. Live-action cinematic style with warm, yellowish color grading.",
+  "global_action": "Global Action/Motion: [character1] finishes pouring champagne into [character4]'s glass, then slightly lifts the bottle and maintains his standing posture. [character2] sits quietly in his chair, continuously observing [character1] pouring the drink without changing his relaxed posture. [character3] sits still on the armchair, continuously holding her drink and observing the gathering around the room. [character4] holds her pink glass steady to receive the champagne from [character1], then gently pulls it back. [character5] remains seated on the sofa, calmly watching [character1] serve the drink without making any significant movements. The champagne bottle tilts downwards to pour liquid, then is steadily held in a more upright position. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+  "character1": "[character1] is A heavy-set man wearing a dark suit.",
+  "character2": "[character2] is A plump boy wearing a suit and bow tie.",
+  "character3": "[character3] is A woman wearing a light pink dress.",
+  "character4": "[character4] is An older woman wearing a greenish jacket.",
+  "character5": "[character5] is An older bald man wearing a dark suit.",
+  "shot1": "Shot1 is a close-up focused on the hands of [character1] pouring champagne into a pink crystal glass held by [character3], emphasizing the details of the drink and the gold bracelet, while [character2] remains blurred in the background. It uses short-telephoto compression, shoulder-level front-view camera angle, over-the-shoulder insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+  "shot2": "Shot2 is a long/wide shot focused on [character1] standing in the center of the room holding a bottle, serving as the visual anchor for the surrounding seated characters. It uses fisheye lensing, high-angle front-view camera angle, direct-view group framing, and deep depth of field. The camera uses locked-off tripod stability.",
+  "shot1-2": "From Shot1 to Shot2, the transition is hard cut, cut-out, and action match."
+}

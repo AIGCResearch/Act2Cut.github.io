@@ -1,4 +1,6 @@
 ---
+import DualVideo from './DualVideo.astro';
+
 const pipelineSteps = [
   { n: '1', title: 'Source Collection',       desc: 'Large-scale video corpus from diverse genres, styles, and cinematographic traditions' },
   { n: '2', title: 'AC Detection',            desc: 'SCBO algorithm identifies action-cut boundaries with boundary-residual optimization' },
@@ -178,11 +180,7 @@ const samples = sampleFiles.map(file => {
           style={`transition-delay:${i * 50}ms`}
         >
           <div class="cinema-aspect bg-black/55 border-b border-white/[0.07] relative overflow-hidden">
-            <video
-              src={s.src}
-              class="sample-video absolute inset-0 w-full h-full object-cover"
-              muted loop playsinline preload="metadata"
-            ></video>
+            <DualVideo src={s.src} class="sample-video absolute inset-0 w-full h-full object-cover" />
             <span class="absolute top-2 left-2 z-10 px-1.5 py-0.5 rounded font-mono text-[8px] font-bold tracking-[0.10em] text-white/85 bg-black/55 border border-white/15 backdrop-blur-sm">
               {s.shots}
             </span>
@@ -203,22 +201,13 @@ const samples = sampleFiles.map(file => {
 </section>
 
 <script>
-  // Hover-to-play + custom progress scrubber for the Sample Data grid.
+  // Autoplay sample videos when they scroll into view; pause when off-screen. Same behavior on
+  // every device. The custom scrubber works alongside it via the `_scrubbing` guard.
   const samples = document.querySelectorAll<HTMLElement>('.sample-card');
-  const isTouch = window.matchMedia('(hover: none)').matches;
 
   samples.forEach(card => {
     const video = card.querySelector<HTMLVideoElement>('video.sample-video');
     if (!video) return;
-
-    if (!isTouch) {
-      card.addEventListener('mouseenter', () => {
-        if (!(video as any)._scrubbing) video.play().catch(() => {});
-      });
-      card.addEventListener('mouseleave', () => {
-        if (!(video as any)._scrubbing) video.pause();
-      });
-    }
 
     const scrub = card.querySelector<HTMLElement>('[data-scrub]');
     if (!scrub) return;
@@ -273,15 +262,14 @@ const samples = sampleFiles.map(file => {
     scrub.addEventListener('pointercancel', end);
   });
 
-  // Touch: autoplay visible sample videos via IntersectionObserver
-  if (isTouch) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        const v = e.target as HTMLVideoElement;
-        if (e.isIntersecting) v.play().catch(() => {});
-        else v.pause();
-      });
-    }, { threshold: 0.4 });
-    document.querySelectorAll<HTMLVideoElement>('.sample-video').forEach(v => io.observe(v));
-  }
+  // Single shared IntersectionObserver — plays each sample video while it's at least 35% on screen.
+  const playObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const v = e.target as HTMLVideoElement;
+      if ((v as any)._scrubbing) return;
+      if (e.isIntersecting) v.play().catch(() => {});
+      else v.pause();
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll<HTMLVideoElement>('.sample-video').forEach(v => playObserver.observe(v));
 </script>

@@ -1,0 +1,8 @@
+{
+  "global_setting": "Global Setting: Sunny daytime outdoors with bright, glowing sunlight and a continuous, strong breeze. A green, open grassy landscape with a clear, unobscured view. 2D anime style featuring vibrant colors, bright sunlight effects, and a stylized artistic aesthetic.",
+  "global_action": "Global Action/Motion: [character1] runs steadily forward with a gentle smile, her arms swinging rhythmically as the wind dynamically blows her dark hair and red ribbon behind her throughout the sequence. Small dark particles and debris flutter rapidly through the air, carried by the strong wind. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+  "character1": "[character1] is A young girl with dark hair, a red ribbon, white uniform shirt, and red bow.",
+  "shot1": "Shot1 is a medium close-up focused on [character1]. It uses short-telephoto compression, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera pushes in, and uses stabilized Steadicam-style movement.",
+  "shot2": "Shot2 is a long/wide shot focused on [character1]. It uses wide-angle lensing, low-angle left-side-view camera angle, direct-view single-subject framing, and deep depth of field. The camera tracks left with the subject, and uses stabilized Steadicam-style movement.",
+  "shot1-2": "From Shot1 to Shot2, the transition is hard cut, no spatial-temporal editing, no continuity editing, and cross-cutting."
+}

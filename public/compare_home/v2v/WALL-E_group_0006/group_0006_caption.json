@@ -1,0 +1,8 @@
+{
+  "global_setting": "Global Setting: Dim, cozy interior lit by warm ambient light, creating a nostalgic, cluttered atmosphere. Wooden shelves packed with organized human trinkets, utensil cups, and a Rubik's cube. 3D animated cinematic style featuring highly realistic textures of rust, metal, and worn plastic.",
+  "global_action": "Global Action/Motion: [character1] examines a Rubik's cube, extends his arm to place it onto a shelf, then hesitates with a spork before setting it between cups of spoons and forks. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+  "character1": "[character1] is A small, rusty, yellow, box-shaped robot with binocular eyes and mechanical claw-like hands.",
+  "shot1": "Shot1 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+  "shot2": "Shot2 is a close-up focused on [character1]'s hand and the spork. It uses normal-standard lensing, eye-level front-view camera angle, direct-view insert framing, and shallow depth of field. The camera pans left, and uses locked-off tripod stability.",
+  "shot1-2": "From Shot1 to Shot2, the transition is hard cut, cut-in, action match, and cause-effect."
+}

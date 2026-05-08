@@ -1,0 +1,9 @@
+{
+  "global_setting": "Global Setting: Nighttime, heavy rain, dimly lit outdoors transitioning to the dark interior of a car. A car parked outside next to a wall lamp, and the car's interior with seats. Live-action cinematic style with dark, moody lighting and a realistic aesthetic.",
+  "global_action": "Global Action/Motion: [character1] he opens the door in the rain, ducks and enters the car, settling into the passenger seat, then closes the door and converses with [character2]. [character2] he sits behind the steering wheel, turns his head to watch [character1] enter, and engages in conversation with him. Heavy rain pounds against the car's windshield as the passenger door opens and shuts. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+  "character1": "[character1] is A man with short wet hair, wearing a dark, rain-soaked jacket.",
+  "character2": "[character2] is A man wearing a bright blue baseball cap and a dark top.",
+  "shot1": "Shot1 begins as a medium shot focused on [character1] and [character2], then tightens to a medium close-up. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera pans right, uses locked-off tripod stability, and keeps follow focus on the moving subject.",
+  "shot2": "Shot2 is a medium close-up focused on [character1]'s face. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, over-the-shoulder two-character framing, and shallow depth of field. The camera uses stabilized Steadicam-style movement, and pulls focus between subjects.",
+  "shot1-2": "From Shot1 to Shot2, the transition is hard cut, no spatial-temporal editing, and action match."
+}
