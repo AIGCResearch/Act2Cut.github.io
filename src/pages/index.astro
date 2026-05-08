@@ -10,7 +10,7 @@ import CitationSection from '../components/CitationSection.astro';
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 ---
 
-<Layout title="Act2Cut: Continuous Next-Shot Video Narrative Match on Action-Cut">
+<Layout title="Act2Cut: Continuous Multi-Shot Video Narrative Match on Action-Cut">
   <Navigation page="home" />
   <main class="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-16 md:pb-24 flex flex-col gap-16 relative z-10">
     <HeroSection />
@@ -28,7 +28,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       </div>
 
       <!-- Glass card with native HTML table -->
-      <div class="relative rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl shadow-2xl overflow-hidden">
+      <div class="glass-table-card relative rounded-2xl sm:rounded-3xl border border-white/[0.10] shadow-2xl overflow-hidden">
         <!-- Top sheen -->
         <div
           class="absolute inset-x-0 top-0 h-px pointer-events-none"
@@ -36,65 +36,134 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
         ></div>
 
         <!-- Card header: title + dataset pill -->
-        <div class="flex items-center justify-between gap-3 flex-wrap px-5 sm:px-7 pt-5 sm:pt-6 pb-4 border-b border-white/[0.06]">
-          <h3 class="text-[13px] sm:text-sm font-semibold text-white/90 tracking-wide">
-            ActCutBench Quantitative Results
-          </h3>
-          <span class="px-2.5 py-1 rounded-md text-[8.5px] sm:text-[9px] font-bold tracking-[0.22em] uppercase text-white/55 bg-white/[0.04] border border-white/[0.08]">
+        <div class="flex items-start justify-between gap-3 flex-wrap px-5 sm:px-7 pt-5 sm:pt-6 pb-4 border-b border-white/[0.06]">
+          <div class="space-y-1.5">
+            <h3 class="text-[13px] sm:text-sm font-semibold text-white/90 tracking-wide">
+              Quantitative Results — ActCutBench (Global Content Sub-Bench)
+            </h3>
+            <p class="text-[10.5px] sm:text-[11px] text-white/45 leading-relaxed max-w-3xl">
+              Baseline and Ablation. <strong class="text-white/65 font-semibold">NC</strong> Narrative Consistency · <strong class="text-white/65 font-semibold">VC</strong> Visual Coherence · <strong class="text-white/65 font-semibold">AC</strong> Action Continuity · <strong class="text-white/65 font-semibold">SC</strong> Subject Correctness · <strong class="text-white/65 font-semibold">Aes</strong> Aesthetics. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).
+            </p>
+            <div class="flex items-center gap-1.5 pt-1 text-[9.5px] text-white/40">
+              <span class="rank-cell rank-1 text-[9.5px]" style="min-width:0;padding:1px 5px;">1st</span>
+              <span class="rank-cell rank-2 text-[9.5px]" style="min-width:0;padding:1px 5px;">2nd</span>
+              <span class="rank-cell rank-3 text-[9.5px]" style="min-width:0;padding:1px 5px;">3rd</span>
+              <span class="rank-cell rank-4 text-[9.5px]" style="min-width:0;padding:1px 5px;">4th</span>
+              <span class="rank-cell rank-5 text-[9.5px]" style="min-width:0;padding:1px 5px;">5th</span>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-md text-[8.5px] sm:text-[9px] font-bold tracking-[0.22em] uppercase text-white/55 bg-white/[0.04] border border-white/[0.08] whitespace-nowrap">
             Dataset · ActCutVid-200K
           </span>
         </div>
 
-        <!-- Table -->
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-[12px] sm:text-[13px]">
+        <!-- Table (compact summary; full per-dimension table lives on the benchmark page) -->
+        <div class="overflow-x-auto thin-scroll">
+          <table class="w-full text-left border-collapse text-[12px] whitespace-nowrap">
             <thead>
-              <tr class="text-white/45 border-b border-white/[0.06]">
-                <th class="px-5 sm:px-7 py-3 font-medium tracking-wide">Method</th>
-                <th class="px-3 sm:px-5 py-3 font-medium tracking-wide whitespace-nowrap">FVD <span class="text-white/30">(↓)</span></th>
-                <th class="px-3 sm:px-5 py-3 font-medium tracking-wide whitespace-nowrap">CLIP Score <span class="text-white/30">(↑)</span></th>
-                <th class="px-3 sm:px-5 py-3 font-medium tracking-wide whitespace-nowrap">Action Continuity <span class="text-white/30">(↑)</span></th>
-                <th class="px-3 sm:px-5 py-3 font-medium tracking-wide whitespace-nowrap pr-5 sm:pr-7">Visual Coherence <span class="text-white/30">(↑)</span></th>
+              <tr class="text-white/40 border-b border-white/10">
+                <th class="px-4 sm:px-5 py-3 font-normal text-left" rowspan="2">Method</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">NC ↑</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">VC ↑</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="1">AC ↑</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">SC ↑</th>
+                <th class="px-3 py-3 text-center font-normal" rowspan="2">Aes ↑</th>
+              </tr>
+              <tr class="text-white/30 border-b border-white/10 text-center">
+                <th class="px-2.5 py-2 font-normal">G1</th><th class="px-2.5 py-2 font-normal">G2</th>
+                <th class="px-2.5 py-2 font-normal">G1</th><th class="px-2.5 py-2 font-normal">CS</th>
+                <th class="px-2.5 py-2 font-normal">CA/OM</th>
+                <th class="px-2.5 py-2 font-normal">CC</th><th class="px-2.5 py-2 font-normal">CID</th>
               </tr>
             </thead>
-            <tbody class="font-mono">
-              <!-- Ours row (highlighted) -->
-              <tr class="border-b border-white/[0.05] bg-gradient-to-r from-[#ff4d4d]/[0.06] via-[#ff4d4d]/[0.02] to-transparent hover:from-[#ff4d4d]/[0.10] transition-colors">
-                <td class="px-5 sm:px-7 py-3.5 font-sans">
-                  <span class="inline-flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#ff4d4d] shadow-[0_0_10px_#ff4d4d]"></span>
-                    <span class="font-bold text-white">Act2Cut <span class="text-white/55 font-medium">(Ours)</span></span>
-                  </span>
-                </td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/90">142.3</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/90">0.31</td>
-                <td class="px-3 sm:px-5 py-3.5 font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]">0.88</td>
-                <td class="px-3 sm:px-5 py-3.5 pr-5 sm:pr-7 text-white/90">0.85</td>
+            <tbody class="text-white/60 font-mono">
+              <!-- ActCutBench · Open-Source Method -->
+              <tr class="bg-white/[0.03] border-b border-white/[0.05]">
+                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="8">ActCutBench · Open-Source Method</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans">HoloCine-14B</td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-5">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans">MSM-1.3B</td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-4">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans">MSM-14B</td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-3">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/55 font-medium">(Ours)</span></td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-1">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center text-[#ffb84d]">0.000</td>)}
+                <td class="px-3 py-2.5 text-center text-[#ffb84d]">0.000</td>
               </tr>
 
-              <!-- Baseline rows -->
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.025] transition-colors">
-                <td class="px-5 sm:px-7 py-3.5 font-sans text-white/75">HoloCine-14B</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">156.8</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">0.29</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">0.76</td>
-                <td class="px-3 sm:px-5 py-3.5 pr-5 sm:pr-7 text-white/55">0.84</td>
+              <!-- ActCutBench-Lite · Ablation -->
+              <tr class="bg-white/[0.03] border-y border-white/[0.05]">
+                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="8">ActCutBench-Lite · Ablation</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-1">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center text-[#ffb84d]">0.000</td>)}
+                <td class="px-3 py-2.5 text-center text-[#ffb84d]">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">Act2Cut (w/o GLoS)</td>
+                {Array(7).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">Act2Cut (w/o TBR)</td>
+                {Array(7).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">Act2Cut (w/o SCM)</td>
+                {Array(7).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">Act2Cut (w/o HCM)</td>
+                {Array(7).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
               </tr>
 
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.025] transition-colors">
-                <td class="px-5 sm:px-7 py-3.5 font-sans text-white/75">MSM-14B</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">151.2</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">0.28</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">0.72</td>
-                <td class="px-3 sm:px-5 py-3.5 pr-5 sm:pr-7 text-white/55">0.81</td>
+              <!-- Closed-Source Method -->
+              <tr class="bg-white/[0.04] border-y border-white/[0.05]">
+                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="8">Closed-Source Method</td>
               </tr>
-
-              <tr class="hover:bg-white/[0.025] transition-colors">
-                <td class="px-5 sm:px-7 py-3.5 font-sans text-white/75">MSM-1.3B</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">168.1</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">0.27</td>
-                <td class="px-3 sm:px-5 py-3.5 text-white/55">0.65</td>
-                <td class="px-3 sm:px-5 py-3.5 pr-5 sm:pr-7 text-white/55">0.75</td>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans">Happyhorse-1.0</td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-4">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans">Seedance-2.0</td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-2">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans">Kling3</td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-1">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
+              </tr>
+              <tr class="hover:bg-white/[0.04] transition-colors">
+                <td class="px-4 sm:px-5 py-2.5 font-sans">Sora2</td>
+                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-4">0.000</span></td>
+                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
+                <td class="px-3 py-2.5 text-center">0.000</td>
               </tr>
             </tbody>
           </table>

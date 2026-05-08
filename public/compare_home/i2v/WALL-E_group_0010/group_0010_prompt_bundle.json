@@ -1,0 +1,187 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Bright, sunlit outdoor environment with a dusty and desolate atmosphere. Ground completely covered with scattered metal trash, debris, and worn scraps. 3D animation with a realistic, rusty, and weathered aesthetic in a desolate setting. [character1] [character1] is A small, rusty, box-shaped robot with tread tracks and two mechanical scooping arms. Global Action/Motion: [character1] the robot's mechanical arms close inward to scoop up scattered trash, seamlessly continuing the gathering motion across the cut to push the dusty debris into its front compactor. Dust rises as the piles of scattered trash are scraped together and pushed backward. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a close-up focused on [character1]'s scooping arms. It uses medium-telephoto compression, ground-level camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Bright, sunlit outdoor environment with a dusty and desolate atmosphere. Ground completely covered with scattered metal trash, debris, and worn scraps. 3D animation with a realistic, rusty, and weathered aesthetic in a desolate setting.",
+          "char_span": [
+            0,
+            252
+          ],
+          "token_span": [
+            0,
+            59
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small, rusty, box-shaped robot with tread tracks and two mechanical scooping arms.",
+          "char_span": [
+            253,
+            366
+          ],
+          "token_span": [
+            59,
+            92
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] the robot's mechanical arms close inward to scoop up scattered trash, seamlessly continuing the gathering motion across the cut to push the dusty debris into its front compactor. Dust rises as the piles of scattered trash are scraped together and pushed backward. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            367,
+            763
+          ],
+          "token_span": [
+            92,
+            184
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a close-up focused on [character1]'s scooping arms. It uses medium-telephoto compression, ground-level camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            764,
+            990
+          ],
+          "token_span": [
+            184,
+            244
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 245,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            244,
+            245
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Bright, sunlit outdoor environment with a dusty and desolate atmosphere. Ground completely covered with scattered metal trash, debris, and worn scraps. 3D animation with a realistic, rusty, and weathered aesthetic in a desolate setting. [character1] [character1] is A small, rusty, box-shaped robot with tread tracks and two mechanical scooping arms. Global Action/Motion: [character1] the robot's mechanical arms close inward to scoop up scattered trash, seamlessly continuing the gathering motion across the cut to push the dusty debris into its front compactor. Dust rises as the piles of scattered trash are scraped together and pushed backward. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a close-up focused on [character1]'s front scooping arms and the debris. It uses normal-standard lensing, ground-level front-view camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Bright, sunlit outdoor environment with a dusty and desolate atmosphere. Ground completely covered with scattered metal trash, debris, and worn scraps. 3D animation with a realistic, rusty, and weathered aesthetic in a desolate setting.",
+          "char_span": [
+            0,
+            252
+          ],
+          "token_span": [
+            0,
+            59
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small, rusty, box-shaped robot with tread tracks and two mechanical scooping arms.",
+          "char_span": [
+            253,
+            366
+          ],
+          "token_span": [
+            59,
+            92
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] the robot's mechanical arms close inward to scoop up scattered trash, seamlessly continuing the gathering motion across the cut to push the dusty debris into its front compactor. Dust rises as the piles of scattered trash are scraped together and pushed backward. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            367,
+            763
+          ],
+          "token_span": [
+            92,
+            184
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a close-up focused on [character1]'s front scooping arms and the debris. It uses normal-standard lensing, ground-level front-view camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            764,
+            1017
+          ],
+          "token_span": [
+            184,
+            252
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 253,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            252,
+            253
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Bright outdoor daytime setting with clear skies and strong sunlight glaring down. An outdoor basketball court surrounded by a chain-link fence, with buildings nearby. Live-action street-style realistic aesthetic with natural lighting and a sun flare effect. [character1] [character1] is A young man wearing a striking black and yellow jacket and loose white pants. [character2] [character2] is A man wearing a white long-sleeve shirt, dark pants, and a dark baseball cap. [character3] [character3] is A bystander wearing a grey t-shirt, a blue cap, and dark pants. Global Action/Motion: [character1] aggressively steps forward, winds up his arm, and forcefully punches [character2] in the face. [character2] attempts to duck but takes the hit, reeling backward uncontrollably from the forceful punch. [character3] stands stationary in the background holding a basketball, watching the violent altercation unfold. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a full shot focused on [character3] and [character4]. It uses normal-standard lensing, eye-level front-view camera angle, direct-view group framing, and deep depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Bright outdoor daytime setting with clear skies and strong sunlight glaring down. An outdoor basketball court surrounded by a chain-link fence, with buildings nearby. Live-action street-style realistic aesthetic with natural lighting and a sun flare effect.",
+          "char_span": [
+            0,
+            273
+          ],
+          "token_span": [
+            0,
+            56
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young man wearing a striking black and yellow jacket and loose white pants.",
+          "char_span": [
+            274,
+            380
+          ],
+          "token_span": [
+            56,
+            83
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A man wearing a white long-sleeve shirt, dark pants, and a dark baseball cap.",
+          "char_span": [
+            381,
+            487
+          ],
+          "token_span": [
+            83,
+            113
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is A bystander wearing a grey t-shirt, a blue cap, and dark pants.",
+          "char_span": [
+            488,
+            580
+          ],
+          "token_span": [
+            113,
+            143
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] aggressively steps forward, winds up his arm, and forcefully punches [character2] in the face. [character2] attempts to duck but takes the hit, reeling backward uncontrollably from the forceful punch. [character3] stands stationary in the background holding a basketball, watching the violent altercation unfold. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            581,
+            1026
+          ],
+          "token_span": [
+            143,
+            252
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a full shot focused on [character3] and [character4]. It uses normal-standard lensing, eye-level front-view camera angle, direct-view group framing, and deep depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            1027,
+            1254
+          ],
+          "token_span": [
+            252,
+            312
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 313,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            312,
+            313
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Bright outdoor daytime setting with clear skies and strong sunlight glaring down. An outdoor basketball court surrounded by a chain-link fence, with buildings nearby. Live-action street-style realistic aesthetic with natural lighting and a sun flare effect. [character1] [character1] is A young man wearing a striking black and yellow jacket and loose white pants. [character2] [character2] is A man wearing a white long-sleeve shirt, dark pants, and a dark baseball cap. [character3] [character3] is A bystander wearing a grey t-shirt, a blue cap, and dark pants. Global Action/Motion: [character1] aggressively steps forward, winds up his arm, and forcefully punches [character2] in the face. [character2] attempts to duck but takes the hit, reeling backward uncontrollably from the forceful punch. [character3] stands stationary in the background holding a basketball, watching the violent altercation unfold. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a medium shot focused on [character4]. It uses normal-standard lensing, low-angle right-three-quarter-back-view camera angle, direct-view single-subject framing, deep depth of field, and lens flare. The camera uses handheld stability, and uses high-frame-rate slow motion.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Bright outdoor daytime setting with clear skies and strong sunlight glaring down. An outdoor basketball court surrounded by a chain-link fence, with buildings nearby. Live-action street-style realistic aesthetic with natural lighting and a sun flare effect.",
+          "char_span": [
+            0,
+            273
+          ],
+          "token_span": [
+            0,
+            56
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young man wearing a striking black and yellow jacket and loose white pants.",
+          "char_span": [
+            274,
+            380
+          ],
+          "token_span": [
+            56,
+            83
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A man wearing a white long-sleeve shirt, dark pants, and a dark baseball cap.",
+          "char_span": [
+            381,
+            487
+          ],
+          "token_span": [
+            83,
+            113
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is A bystander wearing a grey t-shirt, a blue cap, and dark pants.",
+          "char_span": [
+            488,
+            580
+          ],
+          "token_span": [
+            113,
+            143
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] aggressively steps forward, winds up his arm, and forcefully punches [character2] in the face. [character2] attempts to duck but takes the hit, reeling backward uncontrollably from the forceful punch. [character3] stands stationary in the background holding a basketball, watching the violent altercation unfold. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            581,
+            1026
+          ],
+          "token_span": [
+            143,
+            252
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a medium shot focused on [character4]. It uses normal-standard lensing, low-angle right-three-quarter-back-view camera angle, direct-view single-subject framing, deep depth of field, and lens flare. The camera uses handheld stability, and uses high-frame-rate slow motion.",
+          "char_span": [
+            1027,
+            1308
+          ],
+          "token_span": [
+            252,
+            325
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 326,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            325,
+            326
+          ]
+        ]
+      }
+    }
+  ]
+}

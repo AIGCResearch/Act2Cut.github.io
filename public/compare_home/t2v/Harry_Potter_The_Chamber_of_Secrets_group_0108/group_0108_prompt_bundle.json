@@ -1,0 +1,340 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 3,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Daylight outdoors with slightly overcast sky and a grassy hill. Crowded outdoor spectator stands featuring sturdy wooden viewing railings. Live-action cinematic fantasy film featuring natural, cool-toned lighting. [character1] [character1] is A red-haired boy wearing a striped scarf and gloves. [character2] [character2] is A brown-haired girl wearing a dark cloak and striped scarf. Global Action/Motion: [character1] excitedly gestures forward, raises his wand, and points it forward aggressively while speaking before being stopped. [character2] watches the event intently, then reaches out and firmly pushes [character1]'s arm down to lower his wand. A wooden wand is aggressively thrust forward, then forced downwards. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium shot focused on the reaction of the group, specifically [character1] as he raises his arm to point, and the engaged expression of [character2] beside him. It uses short-telephoto compression, low-angle front-view camera angle, direct-view group framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Daylight outdoors with slightly overcast sky and a grassy hill. Crowded outdoor spectator stands featuring sturdy wooden viewing railings. Live-action cinematic fantasy film featuring natural, cool-toned lighting.",
+          "char_span": [
+            0,
+            229
+          ],
+          "token_span": [
+            0,
+            46
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A red-haired boy wearing a striped scarf and gloves.",
+          "char_span": [
+            230,
+            311
+          ],
+          "token_span": [
+            46,
+            74
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A brown-haired girl wearing a dark cloak and striped scarf.",
+          "char_span": [
+            312,
+            400
+          ],
+          "token_span": [
+            74,
+            102
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] excitedly gestures forward, raises his wand, and points it forward aggressively while speaking before being stopped. [character2] watches the event intently, then reaches out and firmly pushes [character1]'s arm down to lower his wand. A wooden wand is aggressively thrust forward, then forced downwards. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            401,
+            838
+          ],
+          "token_span": [
+            102,
+            206
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium shot focused on the reaction of the group, specifically [character1] as he raises his arm to point, and the engaged expression of [character2] beside him. It uses short-telephoto compression, low-angle front-view camera angle, direct-view group framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            839,
+            1183
+          ],
+          "token_span": [
+            206,
+            290
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 291,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            290,
+            291
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Daylight outdoors with slightly overcast sky and a grassy hill. Crowded outdoor spectator stands featuring sturdy wooden viewing railings. Live-action cinematic fantasy film featuring natural, cool-toned lighting. [character1] [character1] is A red-haired boy wearing a striped scarf and gloves. [character2] [character2] is A brown-haired girl wearing a dark cloak and striped scarf. Global Action/Motion: [character1] excitedly gestures forward, raises his wand, and points it forward aggressively while speaking before being stopped. [character2] watches the event intently, then reaches out and firmly pushes [character1]'s arm down to lower his wand. A wooden wand is aggressively thrust forward, then forced downwards. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a medium close-up focused on the facial expressions of [character1] and [character2] and the wand held by [character1]. It uses short-telephoto compression, eye-level front-view camera angle, direct-view two-character framing, and shallow depth of field. The camera pushes in, and uses stabilized Steadicam-style movement.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Daylight outdoors with slightly overcast sky and a grassy hill. Crowded outdoor spectator stands featuring sturdy wooden viewing railings. Live-action cinematic fantasy film featuring natural, cool-toned lighting.",
+          "char_span": [
+            0,
+            229
+          ],
+          "token_span": [
+            0,
+            46
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A red-haired boy wearing a striped scarf and gloves.",
+          "char_span": [
+            230,
+            311
+          ],
+          "token_span": [
+            46,
+            74
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A brown-haired girl wearing a dark cloak and striped scarf.",
+          "char_span": [
+            312,
+            400
+          ],
+          "token_span": [
+            74,
+            102
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] excitedly gestures forward, raises his wand, and points it forward aggressively while speaking before being stopped. [character2] watches the event intently, then reaches out and firmly pushes [character1]'s arm down to lower his wand. A wooden wand is aggressively thrust forward, then forced downwards. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            401,
+            838
+          ],
+          "token_span": [
+            102,
+            206
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a medium close-up focused on the facial expressions of [character1] and [character2] and the wand held by [character1]. It uses short-telephoto compression, eye-level front-view camera angle, direct-view two-character framing, and shallow depth of field. The camera pushes in, and uses stabilized Steadicam-style movement.",
+          "char_span": [
+            839,
+            1170
+          ],
+          "token_span": [
+            206,
+            292
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 293,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            292,
+            293
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 2,
+      "text": "Global Setting: Daylight outdoors with slightly overcast sky and a grassy hill. Crowded outdoor spectator stands featuring sturdy wooden viewing railings. Live-action cinematic fantasy film featuring natural, cool-toned lighting. [character1] [character1] is A red-haired boy wearing a striped scarf and gloves. [character2] [character2] is A brown-haired girl wearing a dark cloak and striped scarf. Global Action/Motion: [character1] excitedly gestures forward, raises his wand, and points it forward aggressively while speaking before being stopped. [character2] watches the event intently, then reaches out and firmly pushes [character1]'s arm down to lower his wand. A wooden wand is aggressively thrust forward, then forced downwards. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot3 is a close-up focused on [character2]'s expression as a hand holding a wand quickly lowers out of the frame, revealing her face. It uses short-telephoto compression, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses handheld stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Daylight outdoors with slightly overcast sky and a grassy hill. Crowded outdoor spectator stands featuring sturdy wooden viewing railings. Live-action cinematic fantasy film featuring natural, cool-toned lighting.",
+          "char_span": [
+            0,
+            229
+          ],
+          "token_span": [
+            0,
+            46
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A red-haired boy wearing a striped scarf and gloves.",
+          "char_span": [
+            230,
+            311
+          ],
+          "token_span": [
+            46,
+            74
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A brown-haired girl wearing a dark cloak and striped scarf.",
+          "char_span": [
+            312,
+            400
+          ],
+          "token_span": [
+            74,
+            102
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] excitedly gestures forward, raises his wand, and points it forward aggressively while speaking before being stopped. [character2] watches the event intently, then reaches out and firmly pushes [character1]'s arm down to lower his wand. A wooden wand is aggressively thrust forward, then forced downwards. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            401,
+            838
+          ],
+          "token_span": [
+            102,
+            206
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:2",
+          "type": "local_shot",
+          "text": "Shot3 is a close-up focused on [character2]'s expression as a hand holding a wand quickly lowers out of the frame, revealing her face. It uses short-telephoto compression, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses handheld stability.",
+          "char_span": [
+            839,
+            1164
+          ],
+          "token_span": [
+            206,
+            289
+          ],
+          "truncated": false,
+          "source_shot": 2,
+          "target_shot": 2,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 290,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            289,
+            290
+          ]
+        ]
+      }
+    }
+  ]
+}

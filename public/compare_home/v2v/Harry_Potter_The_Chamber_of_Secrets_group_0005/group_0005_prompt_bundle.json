@@ -1,0 +1,340 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 3,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Dimly lit bedroom at night with a tense dramatic atmosphere. Room with a wooden dresser, a stool, and white door. Live-action fantasy film with dark moody color grading. [character1] [character1] is A small elf-like creature wearing a dirty cloth sack. [character2] [character2] is A boy with dark hair, glasses, and blue shirt. Global Action/Motion: [character1] looks distraught, turns towards the wooden dresser, and violently and repeatedly bangs his head against the drawer in self-punishment. [character2] steps forward with a concerned expression, reaching out with both hands to intervene and stop the creature's self-harm. The wooden dresser shakes slightly as it is repeatedly impacted. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 begins as a close-up focused on [character1]'s guilt-ridden expression and his sudden movement to punish himself against the furniture, then widens to a medium close-up. It uses normal-standard lensing, high-angle left-side-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera follows the action, pans left, uses handheld stability, and keeps follow focus on the moving subject.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit bedroom at night with a tense dramatic atmosphere. Room with a wooden dresser, a stool, and white door. Live-action fantasy film with dark moody color grading.",
+          "char_span": [
+            0,
+            185
+          ],
+          "token_span": [
+            0,
+            44
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small elf-like creature wearing a dirty cloth sack.",
+          "char_span": [
+            186,
+            268
+          ],
+          "token_span": [
+            44,
+            69
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A boy with dark hair, glasses, and blue shirt.",
+          "char_span": [
+            269,
+            344
+          ],
+          "token_span": [
+            69,
+            92
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] looks distraught, turns towards the wooden dresser, and violently and repeatedly bangs his head against the drawer in self-punishment. [character2] steps forward with a concerned expression, reaching out with both hands to intervene and stop the creature's self-harm. The wooden dresser shakes slightly as it is repeatedly impacted. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            345,
+            810
+          ],
+          "token_span": [
+            92,
+            201
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 begins as a close-up focused on [character1]'s guilt-ridden expression and his sudden movement to punish himself against the furniture, then widens to a medium close-up. It uses normal-standard lensing, high-angle left-side-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera follows the action, pans left, uses handheld stability, and keeps follow focus on the moving subject.",
+          "char_span": [
+            811,
+            1236
+          ],
+          "token_span": [
+            201,
+            304
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 305,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            304,
+            305
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Dimly lit bedroom at night with a tense dramatic atmosphere. Room with a wooden dresser, a stool, and white door. Live-action fantasy film with dark moody color grading. [character1] [character1] is A small elf-like creature wearing a dirty cloth sack. [character2] [character2] is A boy with dark hair, glasses, and blue shirt. Global Action/Motion: [character1] looks distraught, turns towards the wooden dresser, and violently and repeatedly bangs his head against the drawer in self-punishment. [character2] steps forward with a concerned expression, reaching out with both hands to intervene and stop the creature's self-harm. The wooden dresser shakes slightly as it is repeatedly impacted. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a medium full shot (mfs) focused on [character1] violently banging his head against the dresser drawer while [character2] reacts with shock and attempts to intervene. It uses wide-angle lensing, low-angle right-three-quarter-front-view camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit bedroom at night with a tense dramatic atmosphere. Room with a wooden dresser, a stool, and white door. Live-action fantasy film with dark moody color grading.",
+          "char_span": [
+            0,
+            185
+          ],
+          "token_span": [
+            0,
+            44
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small elf-like creature wearing a dirty cloth sack.",
+          "char_span": [
+            186,
+            268
+          ],
+          "token_span": [
+            44,
+            69
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A boy with dark hair, glasses, and blue shirt.",
+          "char_span": [
+            269,
+            344
+          ],
+          "token_span": [
+            69,
+            92
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] looks distraught, turns towards the wooden dresser, and violently and repeatedly bangs his head against the drawer in self-punishment. [character2] steps forward with a concerned expression, reaching out with both hands to intervene and stop the creature's self-harm. The wooden dresser shakes slightly as it is repeatedly impacted. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            345,
+            810
+          ],
+          "token_span": [
+            92,
+            201
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a medium full shot (mfs) focused on [character1] violently banging his head against the dresser drawer while [character2] reacts with shock and attempts to intervene. It uses wide-angle lensing, low-angle right-three-quarter-front-view camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            811,
+            1174
+          ],
+          "token_span": [
+            201,
+            298
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 299,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            298,
+            299
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 2,
+      "text": "Global Setting: Dimly lit bedroom at night with a tense dramatic atmosphere. Room with a wooden dresser, a stool, and white door. Live-action fantasy film with dark moody color grading. [character1] [character1] is A small elf-like creature wearing a dirty cloth sack. [character2] [character2] is A boy with dark hair, glasses, and blue shirt. Global Action/Motion: [character1] looks distraught, turns towards the wooden dresser, and violently and repeatedly bangs his head against the drawer in self-punishment. [character2] steps forward with a concerned expression, reaching out with both hands to intervene and stop the creature's self-harm. The wooden dresser shakes slightly as it is repeatedly impacted. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot3 is a medium close-up focused on [character1] banging his head against the wooden dresser. It uses standard, high-angle right-three-quarter-back-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit bedroom at night with a tense dramatic atmosphere. Room with a wooden dresser, a stool, and white door. Live-action fantasy film with dark moody color grading.",
+          "char_span": [
+            0,
+            185
+          ],
+          "token_span": [
+            0,
+            44
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small elf-like creature wearing a dirty cloth sack.",
+          "char_span": [
+            186,
+            268
+          ],
+          "token_span": [
+            44,
+            69
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A boy with dark hair, glasses, and blue shirt.",
+          "char_span": [
+            269,
+            344
+          ],
+          "token_span": [
+            69,
+            92
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] looks distraught, turns towards the wooden dresser, and violently and repeatedly bangs his head against the drawer in self-punishment. [character2] steps forward with a concerned expression, reaching out with both hands to intervene and stop the creature's self-harm. The wooden dresser shakes slightly as it is repeatedly impacted. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            345,
+            810
+          ],
+          "token_span": [
+            92,
+            201
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:2",
+          "type": "local_shot",
+          "text": "Shot3 is a medium close-up focused on [character1] banging his head against the wooden dresser. It uses standard, high-angle right-three-quarter-back-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            811,
+            1088
+          ],
+          "token_span": [
+            201,
+            273
+          ],
+          "truncated": false,
+          "source_shot": 2,
+          "target_shot": 2,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 274,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            273,
+            274
+          ]
+        ]
+      }
+    }
+  ]
+}

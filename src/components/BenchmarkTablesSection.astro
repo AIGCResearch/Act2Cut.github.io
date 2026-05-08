@@ -10,87 +10,193 @@
       <span class="inline-block w-1 h-6 sm:h-7 bg-gradient-to-b from-[#ff4d4d] to-[#ffb84d] rounded-sm" style="transform: skewX(-6deg);"></span>
       Benchmark Results
     </h2>
-    <p class="text-white/50 text-[13px] sm:text-sm mt-2">ActCutBench, VistoryBench, and VBench evaluation. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).</p>
+    <p class="text-white/50 text-[13px] sm:text-sm mt-2">ActCutBench, and VBench evaluation. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).</p>
+    <div class="flex items-center gap-1.5 pt-3 text-[10px] text-white/40 flex-wrap">
+      <span class="text-white/35 mr-1">Performance ranks:</span>
+      <span class="rank-cell rank-1 text-[10px]" style="min-width:0;padding:1px 6px;">1st</span>
+      <span class="rank-cell rank-2 text-[10px]" style="min-width:0;padding:1px 6px;">2nd</span>
+      <span class="rank-cell rank-3 text-[10px]" style="min-width:0;padding:1px 6px;">3rd</span>
+      <span class="rank-cell rank-4 text-[10px]" style="min-width:0;padding:1px 6px;">4th</span>
+      <span class="rank-cell rank-5 text-[10px]" style="min-width:0;padding:1px 6px;">5th</span>
+    </div>
   </div>
 
   <!-- ActCutBench: Global Content Sub-Bench -->
-  <div class="rounded-2xl sm:rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl overflow-hidden" data-reveal style="transition-delay:80ms">
+  <div class="glass-table-card rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl overflow-hidden" data-reveal style="transition-delay:80ms">
     <div class="p-5 sm:p-8 border-b border-white/10">
       <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">ActCutBench — Global Content Sub-Bench</span>
-      <p class="text-sm text-white/60 leading-relaxed max-w-2xl">
-        Evaluates narrative consistency (NC), visual coherence (VC), action continuity (AC), subject correctness (SC), and aesthetics (Aes) across generated multi-shot sequences. All metrics ↑ higher is better.
+      <p class="text-sm text-white/60 leading-relaxed max-w-3xl">
+        Quantitative results (Baseline and Ablation) on ActCutBench / ActCutBench-Lite. <strong class="text-white/80">NC</strong> Narrative Consistency for Global Text-Visual Alignment (<em>Env</em>: Environment, <em>Sce</em>: Scene, <em>Sty</em>: Style, <em>CS</em>: Character Setting, <em>CA/OM</em>: Character Action / Object Motion). <strong class="text-white/80">VC</strong> Visual Coherence for Inter-shots Static Visual Similarity (<em>Env</em>, <em>Sce</em>, <em>Sty</em>, <em>CS</em>). <strong class="text-white/80">AC</strong> Action Continuity for Adjacent-shots Dynamic Visual Continuity (<em>CA/OM</em>). <strong class="text-white/80">SC</strong> Subject Correctness for Single-shot Local Text-Visual Alignment (<em>CC</em>: Character Count, <em>CID</em>: Character Identity, both derived from FoA: Focus-of-Attention). <strong class="text-white/80">SA</strong> Shot Alignment for Multi-shot Structural Integrity (<em>SCC</em>: Shot Count Correctness, <em>SCA</em>: Shot Cutting Accuracy). <strong class="text-white/80">Aes</strong> Aesthetics Score for Visual Quality. All metrics ↑ higher is better.
       </p>
     </div>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto thin-scroll">
       <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
         <thead>
           <tr class="text-white/40 border-b border-white/10">
             <th class="px-4 py-3 font-normal text-left" rowspan="2">Method</th>
-            <th class="px-4 py-3 font-normal text-left" rowspan="2">Base Model</th>
+            <th class="px-4 py-3 font-normal text-left" rowspan="2">Base Model Ver.</th>
             <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="5">NC ↑</th>
             <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="4">VC ↑</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">AC ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="1">AC ↑</th>
             <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">SC ↑</th>
-            <th class="px-3 py-2 text-center font-normal" rowspan="2">Aes ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">SA ↑</th>
+            <th class="px-3 py-3 text-center font-normal" rowspan="2">Aes ↑</th>
           </tr>
           <tr class="text-white/30 border-b border-white/10 text-center">
             <th class="px-2 py-2 font-normal">Env</th><th class="px-2 py-2 font-normal">Sce</th><th class="px-2 py-2 font-normal">Sty</th><th class="px-2 py-2 font-normal">CS</th><th class="px-2 py-2 font-normal">CA/OM</th>
-            <th class="px-2 py-2 font-normal">Env/Sce</th><th class="px-2 py-2 font-normal">Sty</th><th class="px-2 py-2 font-normal">CS</th><th class="px-2 py-2 font-normal">CA/OM</th>
-            <th class="px-2 py-2 font-normal">CA</th><th class="px-2 py-2 font-normal">OM</th>
+            <th class="px-2 py-2 font-normal">Env</th><th class="px-2 py-2 font-normal">Sce</th><th class="px-2 py-2 font-normal">Sty</th><th class="px-2 py-2 font-normal">CS</th>
+            <th class="px-2 py-2 font-normal">CA/OM</th>
             <th class="px-2 py-2 font-normal">CC</th><th class="px-2 py-2 font-normal">CID</th>
+            <th class="px-2 py-2 font-normal">SCC</th><th class="px-2 py-2 font-normal">SCA</th>
           </tr>
         </thead>
-        <tbody class="text-white/60">
+        <tbody class="text-white/60 font-mono">
+
+          <!-- ActCutBench section -->
           <tr class="bg-white/[0.03] border-b border-white/[0.05]">
-            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold" colspan="15">Open-Source Methods — ActCutBench</td>
+            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold italic" colspan="17">The following results are obtained on ActCutBench</td>
+          </tr>
+          <tr class="bg-white/[0.05] border-b border-white/[0.05]">
+            <td class="px-4 py-2 text-[10px] tracking-wider text-white/45 font-semibold" colspan="17">Open-Source Method</td>
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">HoloCine-14B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">HoloCine-14B</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-5">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">MSM-1.3B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.1-TI2V-1.3B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">MultiShotMaster-1.3B</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-TI2V-1.3B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-4">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">MSM-14B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">MultiShotMaster-14B</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-3">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
           </tr>
           <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
-            <td class="px-4 py-3 font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (Ours)</td>
-            <td class="px-4 py-3 text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono text-[#ffb84d] font-semibold">—</td>)}
+            <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/55 font-medium">(Ours)</span></td>
+            <td class="px-4 py-3 font-sans text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center text-[#ffb84d]">0.000</td>)}
+            <td class="px-3 py-3 text-center text-[#ffb84d]">0.000</td>
           </tr>
-          <tr class="bg-white/[0.03] border-b border-white/[0.05]">
-            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold" colspan="15">ActCutBench-Lite — Ablation</td>
+
+          <!-- ActCutBench-Lite section -->
+          <tr class="bg-white/[0.03] border-y border-white/[0.05]">
+            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold italic" colspan="17">The following results are obtained on ActCutBench-Lite</td>
           </tr>
-          <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08]">
-            <td class="px-4 py-3 font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
-            <td class="px-4 py-3 text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono text-[#ffb84d] font-semibold">—</td>)}
-          </tr>
-          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3 text-white/70">w/o GLoS-RoPE</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+          <tr class="bg-white/[0.05] border-b border-white/[0.05]">
+            <td class="px-4 py-2 text-[10px] tracking-wider text-white/45 font-semibold" colspan="17">Open-Source Method</td>
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3 text-white/70">w/o TBR</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">QwenEdit2509 + Wan2.2</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">QwenImage + Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-5">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3 text-white/70">w/o SCM</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">HoloCine</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-2">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">MultiShotMaster</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-TI2V-1.3B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">MultiShotMaster</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
+            <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
+            <td class="px-4 py-3 font-sans text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center text-[#ffb84d]">0.000</td>)}
+            <td class="px-3 py-3 text-center text-[#ffb84d]">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans text-white/75">Act2Cut (w/o GLoS-RoPE)</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans text-white/75">Act2Cut (w/o TBR)</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans text-white/75">Act2Cut (w/o SCM)</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans text-white/75">Act2Cut (w/o HCM)</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+
+          <!-- Closed-Source Method -->
+          <tr class="bg-white/[0.05] border-y border-white/[0.05]">
+            <td class="px-4 py-2 text-[10px] tracking-wider text-white/45 font-semibold" colspan="17">Closed-Source Method</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">Happyhorse-1.0</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-5">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">Seedance-2.0</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-2">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">Kling3</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">Sora2</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-4">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
           </tr>
           <tr class="hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3 text-white/70">w/o HCM</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">GPT-Image-2 + Kling-I2V</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-4">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+            <td class="px-3 py-3 text-center">0.000</td>
           </tr>
         </tbody>
       </table>
@@ -98,19 +204,19 @@
   </div>
 
   <!-- ActCutBench: Cinematography Sub-Bench -->
-  <div class="rounded-2xl sm:rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl overflow-hidden" data-reveal style="transition-delay:100ms">
+  <div class="glass-table-card rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl overflow-hidden" data-reveal style="transition-delay:100ms">
     <div class="p-5 sm:p-8 border-b border-white/10">
       <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">ActCutBench — Cinematography Sub-Bench</span>
-      <p class="text-sm text-white/60 leading-relaxed max-w-2xl">
-        Evaluates adherence to static cinematography (SC), dynamic cinematography (DC), and relation cinematography (RC) specifications per generated shot.
+      <p class="text-sm text-white/60 leading-relaxed max-w-3xl">
+        Quantitative results (Baseline and Ablation) on ActCutBench / ActCutBench-Lite for cinematography evaluation. <strong class="text-white/80">Static Cinematography (SC)</strong>: <em>SS</em> Shot Size, <em>LT</em> Lens Type, <em>FF</em> Shot Framing Function, <em>FV</em> Shot Framing View, <em>AE</em> Camera Angle Elevation, <em>AA</em> Camera Angle Azimuth, <em>AD</em> Camera Angle Dutch, <em>DoF</em> Depth-of-Field. <strong class="text-white/80">Dynamic Cinematography (DC)</strong>: <em>CM</em> Camera Movement, <em>CZ</em> Camera Zoom, <em>CR</em> Camera Rotation. <strong class="text-white/80">Relation Cinematography (RC)</strong>: <em>ST</em> Spatio-temporal, <em>Cont.</em> Continuity, <em>Narr.</em> Narrativity. All metrics ↑ higher is better.
       </p>
     </div>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto thin-scroll">
       <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
         <thead>
           <tr class="text-white/40 border-b border-white/10">
             <th class="px-4 py-3 font-normal text-left" rowspan="2">Method</th>
-            <th class="px-4 py-3 font-normal text-left" rowspan="2">Base Model</th>
+            <th class="px-4 py-3 font-normal text-left" rowspan="2">Base Model Ver.</th>
             <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="8">Static Cinematography (SC) ↑</th>
             <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">Dynamic (DC) ↑</th>
             <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">Relation (RC) ↑</th>
@@ -121,113 +227,191 @@
             ))}
           </tr>
         </thead>
-        <tbody class="text-white/60">
+        <tbody class="text-white/60 font-mono">
+
+          <!-- ActCutBench section -->
           <tr class="bg-white/[0.03] border-b border-white/[0.05]">
-            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold" colspan="16">Open-Source Methods — ActCutBench</td>
+            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold italic" colspan="16">The following results are obtained on ActCutBench</td>
+          </tr>
+          <tr class="bg-white/[0.05] border-b border-white/[0.05]">
+            <td class="px-4 py-2 text-[10px] tracking-wider text-white/45 font-semibold" colspan="16">Open-Source Method</td>
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">HoloCine-14B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
-            {Array(14).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">HoloCine</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-5">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">MSM-1.3B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.1-TI2V-1.3B</td>
-            {Array(14).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">MultiShotMaster</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-TI2V-1.3B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-4">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">MSM-14B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
-            {Array(14).fill(null).map(() => <td class="px-2 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">MultiShotMaster</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-3">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
           </tr>
           <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
-            <td class="px-4 py-3 font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (Ours)</td>
-            <td class="px-4 py-3 text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(14).fill(null).map(() => <td class="px-2 py-3 text-center font-mono text-[#ffb84d] font-semibold">—</td>)}
+            <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/55 font-medium">(Ours)</span></td>
+            <td class="px-4 py-3 font-sans text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center text-[#ffb84d]">0.000</td>)}
+          </tr>
+
+          <!-- ActCutBench-Lite section -->
+          <tr class="bg-white/[0.03] border-y border-white/[0.05]">
+            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold italic" colspan="16">The following results are obtained on ActCutBench-Lite</td>
+          </tr>
+          <tr class="bg-white/[0.05] border-b border-white/[0.05]">
+            <td class="px-4 py-2 text-[10px] tracking-wider text-white/45 font-semibold" colspan="16">Open-Source Method</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">QwenEdit2509 + Wan2.2</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">QwenImage + Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-2">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">HoloCine</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-2">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">MultiShotMaster</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-T2V-1.3B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">MultiShotMaster</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
+            <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
+            <td class="px-4 py-3 font-sans text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center text-[#ffb84d]">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans text-white/75">Act2Cut (w/o GLoS-RoPE)</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans text-white/75">Act2Cut (w/o TBR)</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans text-white/75">Act2Cut (w/o SCM)</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans text-white/75">Act2Cut (w/o HCM)</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-TI2V-5B</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+
+          <!-- Closed-Source Method -->
+          <tr class="bg-white/[0.05] border-y border-white/[0.05]">
+            <td class="px-4 py-2 text-[10px] tracking-wider text-white/45 font-semibold" colspan="16">Closed-Source Method</td>
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">Happyhorse-1.0</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-5">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">Seedance-2.0</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-2">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">Kling3</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-1">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">Sora2</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-4">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
+          </tr>
+          <tr class="hover:bg-white/[0.04] transition-colors">
+            <td class="px-4 py-3 font-sans">GPT-Image-2 + Kling-I2V</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">—</td>
+            <td class="px-2 py-3 text-center"><span class="rank-cell rank-4">0.000</span></td>
+            {Array(13).fill(null).map(() => <td class="px-2 py-3 text-center">0.000</td>)}
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- VistoryBench -->
-  <div class="rounded-2xl sm:rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl overflow-hidden" data-reveal style="transition-delay:120ms">
+  <!-- VistoryBench (deprecated — not evaluated, kept commented for future reference) -->
+  <!--
+  <div class="glass-table-card rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl overflow-hidden" data-reveal style="transition-delay:120ms">
     <div class="p-5 sm:p-8 border-b border-white/10">
       <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">VistoryBench — Story Visualization</span>
       <p class="text-sm text-white/60 leading-relaxed max-w-2xl">
         Comprehensive benchmark for story visualization across character consistency, scene coherence, and narrative fidelity metrics.
       </p>
     </div>
-    <div class="overflow-x-auto">
-      <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
-        <thead>
-          <tr class="text-white/40 border-b border-white/10">
-            <th class="px-4 py-3 font-normal">Method</th>
-            <th class="px-4 py-3 font-normal">Base Model</th>
-            <th class="px-4 py-3 font-normal text-center">Char. Consist. ↑</th>
-            <th class="px-4 py-3 font-normal text-center">Scene Coher. ↑</th>
-            <th class="px-4 py-3 font-normal text-center">Style Consist. ↑</th>
-            <th class="px-4 py-3 font-normal text-center">Narrative ↑</th>
-            <th class="px-4 py-3 font-normal text-center">Overall ↑</th>
-          </tr>
-        </thead>
-        <tbody class="text-white/60">
-          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">HoloCine-14B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
-            {Array(5).fill(null).map(() => <td class="px-4 py-3 text-center font-mono">—</td>)}
-          </tr>
-          <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">MSM-14B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
-            {Array(5).fill(null).map(() => <td class="px-4 py-3 text-center font-mono">—</td>)}
-          </tr>
-          <tr class="bg-[#ff4d4d]/[0.08]">
-            <td class="px-4 py-3 font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (Ours)</td>
-            <td class="px-4 py-3 text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(5).fill(null).map(() => <td class="px-4 py-3 text-center font-mono text-[#ffb84d] font-semibold">—</td>)}
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
+  -->
 
-  <!-- VBench -->
-  <div class="rounded-2xl sm:rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl overflow-hidden" data-reveal style="transition-delay:140ms">
+  <!-- VBench — only within-shot (per-shot) metrics -->
+  <div class="glass-table-card rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl overflow-hidden" data-reveal style="transition-delay:140ms">
     <div class="p-5 sm:p-8 border-b border-white/10">
-      <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">VBench — Video Quality</span>
-      <p class="text-sm text-white/60 leading-relaxed max-w-2xl">
-        Holistic evaluation covering video quality, semantic alignment, temporal consistency, and perceptual fidelity for generated video sequences.
+      <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">VBench — Within-Shot Quality</span>
+      <p class="text-sm text-white/60 leading-relaxed max-w-3xl">
+        Per-shot evaluation on VBench dimensions that are well-defined within a single shot. Cross-shot dimensions are not reported here. All metrics ↑ higher is better.
       </p>
     </div>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto thin-scroll">
       <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
         <thead>
           <tr class="text-white/40 border-b border-white/10">
             <th class="px-4 py-3 font-normal">Method</th>
-            <th class="px-4 py-3 font-normal">Base Model</th>
-            <th class="px-4 py-3 font-normal text-center">Quality ↑</th>
-            <th class="px-4 py-3 font-normal text-center">Semantic ↑</th>
-            <th class="px-4 py-3 font-normal text-center">Temporal ↑</th>
-            <th class="px-4 py-3 font-normal text-center">Aesthetic ↑</th>
-            <th class="px-4 py-3 font-normal text-center">Total ↑</th>
+            <th class="px-4 py-3 font-normal">Base Model Ver.</th>
+            <th class="px-3 py-3 font-normal text-center">Subject Consist. ↑</th>
+            <th class="px-3 py-3 font-normal text-center">Background Consist. ↑</th>
+            <th class="px-3 py-3 font-normal text-center">Motion Smooth. ↑</th>
+            <th class="px-3 py-3 font-normal text-center">Dynamic Degree ↑</th>
+            <th class="px-3 py-3 font-normal text-center">Aesthetic Quality ↑</th>
+            <th class="px-3 py-3 font-normal text-center">Imaging Quality ↑</th>
+            <th class="px-3 py-3 font-normal text-center">Temporal Flicker. ↑</th>
           </tr>
         </thead>
-        <tbody class="text-white/60">
+        <tbody class="text-white/60 font-mono">
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">HoloCine-14B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
-            {Array(5).fill(null).map(() => <td class="px-4 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">HoloCine-14B</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.2-T2V-14B</td>
+            {Array(7).fill(null).map(() => <td class="px-3 py-3 text-center">—</td>)}
           </tr>
           <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-            <td class="px-4 py-3">MSM-14B</td>
-            <td class="px-4 py-3 text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
-            {Array(5).fill(null).map(() => <td class="px-4 py-3 text-center font-mono">—</td>)}
+            <td class="px-4 py-3 font-sans">MultiShotMaster-14B</td>
+            <td class="px-4 py-3 font-sans text-white/30 text-[11px]">Wan2.1-T2V-14B</td>
+            {Array(7).fill(null).map(() => <td class="px-3 py-3 text-center">—</td>)}
           </tr>
-          <tr class="bg-[#ff4d4d]/[0.08]">
-            <td class="px-4 py-3 font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (Ours)</td>
-            <td class="px-4 py-3 text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
-            {Array(5).fill(null).map(() => <td class="px-4 py-3 text-center font-mono text-[#ffb84d] font-semibold">—</td>)}
+          <tr class="bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
+            <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/55 font-medium">(Ours)</span></td>
+            <td class="px-4 py-3 font-sans text-white/50 text-[11px]">Wan2.2-TI2V-5B</td>
+            {Array(7).fill(null).map(() => <td class="px-3 py-3 text-center text-[#ffb84d]">—</td>)}
           </tr>
         </tbody>
       </table>
@@ -235,7 +419,7 @@
     <!-- Chart placeholder -->
     <div class="p-8 border-t border-white/[0.05]">
       <div class="rounded-2xl border border-white/[0.07] bg-white/[0.02] h-48 flex flex-col items-center justify-center gap-2 text-white/20">
-        <span class="text-[9px] tracking-[0.25em] uppercase font-semibold">Metric Visualization Chart</span>
+        <span class="text-[9px] tracking-[0.25em] uppercase font-semibold">Within-Shot Metric Visualization</span>
         <span class="text-[10px] text-white/15">Replace with radar / bar chart when data is available</span>
       </div>
     </div>

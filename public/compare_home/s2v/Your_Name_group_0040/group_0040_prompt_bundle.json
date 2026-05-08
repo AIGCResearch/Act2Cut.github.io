@@ -1,0 +1,403 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 3,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Brightly lit daytime atmosphere with warm sunlight streaming into an indoor space. An indoor gymnasium featuring tiled walls, glass doors, and a fire alarm box. 2D anime style with vibrant colors, cinematic lighting, and smooth dynamic animation. [character1] [character1] is A girl with a black ponytail wearing a yellow and red basketball uniform. [character2] [character2] is A boy with short brown hair in a yellow and red basketball uniform. [character3] [character3] is A short-haired girl wearing a yellow and red basketball uniform. Global Action/Motion: [character1] holding a basketball, she playfully interacts with the boy, then turns to execute a high jump. She lands with a radiant smile, enthusiastically running forward toward the camera. [character2] initially reacting defensively with raised hands and a surprised expression, he shifts to the background, watching the girl's impressive jump shot in continuous astonishment throughout the ongoing play. [character3] standing behind the main action, she continuously observes the jumping girl with wide-eyed shock and open-mouthed awe as the dynamic sequence unfolds on the bright basketball court. The basketball is held firmly before being thrown upwards in a high arc during the jump. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium shot focused on [character1] and [character2]. It uses normal-standard lensing, eye-level back-view camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Brightly lit daytime atmosphere with warm sunlight streaming into an indoor space. An indoor gymnasium featuring tiled walls, glass doors, and a fire alarm box. 2D anime style with vibrant colors, cinematic lighting, and smooth dynamic animation.",
+          "char_span": [
+            0,
+            262
+          ],
+          "token_span": [
+            0,
+            55
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A girl with a black ponytail wearing a yellow and red basketball uniform.",
+          "char_span": [
+            263,
+            365
+          ],
+          "token_span": [
+            55,
+            82
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A boy with short brown hair in a yellow and red basketball uniform.",
+          "char_span": [
+            366,
+            462
+          ],
+          "token_span": [
+            82,
+            107
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is A short-haired girl wearing a yellow and red basketball uniform.",
+          "char_span": [
+            463,
+            556
+          ],
+          "token_span": [
+            107,
+            132
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] holding a basketball, she playfully interacts with the boy, then turns to execute a high jump. She lands with a radiant smile, enthusiastically running forward toward the camera. [character2] initially reacting defensively with raised hands and a surprised expression, he shifts to the background, watching the girl's impressive jump shot in continuous astonishment throughout the ongoing play. [character3] standing behind the main action, she continuously observes the jumping girl with wide-eyed shock and open-mouthed awe as the dynamic sequence unfolds on the bright basketball court. The basketball is held firmly before being thrown upwards in a high arc during the jump. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            557,
+            1368
+          ],
+          "token_span": [
+            132,
+            309
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium shot focused on [character1] and [character2]. It uses normal-standard lensing, eye-level back-view camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            1369,
+            1605
+          ],
+          "token_span": [
+            309,
+            372
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 373,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            372,
+            373
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Brightly lit daytime atmosphere with warm sunlight streaming into an indoor space. An indoor gymnasium featuring tiled walls, glass doors, and a fire alarm box. 2D anime style with vibrant colors, cinematic lighting, and smooth dynamic animation. [character1] [character1] is A girl with a black ponytail wearing a yellow and red basketball uniform. [character2] [character2] is A boy with short brown hair in a yellow and red basketball uniform. [character3] [character3] is A short-haired girl wearing a yellow and red basketball uniform. Global Action/Motion: [character1] holding a basketball, she playfully interacts with the boy, then turns to execute a high jump. She lands with a radiant smile, enthusiastically running forward toward the camera. [character2] initially reacting defensively with raised hands and a surprised expression, he shifts to the background, watching the girl's impressive jump shot in continuous astonishment throughout the ongoing play. [character3] standing behind the main action, she continuously observes the jumping girl with wide-eyed shock and open-mouthed awe as the dynamic sequence unfolds on the bright basketball court. The basketball is held firmly before being thrown upwards in a high arc during the jump. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a medium full shot focused on [character1] and the basketball. It uses normal-standard lensing, hip-level right-three-quarter-back-view camera angle, direct-view two-character framing, and deep depth of field. The camera tilts up, and uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Brightly lit daytime atmosphere with warm sunlight streaming into an indoor space. An indoor gymnasium featuring tiled walls, glass doors, and a fire alarm box. 2D anime style with vibrant colors, cinematic lighting, and smooth dynamic animation.",
+          "char_span": [
+            0,
+            262
+          ],
+          "token_span": [
+            0,
+            55
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A girl with a black ponytail wearing a yellow and red basketball uniform.",
+          "char_span": [
+            263,
+            365
+          ],
+          "token_span": [
+            55,
+            82
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A boy with short brown hair in a yellow and red basketball uniform.",
+          "char_span": [
+            366,
+            462
+          ],
+          "token_span": [
+            82,
+            107
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is A short-haired girl wearing a yellow and red basketball uniform.",
+          "char_span": [
+            463,
+            556
+          ],
+          "token_span": [
+            107,
+            132
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] holding a basketball, she playfully interacts with the boy, then turns to execute a high jump. She lands with a radiant smile, enthusiastically running forward toward the camera. [character2] initially reacting defensively with raised hands and a surprised expression, he shifts to the background, watching the girl's impressive jump shot in continuous astonishment throughout the ongoing play. [character3] standing behind the main action, she continuously observes the jumping girl with wide-eyed shock and open-mouthed awe as the dynamic sequence unfolds on the bright basketball court. The basketball is held firmly before being thrown upwards in a high arc during the jump. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            557,
+            1368
+          ],
+          "token_span": [
+            132,
+            309
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a medium full shot focused on [character1] and the basketball. It uses normal-standard lensing, hip-level right-three-quarter-back-view camera angle, direct-view two-character framing, and deep depth of field. The camera tilts up, and uses locked-off tripod stability.",
+          "char_span": [
+            1369,
+            1646
+          ],
+          "token_span": [
+            309,
+            383
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 384,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            383,
+            384
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 2,
+      "text": "Global Setting: Brightly lit daytime atmosphere with warm sunlight streaming into an indoor space. An indoor gymnasium featuring tiled walls, glass doors, and a fire alarm box. 2D anime style with vibrant colors, cinematic lighting, and smooth dynamic animation. [character1] [character1] is A girl with a black ponytail wearing a yellow and red basketball uniform. [character2] [character2] is A boy with short brown hair in a yellow and red basketball uniform. [character3] [character3] is A short-haired girl wearing a yellow and red basketball uniform. Global Action/Motion: [character1] holding a basketball, she playfully interacts with the boy, then turns to execute a high jump. She lands with a radiant smile, enthusiastically running forward toward the camera. [character2] initially reacting defensively with raised hands and a surprised expression, he shifts to the background, watching the girl's impressive jump shot in continuous astonishment throughout the ongoing play. [character3] standing behind the main action, she continuously observes the jumping girl with wide-eyed shock and open-mouthed awe as the dynamic sequence unfolds on the bright basketball court. The basketball is held firmly before being thrown upwards in a high arc during the jump. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot3 begins as a close-up focused on [character1], then widens to a medium close-up. It uses normal-standard lensing, low-angle front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera tilts up, and uses stabilized Steadicam-style movement.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Brightly lit daytime atmosphere with warm sunlight streaming into an indoor space. An indoor gymnasium featuring tiled walls, glass doors, and a fire alarm box. 2D anime style with vibrant colors, cinematic lighting, and smooth dynamic animation.",
+          "char_span": [
+            0,
+            262
+          ],
+          "token_span": [
+            0,
+            55
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A girl with a black ponytail wearing a yellow and red basketball uniform.",
+          "char_span": [
+            263,
+            365
+          ],
+          "token_span": [
+            55,
+            82
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A boy with short brown hair in a yellow and red basketball uniform.",
+          "char_span": [
+            366,
+            462
+          ],
+          "token_span": [
+            82,
+            107
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is A short-haired girl wearing a yellow and red basketball uniform.",
+          "char_span": [
+            463,
+            556
+          ],
+          "token_span": [
+            107,
+            132
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] holding a basketball, she playfully interacts with the boy, then turns to execute a high jump. She lands with a radiant smile, enthusiastically running forward toward the camera. [character2] initially reacting defensively with raised hands and a surprised expression, he shifts to the background, watching the girl's impressive jump shot in continuous astonishment throughout the ongoing play. [character3] standing behind the main action, she continuously observes the jumping girl with wide-eyed shock and open-mouthed awe as the dynamic sequence unfolds on the bright basketball court. The basketball is held firmly before being thrown upwards in a high arc during the jump. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            557,
+            1368
+          ],
+          "token_span": [
+            132,
+            309
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:2",
+          "type": "local_shot",
+          "text": "Shot3 begins as a close-up focused on [character1], then widens to a medium close-up. It uses normal-standard lensing, low-angle front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera tilts up, and uses stabilized Steadicam-style movement.",
+          "char_span": [
+            1369,
+            1653
+          ],
+          "token_span": [
+            309,
+            385
+          ],
+          "truncated": false,
+          "source_shot": 2,
+          "target_shot": 2,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 386,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            385,
+            386
+          ]
+        ]
+      }
+    }
+  ]
+}

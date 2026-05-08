@@ -13,7 +13,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 <html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Act2Cut: Continuous Next-Shot Video Narrative Match on Action-Cut" />
+    <meta name="description" content="Act2Cut: Continuous Multi-Shot Video Narrative Match on Action-Cut" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL.replace(/\/+$/, '')}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
@@ -21,12 +21,11 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>{title}</title>
-    <!-- Anti-FOUC: apply saved theme before first paint -->
+    <!-- Anti-FOUC: apply saved theme before first paint. Default = dark; only switch to light if explicitly set. -->
     <script is:inline>
       (function() {
         var saved = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (saved === 'light' || (!saved && !prefersDark)) {
+        if (saved === 'light') {
           document.documentElement.classList.remove('dark');
         } else {
           document.documentElement.classList.add('dark');
@@ -40,7 +39,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     <div class="fixed inset-x-0 top-16 bottom-0 -z-50 pointer-events-none overflow-hidden">
       <div class="theme-overlay absolute inset-0 bg-black/30 z-10"></div>
       <img
-        src={`${base}/images/act2cut-background.jpg`}
+        src={`${base}/images/waterfall_collage.avif`}
         class="parallax-bg site-bg-image absolute inset-x-0 top-0 w-full opacity-55 mix-blend-screen"
         style="will-change: transform;"
         alt=""

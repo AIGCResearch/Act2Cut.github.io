@@ -48,16 +48,60 @@ const statGroups = [
   },
 ];
 
-const samples = [
-  { label: 'Live Action · 2-Shot · Simple Action',    caption: 'Match on Action: Hair-tying (ECU→MCU)' },
-  { label: 'Anime · 3-Shot · Medium Action',           caption: 'Shot-Reverse-Shot: Dialogue scene' },
-  { label: '3D CGI · 2-Shot · Complex Action',         caption: 'Cut-In: Fighting sequence with strike' },
-  { label: 'Live Action · 4-Shot · Multi-Character',   caption: 'Group Shot → Two Shot → Close-Up' },
-  { label: 'Anime · 2-Shot · Simple Action',           caption: 'Over-Shoulder: Character handing object' },
-  { label: 'Live Action · 5-Shot · Complex Action',    caption: 'Dance choreography, Low-Angle series' },
-  { label: 'Documentary · 2-Shot · Simple Action',     caption: 'Cut-Out: Subject exiting frame, Wide Shot' },
-  { label: '3D CGI · 3-Shot · Medium Action',          caption: 'Walk cycle through environment, pan-follow' },
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
+// Real sample clips from /public/sample_data — filenames encode movie + adjacent shot indices,
+// e.g. "Batman_Begins__shot_clip-0314_0315.mp4" → "Batman Begins" · Shot 314 → 315.
+const sampleFiles = [
+  'Batman_Begins__shot_clip-0314_0315.mp4',
+  'Big_Fish__shot_clip-0863_0864.mp4',
+  'Blade_Runner_1__shot_clip-0542_0543.mp4',
+  'Monsters_Inc__shot_clip-0694_0695.mp4',
+  'My_Neighbor_Totoro__shot_clip-0262_0263.mp4',
+  'Pirates_of_the_Caribbean_The_Curseof_the_Black_Pearl__shot_clip-0435_0436.mp4',
+  'Princess_Mononoke__shot_clip-0353_0354.mp4',
+  'Star_Trek__shot_clip-1535_1536.mp4',
+  'Terminator__shot_clip-0628_0629.mp4',
+  'The_Godfather_Part_II__shot_clip-0134_0135.mp4',
+  'The_Shawshank_Redemption__shot_clip-0862_0863.mp4',
+  'Weathering_with_You__shot_clip-1220_1221.mp4',
 ];
+
+// Override or shorten the auto-derived movie title where the filename is awkward (typos, length).
+const movieAliases: Record<string, string> = {
+  'Blade Runner 1': 'Blade Runner',
+  'Pirates of the Caribbean The Curseof the Black Pearl': 'Pirates of the Caribbean',
+};
+
+const styleByMovie: Record<string, string> = {
+  'Batman Begins': 'Live Action',
+  'Big Fish': 'Live Action',
+  'Blade Runner': 'Live Action',
+  'Monsters Inc': '3D CGI',
+  'My Neighbor Totoro': '2D Anime',
+  'Pirates of the Caribbean': 'Live Action',
+  'Princess Mononoke': '2D Anime',
+  'Star Trek': 'Live Action',
+  'Terminator': 'Live Action',
+  'The Godfather Part II': 'Live Action',
+  'The Shawshank Redemption': 'Live Action',
+  'Weathering with You': '2D Anime',
+};
+
+const samples = sampleFiles.map(file => {
+  const m = file.match(/^(.+?)__shot_clip-(\d+)_(\d+)\.mp4$/);
+  const rawMovie = (m ? m[1] : file).replace(/_/g, ' ').trim();
+  const movie = movieAliases[rawMovie] ?? rawMovie;
+  const a = m ? parseInt(m[2], 10) : 0;
+  const b = m ? parseInt(m[3], 10) : 0;
+  return {
+    file,
+    movie,
+    style: styleByMovie[movie] ?? '—',
+    shots: m ? `Shot ${a} → ${b}` : '',
+    src: `${base}/sample_data/${file}`,
+  };
+});
 ---
 
 <section id="dataset" class="space-y-10 sm:space-y-12">
@@ -75,7 +119,7 @@ const samples = [
   <!-- Construction pipeline -->
   <div data-reveal style="transition-delay:100ms">
     <h3 class="text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-white/80">Construction Pipeline</h3>
-    <div class="relative flex items-start gap-0 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scroll-smooth snap-x">
+    <div class="relative flex items-start gap-0 overflow-x-auto thin-scroll pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scroll-smooth snap-x">
       <div class="absolute top-6 left-8 right-8 h-px bg-gradient-to-r from-[#ff4d4d]/30 to-[#ffb84d]/30 pointer-events-none"></div>
       {pipelineSteps.map((step) => (
         <div class="flex-1 min-w-[150px] px-3 sm:px-4 flex flex-col items-center text-center relative z-10 snap-start">
@@ -122,21 +166,34 @@ const samples = [
 
   <!-- Sample data grid -->
   <div>
-    <h3 class="text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-white/80" data-reveal>Sample Data</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5">
+    <div class="flex items-baseline justify-between gap-3 mb-6 sm:mb-8" data-reveal>
+      <h3 class="text-lg sm:text-xl font-semibold text-white/80">Sample Data</h3>
+      <span class="text-[10px] sm:text-[11px] text-white/35">{samples.length} clips · adjacent action-cut pairs</span>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
       {samples.map((s, i) => (
-        <div class="rounded-xl bg-white/[0.03] border border-white/[0.07] overflow-hidden hover:border-[#ff4d4d]/30 hover:bg-white/[0.05] hover:-translate-y-0.5 transition-all duration-300" data-reveal style={`transition-delay:${i * 60}ms`}>
-          <div class="aspect-video bg-black/50 flex items-center justify-center border-b border-white/[0.07] relative group">
-            <span class="text-[9px] tracking-[0.18em] text-white/30 uppercase font-medium">S1→S2</span>
-            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <div class="w-9 h-9 rounded-full bg-[#ff4d4d]/85 flex items-center justify-center shadow-lg shadow-[#ff4d4d]/30">
-                <svg class="w-4 h-4 ml-0.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
+        <div
+          class="sample-card group relative rounded-xl bg-white/[0.03] border border-white/[0.07] overflow-hidden hover:border-[#ff4d4d]/40 hover:bg-white/[0.05]"
+          data-reveal
+          style={`transition-delay:${i * 50}ms`}
+        >
+          <div class="cinema-aspect bg-black/55 border-b border-white/[0.07] relative overflow-hidden">
+            <video
+              src={s.src}
+              class="sample-video absolute inset-0 w-full h-full object-cover"
+              muted loop playsinline preload="metadata"
+            ></video>
+            <span class="absolute top-2 left-2 z-10 px-1.5 py-0.5 rounded font-mono text-[8px] font-bold tracking-[0.10em] text-white/85 bg-black/55 border border-white/15 backdrop-blur-sm">
+              {s.shots}
+            </span>
+            <div class="qg-scrub" data-scrub>
+              <div class="qg-scrub-fill"></div>
+              <div class="qg-scrub-thumb"></div>
             </div>
           </div>
           <div class="p-2.5 sm:p-3">
-            <div class="text-[10.5px] sm:text-[11px] text-white/65 leading-relaxed font-medium">{s.label}</div>
-            <div class="text-[9.5px] sm:text-[10px] text-white/40 mt-1 leading-snug line-clamp-2">{s.caption}</div>
+            <div class="text-[10.5px] sm:text-[11px] text-white font-semibold leading-tight truncate" title={s.movie}>{s.movie}</div>
+            <div class="text-[9.5px] sm:text-[10px] text-white/40 mt-1 leading-snug">{s.style}</div>
           </div>
         </div>
       ))}
@@ -144,3 +201,87 @@ const samples = [
   </div>
 
 </section>
+
+<script>
+  // Hover-to-play + custom progress scrubber for the Sample Data grid.
+  const samples = document.querySelectorAll<HTMLElement>('.sample-card');
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  samples.forEach(card => {
+    const video = card.querySelector<HTMLVideoElement>('video.sample-video');
+    if (!video) return;
+
+    if (!isTouch) {
+      card.addEventListener('mouseenter', () => {
+        if (!(video as any)._scrubbing) video.play().catch(() => {});
+      });
+      card.addEventListener('mouseleave', () => {
+        if (!(video as any)._scrubbing) video.pause();
+      });
+    }
+
+    const scrub = card.querySelector<HTMLElement>('[data-scrub]');
+    if (!scrub) return;
+    const fill  = scrub.querySelector<HTMLElement>('.qg-scrub-fill');
+    const thumb = scrub.querySelector<HTMLElement>('.qg-scrub-thumb');
+    if (!fill || !thumb) return;
+
+    const update = () => {
+      const d = video.duration;
+      if (!d || !isFinite(d)) return;
+      const pct = (video.currentTime / d) * 100;
+      fill.style.width = pct + '%';
+      thumb.style.left = pct + '%';
+    };
+    video.addEventListener('timeupdate', update);
+    video.addEventListener('loadedmetadata', update);
+
+    const seek = (clientX: number) => {
+      const r = scrub.getBoundingClientRect();
+      if (r.width <= 0) return;
+      let p = (clientX - r.left) / r.width;
+      p = Math.min(1, Math.max(0, p));
+      if (video.duration && isFinite(video.duration)) {
+        video.currentTime = p * video.duration;
+        update();
+      }
+    };
+
+    let dragging = false, wasPlaying = false;
+    scrub.addEventListener('pointerdown', (e: PointerEvent) => {
+      e.preventDefault();
+      dragging = true;
+      (video as any)._scrubbing = true;
+      wasPlaying = !video.paused;
+      video.pause();
+      scrub.classList.add('is-dragging');
+      scrub.setPointerCapture(e.pointerId);
+      seek(e.clientX);
+    });
+    scrub.addEventListener('pointermove', (e: PointerEvent) => {
+      if (dragging) seek(e.clientX);
+    });
+    const end = (e: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      (video as any)._scrubbing = false;
+      scrub.classList.remove('is-dragging');
+      try { scrub.releasePointerCapture(e.pointerId); } catch {}
+      if (wasPlaying) video.play().catch(() => {});
+    };
+    scrub.addEventListener('pointerup', end);
+    scrub.addEventListener('pointercancel', end);
+  });
+
+  // Touch: autoplay visible sample videos via IntersectionObserver
+  if (isTouch) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const v = e.target as HTMLVideoElement;
+        if (e.isIntersecting) v.play().catch(() => {});
+        else v.pause();
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll<HTMLVideoElement>('.sample-video').forEach(v => io.observe(v));
+  }
+</script>

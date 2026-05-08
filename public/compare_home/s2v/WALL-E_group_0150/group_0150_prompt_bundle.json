@@ -1,0 +1,340 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 3,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: A bright, sunlit, hazy outdoors with a dusty, desolate, and arid atmosphere. A barren wasteland landscape scattered with debris, scrap metal, and trash in the background. 3D animated cinematic style with realistic lighting, detailed textures, and a warm color palette. [character1] [character1] is A sleek, white, egg-shaped robot featuring glowing blue digital eyes and a smooth surface. [character2] [character2] is A small, rusty, box-shaped robot with binocular-like eyes and metallic mechanical claws. Global Action/Motion: [character1] extends her arm, detaching her fingers to fall towards [character2]'s outstretched hands, then suddenly retracts the floating pieces away from his claw, reassembling them into a solid arm. [character2] holds his metallic claws out expectantly to catch [character1]'s falling fingers, keeping his hands outstretched before watching the floating pieces suddenly reverse direction and fly away from his grasp. The detached, white robotic finger pieces drop downward before rapidly reversing their floating trajectory. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium shot focused on [character1]'s arm and [character2]'s hand. It uses normal-standard lensing, eye-level left-side-view camera angle, direct-view two-character framing, and shallow depth of field. The camera pans right, and uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: A bright, sunlit, hazy outdoors with a dusty, desolate, and arid atmosphere. A barren wasteland landscape scattered with debris, scrap metal, and trash in the background. 3D animated cinematic style with realistic lighting, detailed textures, and a warm color palette.",
+          "char_span": [
+            0,
+            284
+          ],
+          "token_span": [
+            0,
+            69
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A sleek, white, egg-shaped robot featuring glowing blue digital eyes and a smooth surface.",
+          "char_span": [
+            285,
+            404
+          ],
+          "token_span": [
+            69,
+            101
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A small, rusty, box-shaped robot with binocular-like eyes and metallic mechanical claws.",
+          "char_span": [
+            405,
+            522
+          ],
+          "token_span": [
+            101,
+            134
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] extends her arm, detaching her fingers to fall towards [character2]'s outstretched hands, then suddenly retracts the floating pieces away from his claw, reassembling them into a solid arm. [character2] holds his metallic claws out expectantly to catch [character1]'s falling fingers, keeping his hands outstretched before watching the floating pieces suddenly reverse direction and fly away from his grasp. The detached, white robotic finger pieces drop downward before rapidly reversing their floating trajectory. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            523,
+            1170
+          ],
+          "token_span": [
+            134,
+            283
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium shot focused on [character1]'s arm and [character2]'s hand. It uses normal-standard lensing, eye-level left-side-view camera angle, direct-view two-character framing, and shallow depth of field. The camera pans right, and uses locked-off tripod stability.",
+          "char_span": [
+            1171,
+            1444
+          ],
+          "token_span": [
+            283,
+            360
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 361,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            360,
+            361
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: A bright, sunlit, hazy outdoors with a dusty, desolate, and arid atmosphere. A barren wasteland landscape scattered with debris, scrap metal, and trash in the background. 3D animated cinematic style with realistic lighting, detailed textures, and a warm color palette. [character1] [character1] is A sleek, white, egg-shaped robot featuring glowing blue digital eyes and a smooth surface. [character2] [character2] is A small, rusty, box-shaped robot with binocular-like eyes and metallic mechanical claws. Global Action/Motion: [character1] extends her arm, detaching her fingers to fall towards [character2]'s outstretched hands, then suddenly retracts the floating pieces away from his claw, reassembling them into a solid arm. [character2] holds his metallic claws out expectantly to catch [character1]'s falling fingers, keeping his hands outstretched before watching the floating pieces suddenly reverse direction and fly away from his grasp. The detached, white robotic finger pieces drop downward before rapidly reversing their floating trajectory. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a close-up focused on [character2]'s metal claw, [character1]'s white arm, and the floating white fragments between them. It uses normal-standard lensing, eye-level right-side-view camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: A bright, sunlit, hazy outdoors with a dusty, desolate, and arid atmosphere. A barren wasteland landscape scattered with debris, scrap metal, and trash in the background. 3D animated cinematic style with realistic lighting, detailed textures, and a warm color palette.",
+          "char_span": [
+            0,
+            284
+          ],
+          "token_span": [
+            0,
+            69
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A sleek, white, egg-shaped robot featuring glowing blue digital eyes and a smooth surface.",
+          "char_span": [
+            285,
+            404
+          ],
+          "token_span": [
+            69,
+            101
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A small, rusty, box-shaped robot with binocular-like eyes and metallic mechanical claws.",
+          "char_span": [
+            405,
+            522
+          ],
+          "token_span": [
+            101,
+            134
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] extends her arm, detaching her fingers to fall towards [character2]'s outstretched hands, then suddenly retracts the floating pieces away from his claw, reassembling them into a solid arm. [character2] holds his metallic claws out expectantly to catch [character1]'s falling fingers, keeping his hands outstretched before watching the floating pieces suddenly reverse direction and fly away from his grasp. The detached, white robotic finger pieces drop downward before rapidly reversing their floating trajectory. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            523,
+            1170
+          ],
+          "token_span": [
+            134,
+            283
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a close-up focused on [character2]'s metal claw, [character1]'s white arm, and the floating white fragments between them. It uses normal-standard lensing, eye-level right-side-view camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            1171,
+            1475
+          ],
+          "token_span": [
+            283,
+            367
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 368,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            367,
+            368
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 2,
+      "text": "Global Setting: A bright, sunlit, hazy outdoors with a dusty, desolate, and arid atmosphere. A barren wasteland landscape scattered with debris, scrap metal, and trash in the background. 3D animated cinematic style with realistic lighting, detailed textures, and a warm color palette. [character1] [character1] is A sleek, white, egg-shaped robot featuring glowing blue digital eyes and a smooth surface. [character2] [character2] is A small, rusty, box-shaped robot with binocular-like eyes and metallic mechanical claws. Global Action/Motion: [character1] extends her arm, detaching her fingers to fall towards [character2]'s outstretched hands, then suddenly retracts the floating pieces away from his claw, reassembling them into a solid arm. [character2] holds his metallic claws out expectantly to catch [character1]'s falling fingers, keeping his hands outstretched before watching the floating pieces suddenly reverse direction and fly away from his grasp. The detached, white robotic finger pieces drop downward before rapidly reversing their floating trajectory. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot3 is a medium shot focused on [character1] and [character2]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view two-character framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: A bright, sunlit, hazy outdoors with a dusty, desolate, and arid atmosphere. A barren wasteland landscape scattered with debris, scrap metal, and trash in the background. 3D animated cinematic style with realistic lighting, detailed textures, and a warm color palette.",
+          "char_span": [
+            0,
+            284
+          ],
+          "token_span": [
+            0,
+            69
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A sleek, white, egg-shaped robot featuring glowing blue digital eyes and a smooth surface.",
+          "char_span": [
+            285,
+            404
+          ],
+          "token_span": [
+            69,
+            101
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A small, rusty, box-shaped robot with binocular-like eyes and metallic mechanical claws.",
+          "char_span": [
+            405,
+            522
+          ],
+          "token_span": [
+            101,
+            134
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] extends her arm, detaching her fingers to fall towards [character2]'s outstretched hands, then suddenly retracts the floating pieces away from his claw, reassembling them into a solid arm. [character2] holds his metallic claws out expectantly to catch [character1]'s falling fingers, keeping his hands outstretched before watching the floating pieces suddenly reverse direction and fly away from his grasp. The detached, white robotic finger pieces drop downward before rapidly reversing their floating trajectory. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            523,
+            1170
+          ],
+          "token_span": [
+            134,
+            283
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:2",
+          "type": "local_shot",
+          "text": "Shot3 is a medium shot focused on [character1] and [character2]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view two-character framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            1171,
+            1430
+          ],
+          "token_span": [
+            283,
+            354
+          ],
+          "truncated": false,
+          "source_shot": 2,
+          "target_shot": 2,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 355,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            354,
+            355
+          ]
+        ]
+      }
+    }
+  ]
+}

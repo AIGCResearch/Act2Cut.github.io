@@ -1,0 +1,277 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 3,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Nighttime outdoors with artificial house lighting illuminating the surroundings. A brick house with barred windows and a backyard. Live-action fantasy film with dark, dramatic nighttime lighting. [character1] [character1] is A young ginger-haired boy wearing a collared shirt and jacket. Global Action/Motion: [character1] sits at the steering wheel, issues a vocal command, and holds on as the vehicle abruptly accelerates and ascends. The flying blue car accelerates, ripping iron bars off the window, then launches into the air, hovering and ascending. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium shot focused on the action of [character1] and [character2] in the car as they pull the bars off the window. It uses wide-angle lensing, high-angle right-three-quarter-front-view right-canted camera angle, direct-view two-character framing, and deep depth of field. The camera follows the action, pans left, and uses handheld stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Nighttime outdoors with artificial house lighting illuminating the surroundings. A brick house with barred windows and a backyard. Live-action fantasy film with dark, dramatic nighttime lighting.",
+          "char_span": [
+            0,
+            211
+          ],
+          "token_span": [
+            0,
+            40
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young ginger-haired boy wearing a collared shirt and jacket.",
+          "char_span": [
+            212,
+            303
+          ],
+          "token_span": [
+            40,
+            67
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] sits at the steering wheel, issues a vocal command, and holds on as the vehicle abruptly accelerates and ascends. The flying blue car accelerates, ripping iron bars off the window, then launches into the air, hovering and ascending. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            304,
+            669
+          ],
+          "token_span": [
+            67,
+            155
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium shot focused on the action of [character1] and [character2] in the car as they pull the bars off the window. It uses wide-angle lensing, high-angle right-three-quarter-front-view right-canted camera angle, direct-view two-character framing, and deep depth of field. The camera follows the action, pans left, and uses handheld stability.",
+          "char_span": [
+            670,
+            1024
+          ],
+          "token_span": [
+            155,
+            248
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 249,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            248,
+            249
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Nighttime outdoors with artificial house lighting illuminating the surroundings. A brick house with barred windows and a backyard. Live-action fantasy film with dark, dramatic nighttime lighting. [character1] [character1] is A young ginger-haired boy wearing a collared shirt and jacket. Global Action/Motion: [character1] sits at the steering wheel, issues a vocal command, and holds on as the vehicle abruptly accelerates and ascends. The flying blue car accelerates, ripping iron bars off the window, then launches into the air, hovering and ascending. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a medium shot focused on the blue car hovering in the air with [character1] and [character2] visible through the windshield. It uses normal, eye-level right-three-quarter-front-view camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Nighttime outdoors with artificial house lighting illuminating the surroundings. A brick house with barred windows and a backyard. Live-action fantasy film with dark, dramatic nighttime lighting.",
+          "char_span": [
+            0,
+            211
+          ],
+          "token_span": [
+            0,
+            40
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young ginger-haired boy wearing a collared shirt and jacket.",
+          "char_span": [
+            212,
+            303
+          ],
+          "token_span": [
+            40,
+            67
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] sits at the steering wheel, issues a vocal command, and holds on as the vehicle abruptly accelerates and ascends. The flying blue car accelerates, ripping iron bars off the window, then launches into the air, hovering and ascending. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            304,
+            669
+          ],
+          "token_span": [
+            67,
+            155
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a medium shot focused on the blue car hovering in the air with [character1] and [character2] visible through the windshield. It uses normal, eye-level right-three-quarter-front-view camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            670,
+            979
+          ],
+          "token_span": [
+            155,
+            237
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 238,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            237,
+            238
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 2,
+      "text": "Global Setting: Nighttime outdoors with artificial house lighting illuminating the surroundings. A brick house with barred windows and a backyard. Live-action fantasy film with dark, dramatic nighttime lighting. [character1] [character1] is A young ginger-haired boy wearing a collared shirt and jacket. Global Action/Motion: [character1] sits at the steering wheel, issues a vocal command, and holds on as the vehicle abruptly accelerates and ascends. The flying blue car accelerates, ripping iron bars off the window, then launches into the air, hovering and ascending. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot3 is a long/wide shot focused on the flying blue car containing [character1] and [character2] hovering between the brick houses. It uses wide-angle lensing, high-angle left-three-quarter-front-view camera angle, direct-view single-subject framing, and deep depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Nighttime outdoors with artificial house lighting illuminating the surroundings. A brick house with barred windows and a backyard. Live-action fantasy film with dark, dramatic nighttime lighting.",
+          "char_span": [
+            0,
+            211
+          ],
+          "token_span": [
+            0,
+            40
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young ginger-haired boy wearing a collared shirt and jacket.",
+          "char_span": [
+            212,
+            303
+          ],
+          "token_span": [
+            40,
+            67
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] sits at the steering wheel, issues a vocal command, and holds on as the vehicle abruptly accelerates and ascends. The flying blue car accelerates, ripping iron bars off the window, then launches into the air, hovering and ascending. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            304,
+            669
+          ],
+          "token_span": [
+            67,
+            155
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:2",
+          "type": "local_shot",
+          "text": "Shot3 is a long/wide shot focused on the flying blue car containing [character1] and [character2] hovering between the brick houses. It uses wide-angle lensing, high-angle left-three-quarter-front-view camera angle, direct-view single-subject framing, and deep depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            670,
+            991
+          ],
+          "token_span": [
+            155,
+            239
+          ],
+          "truncated": false,
+          "source_shot": 2,
+          "target_shot": 2,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 240,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            239,
+            240
+          ]
+        ]
+      }
+    }
+  ]
+}

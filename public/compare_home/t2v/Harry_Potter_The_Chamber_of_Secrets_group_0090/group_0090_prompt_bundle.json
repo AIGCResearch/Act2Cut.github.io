@@ -1,0 +1,313 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Dimly lit, rustic wooden interior with a tense, cozy atmosphere. A wooden cabin with a bench, chair, and rustic items. Live-action fantasy film with warm, low-key lighting and rustic aesthetics. [character1] [character1] is A young girl with thick wavy hair wearing a robe. [character2] [character2] is A large man with a thick beard in maroon clothing. [character3] [character3] is A ginger-haired boy in a robe holding a bucket. [character4] [character4] is A dark-haired boy in a robe sitting on a bench. Global Action/Motion: [character1] she sharply turns her head right in annoyance, then stands up with crossed arms, walking forward angrily. [character2] he sits quietly in a large armchair, calmly observing the girl's sudden movements and angry demeanor. [character3] he remains seated on the wooden bench, slightly hunched over while holding a bucket on his lap. [character4] he sits on the bench beside the other boy, silently watching the girl as she walks forward. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium close-up focused on [character1]'s face, capturing her side profile in a pensive moment before she abruptly turns her head. It uses short-telephoto compression, eye-level left-side-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit, rustic wooden interior with a tense, cozy atmosphere. A wooden cabin with a bench, chair, and rustic items. Live-action fantasy film with warm, low-key lighting and rustic aesthetics.",
+          "char_span": [
+            0,
+            210
+          ],
+          "token_span": [
+            0,
+            49
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young girl with thick wavy hair wearing a robe.",
+          "char_span": [
+            211,
+            289
+          ],
+          "token_span": [
+            49,
+            72
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A large man with a thick beard in maroon clothing.",
+          "char_span": [
+            290,
+            369
+          ],
+          "token_span": [
+            72,
+            96
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is A ginger-haired boy in a robe holding a bucket.",
+          "char_span": [
+            370,
+            446
+          ],
+          "token_span": [
+            96,
+            121
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "c:character4",
+          "type": "character",
+          "text": "[character4] [character4] is A dark-haired boy in a robe sitting on a bench.",
+          "char_span": [
+            447,
+            523
+          ],
+          "token_span": [
+            121,
+            146
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character4"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] she sharply turns her head right in annoyance, then stands up with crossed arms, walking forward angrily. [character2] he sits quietly in a large armchair, calmly observing the girl's sudden movements and angry demeanor. [character3] he remains seated on the wooden bench, slightly hunched over while holding a bucket on his lap. [character4] he sits on the bench beside the other boy, silently watching the girl as she walks forward. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            524,
+            1091
+          ],
+          "token_span": [
+            146,
+            290
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3",
+            "character4"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium close-up focused on [character1]'s face, capturing her side profile in a pensive moment before she abruptly turns her head. It uses short-telephoto compression, eye-level left-side-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            1092,
+            1418
+          ],
+          "token_span": [
+            290,
+            374
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3",
+            "character4"
+          ]
+        }
+      ],
+      "seq_len": 375,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            374,
+            375
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Dimly lit, rustic wooden interior with a tense, cozy atmosphere. A wooden cabin with a bench, chair, and rustic items. Live-action fantasy film with warm, low-key lighting and rustic aesthetics. [character1] [character1] is A young girl with thick wavy hair wearing a robe. [character2] [character2] is A large man with a thick beard in maroon clothing. [character3] [character3] is A ginger-haired boy in a robe holding a bucket. [character4] [character4] is A dark-haired boy in a robe sitting on a bench. Global Action/Motion: [character1] she sharply turns her head right in annoyance, then stands up with crossed arms, walking forward angrily. [character2] he sits quietly in a large armchair, calmly observing the girl's sudden movements and angry demeanor. [character3] he remains seated on the wooden bench, slightly hunched over while holding a bucket on his lap. [character4] he sits on the bench beside the other boy, silently watching the girl as she walks forward. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 begins as a medium full shot (mfs) focused on [character1] as the camera pushes in, highlighting her annoyed expression while she crosses her arms, separating her from the background characters [character2] and [character3], then changes to a medium close-up. It uses normal-standard lensing, eye-level right-three-quarter-front-view camera angle, direct-view group framing, and deep depth of field. The camera pushes in, pans left, uses stabilized Steadicam-style movement, and keeps follow focus on the moving subject.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit, rustic wooden interior with a tense, cozy atmosphere. A wooden cabin with a bench, chair, and rustic items. Live-action fantasy film with warm, low-key lighting and rustic aesthetics.",
+          "char_span": [
+            0,
+            210
+          ],
+          "token_span": [
+            0,
+            49
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young girl with thick wavy hair wearing a robe.",
+          "char_span": [
+            211,
+            289
+          ],
+          "token_span": [
+            49,
+            72
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A large man with a thick beard in maroon clothing.",
+          "char_span": [
+            290,
+            369
+          ],
+          "token_span": [
+            72,
+            96
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is A ginger-haired boy in a robe holding a bucket.",
+          "char_span": [
+            370,
+            446
+          ],
+          "token_span": [
+            96,
+            121
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "c:character4",
+          "type": "character",
+          "text": "[character4] [character4] is A dark-haired boy in a robe sitting on a bench.",
+          "char_span": [
+            447,
+            523
+          ],
+          "token_span": [
+            121,
+            146
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character4"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] she sharply turns her head right in annoyance, then stands up with crossed arms, walking forward angrily. [character2] he sits quietly in a large armchair, calmly observing the girl's sudden movements and angry demeanor. [character3] he remains seated on the wooden bench, slightly hunched over while holding a bucket on his lap. [character4] he sits on the bench beside the other boy, silently watching the girl as she walks forward. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            524,
+            1091
+          ],
+          "token_span": [
+            146,
+            290
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3",
+            "character4"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 begins as a medium full shot (mfs) focused on [character1] as the camera pushes in, highlighting her annoyed expression while she crosses her arms, separating her from the background characters [character2] and [character3], then changes to a medium close-up. It uses normal-standard lensing, eye-level right-three-quarter-front-view camera angle, direct-view group framing, and deep depth of field. The camera pushes in, pans left, uses stabilized Steadicam-style movement, and keeps follow focus on the moving subject.",
+          "char_span": [
+            1092,
+            1618
+          ],
+          "token_span": [
+            290,
+            423
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3",
+            "character4"
+          ]
+        }
+      ],
+      "seq_len": 424,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            423,
+            424
+          ]
+        ]
+      }
+    }
+  ]
+}

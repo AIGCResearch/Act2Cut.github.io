@@ -1,0 +1,187 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Nighttime outdoor environment with a calm atmosphere and a dark, starry sky. An outdoor area featuring dark silhouettes of trees and a distant building with glowing lights. 2D anime style with detailed character art, dark night lighting, and lens flare effects. [character1] [character1] is A woman with long dark hair, wearing a grey jacket, gold necklace, and blue ring. Global Action/Motion: [character1] speaks while gently raising her left hand to reveal a blue ring, and continues talking with her hand held up as her gaze shifts slightly. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a close-up focused on [character1]'s lower face, hand, and ring. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Nighttime outdoor environment with a calm atmosphere and a dark, starry sky. An outdoor area featuring dark silhouettes of trees and a distant building with glowing lights. 2D anime style with detailed character art, dark night lighting, and lens flare effects.",
+          "char_span": [
+            0,
+            277
+          ],
+          "token_span": [
+            0,
+            57
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A woman with long dark hair, wearing a grey jacket, gold necklace, and blue ring.",
+          "char_span": [
+            278,
+            388
+          ],
+          "token_span": [
+            57,
+            87
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] speaks while gently raising her left hand to reveal a blue ring, and continues talking with her hand held up as her gaze shifts slightly. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            389,
+            659
+          ],
+          "token_span": [
+            87,
+            149
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a close-up focused on [character1]'s lower face, hand, and ring. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            660,
+            929
+          ],
+          "token_span": [
+            149,
+            224
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 225,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            224,
+            225
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Nighttime outdoor environment with a calm atmosphere and a dark, starry sky. An outdoor area featuring dark silhouettes of trees and a distant building with glowing lights. 2D anime style with detailed character art, dark night lighting, and lens flare effects. [character1] [character1] is A woman with long dark hair, wearing a grey jacket, gold necklace, and blue ring. Global Action/Motion: [character1] speaks while gently raising her left hand to reveal a blue ring, and continues talking with her hand held up as her gaze shifts slightly. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, shallow depth of field, and lens flare. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Nighttime outdoor environment with a calm atmosphere and a dark, starry sky. An outdoor area featuring dark silhouettes of trees and a distant building with glowing lights. 2D anime style with detailed character art, dark night lighting, and lens flare effects.",
+          "char_span": [
+            0,
+            277
+          ],
+          "token_span": [
+            0,
+            57
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A woman with long dark hair, wearing a grey jacket, gold necklace, and blue ring.",
+          "char_span": [
+            278,
+            388
+          ],
+          "token_span": [
+            57,
+            87
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] speaks while gently raising her left hand to reveal a blue ring, and continues talking with her hand held up as her gaze shifts slightly. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            389,
+            659
+          ],
+          "token_span": [
+            87,
+            149
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, shallow depth of field, and lens flare. The camera uses locked-off tripod stability.",
+          "char_span": [
+            660,
+            919
+          ],
+          "token_span": [
+            149,
+            219
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 220,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            219,
+            220
+          ]
+        ]
+      }
+    }
+  ]
+}

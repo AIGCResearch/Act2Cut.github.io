@@ -1,0 +1,141 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Bright daytime outdoors with a clear blue sky and fluffy white clouds. Outdoor basketball court with a hoop, net, and green floor with yellow lines. 2D anime style animation featuring vibrant colors, clear outlines, and distinct shadows. Global Action/Motion: A basketball drops completely through the hoop's net, then falls and bounces onto the green court floor. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a close-up focused on the basketball and the basketball hoop. It uses normal-standard lensing, low-angle left-three-quarter-front-view camera angle, direct-view insert framing, and deep depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Bright daytime outdoors with a clear blue sky and fluffy white clouds. Outdoor basketball court with a hoop, net, and green floor with yellow lines. 2D anime style animation featuring vibrant colors, clear outlines, and distinct shadows.",
+          "char_span": [
+            0,
+            253
+          ],
+          "token_span": [
+            0,
+            54
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: A basketball drops completely through the hoop's net, then falls and bounces onto the green court floor. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            254,
+            478
+          ],
+          "token_span": [
+            54,
+            104
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a close-up focused on the basketball and the basketball hoop. It uses normal-standard lensing, low-angle left-three-quarter-front-view camera angle, direct-view insert framing, and deep depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            479,
+            734
+          ],
+          "token_span": [
+            104,
+            168
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": []
+        }
+      ],
+      "seq_len": 169,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            168,
+            169
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Bright daytime outdoors with a clear blue sky and fluffy white clouds. Outdoor basketball court with a hoop, net, and green floor with yellow lines. 2D anime style animation featuring vibrant colors, clear outlines, and distinct shadows. Global Action/Motion: A basketball drops completely through the hoop's net, then falls and bounces onto the green court floor. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a close-up focused on the bouncing basketball. It uses normal-standard lensing, high-angle camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Bright daytime outdoors with a clear blue sky and fluffy white clouds. Outdoor basketball court with a hoop, net, and green floor with yellow lines. 2D anime style animation featuring vibrant colors, clear outlines, and distinct shadows.",
+          "char_span": [
+            0,
+            253
+          ],
+          "token_span": [
+            0,
+            54
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: A basketball drops completely through the hoop's net, then falls and bounces onto the green court floor. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            254,
+            478
+          ],
+          "token_span": [
+            54,
+            104
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a close-up focused on the bouncing basketball. It uses normal-standard lensing, high-angle camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            479,
+            693
+          ],
+          "token_span": [
+            104,
+            157
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": []
+        }
+      ],
+      "seq_len": 158,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            157,
+            158
+          ]
+        ]
+      }
+    }
+  ]
+}

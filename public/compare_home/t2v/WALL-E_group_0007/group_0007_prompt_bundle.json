@@ -1,0 +1,187 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Dimly lit interior atmosphere with warm, subdued lighting and a moody, quiet ambiance. A cluttered interior space with shelves holding various indistinct objects and red lights. 3D animated style featuring highly detailed, realistic textures of rust, metal, and dirt. [character1] [character1] is A small, rusty, box-shaped yellow robot with binocular-like eyes and metal tracks. Global Action/Motion: [character1] tilts its head looking around, then raises its mechanical arm to press a red button on its main body panel. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit interior atmosphere with warm, subdued lighting and a moody, quiet ambiance. A cluttered interior space with shelves holding various indistinct objects and red lights. 3D animated style featuring highly detailed, realistic textures of rust, metal, and dirt.",
+          "char_span": [
+            0,
+            283
+          ],
+          "token_span": [
+            0,
+            62
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small, rusty, box-shaped yellow robot with binocular-like eyes and metal tracks.",
+          "char_span": [
+            284,
+            395
+          ],
+          "token_span": [
+            62,
+            94
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] tilts its head looking around, then raises its mechanical arm to press a red button on its main body panel. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            396,
+            636
+          ],
+          "token_span": [
+            94,
+            150
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            637,
+            884
+          ],
+          "token_span": [
+            150,
+            216
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 217,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            216,
+            217
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Dimly lit interior atmosphere with warm, subdued lighting and a moody, quiet ambiance. A cluttered interior space with shelves holding various indistinct objects and red lights. 3D animated style featuring highly detailed, realistic textures of rust, metal, and dirt. [character1] [character1] is A small, rusty, box-shaped yellow robot with binocular-like eyes and metal tracks. Global Action/Motion: [character1] tilts its head looking around, then raises its mechanical arm to press a red button on its main body panel. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is an extreme close-up focused on [character1]'s control panel and buttons. It uses macro lensing, high-angle right-three-quarter-front-view camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit interior atmosphere with warm, subdued lighting and a moody, quiet ambiance. A cluttered interior space with shelves holding various indistinct objects and red lights. 3D animated style featuring highly detailed, realistic textures of rust, metal, and dirt.",
+          "char_span": [
+            0,
+            283
+          ],
+          "token_span": [
+            0,
+            62
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small, rusty, box-shaped yellow robot with binocular-like eyes and metal tracks.",
+          "char_span": [
+            284,
+            395
+          ],
+          "token_span": [
+            62,
+            94
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] tilts its head looking around, then raises its mechanical arm to press a red button on its main body panel. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            396,
+            636
+          ],
+          "token_span": [
+            94,
+            150
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is an extreme close-up focused on [character1]'s control panel and buttons. It uses macro lensing, high-angle right-three-quarter-front-view camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            637,
+            898
+          ],
+          "token_span": [
+            150,
+            219
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 220,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            219,
+            220
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Dim, cozy interior lit by warm ambient light, creating a nostalgic, cluttered atmosphere. Wooden shelves packed with organized human trinkets, utensil cups, and a Rubik's cube. 3D animated cinematic style featuring highly realistic textures of rust, metal, and worn plastic. [character1] [character1] is A small, rusty, yellow, box-shaped robot with binocular eyes and mechanical claw-like hands. Global Action/Motion: [character1] examines a Rubik's cube, extends his arm to place it onto a shelf, then hesitates with a spork before setting it between cups of spoons and forks. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dim, cozy interior lit by warm ambient light, creating a nostalgic, cluttered atmosphere. Wooden shelves packed with organized human trinkets, utensil cups, and a Rubik's cube. 3D animated cinematic style featuring highly realistic textures of rust, metal, and worn plastic.",
+          "char_span": [
+            0,
+            290
+          ],
+          "token_span": [
+            0,
+            70
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small, rusty, yellow, box-shaped robot with binocular eyes and mechanical claw-like hands.",
+          "char_span": [
+            291,
+            412
+          ],
+          "token_span": [
+            70,
+            105
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] examines a Rubik's cube, extends his arm to place it onto a shelf, then hesitates with a spork before setting it between cups of spoons and forks. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            413,
+            692
+          ],
+          "token_span": [
+            105,
+            179
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-three-quarter-front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            693,
+            940
+          ],
+          "token_span": [
+            179,
+            245
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 246,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            245,
+            246
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Dim, cozy interior lit by warm ambient light, creating a nostalgic, cluttered atmosphere. Wooden shelves packed with organized human trinkets, utensil cups, and a Rubik's cube. 3D animated cinematic style featuring highly realistic textures of rust, metal, and worn plastic. [character1] [character1] is A small, rusty, yellow, box-shaped robot with binocular eyes and mechanical claw-like hands. Global Action/Motion: [character1] examines a Rubik's cube, extends his arm to place it onto a shelf, then hesitates with a spork before setting it between cups of spoons and forks. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a close-up focused on [character1]'s hand and the spork. It uses normal-standard lensing, eye-level front-view camera angle, direct-view insert framing, and shallow depth of field. The camera pans left, and uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dim, cozy interior lit by warm ambient light, creating a nostalgic, cluttered atmosphere. Wooden shelves packed with organized human trinkets, utensil cups, and a Rubik's cube. 3D animated cinematic style featuring highly realistic textures of rust, metal, and worn plastic.",
+          "char_span": [
+            0,
+            290
+          ],
+          "token_span": [
+            0,
+            70
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A small, rusty, yellow, box-shaped robot with binocular eyes and mechanical claw-like hands.",
+          "char_span": [
+            291,
+            412
+          ],
+          "token_span": [
+            70,
+            105
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] examines a Rubik's cube, extends his arm to place it onto a shelf, then hesitates with a spork before setting it between cups of spoons and forks. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            413,
+            692
+          ],
+          "token_span": [
+            105,
+            179
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a close-up focused on [character1]'s hand and the spork. It uses normal-standard lensing, eye-level front-view camera angle, direct-view insert framing, and shallow depth of field. The camera pans left, and uses locked-off tripod stability.",
+          "char_span": [
+            693,
+            942
+          ],
+          "token_span": [
+            179,
+            247
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 248,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            247,
+            248
+          ]
+        ]
+      }
+    }
+  ]
+}

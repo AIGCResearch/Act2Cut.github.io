@@ -1,0 +1,535 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 4,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Dimly lit stone corridor with daylight filtering through arched windows. Long stone hallway featuring arched windows and a solid floor. Live-action fantasy cinematic style with dark, moody lighting effects. [character1] [character1] is Small wrinkly house-elf with large ears wearing a dirty rag. [character2] [character2] is Man with long blonde hair dressed in a black cloak. [character3] [character3] is Young boy wearing round glasses and a dark school robe. Global Action/Motion: [character1] steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. [character2] is struck by the spell, violently blasted backward through the air down the corridor, and crashes onto the floor. [character3] stands quietly in the background, observing the sudden confrontation as [character1] defends him by repelling [character2]. A burst of bright blue magical energy erupts from [character1]'s hand, forcefully propelling [character2] backwards through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium shot focused on [character1], specifically emphasizing his aggressive hand gesture and stern facial expression through a high-angle perspective. It uses wide-angle lensing, high-angle front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit stone corridor with daylight filtering through arched windows. Long stone hallway featuring arched windows and a solid floor. Live-action fantasy cinematic style with dark, moody lighting effects.",
+          "char_span": [
+            0,
+            222
+          ],
+          "token_span": [
+            0,
+            47
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is Small wrinkly house-elf with large ears wearing a dirty rag.",
+          "char_span": [
+            223,
+            312
+          ],
+          "token_span": [
+            47,
+            75
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is Man with long blonde hair dressed in a black cloak.",
+          "char_span": [
+            313,
+            393
+          ],
+          "token_span": [
+            75,
+            99
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is Young boy wearing round glasses and a dark school robe.",
+          "char_span": [
+            394,
+            478
+          ],
+          "token_span": [
+            99,
+            121
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. [character2] is struck by the spell, violently blasted backward through the air down the corridor, and crashes onto the floor. [character3] stands quietly in the background, observing the sudden confrontation as [character1] defends him by repelling [character2]. A burst of bright blue magical energy erupts from [character1]'s hand, forcefully propelling [character2] backwards through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            479,
+            1118
+          ],
+          "token_span": [
+            121,
+            282
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium shot focused on [character1], specifically emphasizing his aggressive hand gesture and stern facial expression through a high-angle perspective. It uses wide-angle lensing, high-angle front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            1119,
+            1454
+          ],
+          "token_span": [
+            282,
+            361
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 362,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            361,
+            362
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Dimly lit stone corridor with daylight filtering through arched windows. Long stone hallway featuring arched windows and a solid floor. Live-action fantasy cinematic style with dark, moody lighting effects. [character1] [character1] is Small wrinkly house-elf with large ears wearing a dirty rag. [character2] [character2] is Man with long blonde hair dressed in a black cloak. [character3] [character3] is Young boy wearing round glasses and a dark school robe. Global Action/Motion: [character1] steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. [character2] is struck by the spell, violently blasted backward through the air down the corridor, and crashes onto the floor. [character3] stands quietly in the background, observing the sudden confrontation as [character1] defends him by repelling [character2]. A burst of bright blue magical energy erupts from [character1]'s hand, forcefully propelling [character2] backwards through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a medium full shot focused on [character1] casting a spell and the magical impact pushing [character2] backward. It uses wide-angle lensing, high-angle left-three-quarter-front-view camera angle, over-the-shoulder three-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit stone corridor with daylight filtering through arched windows. Long stone hallway featuring arched windows and a solid floor. Live-action fantasy cinematic style with dark, moody lighting effects.",
+          "char_span": [
+            0,
+            222
+          ],
+          "token_span": [
+            0,
+            47
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is Small wrinkly house-elf with large ears wearing a dirty rag.",
+          "char_span": [
+            223,
+            312
+          ],
+          "token_span": [
+            47,
+            75
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is Man with long blonde hair dressed in a black cloak.",
+          "char_span": [
+            313,
+            393
+          ],
+          "token_span": [
+            75,
+            99
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is Young boy wearing round glasses and a dark school robe.",
+          "char_span": [
+            394,
+            478
+          ],
+          "token_span": [
+            99,
+            121
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. [character2] is struck by the spell, violently blasted backward through the air down the corridor, and crashes onto the floor. [character3] stands quietly in the background, observing the sudden confrontation as [character1] defends him by repelling [character2]. A burst of bright blue magical energy erupts from [character1]'s hand, forcefully propelling [character2] backwards through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            479,
+            1118
+          ],
+          "token_span": [
+            121,
+            282
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a medium full shot focused on [character1] casting a spell and the magical impact pushing [character2] backward. It uses wide-angle lensing, high-angle left-three-quarter-front-view camera angle, over-the-shoulder three-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            1119,
+            1436
+          ],
+          "token_span": [
+            282,
+            368
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 369,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            368,
+            369
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 2,
+      "text": "Global Setting: Dimly lit stone corridor with daylight filtering through arched windows. Long stone hallway featuring arched windows and a solid floor. Live-action fantasy cinematic style with dark, moody lighting effects. [character1] [character1] is Small wrinkly house-elf with large ears wearing a dirty rag. [character2] [character2] is Man with long blonde hair dressed in a black cloak. [character3] [character3] is Young boy wearing round glasses and a dark school robe. Global Action/Motion: [character1] steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. [character2] is struck by the spell, violently blasted backward through the air down the corridor, and crashes onto the floor. [character3] stands quietly in the background, observing the sudden confrontation as [character1] defends him by repelling [character2]. A burst of bright blue magical energy erupts from [character1]'s hand, forcefully propelling [character2] backwards through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot3 is a long/wide shot focused on the magical blast propelling [character2] backward down the hallway, viewed from a high angle behind [character3] and [character1]. It uses wide-angle lensing, high-angle back-view camera angle, direct-view three-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit stone corridor with daylight filtering through arched windows. Long stone hallway featuring arched windows and a solid floor. Live-action fantasy cinematic style with dark, moody lighting effects.",
+          "char_span": [
+            0,
+            222
+          ],
+          "token_span": [
+            0,
+            47
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is Small wrinkly house-elf with large ears wearing a dirty rag.",
+          "char_span": [
+            223,
+            312
+          ],
+          "token_span": [
+            47,
+            75
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is Man with long blonde hair dressed in a black cloak.",
+          "char_span": [
+            313,
+            393
+          ],
+          "token_span": [
+            75,
+            99
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is Young boy wearing round glasses and a dark school robe.",
+          "char_span": [
+            394,
+            478
+          ],
+          "token_span": [
+            99,
+            121
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. [character2] is struck by the spell, violently blasted backward through the air down the corridor, and crashes onto the floor. [character3] stands quietly in the background, observing the sudden confrontation as [character1] defends him by repelling [character2]. A burst of bright blue magical energy erupts from [character1]'s hand, forcefully propelling [character2] backwards through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            479,
+            1118
+          ],
+          "token_span": [
+            121,
+            282
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:2",
+          "type": "local_shot",
+          "text": "Shot3 is a long/wide shot focused on the magical blast propelling [character2] backward down the hallway, viewed from a high angle behind [character3] and [character1]. It uses wide-angle lensing, high-angle back-view camera angle, direct-view three-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            1119,
+            1457
+          ],
+          "token_span": [
+            282,
+            371
+          ],
+          "truncated": false,
+          "source_shot": 2,
+          "target_shot": 2,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 372,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            371,
+            372
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 3,
+      "text": "Global Setting: Dimly lit stone corridor with daylight filtering through arched windows. Long stone hallway featuring arched windows and a solid floor. Live-action fantasy cinematic style with dark, moody lighting effects. [character1] [character1] is Small wrinkly house-elf with large ears wearing a dirty rag. [character2] [character2] is Man with long blonde hair dressed in a black cloak. [character3] [character3] is Young boy wearing round glasses and a dark school robe. Global Action/Motion: [character1] steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. [character2] is struck by the spell, violently blasted backward through the air down the corridor, and crashes onto the floor. [character3] stands quietly in the background, observing the sudden confrontation as [character1] defends him by repelling [character2]. A burst of bright blue magical energy erupts from [character1]'s hand, forcefully propelling [character2] backwards through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot4 begins as a long/wide shot focused on the sudden backward motion and impact of [character2], tracking him from a distance until he lands in a close-up, then tightens to a close-up. It uses wide-angle lensing, high-angle front-view right-canted camera angle, direct-view single-subject framing, and shallow depth of field. The camera tilt down, tilts down, uses handheld stability, and keeps follow focus on the moving subject.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit stone corridor with daylight filtering through arched windows. Long stone hallway featuring arched windows and a solid floor. Live-action fantasy cinematic style with dark, moody lighting effects.",
+          "char_span": [
+            0,
+            222
+          ],
+          "token_span": [
+            0,
+            47
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is Small wrinkly house-elf with large ears wearing a dirty rag.",
+          "char_span": [
+            223,
+            312
+          ],
+          "token_span": [
+            47,
+            75
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is Man with long blonde hair dressed in a black cloak.",
+          "char_span": [
+            313,
+            393
+          ],
+          "token_span": [
+            75,
+            99
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "c:character3",
+          "type": "character",
+          "text": "[character3] [character3] is Young boy wearing round glasses and a dark school robe.",
+          "char_span": [
+            394,
+            478
+          ],
+          "token_span": [
+            99,
+            121
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character3"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. [character2] is struck by the spell, violently blasted backward through the air down the corridor, and crashes onto the floor. [character3] stands quietly in the background, observing the sudden confrontation as [character1] defends him by repelling [character2]. A burst of bright blue magical energy erupts from [character1]'s hand, forcefully propelling [character2] backwards through the air. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            479,
+            1118
+          ],
+          "token_span": [
+            121,
+            282
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        },
+        {
+          "id": "l:3",
+          "type": "local_shot",
+          "text": "Shot4 begins as a long/wide shot focused on the sudden backward motion and impact of [character2], tracking him from a distance until he lands in a close-up, then tightens to a close-up. It uses wide-angle lensing, high-angle front-view right-canted camera angle, direct-view single-subject framing, and shallow depth of field. The camera tilt down, tilts down, uses handheld stability, and keeps follow focus on the moving subject.",
+          "char_span": [
+            1119,
+            1551
+          ],
+          "token_span": [
+            282,
+            391
+          ],
+          "truncated": false,
+          "source_shot": 3,
+          "target_shot": 3,
+          "related_characters": [
+            "character1",
+            "character2",
+            "character3"
+          ]
+        }
+      ],
+      "seq_len": 392,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            391,
+            392
+          ]
+        ]
+      }
+    }
+  ]
+}

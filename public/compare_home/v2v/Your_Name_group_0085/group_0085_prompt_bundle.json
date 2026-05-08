@@ -1,0 +1,229 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Twilight sky with vibrant pink, purple, and orange hues over a calm ocean. An outdoor location by the sea with a clear, expansive view of the horizon. 2D anime style with soft lighting, warm color grading, and highly detailed skies. [character1] [character1] is A young girl with short black hair wearing a white shirt and a red bowtie. [character2] [character2] is A young man with dark hair wearing a dark jacket, seen from behind. Global Action/Motion: [character1] she looks ahead, closes her eyes briefly, then raises a red ribbon, tying it around her hair like a headband. She then looks at [character2] and smiles while speaking. [character2] he appears in the foreground, with his back to the camera, and raises his hand towards his neck while responding to the question from [character1]. null. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-side-view camera angle, direct-view single-subject framing, and deep depth of field. The camera pushes in, and uses stabilized Steadicam-style movement.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Twilight sky with vibrant pink, purple, and orange hues over a calm ocean. An outdoor location by the sea with a clear, expansive view of the horizon. 2D anime style with soft lighting, warm color grading, and highly detailed skies.",
+          "char_span": [
+            0,
+            248
+          ],
+          "token_span": [
+            0,
+            56
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young girl with short black hair wearing a white shirt and a red bowtie.",
+          "char_span": [
+            249,
+            352
+          ],
+          "token_span": [
+            56,
+            84
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A young man with dark hair wearing a dark jacket, seen from behind.",
+          "char_span": [
+            353,
+            449
+          ],
+          "token_span": [
+            84,
+            110
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] she looks ahead, closes her eyes briefly, then raises a red ribbon, tying it around her hair like a headband. She then looks at [character2] and smiles while speaking. [character2] he appears in the foreground, with his back to the camera, and raises his hand towards his neck while responding to the question from [character1]. null. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            450,
+            917
+          ],
+          "token_span": [
+            110,
+            228
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level left-side-view camera angle, direct-view single-subject framing, and deep depth of field. The camera pushes in, and uses stabilized Steadicam-style movement.",
+          "char_span": [
+            918,
+            1170
+          ],
+          "token_span": [
+            228,
+            294
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 295,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            294,
+            295
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Twilight sky with vibrant pink, purple, and orange hues over a calm ocean. An outdoor location by the sea with a clear, expansive view of the horizon. 2D anime style with soft lighting, warm color grading, and highly detailed skies. [character1] [character1] is A young girl with short black hair wearing a white shirt and a red bowtie. [character2] [character2] is A young man with dark hair wearing a dark jacket, seen from behind. Global Action/Motion: [character1] she looks ahead, closes her eyes briefly, then raises a red ribbon, tying it around her hair like a headband. She then looks at [character2] and smiles while speaking. [character2] he appears in the foreground, with his back to the camera, and raises his hand towards his neck while responding to the question from [character1]. null. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 is a medium close-up focused on [character1]'s face and upper body. It uses normal-standard lensing, eye-level front-view camera angle, over-the-shoulder two-character framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Twilight sky with vibrant pink, purple, and orange hues over a calm ocean. An outdoor location by the sea with a clear, expansive view of the horizon. 2D anime style with soft lighting, warm color grading, and highly detailed skies.",
+          "char_span": [
+            0,
+            248
+          ],
+          "token_span": [
+            0,
+            56
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young girl with short black hair wearing a white shirt and a red bowtie.",
+          "char_span": [
+            249,
+            352
+          ],
+          "token_span": [
+            56,
+            84
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "c:character2",
+          "type": "character",
+          "text": "[character2] [character2] is A young man with dark hair wearing a dark jacket, seen from behind.",
+          "char_span": [
+            353,
+            449
+          ],
+          "token_span": [
+            84,
+            110
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character2"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] she looks ahead, closes her eyes briefly, then raises a red ribbon, tying it around her hair like a headband. She then looks at [character2] and smiles while speaking. [character2] he appears in the foreground, with his back to the camera, and raises his hand towards his neck while responding to the question from [character1]. null. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            450,
+            917
+          ],
+          "token_span": [
+            110,
+            228
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 is a medium close-up focused on [character1]'s face and upper body. It uses normal-standard lensing, eye-level front-view camera angle, over-the-shoulder two-character framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+          "char_span": [
+            918,
+            1173
+          ],
+          "token_span": [
+            228,
+            298
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1",
+            "character2"
+          ]
+        }
+      ],
+      "seq_len": 299,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            298,
+            299
+          ]
+        ]
+      }
+    }
+  ]
+}

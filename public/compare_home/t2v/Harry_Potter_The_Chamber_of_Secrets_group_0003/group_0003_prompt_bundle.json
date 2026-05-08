@@ -1,0 +1,187 @@
+{
+  "task_mode": "generation",
+  "prompt_routing_mode": "per_shot_context",
+  "num_shots": 2,
+  "prompts": [
+    {
+      "task_mode": "generation",
+      "shot_index": 0,
+      "text": "Global Setting: Dimly lit, quiet indoor residential hallway atmosphere. Hallway featuring a closed door, radiator, and framed pictures. Realistic live-action film with cinematic lighting and natural colors. [character1] [character1] is A young boy wearing glasses and a grey shirt. Global Action/Motion: [character1] walks down the hallway, reaches for the door handle, opens the door, and enters the cupboard. The door swings open outward into the hallway. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot1 begins as a long/wide shot focused on [character1] as he enters the hallway and approaches the door on the left, then tightens to a medium shot. It uses wide-angle lensing, eye-level front-view camera angle, direct-view single-subject framing, and deep depth of field. The camera pan left, pans left, and uses stabilized Steadicam-style movement.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit, quiet indoor residential hallway atmosphere. Hallway featuring a closed door, radiator, and framed pictures. Realistic live-action film with cinematic lighting and natural colors.",
+          "char_span": [
+            0,
+            206
+          ],
+          "token_span": [
+            0,
+            42
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young boy wearing glasses and a grey shirt.",
+          "char_span": [
+            207,
+            281
+          ],
+          "token_span": [
+            42,
+            63
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] walks down the hallway, reaches for the door handle, opens the door, and enters the cupboard. The door swings open outward into the hallway. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            282,
+            555
+          ],
+          "token_span": [
+            63,
+            132
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:0",
+          "type": "local_shot",
+          "text": "Shot1 begins as a long/wide shot focused on [character1] as he enters the hallway and approaches the door on the left, then tightens to a medium shot. It uses wide-angle lensing, eye-level front-view camera angle, direct-view single-subject framing, and deep depth of field. The camera pan left, pans left, and uses stabilized Steadicam-style movement.",
+          "char_span": [
+            556,
+            908
+          ],
+          "token_span": [
+            132,
+            222
+          ],
+          "truncated": false,
+          "source_shot": 0,
+          "target_shot": 0,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 223,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            222,
+            223
+          ]
+        ]
+      }
+    },
+    {
+      "task_mode": "generation",
+      "shot_index": 1,
+      "text": "Global Setting: Dimly lit, quiet indoor residential hallway atmosphere. Hallway featuring a closed door, radiator, and framed pictures. Realistic live-action film with cinematic lighting and natural colors. [character1] [character1] is A young boy wearing glasses and a grey shirt. Global Action/Motion: [character1] walks down the hallway, reaches for the door handle, opens the door, and enters the cupboard. The door swings open outward into the hallway. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent. Shot2 begins as a medium shot focused on [character1]'s surprised facial expression, then tightens to a medium close-up. It uses normal-standard lensing, eye-level front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera pushes in, pans right, uses stabilized Steadicam-style movement, and keeps follow focus on the moving subject.",
+      "blocks": [
+        {
+          "id": "g:setting",
+          "type": "global_setting",
+          "text": "Global Setting: Dimly lit, quiet indoor residential hallway atmosphere. Hallway featuring a closed door, radiator, and framed pictures. Realistic live-action film with cinematic lighting and natural colors.",
+          "char_span": [
+            0,
+            206
+          ],
+          "token_span": [
+            0,
+            42
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": []
+        },
+        {
+          "id": "c:character1",
+          "type": "character",
+          "text": "[character1] [character1] is A young boy wearing glasses and a grey shirt.",
+          "char_span": [
+            207,
+            281
+          ],
+          "token_span": [
+            42,
+            63
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "g:action",
+          "type": "global_action",
+          "text": "Global Action/Motion: [character1] walks down the hallway, reaches for the door handle, opens the door, and enters the cupboard. The door swings open outward into the hallway. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+          "char_span": [
+            282,
+            555
+          ],
+          "token_span": [
+            63,
+            132
+          ],
+          "truncated": false,
+          "source_shot": null,
+          "target_shot": null,
+          "related_characters": [
+            "character1"
+          ]
+        },
+        {
+          "id": "l:1",
+          "type": "local_shot",
+          "text": "Shot2 begins as a medium shot focused on [character1]'s surprised facial expression, then tightens to a medium close-up. It uses normal-standard lensing, eye-level front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera pushes in, pans right, uses stabilized Steadicam-style movement, and keeps follow focus on the moving subject.",
+          "char_span": [
+            556,
+            930
+          ],
+          "token_span": [
+            132,
+            223
+          ],
+          "truncated": false,
+          "source_shot": 1,
+          "target_shot": 1,
+          "related_characters": [
+            "character1"
+          ]
+        }
+      ],
+      "seq_len": 224,
+      "special_tokens": {
+        "free_token_spans": [
+          [
+            223,
+            224
+          ]
+        ]
+      }
+    }
+  ]
+}
