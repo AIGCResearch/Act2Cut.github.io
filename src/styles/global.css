@@ -186,7 +186,7 @@ html:not(.dark) .qg-prompt-popover-inner {
 /* Cinematic aspect ratio (~2.35:1, CinemaScope) — used to make every video & reference frame in the
    qualitative gallery render at a unified film-like ratio so the layout looks like a film strip. */
 .cinema-aspect {
-  aspect-ratio: 2.35 / 1;
+  aspect-ratio: 16 / 9;
 }
 
 /* Custom video scrubber overlay (qualitative gallery). Thin, full-width track at the bottom of a
@@ -276,17 +276,84 @@ html:not(.dark) .thin-scroll:hover::-webkit-scrollbar-thumb {
   background: rgba(192, 124, 24, 0.40);
 }
 
-/* Strong glass surface for tables — bolder backdrop-blur + saturation so background image
-   doesn't bleed through the numbers */
+/* ═══════════════════════════════════════════════════════════════════════
+   UNIFIED GLASS SYSTEM  —  single surface recipe for all content elements.
+   All three class aliases resolve to the same style so every card, table,
+   and panel on the page reads as one cohesive material.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.glass-card,
+.glass-card-light,
 .glass-table-card {
-  background: rgba(12, 10, 14, 0.72);
-  -webkit-backdrop-filter: blur(28px) saturate(140%);
-  backdrop-filter: blur(28px) saturate(140%);
+  background: rgba(4, 2, 8, 0.82);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  backdrop-filter: blur(28px) saturate(170%);
 }
+html:not(.dark) .glass-card,
+html:not(.dark) .glass-card-light,
 html:not(.dark) .glass-table-card {
-  background: rgba(245, 240, 232, 0.78);
-  -webkit-backdrop-filter: blur(28px) saturate(135%);
-  backdrop-filter: blur(28px) saturate(135%);
+  background: rgba(235, 228, 215, 0.90);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(28px) saturate(160%);
+}
+
+/* Architecture diagram — Mac vibrancy style (light frosted glass, opposite of the dark cards) */
+.glass-arch {
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(108%);
+  backdrop-filter: blur(32px) saturate(200%) brightness(108%);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.45);
+}
+html:not(.dark) .glass-arch {
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(103%);
+  backdrop-filter: blur(32px) saturate(180%) brightness(103%);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.80);
+}
+
+/* Floating headings — text-shadow halo for readability against parallax background */
+.section-heading-float {
+  text-shadow:
+    0 1px 10px rgba(0, 0, 0, 0.80),
+    0 2px 28px rgba(0, 0, 0, 0.55),
+    0 0 60px rgba(0, 0, 0, 0.30);
+}
+html:not(.dark) .section-heading-float {
+  text-shadow:
+    0 1px 8px rgba(255, 248, 235, 0.90),
+    0 2px 20px rgba(255, 248, 235, 0.65),
+    0 0 40px rgba(255, 248, 235, 0.40);
+}
+
+/* Ambient scrim — feathered radial gradient behind floating text blocks.
+   Peaks at 0.18 opacity so the background remains visible; works for both
+   large headings and small-text lines where text-shadow alone is insufficient. */
+.ambient-scrim {
+  position: relative;
+}
+.ambient-scrim::before {
+  content: '';
+  position: absolute;
+  inset: -48px -100px;
+  background: radial-gradient(
+    ellipse 60% 70% at 50% 50%,
+    rgba(4, 2, 8, 0.18) 0%,
+    rgba(4, 2, 8, 0.08) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: -1;
+}
+html:not(.dark) .ambient-scrim::before {
+  background: radial-gradient(
+    ellipse 60% 70% at 50% 50%,
+    rgba(242, 236, 225, 0.22) 0%,
+    rgba(242, 236, 225, 0.08) 45%,
+    transparent 70%
+  );
 }
 
 /* Rank highlight cells for benchmark tables — match LaTeX \rankfirst..\rankfifth ordering */

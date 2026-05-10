@@ -11,95 +11,94 @@ const pipelineSteps = [
 
 const statGroups = [
   {
+    title: 'By Film Genre',
+    bars: [
+      { label: 'Drama / Art-house',              pct: 57.6 },
+      { label: 'Sci-fi / Fantasy',               pct: 12.5 },
+      { label: 'Crime / Noir',                   pct: 10.1 },
+      { label: 'Action / Thriller',              pct:  8.4 },
+      { label: 'Historical / War / Documentary', pct:  7.3 },
+      { label: 'Animation / Family',             pct:  4.1 },
+    ]
+  },
+  {
     title: 'By Visual Style',
     bars: [
-      { label: 'Live Action / Realistic',    w: 0.72 },
-      { label: '2D Animation / Anime',       w: 0.55 },
-      { label: '3D CGI',                     w: 0.38 },
-      { label: 'Documentary / Non-Fiction',  w: 0.22 },
-      { label: 'Other / Mixed',              w: 0.12 },
+      { label: 'Live Action / Realistic',    pct: 47.3 },
+      { label: '2D Animation / Anime',       pct: 33.6 },
+      { label: '3D CGI',                     pct: 19.1 },
     ]
   },
   {
     title: 'By Shot Count per Sequence',
     bars: [
-      { label: '2-Shot',  w: 0.65 },
-      { label: '3-Shot',  w: 0.82 },
-      { label: '4-Shot',  w: 0.45 },
-      { label: '5-Shot',  w: 0.28 },
-      { label: '6+ Shot', w: 0.15 },
+      { label: '2-Shot',  pct: 73.1 },
+      { label: '3-Shot',  pct: 18.2 },
+      { label: '4-Shot',  pct:  5.9 },
+      { label: '5-Shot',  pct:  1.4 },
+      { label: '6+ Shot', pct:  1.4 },
     ]
   },
   {
     title: 'By Action Complexity',
     bars: [
-      { label: 'Simple (Single action)',       w: 0.58 },
-      { label: 'Medium (Action sequence)',     w: 0.75 },
-      { label: 'Complex (Coordinated motion)', w: 0.42 },
-      { label: 'Out-of-Domain (OOD)',           w: 0.18 },
+      { label: 'Few + Simple',   pct: 32.7 },
+      { label: 'Few + Complex',  pct: 56.2 },
+      { label: 'Many + Complex', pct:  2.3 },
+      { label: 'Many + Simple',  pct:  8.7 },
     ],
   },
   {
     title: 'By Character Count',
     bars: [
-      { label: 'Single-Character',           w: 0.62 },
-      { label: 'Two-Character',              w: 0.48 },
-      { label: 'Multi-Character (3+)',       w: 0.35 },
-      { label: 'Background Crowd',           w: 0.20 },
+      { label: 'Single-Character',       pct: 32.0 },
+      { label: 'Two-Character',          pct: 40.5 },
+      { label: 'Multi-Character (3+)',   pct: 21.5 },
+      { label: 'Background Crowd',       pct:  6.0 },
     ],
   },
 ];
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
-// Real sample clips from /public/sample_data — filenames encode movie + adjacent shot indices,
-// e.g. "Batman_Begins__shot_clip-0314_0315.mp4" → "Batman Begins" · Shot 314 → 315.
+// Real sample clips from /public/sample_data
+// Filename format: NN_MovieName_group_XXXX_shot_YYYY_ZZZZ.mp4
 const sampleFiles = [
-  'Batman_Begins__shot_clip-0314_0315.mp4',
-  'Big_Fish__shot_clip-0863_0864.mp4',
-  'Blade_Runner_1__shot_clip-0542_0543.mp4',
-  'Monsters_Inc__shot_clip-0694_0695.mp4',
-  'My_Neighbor_Totoro__shot_clip-0262_0263.mp4',
-  'Pirates_of_the_Caribbean_The_Curseof_the_Black_Pearl__shot_clip-0435_0436.mp4',
-  'Princess_Mononoke__shot_clip-0353_0354.mp4',
-  'Star_Trek__shot_clip-1535_1536.mp4',
-  'Terminator__shot_clip-0628_0629.mp4',
-  'The_Godfather_Part_II__shot_clip-0134_0135.mp4',
-  'The_Shawshank_Redemption__shot_clip-0862_0863.mp4',
-  'Weathering_with_You__shot_clip-1220_1221.mp4',
+  '01_Avatar_group_0135_shot_0869_0877.mp4',
+  '02_Harry_Potter_The_Chamber_of_Secrets_group_0033_shot_0246_0253.mp4',
+  '04_Batman_Begins_group_0062_shot_0750_0756.mp4',
+  '05_Suzume_group_0107_shot_0780_0786.mp4',
+  '07_Weathering_with_You_group_0126_shot_1320_1326.mp4',
+  '08_Toy_Story_group_0193_shot_1445_1450.mp4',
+  '09_Up_group_0161_shot_1264_1268.mp4',
+  '10_Your_Name_group_0066_shot_0971_0975.mp4',
+  '11_Avatar_group_0138_shot_0886_0892.mp4',
+  '12_Batman_Begins_group_0123_shot_1551_1557.mp4',
+  '15_Harry_Potter_The_Chamber_of_Secrets_group_0048_shot_0406_0412.mp4',
+  '16_Suzume_group_0171_shot_1230_1236.mp4',
 ];
 
-// Override or shorten the auto-derived movie title where the filename is awkward (typos, length).
-const movieAliases: Record<string, string> = {
-  'Blade Runner 1': 'Blade Runner',
-  'Pirates of the Caribbean The Curseof the Black Pearl': 'Pirates of the Caribbean',
-};
-
 const styleByMovie: Record<string, string> = {
+  'Avatar': 'Live Action',
+  'Harry Potter The Chamber of Secrets': 'Live Action',
   'Batman Begins': 'Live Action',
-  'Big Fish': 'Live Action',
-  'Blade Runner': 'Live Action',
-  'Monsters Inc': '3D CGI',
-  'My Neighbor Totoro': '2D Anime',
-  'Pirates of the Caribbean': 'Live Action',
-  'Princess Mononoke': '2D Anime',
-  'Star Trek': 'Live Action',
-  'Terminator': 'Live Action',
-  'The Godfather Part II': 'Live Action',
-  'The Shawshank Redemption': 'Live Action',
+  'Suzume': '2D Anime',
   'Weathering with You': '2D Anime',
+  'Toy Story': '3D CGI',
+  'Up': '3D CGI',
+  'Your Name': '2D Anime',
 };
 
 const samples = sampleFiles.map(file => {
-  const m = file.match(/^(.+?)__shot_clip-(\d+)_(\d+)\.mp4$/);
-  const rawMovie = (m ? m[1] : file).replace(/_/g, ' ').trim();
-  const movie = movieAliases[rawMovie] ?? rawMovie;
+  // NN_MovieName_group_XXXX_shot_YYYY_ZZZZ.mp4
+  const m = file.match(/^\d+_(.+?)_group_\d+_shot_(\d+)_(\d+)\.mp4$/);
+  const movie = m ? m[1].replace(/_/g, ' ') : file;
   const a = m ? parseInt(m[2], 10) : 0;
   const b = m ? parseInt(m[3], 10) : 0;
   return {
     file,
     movie,
-    style: styleByMovie[movie] ?? '—',
+    style: styleByMovie[movie] ?? 'Live Action',
     shots: m ? `Shot ${a} → ${b}` : '',
     src: `${base}/sample_data/${file}`,
   };
@@ -109,29 +108,31 @@ const samples = sampleFiles.map(file => {
 <section id="dataset" class="space-y-10 sm:space-y-12">
 
   <!-- Section header -->
-  <div data-reveal>
+  <div data-reveal class="ambient-scrim">
     <span class="act-marker">ACT Ⅲ</span>
-    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight flex items-center gap-3 mt-1">
+    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight flex items-center gap-3 mt-1 section-heading-float">
       <span class="inline-block w-1 h-6 sm:h-7 bg-gradient-to-b from-[#ff4d4d] to-[#ffb84d] rounded-sm" style="transform: skewX(-6deg);"></span>
-      Large-Scale Dataset: ActCutVid-200k
+      Large-Scale Dataset: ActCutVid-1M
     </h2>
-    <p class="text-white/50 text-[13px] sm:text-sm mt-2">Large-scale multi-shot video corpus with hierarchical cinematographic annotation.</p>
+    <p class="text-white/50 text-[13px] sm:text-sm mt-2 section-heading-float">Large-scale multi-shot video corpus with hierarchical cinematographic annotation.</p>
   </div>
 
   <!-- Construction pipeline -->
   <div data-reveal style="transition-delay:100ms">
-    <h3 class="text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-white/80">Construction Pipeline</h3>
-    <div class="relative flex items-start gap-0 overflow-x-auto thin-scroll pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scroll-smooth snap-x">
-      <div class="absolute top-6 left-8 right-8 h-px bg-gradient-to-r from-[#ff4d4d]/30 to-[#ffb84d]/30 pointer-events-none"></div>
-      {pipelineSteps.map((step) => (
-        <div class="flex-1 min-w-[150px] px-3 sm:px-4 flex flex-col items-center text-center relative z-10 snap-start">
-          <div class="w-12 h-12 rounded-full border border-[#ff4d4d]/40 bg-black flex items-center justify-center mb-4 sm:mb-5 hover:border-[#ff4d4d] transition-colors">
-            <span class="text-sm font-bold text-[#ffb84d]">{step.n}</span>
+    <h3 class="text-lg sm:text-xl font-semibold mb-5 sm:mb-6 text-white/80 section-heading-float">Construction Pipeline</h3>
+    <div class="glass-card rounded-2xl border border-white/[0.08] overflow-hidden px-4 sm:px-6 pt-6 pb-5">
+      <div class="relative flex items-start gap-0 overflow-x-auto thin-scroll pb-2 scroll-smooth snap-x">
+        <div class="absolute top-6 left-4 right-4 h-px bg-gradient-to-r from-[#ff4d4d]/30 to-[#ffb84d]/30 pointer-events-none"></div>
+        {pipelineSteps.map((step) => (
+          <div class="flex-1 min-w-[150px] px-3 sm:px-4 flex flex-col items-center text-center relative z-10 snap-start">
+            <div class="w-12 h-12 rounded-full border border-[#ff4d4d]/40 bg-white/[0.04] flex items-center justify-center mb-4 sm:mb-5 hover:border-[#ff4d4d] transition-colors">
+              <span class="text-sm font-bold text-[#ffb84d]">{step.n}</span>
+            </div>
+            <div class="text-[13px] sm:text-sm font-semibold text-white mb-1.5 sm:mb-2">{step.title}</div>
+            <div class="text-[11px] sm:text-xs text-white/50 leading-relaxed">{step.desc}</div>
           </div>
-          <div class="text-[13px] sm:text-sm font-semibold text-white mb-1.5 sm:mb-2">{step.title}</div>
-          <div class="text-[11px] sm:text-xs text-white/50 leading-relaxed">{step.desc}</div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 
@@ -139,26 +140,29 @@ const samples = sampleFiles.map(file => {
 
   <!-- Statistics bars -->
   <div>
-    <h3 class="text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-white/80" data-reveal>Statistics</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 sm:gap-x-6 gap-y-5">
+    <h3 class="text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-white/80 section-heading-float" data-reveal>Statistics</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-5 sm:gap-x-6 gap-y-5">
       {statGroups.map((group, gi) => (
         <div
-          class="rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl p-5 md:p-6 hover:border-white/[0.14] hover:bg-white/[0.035] transition-all duration-300"
+          class="glass-card rounded-2xl border border-white/[0.08] p-5 md:p-6 hover:border-white/[0.16] transition-all duration-300"
           data-reveal
           style={`transition-delay:${gi * 100}ms`}
         >
           <div class="text-[13px] font-semibold text-white mb-5 pb-3 border-b border-white/10 tracking-wide">{group.title}</div>
-          {group.bars.map(bar => (
-            <div class="mb-3.5 last:mb-0">
-              <div class="flex justify-between items-baseline mb-1.5 gap-2">
-                <span class="text-[12px] text-white/60 leading-tight">{bar.label}</span>
-                <span class="text-[10px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] shrink-0">—%</span>
+          {(() => {
+            const maxPct = Math.max(...group.bars.map(b => b.pct), 1);
+            return group.bars.map(bar => (
+              <div class="mb-3.5 last:mb-0">
+                <div class="flex justify-between items-baseline mb-1.5 gap-2">
+                  <span class="text-[12px] text-white/60 leading-tight">{bar.label}</span>
+                  <span class="text-[10px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] shrink-0">{bar.pct.toFixed(1)}%</span>
+                </div>
+                <div class="h-0.5 bg-white/[0.07] rounded overflow-hidden">
+                  <div class="stat-bar-fill" style={`--fill-w:${bar.pct / maxPct};`}></div>
+                </div>
               </div>
-              <div class="h-0.5 bg-white/[0.07] rounded overflow-hidden">
-                <div class="stat-bar-fill" style={`--fill-w:${bar.w};`}></div>
-              </div>
-            </div>
-          ))}
+            ));
+          })()}
         </div>
       ))}
     </div>
@@ -169,18 +173,18 @@ const samples = sampleFiles.map(file => {
   <!-- Sample data grid -->
   <div>
     <div class="flex items-baseline justify-between gap-3 mb-6 sm:mb-8" data-reveal>
-      <h3 class="text-lg sm:text-xl font-semibold text-white/80">Sample Data</h3>
+      <h3 class="text-lg sm:text-xl font-semibold text-white/80 section-heading-float">Sample Data</h3>
       <span class="text-[10px] sm:text-[11px] text-white/35">{samples.length} clips · adjacent action-cut pairs</span>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
       {samples.map((s, i) => (
         <div
-          class="sample-card group relative rounded-xl bg-white/[0.03] border border-white/[0.07] overflow-hidden hover:border-[#ff4d4d]/40 hover:bg-white/[0.05]"
+          class="sample-card group relative glass-card rounded-xl border border-white/[0.08] overflow-hidden hover:border-[#ff4d4d]/40"
           data-reveal
           style={`transition-delay:${i * 50}ms`}
         >
           <div class="cinema-aspect bg-black/55 border-b border-white/[0.07] relative overflow-hidden">
-            <DualVideo src={s.src} class="sample-video absolute inset-0 w-full h-full object-cover" />
+            <DualVideo src={s.src} class="sample-video absolute inset-0 w-full h-full object-contain" />
             <span class="absolute top-2 left-2 z-10 px-1.5 py-0.5 rounded font-mono text-[8px] font-bold tracking-[0.10em] text-white/85 bg-black/55 border border-white/15 backdrop-blur-sm">
               {s.shots}
             </span>

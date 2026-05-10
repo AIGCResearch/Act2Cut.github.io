@@ -34,45 +34,52 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     </h1>
   </div>
 
-  <div class="space-y-5 sm:space-y-6" data-reveal style="transition-delay:100ms">
-    <div class="space-y-2 text-[14px] sm:text-[16px] md:text-[17px]">
-      {authorRows.map(row => (
-        <div class="flex flex-wrap justify-center gap-x-5 gap-y-2">
-          {row.map(author => (
-            <span class="font-medium text-white/90">
-              {author.name}<sup class="text-white/70 ml-0.5">{author.affil}</sup>
-            </span>
-          ))}
-        </div>
-      ))}
-    </div>
-    <div class="flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-[12px] sm:text-[14px] md:text-[15px] text-white/60">
-      {affiliations.map(affil => (
-        <span><sup class="mr-0.5">{affil.id}</sup>{affil.name}</span>
-      ))}
-    </div>
-    <div class="text-[11.5px] sm:text-[13px] text-white/40 mt-3 sm:mt-4 font-light flex flex-wrap justify-center gap-x-5 gap-y-1">
-      <span>* Equal contribution.</span>
-      <span>† Work done during internship at TeleAI.</span>
-      <span>‡ Corresponding author.</span>
+  <div class="relative" data-reveal style="transition-delay:100ms">
+    <!-- Soft dark halo — feathered ellipse that improves readability without any visible box -->
+    <div
+      class="absolute pointer-events-none"
+      style="inset: -56px -120px; background: radial-gradient(ellipse 48% 75% at 50% 50%, rgba(4,2,10,0.64) 0%, rgba(4,2,10,0.30) 48%, transparent 70%); border-radius: 50%;"
+    ></div>
+    <div class="relative space-y-4 sm:space-y-5">
+      <div class="space-y-2 text-[14px] sm:text-[16px] md:text-[17px]">
+        {authorRows.map(row => (
+          <div class="flex flex-wrap justify-center gap-x-5 gap-y-2">
+            {row.map(author => (
+              <span class="font-medium text-white/90">
+                {author.name}<sup class="text-white/70 ml-0.5">{author.affil}</sup>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-[12px] sm:text-[14px] md:text-[15px] text-white/60">
+        {affiliations.map(affil => (
+          <span><sup class="mr-0.5">{affil.id}</sup>{affil.name}</span>
+        ))}
+      </div>
+      <div class="text-[11.5px] sm:text-[13px] text-white/40 font-light flex flex-wrap justify-center gap-x-5 gap-y-1">
+        <span>* Equal contribution.</span>
+        <span>† Work done during internship at TeleAI.</span>
+        <span>‡ Corresponding author.</span>
+      </div>
     </div>
   </div>
 
   <!-- ACTION BUTTONS -->
-  <div class="space-y-7 sm:space-y-9 pt-5 sm:pt-8" data-reveal style="transition-delay:200ms">
+  <div class="space-y-7 sm:space-y-8" data-reveal style="transition-delay:200ms">
     <div class="flex flex-wrap justify-center gap-2.5 sm:gap-4 md:gap-6">
-      <a href="#" class="px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium backdrop-blur-md group">
-        <svg class="w-4 h-4 opacity-70 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-        Paper
+      <a href="#" class="px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/[0.07] hover:bg-white/[0.18] active:bg-white/[0.28] active:scale-95 border border-white/25 hover:border-white/50 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium backdrop-blur-md group shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_20px_rgba(255,255,255,0.12)] select-none">
+        <svg class="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        Paper（Coming Soon）
       </a>
-      <a href="#" class="px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium backdrop-blur-md group">
-        <svg class="w-4 h-4 opacity-70 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-        Code
+      <a href="#" class="px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/[0.07] hover:bg-white/[0.18] active:bg-white/[0.28] active:scale-95 border border-white/25 hover:border-white/50 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium backdrop-blur-md group shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_20px_rgba(255,255,255,0.12)] select-none">
+        <svg class="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        Code（Coming Soon）
       </a>
-      <a href="#" class="px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium backdrop-blur-md group">
-        <svg class="w-4 h-4 opacity-70 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        Video
-      </a>
+      <!-- <a href="#" class="px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-[#ff4d4d]/20 hover:bg-[#ff4d4d]/35 active:bg-[#ff4d4d]/50 active:scale-95 border border-[#ff4d4d]/40 hover:border-[#ff4d4d]/70 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium backdrop-blur-md group text-[#ffb84d] hover:text-white shadow-[0_0_0_0_rgba(255,77,77,0)] hover:shadow-[0_0_24px_rgba(255,77,77,0.3)] select-none">
+        <svg class="w-4 h-4 group-hover:scale-110 group-hover:translate-x-0.5 transition-all duration-200" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        Video（Comming Soon）
+      </a> -->
     </div>
 
     <div class="mx-auto w-full max-w-[720px] px-3 sm:px-10">

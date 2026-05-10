@@ -30,48 +30,38 @@ const methodCards = [
 <section id="overview" class="space-y-12">
 
   <!-- Section header -->
-  <div data-reveal>
+  <div data-reveal class="ambient-scrim">
     <span class="act-marker">ACT Ⅱ</span>
-    <h2 class="text-3xl font-semibold tracking-tight flex items-center gap-3 mt-1">
+    <h2 class="text-3xl font-semibold tracking-tight flex items-center gap-3 mt-1 section-heading-float">
       <span class="inline-block w-1 h-7 bg-gradient-to-b from-[#ff4d4d] to-[#ffb84d] rounded-sm" style="transform: skewX(-6deg);"></span>
       Method &amp; Results
     </h2>
-    <p class="text-white/50 text-sm mt-2">Demo video, architecture overview, and qualitative results.</p>
+    <p class="text-white/50 text-sm mt-2 section-heading-float">Demo video, architecture overview, and qualitative results.</p>
   </div>
 
-  <!-- Architecture diagram.
-       Vector PDF embedded via <object> for crisp rendering at any zoom level. The PDF page
-       size is 1615×862 pt, so we lock the container to that aspect ratio. The inner <img>
-       fallback (AVIF rendered from the PDF at 300 DPI) is what browsers without inline-PDF
-       support — notably iOS Safari — display instead. The fragment ?#view=FitH&toolbar=0&navpanes=0
-       hides the PDF viewer chrome on Chromium-based browsers. -->
-  <figure class="rounded-3xl overflow-hidden border border-white/10 bg-black/40 backdrop-blur-xl shadow-lg relative" style="transition-delay:150ms;" data-reveal>
-    <div class="architecture-pdf-frame relative w-full overflow-hidden" style="aspect-ratio: 1615 / 862;">
-      <object
-        data={`${base}/images/architecture.pdf#view=Fit&toolbar=0&navpanes=0&scrollbar=0`}
-        type="application/pdf"
-        class="architecture-pdf-object absolute inset-y-0 left-0 h-full"
-        style="width: calc(100% + 18px);"
-        aria-label="Act2Cut architecture diagram"
-      >
-        <img
-          src={`${base}/images/architecture.avif`}
-          alt="Act2Cut architecture: GLoS-RoPE, Transitional Boundary Residual, Shot Causal Mask and Hierarchical Context Mask working together for continuous multi-shot video generation."
-          class="absolute inset-0 w-full h-full object-contain"
-          width="2400"
-          height="1281"
-          loading="lazy"
-          decoding="async"
-        />
-      </object>
+  <!-- Architecture diagram — Mac vibrancy glass frame with PNG image. -->
+  <figure class="glass-arch rounded-3xl overflow-hidden shadow-2xl relative" style="transition-delay:150ms;" data-reveal>
+    <!-- Inner sheen highlight (top-left to bottom-right subtle gradient) -->
+    <div class="absolute inset-0 pointer-events-none z-10"
+         style="background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 40%, transparent 70%, rgba(255,255,255,0.06) 100%);"></div>
+    <div class="relative w-full overflow-hidden" style="aspect-ratio: 1615 / 862;">
+      <img
+        src={`${base}/images/architecture.avif`}
+        alt="Act2Cut architecture: GLoS-RoPE, Transitional Boundary Residual, Shot Causal Mask and Hierarchical Context Mask working together for continuous multi-shot video generation."
+        class="absolute inset-0 w-full h-full object-contain"
+        width="1615"
+        height="862"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
-    <figcaption class="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3 text-[10px] sm:text-[11px] text-white/55 pointer-events-none">
-      <span class="px-2 py-0.5 rounded-md bg-black/55 border border-white/10 backdrop-blur-sm tracking-[0.18em] uppercase font-semibold text-white/70">Architecture</span>
+    <figcaption class="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3 text-[10px] sm:text-[11px] pointer-events-none z-20">
+      <span class="px-2 py-0.5 rounded-md bg-white/20 border border-white/35 backdrop-blur-sm tracking-[0.18em] uppercase font-semibold text-white/90">Architecture</span>
       <a
         href={`${base}/images/architecture.pdf`}
         target="_blank"
         rel="noopener"
-        class="pointer-events-auto hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-black/55 border border-white/10 backdrop-blur-sm italic font-light text-white/70 hover:text-[#ffb84d] hover:border-[#ffb84d]/40 transition-colors"
+        class="pointer-events-auto hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/20 border border-white/35 backdrop-blur-sm italic font-light text-white/80 hover:text-[#ffb84d] hover:border-[#ffb84d]/50 transition-colors"
       >
         Fig. 3 — Act2Cut framework overview
         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5h5v5M19 5l-9 9M5 19h7"/></svg>
@@ -85,7 +75,7 @@ const methodCards = [
   <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
     {methodCards.map((card, i) => (
       <div
-        class="rounded-3xl p-6 md:p-8 border border-white/10 bg-black/40 backdrop-blur-xl shadow-lg hover:bg-white/5 hover:border-[#ff4d4d]/30 transition-all duration-300 chroma-hover"
+        class="glass-card rounded-3xl p-6 md:p-8 border border-white/[0.12] shadow-lg hover:border-[#ff4d4d]/35 transition-all duration-300 chroma-hover"
         data-reveal
         style={`transition-delay:${i * 100}ms`}
       >

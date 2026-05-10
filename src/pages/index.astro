@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
 <Layout title="Act2Cut: Continuous Multi-Shot Video Narrative Match on Action-Cut">
   <Navigation page="home" />
-  <main class="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-16 md:pb-24 flex flex-col gap-16 relative z-10">
+  <main class="w-full max-w-7xl mx-auto px-4 sm:px-8 pt-8 pb-16 md:pb-24 flex flex-col gap-16 relative z-10">
     <HeroSection />
     <AbstractSection />
     <OverviewSection />
@@ -22,9 +22,9 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
     <!-- Performance Comparison teaser (mini table) -->
     <div data-reveal>
-      <div class="text-center mb-6 sm:mb-8">
-        <span class="text-[10px] font-bold tracking-[0.32em] uppercase text-white/40 block mb-2">Quantitative Snapshot</span>
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">Performance Comparison</h2>
+      <div class="text-center mb-6 sm:mb-8 ambient-scrim">
+        <span class="text-[10px] font-bold tracking-[0.32em] uppercase text-white/40 block mb-2 section-heading-float">Quantitative Snapshot</span>
+        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight section-heading-float">Performance Comparison</h2>
       </div>
 
       <!-- Glass card with native HTML table -->
@@ -78,7 +78,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
             </thead>
             <tbody class="text-white/60 font-mono">
               <!-- ActCutBench · Open-Source Method -->
-              <tr class="bg-white/[0.03] border-b border-white/[0.05]">
+              <tr class="border-b border-white/[0.07]">
                 <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="8">ActCutBench · Open-Source Method</td>
               </tr>
               <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
@@ -107,7 +107,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
               </tr>
 
               <!-- ActCutBench-Lite · Ablation -->
-              <tr class="bg-white/[0.03] border-y border-white/[0.05]">
+              <tr class="border-y border-white/[0.07]">
                 <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="8">ActCutBench-Lite · Ablation</td>
               </tr>
               <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
