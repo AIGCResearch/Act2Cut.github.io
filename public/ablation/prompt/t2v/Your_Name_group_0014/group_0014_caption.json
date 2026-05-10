@@ -1,0 +1,11 @@
+{
+  "global_setting": "Global Setting: Warm, indoor lighting, creating a relaxed and intimate atmosphere for a traditional meal. A traditional Japanese dining room featuring a long table laden with sushi, dishes, and drinks. 2D anime style with warm color grading, detailed food illustrations, and realistic character designs.",
+  "global_action": "Global Action/Motion: [character1] he pours sake from a white bottle into a small cup for [character2], then lowers the bottle and speaks with a slight smile while looking at his companion. [character2] he holds up a small cup with both hands to receive the poured sake, shows a surprised expression, and then takes a respectful sip from the cup. Clear sake flows smoothly from a white ceramic bottle into a small blue cup. All shots match on [action cut], resulting action/motion continuous and spatio-temporal coherent.",
+  "character1": "[character1] is An older man with grey hair, wearing a dark suit and a yellow tie.",
+  "character2": "[character2] is An older, balding man wearing a blue jacket over a collared shirt and red tie.",
+  "shot1": "Shot1 is a close-up focused on the hands pouring liquid from a flask into a small cup. It uses normal-standard lensing, high-angle front-view camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+  "shot2": "Shot2 is a medium shot focused on [character1]'s hand pouring a drink into [character2]'s cup. It uses normal-standard lensing, eye-level camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
+  "shot3": "Shot3 is a medium close-up focused on [character1]. It uses normal-standard lensing, eye-level front-view camera angle, over-the-shoulder two-character framing, and shallow depth of field. The camera uses locked-off tripod stability.",
+  "shot1-2": "From Shot1 to Shot2, the transition is hard cut, cut-out, and action match.",
+  "shot2-3": "From Shot2 to Shot3, the transition is hard cut, cut-in, and action match."
+}

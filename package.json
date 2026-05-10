@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/localize.mjs && (astro preview & sleep 2 && open -na 'Google Chrome' --args --incognito 'http://localhost:4321/')",
+    "build:deploy": "BUILD_MODE=deploy astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

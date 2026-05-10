@@ -35,11 +35,8 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
   </div>
 
   <div class="relative" data-reveal style="transition-delay:100ms">
-    <!-- Soft dark halo — feathered ellipse that improves readability without any visible box -->
-    <div
-      class="absolute pointer-events-none"
-      style="inset: -56px -120px; background: radial-gradient(ellipse 48% 75% at 50% 50%, rgba(4,2,10,0.64) 0%, rgba(4,2,10,0.30) 48%, transparent 70%); border-radius: 50%;"
-    ></div>
+    <!-- Soft dark halo — larger feathered ellipse for readability; hidden in light mode -->
+    <div class="hero-scrim"></div>
     <div class="relative space-y-4 sm:space-y-5">
       <div class="space-y-2 text-[14px] sm:text-[16px] md:text-[17px]">
         {authorRows.map(row => (
@@ -76,10 +73,10 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
         <svg class="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
         Code（Coming Soon）
       </a>
-      <!-- <a href="#" class="px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-[#ff4d4d]/20 hover:bg-[#ff4d4d]/35 active:bg-[#ff4d4d]/50 active:scale-95 border border-[#ff4d4d]/40 hover:border-[#ff4d4d]/70 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium backdrop-blur-md group text-[#ffb84d] hover:text-white shadow-[0_0_0_0_rgba(255,77,77,0)] hover:shadow-[0_0_24px_rgba(255,77,77,0.3)] select-none">
-        <svg class="w-4 h-4 group-hover:scale-110 group-hover:translate-x-0.5 transition-all duration-200" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        Video（Comming Soon）
-      </a> -->
+      <a href="#" class="px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/[0.07] hover:bg-white/[0.18] active:bg-white/[0.28] active:scale-95 border border-white/25 hover:border-white/50 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium backdrop-blur-md group shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_20px_rgba(255,255,255,0.12)] select-none">
+        <svg class="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3" stroke-width="2" stroke-linecap="round"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v6c0 1.657 4.03 3 9 3s9-1.343 9-3V5"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 11v6c0 1.657 4.03 3 9 3s9-1.343 9-3v-6"/></svg>
+        Dataset（Coming Soon）
+      </a>
     </div>
 
     <div class="mx-auto w-full max-w-[720px] px-3 sm:px-10">
@@ -101,26 +98,21 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
 <!-- HERO VIDEO with letterbox + timecode -->
 <!-- outer section: rounded + overflow-hidden only (no backdrop-blur) to avoid WebKit clip bug -->
-<section class="rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-white/20 shadow-2xl relative group aspect-[16/10] sm:aspect-[21/9] flex items-center justify-center" data-reveal style="transition-delay:300ms">
-  <!-- Glass backdrop on its own layer — separate from overflow-hidden prevents WebKit border-radius break -->
+<!-- <section class="rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-white/20 shadow-2xl relative group aspect-[16/10] sm:aspect-[21/9] flex items-center justify-center" data-reveal style="transition-delay:300ms">
   <div class="absolute inset-0 bg-black/40 backdrop-blur-xl pointer-events-none"></div>
 
-  <!-- Image -->
   <div class="absolute inset-0 pointer-events-none">
     <img src="https://images.unsplash.com/photo-1578589318433-39b5de440c3f?q=80&w=2939&auto=format&fit=crop" class="w-full h-full object-cover opacity-70 mix-blend-luminosity transform group-hover:scale-105 transition-transform duration-[10s]" alt="Demo Video Placeholder">
   </div>
 
-  <!-- Light leak top-left -->
   <div class="absolute -top-10 -left-10 w-64 h-64 rounded-full pointer-events-none z-10"
     style="background: radial-gradient(circle, rgba(255,77,77,0.15) 0%, transparent 70%); mix-blend-mode: screen;"></div>
 
   <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 pointer-events-none"></div>
 
-  <!-- Letterbox bars -->
   <div class="absolute top-0 left-0 right-0 h-5 sm:h-8 bg-black z-20 pointer-events-none shadow-[0_4px_12px_rgba(0,0,0,0.6)]"></div>
   <div class="absolute bottom-0 left-0 right-0 h-5 sm:h-8 bg-black z-20 pointer-events-none shadow-[0_-4px_12px_rgba(0,0,0,0.6)]"></div>
 
-  <!-- Play button -->
   <div class="absolute inset-0 flex items-center justify-center z-20">
     <button class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-[#ff4d4d]/90 hover:bg-[#ff4d4d] text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-[0_0_40px_rgba(255,77,77,0.5)] backdrop-blur-md">
       <svg class="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 ml-1 sm:ml-2" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -135,8 +127,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     <p class="text-white/70 font-light mt-1 max-w-xl text-[12px] sm:text-sm hidden sm:block">Demonstrating seamless shot transitions ensuring physical logic and action continuity across cinematic cuts.</p>
   </div>
 
-  <!-- Timecode decoration -->
   <div class="hidden sm:block absolute bottom-12 right-8 z-20 font-mono text-[11px] text-white/15 tracking-widest select-none pointer-events-none">
     00:00:24:00
   </div>
-</section>
+</section> -->

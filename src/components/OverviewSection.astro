@@ -1,5 +1,6 @@
 ---
 import QualitativeGallery from './QualitativeGallery.astro';
+import AblationSection from './AblationSection.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
@@ -92,5 +93,10 @@ const methodCards = [
   <div id="results" class="scroll-mt-20">
     <QualitativeGallery instanceId="overview" />
   </div>
+
+  <div class="film-strip-divider"></div>
+
+  <!-- Ablation study -->
+  <AblationSection />
 
 </section>

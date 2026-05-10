@@ -2,25 +2,14 @@
 import DualVideo from './DualVideo.astro';
 
 const pipelineSteps = [
-  { n: '1', title: 'Source Collection',       desc: 'Large-scale video corpus from diverse genres, styles, and cinematographic traditions' },
-  { n: '2', title: 'AC Detection',            desc: 'SCBO algorithm identifies action-cut boundaries with boundary-residual optimization' },
-  { n: '3', title: 'Shot Segmentation',       desc: 'Audio-video segmentation into shot-level clips with precise boundary frame extraction' },
+  { n: '1', title: 'Source Collection',       desc: 'Large-scale video sequence from diverse genres, styles, and cinematographic traditions' },
+  { n: '2', title: 'Shot Segmentation',       desc: 'TransNetV2 detects initial temporal boundaries, then SCBO refines them with inter-frame similarity clustering and boundary-residual optimization' },
+  { n: '3', title: 'AC Detection',            desc: 'Gemini-3 scores action-cut continuity by assessing action state consistency and action flow continuity across adjacent shot boundaries' },
   { n: '4', title: 'Hierarchical Annotation', desc: 'Global scene + character captions; local static/dynamic cinematography; shot-relation labels' },
   { n: '5', title: 'Quality Filtering',       desc: 'LLM-based annotation verification and expert review to ensure label accuracy and clip quality' },
 ];
 
 const statGroups = [
-  {
-    title: 'By Film Genre',
-    bars: [
-      { label: 'Drama / Art-house',              pct: 57.6 },
-      { label: 'Sci-fi / Fantasy',               pct: 12.5 },
-      { label: 'Crime / Noir',                   pct: 10.1 },
-      { label: 'Action / Thriller',              pct:  8.4 },
-      { label: 'Historical / War / Documentary', pct:  7.3 },
-      { label: 'Animation / Family',             pct:  4.1 },
-    ]
-  },
   {
     title: 'By Visual Style',
     bars: [
@@ -32,10 +21,10 @@ const statGroups = [
   {
     title: 'By Shot Count per Sequence',
     bars: [
-      { label: '2-Shot',  pct: 73.1 },
-      { label: '3-Shot',  pct: 18.2 },
-      { label: '4-Shot',  pct:  5.9 },
-      { label: '5-Shot',  pct:  1.4 },
+      { label: '2-Shot',  pct: 33.1 },
+      { label: '3-Shot',  pct: 38.2 },
+      { label: '4-Shot',  pct:  15.9 },
+      { label: '5-Shot',  pct:  11.4 },
       { label: '6+ Shot', pct:  1.4 },
     ]
   },
@@ -64,18 +53,18 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 // Real sample clips from /public/sample_data
 // Filename format: NN_MovieName_group_XXXX_shot_YYYY_ZZZZ.mp4
 const sampleFiles = [
-  '01_Avatar_group_0135_shot_0869_0877.mp4',
   '02_Harry_Potter_The_Chamber_of_Secrets_group_0033_shot_0246_0253.mp4',
   '04_Batman_Begins_group_0062_shot_0750_0756.mp4',
   '05_Suzume_group_0107_shot_0780_0786.mp4',
-  '07_Weathering_with_You_group_0126_shot_1320_1326.mp4',
   '08_Toy_Story_group_0193_shot_1445_1450.mp4',
   '09_Up_group_0161_shot_1264_1268.mp4',
-  '10_Your_Name_group_0066_shot_0971_0975.mp4',
   '11_Avatar_group_0138_shot_0886_0892.mp4',
-  '12_Batman_Begins_group_0123_shot_1551_1557.mp4',
   '15_Harry_Potter_The_Chamber_of_Secrets_group_0048_shot_0406_0412.mp4',
   '16_Suzume_group_0171_shot_1230_1236.mp4',
+  '17_Weathering_with_You_group_0004_shot_0031_0033.mp4',
+  '18_Spirited_Away_group_0136_shot_1198_1200.mp4',
+  '19_Your_Name_group_0081_shot_1243_1246.mp4',
+  '20_WALL-E_group_0030_shot_0331_0333.mp4',
 ];
 
 const styleByMovie: Record<string, string> = {
@@ -87,6 +76,8 @@ const styleByMovie: Record<string, string> = {
   'Toy Story': '3D CGI',
   'Up': '3D CGI',
   'Your Name': '2D Anime',
+  'Spirited Away': '2D Anime',
+  'WALL-E': '3D CGI',
 };
 
 const samples = sampleFiles.map(file => {
@@ -141,7 +132,7 @@ const samples = sampleFiles.map(file => {
   <!-- Statistics bars -->
   <div>
     <h3 class="text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-white/80 section-heading-float" data-reveal>Statistics</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-5 sm:gap-x-6 gap-y-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-x-5 sm:gap-x-6 gap-y-5">
       {statGroups.map((group, gi) => (
         <div
           class="glass-card rounded-2xl border border-white/[0.08] p-5 md:p-6 hover:border-white/[0.16] transition-all duration-300"

@@ -327,6 +327,24 @@ html:not(.dark) .section-heading-float {
     0 0 40px rgba(255, 248, 235, 0.40);
 }
 
+/* Hero title dark halo — larger than ambient-scrim, hidden in light mode */
+.hero-scrim {
+  position: absolute;
+  pointer-events: none;
+  inset: -120px -240px;
+  background: radial-gradient(
+    ellipse 65% 85% at 50% 50%,
+    rgba(4, 2, 10, 0.72) 0%,
+    rgba(4, 2, 10, 0.42) 50%,
+    transparent 72%
+  );
+  border-radius: 50%;
+  z-index: 0;
+}
+html:not(.dark) .hero-scrim {
+  display: none;
+}
+
 /* Ambient scrim — feathered radial gradient behind floating text blocks.
    Peaks at 0.18 opacity so the background remains visible; works for both
    large headings and small-text lines where text-shadow alone is insufficient. */
@@ -348,12 +366,7 @@ html:not(.dark) .section-heading-float {
   z-index: -1;
 }
 html:not(.dark) .ambient-scrim::before {
-  background: radial-gradient(
-    ellipse 60% 70% at 50% 50%,
-    rgba(242, 236, 225, 0.22) 0%,
-    rgba(242, 236, 225, 0.08) 45%,
-    transparent 70%
-  );
+  display: none;
 }
 
 /* Rank highlight cells for benchmark tables — match LaTeX \rankfirst..\rankfifth ordering */

@@ -6,8 +6,31 @@
 //   S2V: storyboard reference frames row above generated mp4.
 //   V2V: condition_video.mp4 above generated mp4.
 
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import { galleryData } from '../data/galleryData';
 import DualVideo from './DualVideo.astro';
+
+const publicDir = join(process.cwd(), 'public');
+
+type CaptionJson = Record<string, string>;
+
+function loadCaptionJson(videoPath: string): CaptionJson | null {
+  const captionPath = videoPath.replace('.mp4', '_caption.json');
+  try {
+    return JSON.parse(readFileSync(join(publicDir, captionPath), 'utf-8'));
+  } catch {
+    return null;
+  }
+}
+
+// Augment each gallery item with structured caption data
+const galleryWithCaptions = Object.fromEntries(
+  Object.entries(galleryData).map(([mode, items]) => [
+    mode,
+    items.map(item => ({ ...item, captionData: loadCaptionJson(item.video) }))
+  ])
+) as Record<string, (typeof galleryData['t2v'][0] & { captionData: CaptionJson | null })[]>;
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
@@ -56,7 +79,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
 
   <!-- Panels -->
   {tabs.map((tab, ti) => {
-    const items = galleryData[tab.mode] ?? [];
+    const items = galleryWithCaptions[tab.mode] ?? [];
     return (
       <div
         id={tab.id}
@@ -181,42 +204,99 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
 
               <!-- Caption body -->
               <div class="qg-prompt-block relative p-4 md:p-5 border-t border-white/[0.06]">
-                <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
-                  <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]">
-                    {item.shots.length}-shot · {item.shots.join(' → ')}
-                  </span>
-                  <button
-                    class="qg-prompt-toggle text-[9px] font-bold tracking-[0.18em] uppercase text-white/45 hover:text-[#ffb84d] transition-colors flex items-center gap-1"
-                    type="button"
-                    aria-expanded="false"
-                  >
-                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                    All Prompts
-                  </button>
-                </div>
-                <p class="qg-prompt-summary text-[11.5px] leading-relaxed text-white/65 font-light cursor-help line-clamp-3">
-                  {item.caption}
-                </p>
+                {(() => {
+                  const cd = item.captionData;
+                  const charKeys = cd ? Object.keys(cd).filter(k => /^character\d+$/.test(k)) : [];
+                  const shotKeys = cd ? Object.keys(cd).filter(k => /^shot\d+$/.test(k)) : [];
+                  const relKeys  = cd ? Object.keys(cd).filter(k => /^shot\d+-\d+$/.test(k)) : [];
+                  return (
+                    <>
+                      <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                        <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]">
+                          {item.shots.length}-shot · {item.shots.join(' → ')}
+                        </span>
+                        <button
+                          class="qg-prompt-toggle text-[9px] font-bold tracking-[0.18em] uppercase text-white/45 hover:text-[#ffb84d] transition-colors flex items-center gap-1"
+                          type="button"
+                          aria-expanded="false"
+                        >
+                          <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                          All Prompts
+                        </button>
+                      </div>
+                      <p class="qg-prompt-summary text-[11.5px] leading-relaxed text-white/65 font-light cursor-help line-clamp-3">
+                        {cd?.global_action?.replace(/^Global Action\/Motion:\s*/i, '') ?? item.caption}
+                      </p>
 
-                <!-- Hover/click popover with full per-shot prompts -->
-                <div class="qg-prompt-popover" role="dialog" aria-label="Per-shot prompts">
-                  <div class="qg-prompt-popover-inner">
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                      <span class="text-[10px] font-bold tracking-[0.20em] uppercase text-[#ffb84d]">Per-Shot Prompts</span>
-                      <span class="text-[9.5px] text-white/40">{item.fullPrompts.length} shots · hover or click outside to close</span>
-                    </div>
-                    <ol class="qg-prompt-list thin-scroll space-y-3">
-                      {item.fullPrompts.map((p, k) => (
-                        <li class="text-[11px] leading-relaxed text-white/75">
-                          <span class="inline-block px-1.5 py-0.5 mr-1.5 rounded bg-white/[0.08] border border-white/10 font-mono text-[9px] tracking-[0.10em] text-white/65">
-                            Shot {k + 1}
-                          </span>
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
+                      <div class="qg-prompt-popover" role="dialog" aria-label="Full prompts">
+                        <div class="qg-prompt-popover-inner">
+                          <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="text-[10px] font-bold tracking-[0.20em] uppercase text-[#ffb84d]">Full Prompts</span>
+                            <span class="text-[9.5px] text-white/40">{item.shots.length} shots · click outside to close</span>
+                          </div>
+                          <div class="qg-prompt-list thin-scroll space-y-2">
+                            {cd ? (
+                              <>
+                                {/* Global section */}
+                                <div class="space-y-1.5 pb-2 border-b border-white/[0.08]">
+                                  {cd.global_setting && (
+                                    <p class="text-[10.5px] leading-relaxed text-white/75">
+                                      <span class="inline-block px-1.5 py-0.5 mr-1.5 mb-0.5 rounded bg-[#ff4d4d]/15 border border-[#ff4d4d]/25 font-mono text-[8.5px] tracking-[0.10em] text-[#ffb84d]">Global Setting</span>
+                                      {cd.global_setting.replace(/^Global Setting:\s*/i, '')}
+                                    </p>
+                                  )}
+                                  {cd.global_action && (
+                                    <p class="text-[10.5px] leading-relaxed text-white/75">
+                                      <span class="inline-block px-1.5 py-0.5 mr-1.5 mb-0.5 rounded bg-[#ff4d4d]/15 border border-[#ff4d4d]/25 font-mono text-[8.5px] tracking-[0.10em] text-[#ffb84d]">Global Action</span>
+                                      {cd.global_action.replace(/^Global Action\/Motion:\s*/i, '')}
+                                    </p>
+                                  )}
+                                  {charKeys.map(k => (
+                                    <p class="text-[10.5px] leading-relaxed text-white/75">
+                                      <span class="inline-block px-1.5 py-0.5 mr-1.5 mb-0.5 rounded bg-white/[0.08] border border-white/10 font-mono text-[8.5px] tracking-[0.10em] text-white/65 capitalize">{k.replace('character', 'Character ')}</span>
+                                      {(cd[k] ?? '').replace(/^\[character\d+\]\s+is\s+/i, '')}
+                                    </p>
+                                  ))}
+                                </div>
+                                {/* Per-shot section */}
+                                {shotKeys.length > 0 && (
+                                  <div class="space-y-1.5 pb-2 border-b border-white/[0.08]">
+                                    {shotKeys.map((k, ki) => (
+                                      <p class="text-[10.5px] leading-relaxed text-white/75">
+                                        <span class="inline-block px-1.5 py-0.5 mr-1.5 mb-0.5 rounded bg-white/[0.08] border border-white/10 font-mono text-[8.5px] tracking-[0.10em] text-white/65">Shot {ki + 1}</span>
+                                        {cd[k]}
+                                      </p>
+                                    ))}
+                                  </div>
+                                )}
+                                {/* Relations section */}
+                                {relKeys.length > 0 && (
+                                  <div class="space-y-1.5">
+                                    {relKeys.map(k => (
+                                      <p class="text-[10.5px] leading-relaxed text-white/75">
+                                        <span class="inline-block px-1.5 py-0.5 mr-1.5 mb-0.5 rounded bg-[#ffb84d]/10 border border-[#ffb84d]/20 font-mono text-[8.5px] tracking-[0.10em] text-[#ffb84d]/80">{k.replace('shot', 'Shot ').replace('-', ' → ')}</span>
+                                        {cd[k]}
+                                      </p>
+                                    ))}
+                                  </div>
+                                )}
+                              </>
+                            ) : (
+                              <ol class="space-y-2">
+                                {item.fullPrompts.map((p, k) => (
+                                  <li class="text-[10.5px] leading-relaxed text-white/75">
+                                    <span class="inline-block px-1.5 py-0.5 mr-1.5 rounded bg-white/[0.08] border border-white/10 font-mono text-[8.5px] tracking-[0.10em] text-white/65">Shot {k + 1}</span>
+                                    {p}
+                                  </li>
+                                ))}
+                              </ol>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
             </article>
           ))}

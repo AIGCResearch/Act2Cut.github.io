@@ -1,0 +1,158 @@
+---
+import DualVideo from './DualVideo.astro';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
+const publicDir = join(process.cwd(), 'public');
+
+interface CaptionJson {
+  global_setting?: string;
+  global_action?: string;
+  [key: string]: string | undefined;
+}
+
+function loadCaption(jsonPath: string): CaptionJson | null {
+  try { return JSON.parse(readFileSync(join(publicDir, jsonPath), 'utf-8')); } catch { return null; }
+}
+
+const cases = [
+  {
+    id:        'scm',
+    component: 'SCM',
+    title:     'Shot Causal Mask',
+    desc:      'Unidirectional causal attention prevents semantic leakage from future shots into earlier frames.',
+    movie:     'Your Name',
+    left:  { label: 'w/o SCM',       src: `${base}/ablation/Act2Cut_t2v_gen_wo_SCM/Your_Name/group_0014/group_0014.mp4` },
+    right: { label: '★ Full (Ours)', src: `${base}/ablation/Act2Cut_t2v_gen_full/Your_Name/group_0014/group_0014.mp4`  },
+    caption: loadCaption('ablation/prompt/t2v/Your_Name_group_0014/group_0014_caption.json'),
+  },
+  {
+    id:        'hcm',
+    component: 'HCM',
+    title:     'Hierarchical Context Mask',
+    desc:      'Global/relational/local attention windows enable independent per-shot cinematic control.',
+    movie:     'Harry Potter: CoS',
+    left:  { label: 'w/o HCM',       src: `${base}/ablation/Act2Cut_t2v_gen_wo_SCM/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4` },
+    right: { label: '★ Full (Ours)', src: `${base}/ablation/Act2Cut_t2v_gen_full/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4`  },
+    caption: loadCaption('ablation/prompt/t2v/Harry_Potter_The_Chamber_of_Secrets_group_0014/group_0014_caption.json'),
+  },
+  {
+    id:        'rope',
+    component: 'GLoS-RoPE',
+    title:     'Global-Local Shot RoPE',
+    desc:      'Decoupled shot-aware position encoding vs. standard MSM-RoPE baseline.',
+    movie:     'Harry Potter: CoS',
+    left:  { label: 'w/ MSM-RoPE',        src: `${base}/ablation/Act2Cut_t2v_gen_w_MSMRoPE/Harry_Potter_The_Chamber_of_Secrets/group_0003/group_0003.mp4` },
+    right: { label: '★ GLoS-RoPE (Ours)', src: `${base}/ablation/Act2Cut_t2v_gen_w_GLoSRoPE/Harry_Potter_The_Chamber_of_Secrets/group_0003/group_0003.mp4` },
+    caption: loadCaption('ablation/prompt/t2v/Harry_Potter_The_Chamber_of_Secrets_group_0003/group_0003_caption.json'),
+  },
+];
+---
+
+<div class="space-y-5" id="ablation">
+
+  <!-- Sub-header -->
+  <div data-reveal class="ambient-scrim">
+    <h3 class="text-lg sm:text-xl font-semibold text-white/80 section-heading-float flex items-center gap-2.5">
+      <span class="inline-block w-1 h-5 bg-gradient-to-b from-[#ff4d4d] to-[#ffb84d] rounded-sm" style="transform: skewX(-6deg);"></span>
+      Ablation Study
+    </h3>
+    <p class="text-white/40 text-[12px] sm:text-[13px] mt-1.5 section-heading-float">Effect of each architectural component on generation quality.</p>
+  </div>
+
+  {cases.map((c, ci) => {
+    const setting = c.caption?.global_setting?.replace(/^Global Setting:\s*/i, '') ?? '';
+    const action  = c.caption?.global_action?.replace(/^Global Action\/Motion:\s*/i, '') ?? '';
+    return (
+      <div
+        class="glass-card rounded-2xl border border-white/[0.08] overflow-hidden hover:border-white/[0.14] transition-all duration-300"
+        data-reveal
+        style={`transition-delay:${ci * 80}ms`}
+      >
+        <!-- Card header -->
+        <div class="px-4 sm:px-5 pt-4 pb-3 border-b border-white/[0.07] flex items-start gap-3 flex-wrap">
+          <span class="text-[9px] font-bold tracking-[0.28em] uppercase px-2 py-0.5 rounded bg-gradient-to-r from-[#ff4d4d]/15 to-[#ffb84d]/15 border border-[#ffb84d]/35 text-[#ffb84d] shrink-0 mt-0.5">
+            {c.component}
+          </span>
+          <div class="min-w-0">
+            <div class="text-[13px] sm:text-sm font-semibold text-white leading-snug">{c.title}</div>
+            <div class="text-[11px] sm:text-xs text-white/45 mt-0.5 leading-relaxed">{c.desc}</div>
+          </div>
+          <span class="ml-auto shrink-0 text-[9px] text-white/30 tracking-[0.14em] uppercase mt-0.5">{c.movie}</span>
+        </div>
+
+        <!-- Video comparison -->
+        <div class="grid grid-cols-2 relative">
+          <!-- Left video -->
+          <div class="border-r border-white/[0.07]">
+            <div class="px-3 pt-3 pb-1.5 flex items-center gap-1.5">
+              <span class="text-[9px] font-semibold tracking-[0.12em] uppercase text-white/40 bg-white/[0.05] border border-white/[0.08] px-2 py-0.5 rounded">
+                {c.left.label}
+              </span>
+            </div>
+            <div class="cinema-aspect bg-black/60 relative overflow-hidden mx-3 mb-3 rounded-lg">
+              <DualVideo
+                src={c.left.src}
+                class={`ablation-video ablation-${c.id}-left absolute inset-0 w-full h-full object-contain`}
+              />
+            </div>
+          </div>
+
+          <!-- Right video -->
+          <div>
+            <div class="px-3 pt-3 pb-1.5 flex items-center gap-1.5">
+              <span class="text-[9px] font-semibold tracking-[0.12em] uppercase px-2 py-0.5 rounded border border-[#ffb84d]/50 bg-[#ffb84d]/10 text-[#ffb84d]">
+                {c.right.label}
+              </span>
+            </div>
+            <div class="cinema-aspect bg-black/60 relative overflow-hidden mx-3 mb-3 rounded-lg">
+              <DualVideo
+                src={c.right.src}
+                class={`ablation-video ablation-${c.id}-right absolute inset-0 w-full h-full object-contain`}
+              />
+            </div>
+          </div>
+
+          <!-- VS badge centered -->
+          <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 flex items-center pointer-events-none z-10" style="top:2.25rem">
+            <span class="w-6 h-6 rounded-full bg-black/70 border border-white/20 backdrop-blur-sm flex items-center justify-center text-[8px] font-bold text-white/50">VS</span>
+          </div>
+        </div>
+
+        <!-- Scene context -->
+        {(setting || action) && (
+          <div class="px-4 sm:px-5 py-3 border-t border-white/[0.07] space-y-1.5">
+            {setting && (
+              <p class="text-[10.5px] sm:text-[11px] text-white/40 leading-relaxed line-clamp-2">
+                <span class="text-white/25 font-semibold mr-1">Scene</span>{setting}
+              </p>
+            )}
+            {action && (
+              <p class="text-[10.5px] sm:text-[11px] text-white/40 leading-relaxed line-clamp-2">
+                <span class="text-white/25 font-semibold mr-1">Action</span>{action}
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
+<script>
+  // Autoplay ablation videos when in view; sync paired left/right videos.
+  const cards = document.querySelectorAll<HTMLElement>('#ablation .glass-card');
+
+  const playObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const v = e.target as HTMLVideoElement;
+      if (e.isIntersecting) v.play().catch(() => {});
+      else v.pause();
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll<HTMLVideoElement>('#ablation .ablation-video').forEach(v => {
+    playObserver.observe(v);
+  });
+</script>

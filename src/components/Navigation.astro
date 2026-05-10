@@ -11,6 +11,7 @@ const homeAnchors = [
   { label: 'Abstract', href: url('/#abstract') },
   { label: 'Method',   href: url('/#overview') },
   { label: 'Results',  href: url('/#results')  },
+  { label: 'Ablation', href: url('/#ablation') },
 ];
 
 const pageLinks = [
@@ -222,24 +223,34 @@ const pageLinks = [
 
   // ── Scroll spy (homepage anchor links) ───────────────────────────────────
   const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
-  const sections = document.querySelectorAll<HTMLElement>('section[id]');
 
-  if (navLinks.length > 0 && sections.length > 0) {
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const id = entry.target.id;
-        navLinks.forEach(link => {
-          const href = link.getAttribute('href') || '';
-          const active = href.endsWith(`#${id}`);
-          link.classList.toggle('text-white/85', active);
-          link.classList.toggle('bg-white/[0.05]', active);
-          link.classList.toggle('text-white/40', !active);
-        });
+  if (navLinks.length > 0) {
+    // Collect IDs referenced by nav links (works for both section and div targets).
+    const targetIds = Array.from(navLinks)
+      .map(l => (l.getAttribute('href') || '').split('#')[1])
+      .filter(Boolean);
+
+    function updateScrollSpy() {
+      const threshold = window.innerHeight * 0.45;
+      let activeId = '';
+      let bestTop = -Infinity;
+      targetIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const top = el.getBoundingClientRect().top;
+        if (top <= threshold && top > bestTop) { bestTop = top; activeId = id; }
       });
-    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        const active = activeId !== '' && href.endsWith(`#${activeId}`);
+        link.classList.toggle('text-white/85', active);
+        link.classList.toggle('bg-white/[0.05]', active);
+        link.classList.toggle('text-white/40', !active);
+      });
+    }
 
-    sections.forEach(s => spy.observe(s));
+    window.addEventListener('scroll', updateScrollSpy, { passive: true });
+    updateScrollSpy();
   }
 
   // ── Scroll shadow on nav ──────────────────────────────────────────────────
