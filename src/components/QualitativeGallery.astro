@@ -37,7 +37,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
 
   <!-- Pill tab bar -->
   <div class="flex justify-center" data-reveal style="transition-delay:60ms">
-    <div class="inline-flex items-center gap-1 p-1 rounded-full border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl shadow-inner">
+    <div class="glass-card inline-flex items-center gap-1 p-1 rounded-full border border-white/[0.08] shadow-inner">
       {tabs.map((tab, i) => (
         <button
           class={`qg-tab-btn relative px-4 sm:px-5 py-1.5 rounded-full text-[11px] font-bold tracking-[0.18em] uppercase transition-all duration-300 ${
@@ -66,7 +66,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
           {items.map((item, idx) => (
             <article
-              class="qg-card group relative rounded-2xl overflow-hidden border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl shadow-2xl transition-all duration-500 hover:border-white/[0.18] hover:bg-white/[0.06] hover:-translate-y-0.5 hover:shadow-[0_24px_60px_rgba(0,0,0,0.5)]"
+              class="qg-card group relative glass-card rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl transition-all duration-500 hover:border-white/[0.18] hover:-translate-y-0.5 hover:shadow-[0_24px_60px_rgba(0,0,0,0.5)]"
               data-reveal
               style={`transition-delay:${Math.min(idx * 50, 300)}ms`}
             >
@@ -76,20 +76,13 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                 style="background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 35%, transparent 70%, rgba(255,255,255,0.04) 100%);"
               ></div>
 
-              <!-- ID chip (always shown, top-right) -->
-              <div class="absolute top-3 right-3 z-20">
-                <span class="px-2 py-0.5 rounded font-mono text-[8.5px] font-bold tracking-[0.10em] text-white/65 bg-black/45 border border-white/15 backdrop-blur-sm">
-                  {item.title}
-                </span>
-              </div>
-
               {/* T2V: just the generated multi-shot video */}
               {tab.mode === 't2v' && (
                 <div class="qg-video-wrap relative cinema-aspect bg-black/60 overflow-hidden">
                   <span class="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-[8px] font-bold tracking-[0.18em] uppercase bg-[#ff4d4d]/85 text-white shadow-lg shadow-[#ff4d4d]/20 backdrop-blur-sm">
                     Generated
                   </span>
-                  <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
+                  <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-contain" />
                   <div class="qg-scrub" data-scrub>
                     <div class="qg-scrub-fill"></div>
                     <div class="qg-scrub-thumb"></div>
@@ -105,7 +98,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                       Input Frame
                     </span>
                     {item.condFrame && (
-                      <img src={`${base}/${item.condFrame}`} class="absolute inset-0 w-full h-full object-cover" alt="Input frame" loading="lazy" />
+                      <img src={`${base}/${item.condFrame}`} class="absolute inset-0 w-full h-full object-contain" alt="Input frame" loading="lazy" />
                     )}
                   </div>
                   <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 w-6 h-6 rounded-full bg-black border border-white/15 flex items-center justify-center shadow-lg">
@@ -115,7 +108,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                     <span class="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-[8px] font-bold tracking-[0.18em] uppercase bg-[#ff4d4d]/85 text-white shadow-lg shadow-[#ff4d4d]/20 backdrop-blur-sm">
                       Generated
                     </span>
-                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
+                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-contain" />
                     <div class="qg-scrub" data-scrub>
                       <div class="qg-scrub-fill"></div>
                       <div class="qg-scrub-thumb"></div>
@@ -137,7 +130,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                     >
                       {(item.storyboards ?? []).map((sb, k) => (
                         <div class="relative cinema-aspect rounded-sm bg-black/55 border border-white/10 overflow-hidden">
-                          <img src={`${base}/${sb}`} class="absolute inset-0 w-full h-full object-cover" alt={`Storyboard ${k+1}`} loading="lazy" />
+                          <img src={`${base}/${sb}`} class="absolute inset-0 w-full h-full object-contain" alt={`Storyboard ${k+1}`} loading="lazy" />
                           <span class="absolute bottom-0.5 right-0.5 font-mono text-[7.5px] tracking-[0.10em] text-white/85 bg-black/55 px-1 rounded">
                             R{k+1}
                           </span>
@@ -149,7 +142,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                     <span class="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-[8px] font-bold tracking-[0.18em] uppercase bg-[#ff4d4d]/85 text-white shadow-lg shadow-[#ff4d4d]/20 backdrop-blur-sm">
                       Generated
                     </span>
-                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
+                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-contain" />
                     <div class="qg-scrub" data-scrub>
                       <div class="qg-scrub-fill"></div>
                       <div class="qg-scrub-thumb"></div>
@@ -166,7 +159,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                       Prev Shot
                     </span>
                     {item.condVideo && (
-                      <DualVideo src={`${base}/${item.condVideo}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
+                      <DualVideo src={`${base}/${item.condVideo}`} class="qg-video absolute inset-0 w-full h-full object-contain" />
                     )}
                     <div class="qg-scrub" data-scrub>
                       <div class="qg-scrub-fill"></div>
@@ -177,7 +170,7 @@ const { instanceId = 'qg-default', showHeader = true } = Astro.props;
                     <span class="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-[8px] font-bold tracking-[0.18em] uppercase bg-[#ff4d4d]/85 text-white shadow-lg shadow-[#ff4d4d]/20 backdrop-blur-sm">
                       Generated
                     </span>
-                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-cover" />
+                    <DualVideo src={`${base}/${item.video}`} class="qg-video absolute inset-0 w-full h-full object-contain" />
                     <div class="qg-scrub" data-scrub>
                       <div class="qg-scrub-fill"></div>
                       <div class="qg-scrub-thumb"></div>

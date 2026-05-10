@@ -25,7 +25,7 @@ const pageLinks = [
   id="top-nav"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
 >
-  <div class="nav-glass border-b border-white/[0.06] backdrop-blur-2xl bg-black/40">
+  <div class="nav-glass border-b border-white/[0.08] backdrop-blur-2xl bg-black/60">
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
 
       <!-- Brand — typographic wordmark, no icon -->
@@ -111,7 +111,7 @@ const pageLinks = [
     <!-- Mobile dropdown -->
     <div
       id="mobile-menu"
-      class="md:hidden hidden border-t border-white/[0.06] bg-black/70 backdrop-blur-2xl overflow-hidden"
+      class="md:hidden hidden border-t border-white/[0.08] bg-black/80 backdrop-blur-2xl overflow-hidden"
     >
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
         <div class="text-[8.5px] font-bold tracking-[0.32em] uppercase text-white/30 px-3 pb-2 pt-1">Pages</div>
@@ -257,15 +257,15 @@ const pageLinks = [
 
 <style>
   #top-nav.nav-scrolled .nav-glass {
-    background-color: rgb(0 0 0 / 0.62);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255,255,255,0.04) inset;
+    background-color: rgb(0 0 0 / 0.80);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255,255,255,0.06) inset;
   }
   html:not(.dark) #top-nav .nav-glass {
-    background-color: rgba(245, 240, 232, 0.78) !important;
-    border-bottom-color: rgba(0,0,0,0.08) !important;
+    background-color: rgba(235, 228, 215, 0.88) !important;
+    border-bottom-color: rgba(0,0,0,0.10) !important;
   }
   html:not(.dark) #top-nav.nav-scrolled .nav-glass {
-    background-color: rgba(245, 240, 232, 0.92) !important;
-    box-shadow: 0 6px 24px rgba(120, 90, 50, 0.18);
+    background-color: rgba(235, 228, 215, 0.96) !important;
+    box-shadow: 0 6px 24px rgba(120, 90, 50, 0.22);
   }
 </style>

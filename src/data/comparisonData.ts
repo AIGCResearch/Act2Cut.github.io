@@ -44,8 +44,18 @@ export const comparisonMethods: ComparisonMethod[] = [
     "isOurs": false
   },
   {
+    "key": "happyhorse1",
+    "label": "HappyHorse-1",
+    "isOurs": false
+  },
+  {
+    "key": "seedance2",
+    "label": "Seedance-2",
+    "isOurs": false
+  },
+  {
     "key": "act2cut",
-    "label": "\u2605 Act2Cut (Ours)",
+    "label": "★ Act2Cut (Ours)",
     "isOurs": true
   }
 ];
@@ -61,7 +71,7 @@ export const comparisonItems: ComparisonItem[] = [
       "shot 2"
     ],
     "setting": "Daytime, well-lit indoor environment with bright natural light illuminating the comfortable room",
-    "action": "C1 reaches out her hand to pick up the grey remote control from the wooden table, then holds it up in front of her and presses a button. C2 sits comfortably at the\u2026",
+    "action": "C1 reaches out her hand to pick up the grey remote control from the wooden table, then holds it up in front of her and presses a button. C2 sits comfortably at the…",
     "fullPrompts": [
       "This is a Close-Up (CU) of C1 's hand and the remote control., framed as a Insert Shot, from a Direct View, with a Level Angle, and with Shallow Depth-of-Field, with the camera Static (No Movement), with No Zoom, with Tilt Up, with Static Tripod, with Fixed Focus, and at Standard Frame Rate.",
       "This is a Medium Shot (MS) of C1 , C2 , and C3 ., framed as a Three Shot, from a Direct View, with a Level Angle, and with Deep Depth-of-Field, with the camera Push(Dolly) In, with No Zoom, with No Rotation, with Stable/Steadicam, with Fixed Focus, and at Standard Frame Rate."
@@ -71,9 +81,11 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/Your_Name/group_0009/group_0009.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/Your_Name/group_0009/group_0009.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/Your_Name/group_0009/group_0009.mp4",
-      "kling3": "qualitative_comparison/kling3/Your_name/group_0009/group_0009.mp4",
-      "sora2": "qualitative_comparison/sora2/Your_name/group_0009/group_0009.mp4",
-      "act2cut": "qualitative_comparison/Act2Cut/Your_Name/group_0009/group_0009.mp4"
+      "kling3": "qualitative_comparison/Kling3/Your_name/group_0009/group_0009.mp4",
+      "sora2": "qualitative_comparison/Sora2/Your_name/group_0009/group_0009.mp4",
+      "act2cut": "qualitative_comparison/Act2Cut/Your_Name/group_0009/group_0009.mp4",
+      "happyhorse1": "qualitative_comparison/Happyhorse1/Your_Name/group_0009/group_0009.mp4",
+      "seedance2": "qualitative_comparison/Seedance2/Your_name/group_0009/group_0009.mp4"
     }
   },
   {
@@ -87,7 +99,7 @@ export const comparisonItems: ComparisonItem[] = [
       "long/wide shot"
     ],
     "setting": "Nighttime outdoors with artificial house lighting illuminating the surroundings",
-    "action": "C1 sits at the steering wheel, issues a vocal command, and holds on as the vehicle abruptly accelerates and ascends. The flying blue car accelerates, ripping iron bars\u2026",
+    "action": "C1 sits at the steering wheel, issues a vocal command, and holds on as the vehicle abruptly accelerates and ascends. The flying blue car accelerates, ripping iron bars…",
     "fullPrompts": [
       "Shot1 is a medium shot focused on the action of C1 and C2 in the car as they pull the bars off the window. It uses wide-angle lensing, high-angle right-three-quarter-front-view right-canted camera angle, direct-view two-character framing, and deep depth of field. The camera follows the action, pans left, and uses handheld stability.",
       "Shot2 is a medium shot focused on the blue car hovering in the air with C1 and C2 visible through the windshield. It uses normal, eye-level right-three-quarter-front-view camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
@@ -98,9 +110,11 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
-      "kling3": "qualitative_comparison/kling3/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
-      "sora2": "qualitative_comparison/sora2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
-      "act2cut": "qualitative_comparison/Act2Cut/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4"
+      "kling3": "qualitative_comparison/Kling3/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
+      "sora2": "qualitative_comparison/Sora2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
+      "act2cut": "qualitative_comparison/Act2Cut/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
+      "happyhorse1": "qualitative_comparison/Happyhorse1/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
+      "seedance2": "qualitative_comparison/Seedance2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4"
     }
   },
   {
@@ -113,7 +127,7 @@ export const comparisonItems: ComparisonItem[] = [
       "medium close-up"
     ],
     "setting": "A dimly lit indoor space, likely a bar, with a relaxed, casual atmosphere",
-    "action": "C1 speaks to his companion across the table, maintaining steady eye contact with a gentle expression and slightly tilting his head as he delivers his dialogue. C2 looks\u2026",
+    "action": "C1 speaks to his companion across the table, maintaining steady eye contact with a gentle expression and slightly tilting his head as he delivers his dialogue. C2 looks…",
     "fullPrompts": [
       "Shot1 is a medium close-up focused on C1 's face. It uses short-telephoto compression, eye-level front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera pushes in, and uses stabilized Steadicam-style movement.",
       "Shot2 is a medium close-up focused on C2 . It uses normal-standard lensing, eye-level front-view camera angle, over-the-shoulder single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability."
@@ -123,9 +137,11 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/Good_Will_Hunting/group_0038/group_0038.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/Good_Will_Hunting/group_0038/group_0038.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/Good_Will_Hunting/group_0038/group_0038.mp4",
-      "kling3": "qualitative_comparison/kling3/Good_Will_Hunting/group_0038/group_0038.mp4",
-      "sora2": "qualitative_comparison/sora2/Good_Will_Hunting/group_0038/group_0038.mp4",
-      "act2cut": "qualitative_comparison/Act2Cut/Good_Will_Hunting/group_0038/group_0038.mp4"
+      "kling3": "qualitative_comparison/Kling3/Good_Will_Hunting/group_0038/group_0038.mp4",
+      "sora2": "qualitative_comparison/Sora2/Good_Will_Hunting/group_0038/group_0038.mp4",
+      "act2cut": "qualitative_comparison/Act2Cut/Good_Will_Hunting/group_0038/group_0038.mp4",
+      "happyhorse1": "qualitative_comparison/Happyhorse1/Good_Will_Hunting/group_0038/group_0038.mp4",
+      "seedance2": "qualitative_comparison/Seedance2/Good_Will_Hunting/group_0038/group_0038.mp4"
     }
   },
   {
@@ -140,7 +156,7 @@ export const comparisonItems: ComparisonItem[] = [
       "shot 4"
     ],
     "setting": "Dimly lit stone corridor with daylight filtering through arched windows",
-    "action": "C1 steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. C2 is struck by the spell, violently blasted backward\u2026",
+    "action": "C1 steps forward defensively, raises his hand, and snaps his fingers to cast a powerful blast of magical energy. C2 is struck by the spell, violently blasted backward…",
     "fullPrompts": [
       "Shot1 is a medium shot focused on C1 , specifically emphasizing his aggressive hand gesture and stern facial expression through a high-angle perspective. It uses wide-angle lensing, high-angle front-view camera angle, direct-view single-subject framing, and shallow depth of field. The camera uses locked-off tripod stability.",
       "Shot2 is a medium full shot focused on C1 casting a spell and the magical impact pushing C2 backward. It uses wide-angle lensing, high-angle left-three-quarter-front-view camera angle, over-the-shoulder three-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
@@ -152,9 +168,11 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": null,
       "msm_1_3b": null,
       "msm_14b": null,
-      "kling3": "qualitative_comparison/kling3/Harry_Potter_The_Chamber_of_Secrets/group_0236/group_0236.mp4",
+      "kling3": "qualitative_comparison/Kling3/Harry_Potter_The_Chamber_of_Secrets/group_0236/group_0236.mp4",
       "sora2": null,
-      "act2cut": null
+      "act2cut": null,
+      "happyhorse1": null,
+      "seedance2": null
     }
   },
   {
@@ -177,9 +195,11 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/WALL-E/group_0007/group_0007.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/WALL-E/group_0007/group_0007.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/WALL-E/group_0007/group_0007.mp4",
-      "kling3": "qualitative_comparison/kling3/WALL-E/group_0007/group_0007.mp4",
+      "kling3": "qualitative_comparison/Kling3/WALL-E/group_0007/group_0007.mp4",
       "sora2": null,
-      "act2cut": "qualitative_comparison/Act2Cut/WALL-E/group_0007/group_0007.mp4"
+      "act2cut": "qualitative_comparison/Act2Cut/WALL-E/group_0007/group_0007.mp4",
+      "happyhorse1": "qualitative_comparison/Happyhorse1/WALL-E/group_0007/group_0007.mp4",
+      "seedance2": null
     }
   },
   {
@@ -193,7 +213,7 @@ export const comparisonItems: ComparisonItem[] = [
       "medium close-up"
     ],
     "setting": "Warm, indoor lighting, creating a relaxed and intimate atmosphere for a traditional meal",
-    "action": "C1 he pours sake from a white bottle into a small cup for C2 , then lowers the bottle and speaks with a slight smile while looking at his companion. C2 he holds up a\u2026",
+    "action": "C1 he pours sake from a white bottle into a small cup for C2 , then lowers the bottle and speaks with a slight smile while looking at his companion. C2 he holds up a…",
     "fullPrompts": [
       "Shot1 is a close-up focused on the hands pouring liquid from a flask into a small cup. It uses normal-standard lensing, high-angle front-view camera angle, direct-view insert framing, and shallow depth of field. The camera uses locked-off tripod stability.",
       "Shot2 is a medium shot focused on C1 's hand pouring a drink into C2 's cup. It uses normal-standard lensing, eye-level camera angle, direct-view two-character framing, and deep depth of field. The camera uses locked-off tripod stability.",
@@ -204,9 +224,11 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/Your_Name/group_0014/group_0014.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/Your_Name/group_0014/group_0014.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/Your_Name/group_0014/group_0014.mp4",
-      "kling3": "qualitative_comparison/kling3/Your_name/group_0014/group_0014.mp4",
-      "sora2": "qualitative_comparison/sora2/Your_name/group_0014/group_0014.mp4",
-      "act2cut": "qualitative_comparison/Act2Cut/Your_Name/group_0014/group_0014.mp4"
+      "kling3": "qualitative_comparison/Kling3/Your_name/group_0014/group_0014.mp4",
+      "sora2": "qualitative_comparison/Sora2/Your_name/group_0014/group_0014.mp4",
+      "act2cut": "qualitative_comparison/Act2Cut/Your_Name/group_0014/group_0014.mp4",
+      "happyhorse1": "qualitative_comparison/Happyhorse1/Your_Name/group_0014/group_0014.mp4",
+      "seedance2": "qualitative_comparison/Seedance2/Your_name/group_0014/group_0014.mp4"
     }
   }
 ];
