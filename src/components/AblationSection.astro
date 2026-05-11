@@ -23,6 +23,7 @@ const cases = [
     title:     'Shot Causal Mask',
     desc:      'Unidirectional causal attention prevents semantic leakage from future shots into earlier frames.',
     movie:     'Your Name',
+    taskType:  'S2V',
     left:  { label: 'w/o SCM',       src: `${base}/ablation/Act2Cut_t2v_gen_wo_SCM/Your_Name/group_0014/group_0014.mp4` },
     right: { label: '★ Full (Ours)', src: `${base}/ablation/Act2Cut_t2v_gen_full/Your_Name/group_0014/group_0014.mp4`  },
     caption: loadCaption('ablation/prompt/t2v/Your_Name_group_0014/group_0014_caption.json'),
@@ -36,6 +37,16 @@ const cases = [
     left:  { label: 'w/o HCM',       src: `${base}/ablation/Act2Cut_t2v_gen_wo_SCM/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4` },
     right: { label: '★ Full (Ours)', src: `${base}/ablation/Act2Cut_t2v_gen_full/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4`  },
     caption: loadCaption('ablation/prompt/t2v/Harry_Potter_The_Chamber_of_Secrets_group_0014/group_0014_caption.json'),
+  },
+  {
+    id:        'tbr',
+    component: 'TBR',
+    title:     'Transitional Boundary Residual',
+    desc:      'Boundary attention injects tail-frame context into the next shot\'s head-frame, anchoring spatial and action consistency at cut points.',
+    movie:     'Harry Potter: CoS',
+    left:  { label: 'w/o TBR',       src: `${base}/ablation/Act2Cut_t2v_gen_wo_SCM/Harry_Potter_The_Chamber_of_Secrets/group_0090/group_0090.mp4` },
+    right: { label: '★ Full (Ours)', src: `${base}/ablation/Act2Cut_t2v_gen_full/Harry_Potter_The_Chamber_of_Secrets/group_0090/group_0090.mp4`  },
+    caption: null,
   },
   {
     id:        'rope',
@@ -79,7 +90,14 @@ const cases = [
             <div class="text-[13px] sm:text-sm font-semibold text-white leading-snug">{c.title}</div>
             <div class="text-[11px] sm:text-xs text-white/45 mt-0.5 leading-relaxed">{c.desc}</div>
           </div>
-          <span class="ml-auto shrink-0 text-[9px] text-white/30 tracking-[0.14em] uppercase mt-0.5">{c.movie}</span>
+          <div class="ml-auto shrink-0 flex items-center gap-1.5 mt-0.5">
+            {c.taskType && (
+              <span class="text-[8px] font-bold tracking-[0.2em] uppercase px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-400/30 text-sky-400">
+                {c.taskType}
+              </span>
+            )}
+            <span class="text-[9px] text-white/30 tracking-[0.14em] uppercase">{c.movie}</span>
+          </div>
         </div>
 
         <!-- Video comparison -->

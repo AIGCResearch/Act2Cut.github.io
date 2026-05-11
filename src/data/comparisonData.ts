@@ -83,8 +83,8 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/Your_Name/group_0009/group_0009.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/Your_Name/group_0009/group_0009.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/Your_Name/group_0009/group_0009.mp4",
-      "kling3": "qualitative_comparison/Kling3/Your_name/group_0009/group_0009.mp4",
-      "sora2": "qualitative_comparison/Sora2/Your_name/group_0009/group_0009.mp4",
+      "kling3": "qualitative_comparison/kling3/Your_name/group_0009/group_0009.mp4",
+      "sora2": "qualitative_comparison/sora2/Your_name/group_0009/group_0009.mp4",
       "act2cut": "qualitative_comparison/Act2Cut/Your_Name/group_0009/group_0009.mp4",
       "happyhorse1": "qualitative_comparison/Happyhorse1/Your_Name/group_0009/group_0009.mp4",
       "seedance2": "qualitative_comparison/Seedance2/Your_name/group_0009/group_0009.mp4"
@@ -113,8 +113,8 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
-      "kling3": "qualitative_comparison/Kling3/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
-      "sora2": "qualitative_comparison/Sora2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
+      "kling3": "qualitative_comparison/kling3/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
+      "sora2": "qualitative_comparison/sora2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "act2cut": "qualitative_comparison/Act2Cut/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "happyhorse1": "qualitative_comparison/Happyhorse1/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "seedance2": "qualitative_comparison/Seedance2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4"
@@ -141,8 +141,8 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/Good_Will_Hunting/group_0038/group_0038.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/Good_Will_Hunting/group_0038/group_0038.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/Good_Will_Hunting/group_0038/group_0038.mp4",
-      "kling3": "qualitative_comparison/Kling3/Good_Will_Hunting/group_0038/group_0038.mp4",
-      "sora2": "qualitative_comparison/Sora2/Good_Will_Hunting/group_0038/group_0038.mp4",
+      "kling3": "qualitative_comparison/kling3/Good_Will_Hunting/group_0038/group_0038.mp4",
+      "sora2": "qualitative_comparison/sora2/Good_Will_Hunting/group_0038/group_0038.mp4",
       "act2cut": "qualitative_comparison/Act2Cut/Good_Will_Hunting/group_0038/group_0038.mp4",
       "happyhorse1": "qualitative_comparison/Happyhorse1/Good_Will_Hunting/group_0038/group_0038.mp4",
       "seedance2": "qualitative_comparison/Seedance2/Good_Will_Hunting/group_0038/group_0038.mp4"
@@ -171,8 +171,8 @@ export const comparisonItems: ComparisonItem[] = [
       "holocine14b": "qualitative_comparison/HoloCine14b/Your_Name/group_0014/group_0014.mp4",
       "msm_1_3b": "qualitative_comparison/MSM-1.3b/Your_Name/group_0014/group_0014.mp4",
       "msm_14b": "qualitative_comparison/MSM-14b/Your_Name/group_0014/group_0014.mp4",
-      "kling3": "qualitative_comparison/Kling3/Your_name/group_0014/group_0014.mp4",
-      "sora2": "qualitative_comparison/Sora2/Your_name/group_0014/group_0014.mp4",
+      "kling3": "qualitative_comparison/kling3/Your_name/group_0014/group_0014.mp4",
+      "sora2": "qualitative_comparison/sora2/Your_name/group_0014/group_0014.mp4",
       "act2cut": "qualitative_comparison/Act2Cut/Your_Name/group_0014/group_0014.mp4",
       "happyhorse1": "qualitative_comparison/Happyhorse1/Your_Name/group_0014/group_0014.mp4",
       "seedance2": "qualitative_comparison/Seedance2/Your_name/group_0014/group_0014.mp4"
