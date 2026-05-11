@@ -242,6 +242,33 @@ html:not(.dark) .sample-card:hover .qg-scrub,
 html:not(.dark) .cmp-card:hover .qg-scrub,
 html:not(.dark) .qg-scrub.is-dragging { background: rgba(0,0,0,0.28); }
 
+/* Play/pause toggle button — placed below video containers, never overlaid on the frame. */
+.vid-playbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.13);
+  color: rgba(255,255,255,0.45);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+.vid-playbtn:hover {
+  background: rgba(255,255,255,0.13);
+  border-color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.80);
+}
+.vid-playbtn svg { pointer-events: none; }
+.vid-playbtn .icon-play  { display: block; }
+.vid-playbtn .icon-pause { display: none; }
+.vid-playbtn.is-playing .icon-play  { display: none; }
+.vid-playbtn.is-playing .icon-pause { display: block; }
+
 /* Subtle thin horizontal scrollbar for wide benchmark tables.
    Default browser bars look heavy on dark glass cards; this keeps them visible but minimal. */
 .thin-scroll {
@@ -331,11 +358,11 @@ html:not(.dark) .section-heading-float {
 .hero-scrim {
   position: absolute;
   pointer-events: none;
-  inset: -120px -240px;
+  inset: -60px -160px;
   background: radial-gradient(
-    ellipse 65% 85% at 50% 50%,
-    rgba(4, 2, 10, 0.72) 0%,
-    rgba(4, 2, 10, 0.42) 50%,
+    ellipse 55% 70% at 50% 60%,
+    rgba(4, 2, 10, 0.60) 0%,
+    rgba(4, 2, 10, 0.30) 50%,
     transparent 72%
   );
   border-radius: 50%;

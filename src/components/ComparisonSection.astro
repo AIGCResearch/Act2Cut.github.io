@@ -97,7 +97,7 @@ const rows = comparisonMethods;
             {pageItems.map((item) => {
               const src = item.videos[row.key];
               return (
-                <div class="p-1.5 sm:p-2 border-r border-white/[0.04] last:border-r-0">
+                <div class="p-1.5 sm:p-2 border-r border-white/[0.04] last:border-r-0" data-vid-tile>
                   <div
                     class:list={[
                       'qg-video-wrap cmp-card relative cinema-aspect rounded-lg overflow-hidden transition-all duration-300',
@@ -108,7 +108,7 @@ const rows = comparisonMethods;
                   >
                     {src ? (
                       <>
-                        <DualVideo src={`${base}/${src}`} class="qg-video absolute inset-0 w-full h-full object-contain" />
+                        <DualVideo src={`${base}/${src}`} class="qg-video absolute inset-0 w-full h-full object-contain cursor-pointer" />
                         <div class="qg-scrub" data-scrub>
                           <div class="qg-scrub-fill"></div>
                           <div class="qg-scrub-thumb"></div>
@@ -123,6 +123,14 @@ const rows = comparisonMethods;
                       </div>
                     )}
                   </div>
+                  {src && (
+                    <div class="flex justify-center mt-1 mb-0.5">
+                      <button class="vid-playbtn" data-playbtn type="button" aria-label="Toggle play/pause">
+                        <svg class="icon-play w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <svg class="icon-pause w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                      </button>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -327,6 +335,7 @@ const rows = comparisonMethods;
       entries.forEach(e => {
         const v = e.target as HTMLVideoElement;
         if ((v as any)._scrubbing) return;
+        if ((v as any)._manualPause) return;
         if (e.isIntersecting) v.play().catch(() => {});
         else v.pause();
       });
@@ -386,6 +395,36 @@ const rows = comparisonMethods;
       };
       scrub.addEventListener('pointerup', end);
       scrub.addEventListener('pointercancel', end);
+    });
+
+    // Play/pause buttons + click-on-video to toggle
+    root.querySelectorAll<HTMLElement>('[data-vid-tile]').forEach(tile => {
+      const video = tile.querySelector<HTMLVideoElement>('video.qg-video');
+      const btn   = tile.querySelector<HTMLButtonElement>('[data-playbtn]');
+      if (!video) return;
+
+      function syncBtn() {
+        if (!btn) return;
+        if (video.paused) btn.classList.remove('is-playing');
+        else              btn.classList.add('is-playing');
+      }
+      video.addEventListener('play',  syncBtn);
+      video.addEventListener('pause', syncBtn);
+
+      function toggle() {
+        if (video.paused) {
+          (video as any)._manualPause = false;
+          video.play().catch(() => {});
+        } else {
+          (video as any)._manualPause = true;
+          video.pause();
+        }
+      }
+      btn?.addEventListener('click', toggle);
+      video.addEventListener('click', () => {
+        if ((video as any)._scrubbing) return;
+        toggle();
+      });
     });
 
     // Prompt popover toggles

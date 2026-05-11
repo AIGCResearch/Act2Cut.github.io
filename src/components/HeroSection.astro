@@ -1,4 +1,6 @@
 ---
+const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
+
 const authors = [
   { name: 'Cailin Zhuang', affil: '1,2,3*†' },
   { name: 'Yaoqi Hu',      affil: '2,4*'   },
@@ -34,6 +36,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     </h1>
   </div>
 
+  {!isAnonymous && (
   <div class="relative" data-reveal style="transition-delay:100ms">
     <!-- Soft dark halo — larger feathered ellipse for readability; hidden in light mode -->
     <div class="hero-scrim"></div>
@@ -61,6 +64,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       </div>
     </div>
   </div>
+  )}
 
   <!-- ACTION BUTTONS -->
   <div class="space-y-7 sm:space-y-8" data-reveal style="transition-delay:200ms">
@@ -79,6 +83,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       </a>
     </div>
 
+    {!isAnonymous && (
     <div class="mx-auto w-full max-w-[720px] px-3 sm:px-10">
       <img
         src={`${base}/images/institution-logos.avif`}
@@ -93,6 +98,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
         loading="eager"
       />
     </div>
+    )}
   </div>
 </header>
 

@@ -120,6 +120,15 @@ const cases = [
           </div>
         </div>
 
+        <!-- Play controls -->
+        <div class="px-4 sm:px-5 py-2 border-t border-white/[0.07] flex items-center gap-2">
+          <button class="vid-playbtn" data-abl-playbtn={c.id} type="button" aria-label="Toggle play/pause">
+            <svg class="icon-play w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <span class="text-[9px] text-white/25 tracking-[0.12em] uppercase select-none">Pause / Play</span>
+        </div>
+
         <!-- Scene context -->
         {(setting || action) && (
           <div class="px-4 sm:px-5 py-3 border-t border-white/[0.07] space-y-1.5">
@@ -147,6 +156,7 @@ const cases = [
   const playObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       const v = e.target as HTMLVideoElement;
+      if ((v as any)._manualPause) return;
       if (e.isIntersecting) v.play().catch(() => {});
       else v.pause();
     });
@@ -154,5 +164,37 @@ const cases = [
 
   document.querySelectorAll<HTMLVideoElement>('#ablation .ablation-video').forEach(v => {
     playObserver.observe(v);
+  });
+
+  // Play/pause buttons — one per card, controls both left & right videos together
+  document.querySelectorAll<HTMLButtonElement>('[data-abl-playbtn]').forEach(btn => {
+    const id = (btn as HTMLElement).dataset.ablPlaybtn;
+    const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(`.ablation-${id}-left, .ablation-${id}-right`));
+
+    function syncBtn() {
+      const anyPlaying = videos.some(v => !v.paused);
+      if (anyPlaying) btn.classList.add('is-playing');
+      else            btn.classList.remove('is-playing');
+    }
+
+    function toggle() {
+      const anyPlaying = videos.some(v => !v.paused);
+      videos.forEach(v => {
+        if (anyPlaying) {
+          (v as any)._manualPause = true;
+          v.pause();
+        } else {
+          (v as any)._manualPause = false;
+          v.play().catch(() => {});
+        }
+      });
+    }
+
+    videos.forEach(v => {
+      v.addEventListener('play',  syncBtn);
+      v.addEventListener('pause', syncBtn);
+      v.addEventListener('click', toggle);
+    });
+    btn.addEventListener('click', toggle);
   });
 </script>

@@ -4,6 +4,8 @@ import Navigation from '../../components/Navigation.astro';
 import ComparisonSection from '../../components/ComparisonSection.astro';
 import BenchmarkTablesSection from '../../components/BenchmarkTablesSection.astro';
 import CitationSection from '../../components/CitationSection.astro';
+
+const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
 ---
 
 <Layout title="Act2Cut — Comparison & Benchmark">
@@ -12,6 +14,6 @@ import CitationSection from '../../components/CitationSection.astro';
     <ComparisonSection />
     <div class="film-strip-divider"></div>
     <BenchmarkTablesSection />
-    <CitationSection />
+    {!isAnonymous && <CitationSection />}
   </main>
 </Layout>

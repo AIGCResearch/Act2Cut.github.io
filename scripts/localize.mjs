@@ -59,6 +59,9 @@ function processHtml(filePath) {
 
   let html = readFileSync(filePath, 'utf-8');
 
+  // Pass 0 – strip external font links (blocked by Safari content blocker on file://)
+  html = html.replace(/<link[^>]*(?:fonts\.googleapis\.com|fonts\.gstatic\.com)[^>]*\/?>/g, '');
+
   // Pass 1
   html = html.replace(ABS_RE, `$1${prefix}/`);
 

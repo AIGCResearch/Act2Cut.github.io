@@ -1,6 +1,7 @@
 ---
 import QualitativeGallery from './QualitativeGallery.astro';
 import AblationSection from './AblationSection.astro';
+import DataCollectionCard from '../components/DataCollectionCard.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
@@ -86,6 +87,8 @@ const methodCards = [
       </div>
     ))}
   </div>
+  
+  <DataCollectionCard/>
 
   <div class="film-strip-divider"></div>
 
