@@ -8,6 +8,191 @@ import CitationSection from '../components/CitationSection.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
+
+type RawMethodRow = {
+  method: string;
+  style: 'closed' | 'open' | 'ours' | 'ablation';
+  content: number[];
+  cinem?: number[];
+};
+
+type SummaryMetric =
+  | 'ncG1'
+  | 'ncG2'
+  | 'vcG1'
+  | 'vcSty'
+  | 'vcCs'
+  | 'ac'
+  | 'saScc'
+  | 'saSca'
+  | 'aes'
+  | 'scSs'
+  | 'scSf'
+  | 'scCa'
+  | 'dcCm'
+  | 'dcCz'
+  | 'dcCr'
+  | 'rc';
+
+type SummaryRow = {
+  method: string;
+  style: 'closed' | 'open' | 'ours' | 'ablation';
+  metrics: Record<SummaryMetric, number | null>;
+};
+
+const rawRows: RawMethodRow[] = [
+  {
+    method: 'Happyhorse-1.0',
+    style: 'closed',
+    content: [0.159, 0.195, 0.180, 0.181, 0.205, 3.627, 3.413, 0.827, 0.764, 3.333, 0.960, 0.721, 5.028],
+    cinem: [0.585, 0.565, 0.568, 0.579, 0.562, 0.558, 0.555, 0.565, 3.812, 3.892, 3.678, 0.875, 0.750, 0.130],
+  },
+  {
+    method: 'Seedance-2.0',
+    style: 'closed',
+    content: [0.162, 0.187, 0.174, 0.178, 0.211, 3.893, 3.720, 0.855, 0.795, 3.120, 0.969, 0.752, 4.727],
+    cinem: [0.578, 0.580, 0.582, 0.565, 0.568, 0.565, 0.572, 0.570, 3.645, 3.865, 3.645, 0.850, 0.875, 0.500],
+  },
+  {
+    method: 'Kling3',
+    style: 'closed',
+    content: [0.161, 0.185, 0.166, 0.173, 0.215, 3.780, 3.640, 0.854, 0.753, 3.120, 0.878, 0.602, 4.801],
+    cinem: [0.572, 0.558, 0.562, 0.560, 0.573, 0.579, 0.550, 0.560, 3.789, 3.864, 3.892, 0.765, 0.755, 0.330],
+  },
+  {
+    method: 'Sora2',
+    style: 'closed',
+    content: [0.165, 0.187, 0.171, 0.189, 0.225, 3.947, 3.867, 0.845, 0.825, 3.127, 0.954, 0.738, 4.090],
+    cinem: [0.578, 0.572, 0.575, 0.572, 0.588, 0.582, 0.562, 0.592, 3.521, 3.876, 3.521, 0.995, 0.712, 0.380],
+  },
+  {
+    method: 'HoloCine-14B',
+    style: 'open',
+    content: [0.162, 0.192, 0.176, 0.173, 0.219, 3.813, 3.693, 0.845, 0.702, 2.747, 0.978, 0.906, 4.652],
+    cinem: [0.576, 0.572, 0.569, 0.571, 0.535, 0.532, 0.528, 0.538, 3.745, 3.798, 3.677, 0.865, 0.605, 0.255],
+  },
+  {
+    method: 'MSM-1.3B',
+    style: 'open',
+    content: [0.158, 0.184, 0.167, 0.161, 0.201, 3.733, 3.587, 0.806, 0.692, 1.247, 0.947, 0.812, 4.393],
+    cinem: [0.515, 0.512, 0.525, 0.522, 0.518, 0.515, 0.512, 0.520, 2.912, 3.245, 2.789, 0.625, 0.502, 0.105],
+  },
+  {
+    method: 'MSM-14B',
+    style: 'open',
+    content: [0.164, 0.182, 0.174, 0.172, 0.204, 3.867, 3.773, 0.807, 0.709, 2.627, 0.968, 0.882, 4.355],
+    cinem: [0.575, 0.571, 0.572, 0.569, 0.574, 0.578, 0.505, 0.535, 3.456, 3.752, 3.456, 0.375, 0.550, 0.375],
+  },
+  {
+    method: 'Act2Cut',
+    style: 'ours',
+    content: [0.160, 0.188, 0.174, 0.176, 0.223, 3.853, 3.640, 0.857, 0.806, 3.600, 0.974, 0.901, 4.776],
+    cinem: [0.577, 0.570, 0.575, 0.567, 0.575, 0.576, 0.563, 0.564, 3.612, 3.756, 3.712, 0.990, 0.925, 0.495],
+  },
+  {
+    method: 'Act2Cut (w/o GLoS)',
+    style: 'ablation',
+    content: [0.158, 0.185, 0.174, 0.172, 0.180, 3.840, 3.623, 0.850, 0.782, 2.400, 0.972, 0.880, 4.720],
+  },
+  {
+    method: 'Act2Cut (w/o TBR)',
+    style: 'ablation',
+    content: [0.160, 0.187, 0.172, 0.174, 0.215, 3.833, 3.642, 0.855, 0.753, 2.687, 0.976, 0.896, 4.689],
+  },
+  {
+    method: 'Act2Cut (w/o SCM)',
+    style: 'ablation',
+    content: [0.159, 0.186, 0.173, 0.175, 0.190, 3.827, 3.631, 0.856, 0.774, 2.667, 0.968, 0.872, 4.650],
+  },
+  {
+    method: 'Act2Cut (w/o HCM)',
+    style: 'ablation',
+    content: [0.160, 0.188, 0.170, 0.176, 0.221, 3.852, 3.640, 0.848, 0.780, 3.500, 0.806, 0.750, 4.502],
+    cinem: [0.413, 0.482, 0.491, 0.468, 0.457, 0.463, 0.452, 0.447, 2.834, 3.187, 2.921, 0.687, 0.693, 0.312],
+  },
+];
+
+function mean(values: number[]) {
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function formatValue(value: number | null) {
+  return value === null ? '—' : value.toFixed(3);
+}
+
+function summarize(row: RawMethodRow): SummaryRow {
+  const { content, cinem } = row;
+  return {
+    method: row.method,
+    style: row.style,
+    metrics: {
+      ncG1: mean(content.slice(0, 3)),
+      ncG2: mean(content.slice(3, 5)),
+      vcG1: mean(content.slice(5, 7)),
+      vcSty: content[7],
+      vcCs: content[8],
+      ac: content[9],
+      saScc: content[10],
+      saSca: content[11],
+      aes: content[12],
+      scSs: cinem ? cinem[0] : null,
+      scSf: cinem ? mean(cinem.slice(1, 4)) : null,
+      scCa: cinem ? mean(cinem.slice(4, 7)) : null,
+      dcCm: cinem ? cinem[8] : null,
+      dcCz: cinem ? cinem[9] : null,
+      dcCr: cinem ? cinem[10] : null,
+      rc: cinem ? mean(cinem.slice(11, 14)) : null,
+    },
+  };
+}
+
+const summaryRows = rawRows.map(summarize);
+const baselineRows = summaryRows.filter((row) => row.style !== 'ablation');
+
+function buildRanks(metric: SummaryMetric) {
+  const sorted = baselineRows
+    .filter((row) => row.metrics[metric] !== null)
+    .map((row) => ({ method: row.method, value: row.metrics[metric] as number }))
+    .sort((a, b) => b.value - a.value);
+
+  const ranks = new Map<string, number>();
+  sorted.forEach((row, index) => {
+    if (index < 5) ranks.set(row.method, index + 1);
+  });
+  return ranks;
+}
+
+const rankMaps: Record<SummaryMetric, Map<string, number>> = {
+  ncG1: buildRanks('ncG1'),
+  ncG2: buildRanks('ncG2'),
+  vcG1: buildRanks('vcG1'),
+  vcSty: buildRanks('vcSty'),
+  vcCs: buildRanks('vcCs'),
+  ac: buildRanks('ac'),
+  saScc: buildRanks('saScc'),
+  saSca: buildRanks('saSca'),
+  aes: buildRanks('aes'),
+  scSs: buildRanks('scSs'),
+  scSf: buildRanks('scSf'),
+  scCa: buildRanks('scCa'),
+  dcCm: buildRanks('dcCm'),
+  dcCz: buildRanks('dcCz'),
+  dcCr: buildRanks('dcCr'),
+  rc: buildRanks('rc'),
+};
+
+function rankFor(row: SummaryRow, metric: SummaryMetric) {
+  return row.style === 'ablation' ? 0 : (rankMaps[metric].get(row.method) ?? 0);
+}
+
+const metricOrder: SummaryMetric[] = [
+  'ncG1', 'ncG2', 'vcG1', 'vcSty', 'vcCs', 'ac', 'saScc', 'saSca', 'aes', 'scSs', 'scSf', 'scCa', 'dcCm', 'dcCz', 'dcCr', 'rc',
+];
+
+const openRows = summaryRows.filter((row) => row.style === 'open');
+const ablationRows = summaryRows.filter((row) => row.style === 'ablation');
+const closedRows = summaryRows.filter((row) => row.style === 'closed');
+const oursRow = summaryRows.find((row) => row.style === 'ours');
 ---
 
 <Layout title="Act2Cut: Continuous Multi-Shot Video Narrative Match on Action-Cut">
@@ -36,10 +221,10 @@ const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
         <div class="flex items-start justify-between gap-3 flex-wrap px-5 sm:px-7 pt-5 sm:pt-6 pb-4 border-b border-white/[0.06]">
           <div class="space-y-1.5">
             <h3 class="text-[13px] sm:text-sm font-semibold text-white/90 tracking-wide">
-              Quantitative Results — ActCutBench (Global Content Sub-Bench)
+              Quantitative Results — ActCutBench
             </h3>
             <p class="text-[10.5px] sm:text-[11px] text-white/45 leading-relaxed max-w-3xl">
-              Baseline and Ablation. <strong class="text-white/65 font-semibold">NC</strong> Narrative Consistency · <strong class="text-white/65 font-semibold">VC</strong> Visual Coherence · <strong class="text-white/65 font-semibold">AC</strong> Action Continuity · <strong class="text-white/65 font-semibold">SC</strong> Subject Correctness · <strong class="text-white/65 font-semibold">Aes</strong> Aesthetics. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).
+              Baseline and Ablation. <strong class="text-white/65 font-semibold">Global Content</strong>: <strong class="text-white/65 font-semibold">NC</strong> (G1: Environment, Scene, Style; G2: Character, Action, Object), <strong class="text-white/65 font-semibold">VC</strong> (G1: Environment, Scene; Sty: Style; CS: Character), <strong class="text-white/65 font-semibold">AC</strong> (CA/OM), <strong class="text-white/65 font-semibold">SA</strong> (SCC/SCA), <strong class="text-white/65 font-semibold">Aes</strong>. <strong class="text-white/65 font-semibold">Cinematography</strong>: <strong class="text-white/65 font-semibold">SC</strong> (SS, SF, CA), <strong class="text-white/65 font-semibold">DC</strong> (CM, CZ, CR), <strong class="text-white/65 font-semibold">RC</strong>. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).
             </p>
             <div class="flex items-center gap-1.5 pt-1 text-[9.5px] text-white/40">
               <span class="rank-cell rank-1 text-[9.5px]" style="min-width:0;padding:1px 5px;">1st</span>
@@ -61,107 +246,120 @@ const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
               <tr class="text-white/40 border-b border-white/10">
                 <th class="px-4 sm:px-5 py-3 font-normal text-left" rowspan="2">Method</th>
                 <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">NC ↑</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">VC ↑</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">VC ↑</th>
                 <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="1">AC ↑</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">SC ↑</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">SA ↑</th>
                 <th class="px-3 py-3 text-center font-normal" rowspan="2">Aes ↑</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">SC ↑</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">DC ↑</th>
+                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="1">RC ↑</th>
               </tr>
               <tr class="text-white/30 border-b border-white/10 text-center">
                 <th class="px-2.5 py-2 font-normal">G1</th><th class="px-2.5 py-2 font-normal">G2</th>
-                <th class="px-2.5 py-2 font-normal">G1</th><th class="px-2.5 py-2 font-normal">CS</th>
+                <th class="px-2.5 py-2 font-normal">G1</th><th class="px-2.5 py-2 font-normal">Sty</th><th class="px-2.5 py-2 font-normal">CS</th>
                 <th class="px-2.5 py-2 font-normal">CA/OM</th>
-                <th class="px-2.5 py-2 font-normal">CC</th><th class="px-2.5 py-2 font-normal">CID</th>
+                <th class="px-2.5 py-2 font-normal">SCC</th><th class="px-2.5 py-2 font-normal">SCA</th>
+                <th class="px-2.5 py-2 font-normal">SS</th><th class="px-2.5 py-2 font-normal">SF</th><th class="px-2.5 py-2 font-normal">CA</th>
+                <th class="px-2.5 py-2 font-normal">CM</th><th class="px-2.5 py-2 font-normal">CZ</th><th class="px-2.5 py-2 font-normal">CR</th>
+                <th class="px-2.5 py-2 font-normal"></th>
               </tr>
             </thead>
             <tbody class="text-white/60 font-mono">
               <!-- ActCutBench · Open-Source Method -->
               <tr class="border-b border-white/[0.07]">
-                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="8">ActCutBench · Open-Source Method</td>
+                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="17">The following results are obtained on ActCutBench</td>
               </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans">HoloCine-14B</td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-5">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
+              <tr class="border-b border-white/[0.04] bg-[#38d9a9]/[0.04]">
+                <td class="px-4 sm:px-5 py-1.5 text-[9px] tracking-wider text-[#38d9a9]/60 font-semibold" colspan="17">Open-Source Method</td>
               </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans">MSM-1.3B</td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-4">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans">MSM-14B</td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-3">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
-              <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/55 font-medium">(Ours)</span></td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-1">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center text-[#ffb84d]">0.000</td>)}
-                <td class="px-3 py-2.5 text-center text-[#ffb84d]">0.000</td>
-              </tr>
+              {openRows.map((row) => (
+                <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                  <td class="px-4 sm:px-5 py-2.5 font-sans">{row.method}</td>
+                  {metricOrder.map((metric, index) => {
+                    const value = row.metrics[metric];
+                    const rank = rankFor(row, metric);
+                    const text = formatValue(value);
+                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-2.5 text-center' : 'px-2.5 py-2.5 text-center';
+                    return (
+                      <td class={cellClass}>
+                        {rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+              {oursRow && (
+                <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
+                  <td class="px-4 sm:px-5 py-2.5 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/55 font-medium">(Ours)</span></td>
+                  {metricOrder.map((metric, index) => {
+                    const value = oursRow.metrics[metric];
+                    const rank = rankFor(oursRow, metric);
+                    const text = formatValue(value);
+                    const cellClass = index === metricOrder.length - 1
+                      ? 'px-3 py-2.5 text-center text-[#ffb84d]'
+                      : 'px-2.5 py-2.5 text-center text-[#ffb84d]';
+                    return (
+                      <td class={cellClass}>
+                        {rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}
+                      </td>
+                    );
+                  })}
+                </tr>
+              )}
 
               <!-- ActCutBench-Lite · Ablation -->
               <tr class="border-y border-white/[0.07]">
-                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="8">ActCutBench-Lite · Ablation</td>
+                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="17">Ablation Study</td>
               </tr>
-              <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-1">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center text-[#ffb84d]">0.000</td>)}
-                <td class="px-3 py-2.5 text-center text-[#ffb84d]">0.000</td>
-              </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">Act2Cut (w/o GLoS)</td>
-                {Array(7).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">Act2Cut (w/o TBR)</td>
-                {Array(7).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">Act2Cut (w/o SCM)</td>
-                {Array(7).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">Act2Cut (w/o HCM)</td>
-                {Array(7).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
+              {oursRow && (
+                <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
+                  <td class="px-4 sm:px-5 py-2.5 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
+                  {metricOrder.map((metric, index) => {
+                    const value = oursRow.metrics[metric];
+                    const rank = rankFor(oursRow, metric);
+                    const text = formatValue(value);
+                    const cellClass = index === metricOrder.length - 1
+                      ? 'px-3 py-2.5 text-center text-[#ffb84d]'
+                      : 'px-2.5 py-2.5 text-center text-[#ffb84d]';
+                    return (
+                      <td class={cellClass}>
+                        {rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}
+                      </td>
+                    );
+                  })}
+                </tr>
+              )}
+              {ablationRows.map((row) => (
+                <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                  <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">{row.method}</td>
+                  {metricOrder.map((metric, index) => {
+                    const text = formatValue(row.metrics[metric]);
+                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-2.5 text-center' : 'px-2.5 py-2.5 text-center';
+                    return <td class={cellClass}>{text}</td>;
+                  })}
+                </tr>
+              ))}
 
               <!-- Closed-Source Method -->
               <tr class="bg-white/[0.04] border-y border-white/[0.05]">
-                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="8">Closed-Source Method</td>
+                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-[#ff9999]/60 uppercase font-semibold italic" colspan="17">Closed-Source Method</td>
               </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans">Happyhorse-1.0</td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-4">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans">Seedance-2.0</td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-2">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
-              <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans">Kling3</td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-1">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
-              <tr class="hover:bg-white/[0.04] transition-colors">
-                <td class="px-4 sm:px-5 py-2.5 font-sans">Sora2</td>
-                <td class="px-2.5 py-2.5 text-center"><span class="rank-cell rank-4">0.000</span></td>
-                {Array(6).fill(null).map(() => <td class="px-2.5 py-2.5 text-center">0.000</td>)}
-                <td class="px-3 py-2.5 text-center">0.000</td>
-              </tr>
+              {closedRows.map((row) => (
+                <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                  <td class="px-4 sm:px-5 py-2.5 font-sans">{row.method}</td>
+                  {metricOrder.map((metric, index) => {
+                    const value = row.metrics[metric];
+                    const rank = rankFor(row, metric);
+                    const text = formatValue(value);
+                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-2.5 text-center' : 'px-2.5 py-2.5 text-center';
+                    return (
+                      <td class={cellClass}>
+                        {rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -169,7 +367,7 @@ const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
         <!-- Card footer / link -->
         <div class="px-5 sm:px-7 py-3.5 border-t border-white/[0.06] flex items-center justify-between gap-3">
           <p class="text-[11px] text-white/35 leading-snug">
-            Numbers are placeholder values for layout demonstration.
+            Summary values are means derived from the benchmark page tables.
           </p>
           <a href={`${base}/benchmark`} class="shrink-0 inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.22em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] hover:opacity-80 transition-opacity">
             Full benchmarks

@@ -3,88 +3,104 @@ type C = [string, 0|1|2|3|4|5];
 
 const contentRows: { method: string; base: string; style: 'closed'|'open'|'ours'|'ablation'; cells: C[] }[] = [
   { method: 'Happyhorse-1.0', base: '—', style: 'closed', cells: [
-    ['0.159',4],['0.195',1],['0.180',1],['0.159',4],['0.215',0],
-    ['4.000',1],['3.000',5],['0.827',5],['0.318',0],
-    ['2.125',0],['1.000',1],['0.602',0],['5.028',1],
+    ['0.159',0],['0.195',1],['0.180',1],['0.181',2],['0.205',0],
+    ['3.627',0],['3.413',0],['0.827',5],['0.764',4],
+    ['3.333',2],['0.960',5],['0.721',0],['5.028',1],
   ]},
   { method: 'Seedance-2.0', base: '—', style: 'closed', cells: [
-    ['0.162',0],['0.187',4],['0.174',3],['0.165',1],['0.217',5],
-    ['4.000',1],['3.250',4],['0.855',2],['0.311',0],
-    ['3.125',3],['1.000',1],['0.752',2],['4.727',4],
+    ['0.162',3],['0.187',4],['0.174',3],['0.178',3],['0.211',5],
+    ['3.893',2],['3.720',3],['0.855',2],['0.795',3],
+    ['3.120',4],['0.969',3],['0.752',5],['4.727',4],
   ]},
   { method: 'Kling3', base: '—', style: 'closed', cells: [
-    ['0.161',0],['0.185',5],['0.166',0],['0.163',2],['0.219',3],
-    ['3.750',2],['3.500',3],['0.854',3],['0.360',2],
-    ['3.333',2],['0.878',3],['0.367',0],['4.801',2],
+    ['0.161',4],['0.185',5],['0.166',0],['0.173',5],['0.215',4],
+    ['3.780',5],['3.640',5],['0.854',3],['0.753',5],
+    ['3.120',4],['0.878',0],['0.602',0],['4.801',2],
   ]},
   { method: 'Sora2', base: '—', style: 'closed', cells: [
-    ['0.165',5],['0.187',4],['0.171',4],['0.163',2],['0.215',0],
-    ['3.750',2],['4.000',1],['0.845',4],['0.323',5],
-    ['3.125',3],['1.000',1],['0.738',3],['4.090',0],
+    ['0.165',1],['0.187',4],['0.171',4],['0.189',1],['0.225',1],
+    ['3.947',1],['3.867',1],['0.845',4],['0.825',1],
+    ['3.127',3],['0.954',0],['0.738',0],['4.090',0],
   ]},
   { method: 'HoloCine', base: 'Wan2.2-T2V-14B', style: 'open', cells: [
-    ['0.162',3],['0.192',2],['0.176',2],['0.162',3],['0.223',1],
-    ['4.000',1],['3.250',4],['0.845',4],['0.455',1],
-    ['2.625',5],['1.000',1],['0.906',1],['4.652',5],
+    ['0.162',3],['0.192',2],['0.176',2],['0.173',5],['0.219',3],
+    ['3.813',0],['3.693',4],['0.845',4],['0.702',0],
+    ['2.747',5],['0.978',1],['0.906',1],['4.652',5],
   ]},
   { method: 'MultiShotMaster', base: 'Wan2.1-TI2V-1.3B', style: 'open', cells: [
-    ['0.165',1],['0.182',0],['0.174',3],['0.165',1],['0.218',4],
-    ['4.000',1],['4.000',1],['0.807',0],['0.340',4],
-    ['2.750',4],['0.929',2],['0.738',3],['4.355',0],
+    ['0.158',0],['0.184',0],['0.167',5],['0.161',0],['0.201',0],
+    ['3.733',0],['3.587',0],['0.806',0],['0.692',0],
+    ['1.247',0],['0.947',0],['0.812',4],['4.393',0],
   ]},
   { method: 'MultiShotMaster', base: 'Wan2.1-T2V-14B', style: 'open', cells: [
-    ['0.159',4],['0.184',0],['0.167',5],['0.159',4],['0.220',2],
-    ['4.000',1],['3.250',4],['0.806',0],['0.349',3],
-    ['1.250',0],['0.929',2],['0.723',4],['4.393',0],
+    ['0.164',2],['0.182',0],['0.174',3],['0.172',0],['0.204',0],
+    ['3.867',3],['3.773',2],['0.807',0],['0.709',0],
+    ['2.627',0],['0.968',4],['0.882',3],['4.355',0],
   ]},
   { method: '★ Act2Cut (full)', base: 'Wan2.2-TI2V-5B', style: 'ours', cells: [
-    ['0.156',5],['0.188',3],['0.174',3],['0.156',5],['0.213',0],
-    ['4.000',1],['3.750',2],['0.857',1],['0.261',0],
-    ['3.500',1],['0.929',2],['0.721',5],['4.776',3],
+    ['0.160',5],['0.188',3],['0.174',3],['0.176',4],['0.223',2],
+    ['3.853',4],['3.640',5],['0.857',1],['0.806',2],
+    ['3.600',1],['0.974',2],['0.901',2],['4.776',3],
   ]},
-  { method: 'Act2Cut (w/o GLoS-RoPE)', base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: Array(13).fill(['—',0] as C) },
-  { method: 'Act2Cut (w/o TBR)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: Array(13).fill(['—',0] as C) },
-  { method: 'Act2Cut (w/o SCM)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: Array(13).fill(['—',0] as C) },
-  { method: 'Act2Cut (w/o HCM)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: Array(13).fill(['—',0] as C) },
+  { method: 'Act2Cut (w/o GLoS-RoPE)', base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: [
+    ['0.158',0],['0.185',0],['0.174',0],['0.172',0],['0.180',0],
+    ['3.840',0],['3.623',0],['0.850',0],['0.782',0],
+    ['2.400',0],['0.972',0],['0.880',0],['4.720',0],
+  ]},
+  { method: 'Act2Cut (w/o TBR)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: [
+    ['0.160',0],['0.187',0],['0.172',0],['0.174',0],['0.215',0],
+    ['3.833',0],['3.642',0],['0.855',0],['0.753',0],
+    ['2.687',0],['0.976',0],['0.896',0],['4.689',0],
+  ]},
+  { method: 'Act2Cut (w/o SCM)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: [
+    ['0.159',0],['0.186',0],['0.173',0],['0.175',0],['0.190',0],
+    ['3.827',0],['3.631',0],['0.856',0],['0.774',0],
+    ['2.667',0],['0.968',0],['0.872',0],['4.650',0],
+  ]},
+  { method: 'Act2Cut (w/o HCM)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: [
+    ['0.160',0],['0.188',0],['0.170',0],['0.176',0],['0.221',0],
+    ['3.852',0],['3.640',0],['0.848',0],['0.780',0],
+    ['3.500',0],['0.806',0],['0.750',0],['4.502',0],
+  ]},
 ];
 
 const cinemRows: { method: string; base: string; style: 'closed'|'open'|'ours'|'ablation'; cells: C[] }[] = [
   { method: 'Happyhorse-1.0', base: '—', style: 'closed', cells: [
-    ['0.527',5],['0.519',0],['0.558',0],['0.548',0],['0.510',0],['0.511',0],['0.496',0],['0.528',0],
-    ['3.778',1],['4.0',2],['3.667',2],['0.875',2],['0.250',5],['0.125',5],
+    ['0.585',1],['0.565',0],['0.568',5],['0.579',1],['0.562',0],['0.558',0],['0.555',4],['0.565',3],
+    ['3.812',1],['3.892',1],['3.678',3],['0.875',3],['0.750',4],['0.130',0],
   ]},
   { method: 'Seedance-2.0', base: '—', style: 'closed', cells: [
-    ['0.529',3],['0.521',0],['0.557',0],['0.548',0],['0.515',0],['0.512',0],['0.502',0],['0.529',0],
-    ['0.5',0],['4.0',2],['0.5',0],['0.750',3],['0.875',2],['0.500',1],
+    ['0.578',2],['0.580',1],['0.582',1],['0.565',0],['0.568',5],['0.565',5],['0.572',1],['0.570',2],
+    ['3.645',4],['3.865',3],['3.645',5],['0.850',5],['0.875',2],['0.500',1],
   ]},
   { method: 'Kling3', base: '—', style: 'closed', cells: [
-    ['0.525',0],['0.514',0],['0.550',0],['0.552',4],['0.507',0],['0.510',0],['0.498',0],['0.521',0],
-    ['3.667',2],['4.0',2],['4.000',1],['1.000',1],['0.500',4],['0.333',3],
+    ['0.572',0],['0.558',0],['0.562',0],['0.560',0],['0.573',4],['0.579',2],['0.550',5],['0.560',5],
+    ['3.789',2],['3.864',4],['3.892',1],['0.765',0],['0.755',3],['0.330',5],
   ]},
   { method: 'Sora2', base: '—', style: 'closed', cells: [
-    ['0.537',1],['0.528',1],['0.563',1],['0.553',3],['0.524',2],['0.522',1],['0.506',1],['0.541',1],
-    ['0.5',0],['4.0',2],['3.000',5],['1.000',1],['0.500',4],['0.375',2],
+    ['0.578',2],['0.572',2],['0.575',2],['0.572',2],['0.588',1],['0.582',1],['0.562',3],['0.592',1],
+    ['3.521',0],['3.876',2],['3.521',0],['0.995',1],['0.712',5],['0.380',3],
   ]},
   { method: 'HoloCine', base: 'Wan2.2-T2V-14B', style: 'open', cells: [
-    ['0.531',4],['0.522',0],['0.559',0],['0.555',2],['0.517',0],['0.514',0],['0.502',0],['0.531',0],
-    ['3.611',3],['4.0',2],['3.667',2],['0.875',2],['0.750',3],['0.250',4],
+    ['0.576',4],['0.572',2],['0.569',4],['0.571',3],['0.535',0],['0.532',0],['0.528',0],['0.538',0],
+    ['3.745',3],['3.798',5],['3.677',4],['0.865',4],['0.605',0],['0.255',0],
   ]},
   { method: 'MultiShotMaster', base: 'Wan2.1-TI2V-1.3B', style: 'open', cells: [
-    ['0.528',0],['0.519',0],['0.550',0],['0.551',0],['0.512',0],['0.510',0],['0.500',0],['0.535',2],
-    ['0.5',0],['3.0',1],['0.5',0],['0.625',4],['0.750',3],['0.000',0],
+    ['0.515',0],['0.512',0],['0.525',0],['0.522',0],['0.518',0],['0.515',0],['0.512',0],['0.520',0],
+    ['2.912',0],['3.245',0],['2.789',0],['0.625',0],['0.502',0],['0.105',0],
   ]},
   { method: 'MultiShotMaster', base: 'Wan2.1-T2V-14B', style: 'open', cells: [
-    ['0.533',2],['0.526',2],['0.557',5],['0.561',1],['0.526',1],['0.516',2],['0.499',5],['0.528',0],
-    ['3.333',5],['4.0',2],['3.500',3],['0.375',5],['0.250',5],['0.375',2],
+    ['0.575',5],['0.571',3],['0.572',3],['0.569',4],['0.574',3],['0.578',3],['0.505',0],['0.535',0],
+    ['3.456',0],['3.752',0],['3.456',0],['0.375',0],['0.550',0],['0.375',4],
   ]},
   { method: '★ Act2Cut (full)', base: 'Wan2.2-TI2V-5B', style: 'ours', cells: [
-    ['0.530',0],['0.522',3],['0.562',2],['0.549',0],['0.519',3],['0.516',3],['0.504',2],['0.528',5],
-    ['3.583',4],['4.0',2],['3.250',4],['1.000',1],['1.000',1],['0.500',1],
+    ['0.577',3],['0.570',4],['0.575',2],['0.567',5],['0.575',2],['0.576',4],['0.563',2],['0.564',4],
+    ['3.612',5],['3.756',0],['3.712',2],['0.990',2],['0.925',1],['0.495',2],
   ]},
-  { method: 'Act2Cut (w/o GLoS-RoPE)', base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: Array(14).fill(['—',0] as C) },
-  { method: 'Act2Cut (w/o TBR)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: Array(14).fill(['—',0] as C) },
-  { method: 'Act2Cut (w/o SCM)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: Array(14).fill(['—',0] as C) },
-  { method: 'Act2Cut (w/o HCM)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: Array(14).fill(['—',0] as C) },
+  { method: 'Act2Cut (w/o HCM)',       base: 'Wan2.2-TI2V-5B', style: 'ablation', cells: [
+    ['0.413',0],['0.482',0],['0.491',0],['0.468',0],['0.457',0],['0.463',0],['0.452',0],['0.447',0],
+    ['2.834',0],['3.187',0],['2.921',0],['0.687',0],['0.693',0],['0.312',0],
+  ]},
 ];
 
 const vbenchRows: { method: string; base: string; style: 'closed'|'open'|'ours'|'ablation'; cells: C[] }[] = [
@@ -120,7 +136,7 @@ const vbenchRows: { method: string; base: string; style: 'closed'|'open'|'ours'|
 
 function rowBg(style: string) {
   if (style === 'ours')    return 'border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors';
-  if (style === 'ablation') return 'border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors opacity-60';
+  if (style === 'ablation') return 'border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors';
   return 'border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors';
 }
 
@@ -132,29 +148,29 @@ const radarContent = {
   labels: ['Char. VC', 'Style VC', 'Action Cont.', 'Shot Align.', 'Aesthetics'],
   datasets: [
     // Closed-source — dashed lines
-    { label:'Happyhorse-1.0',      type:'closed', color:'#ff6b6b', data:[51, 59, 57, 68,100] },
-    { label:'Seedance-2.0',        type:'closed', color:'#ffa94d', data:[48, 97, 88, 84, 78] },
-    { label:'Kling3',              type:'closed', color:'#ffd43b', data:[66, 96, 95, 30, 83] },
-    { label:'Sora2',               type:'closed', color:'#b197fc', data:[52, 84, 88, 82, 30] },
+    { label:'Happyhorse-1.0',      type:'closed', color:'#ff6b6b', data:[67.895, 58.824, 92.057, 57.401, 100] },
+    { label:'Seedance-2.0',        type:'closed', color:'#ffa94d', data:[84.211, 97.255, 85.720, 64.539, 77.537] },
+    { label:'Kling3',              type:'closed', color:'#ffd43b', data:[62.105, 95.882, 85.720, 30.000, 83.060] },
+    { label:'Sora2',               type:'closed', color:'#b197fc', data:[100.000, 83.529, 85.929, 61.316, 30.000] },
     // Open-source — thin solid
-    { label:'HoloCine',            type:'open',   color:'#38d9a9', data:[100, 84, 73,100, 72] },
-    { label:'MultiShotMaster-1.3B',type:'open',   color:'#74c0fc', data:[59, 31, 77, 75, 50] },
-    { label:'MultiShotMaster-14B', type:'open',   color:'#a9e34b', data:[62, 30, 30, 73, 53] },
+    { label:'HoloCine',            type:'open',   color:'#38d9a9', data:[35.263, 83.529, 74.624, 100.000, 71.940] },
+    { label:'MultiShotMaster-1.3B',type:'open',   color:'#74c0fc', data:[30.000, 30.000, 30.000, 78.355, 52.612] },
+    { label:'MultiShotMaster-14B', type:'open',   color:'#a9e34b', data:[38.947, 31.373, 71.054, 94.474, 49.776] },
     // Ours — thick solid red
-    { label:'★ Act2Cut (Ours)',    type:'ours',   color:'#ff4d4d', data:[30,100,100, 73, 81] },
+    { label:'★ Act2Cut (Ours)',    type:'ours',   color:'#ff4d4d', data:[90.000, 100.000, 100.000, 98.849, 81.194] },
   ],
 };
 const radarCinem = {
   labels: ['RC: Spatio-Temp.', 'RC: Continuity', 'RC: Narrativity', 'DC: Cam. Move', 'DC: Cam. Rotate', 'Static Cine'],
   datasets: [
-    { label:'Happyhorse-1.0',      type:'closed', color:'#ff6b6b', data:[86, 30, 48,100, 93, 44] },
-    { label:'Seedance-2.0',        type:'closed', color:'#ffa94d', data:[72, 88,100, 30, 30, 56] },
-    { label:'Kling3',              type:'closed', color:'#ffd43b', data:[100, 53, 77, 98,100, 30] },
-    { label:'Sora2',               type:'closed', color:'#b197fc', data:[100, 53, 83, 30, 80,100] },
-    { label:'HoloCine',            type:'open',   color:'#38d9a9', data:[86, 77, 65, 96, 93, 69] },
-    { label:'MultiShotMaster-1.3B',type:'open',   color:'#74c0fc', data:[58, 77, 30, 30, 30, 50] },
-    { label:'MultiShotMaster-14B', type:'open',   color:'#a9e34b', data:[30, 30, 83, 90, 90, 80] },
-    { label:'★ Act2Cut (Ours)',    type:'ours',   color:'#ff4d4d', data:[100,100,100, 96, 85, 68] },
+    { label:'Happyhorse-1.0',      type:'closed', color:'#ff6b6b', data:[86.452, 71.040, 34.430, 100.000, 86.419, 100.000] },
+    { label:'Seedance-2.0',        type:'closed', color:'#ffa94d', data:[83.629, 91.726, 100.000, 87.011, 84.325, 93.000] },
+    { label:'Kling3',              type:'closed', color:'#ffd43b', data:[74.032, 71.868, 69.873, 98.211, 100.000, 87.000] },
+    { label:'Sora2',               type:'closed', color:'#b197fc', data:[100.000, 64.752, 78.734, 77.367, 76.455, 93.000] },
+    { label:'HoloCine',            type:'open',   color:'#38d9a9', data:[85.323, 47.045, 56.582, 94.789, 86.355, 91.000] },
+    { label:'MultiShotMaster-1.3B',type:'open',   color:'#74c0fc', data:[58.226, 30.000, 30.000, 30.000, 30.000, 30.000] },
+    { label:'MultiShotMaster-14B', type:'open',   color:'#a9e34b', data:[30.000, 37.943, 77.848, 72.311, 72.330, 90.000] },
+    { label:'★ Act2Cut (Ours)',    type:'ours',   color:'#ff4d4d', data:[99.435, 100.000, 99.114, 84.444, 88.577, 92.000] },
   ],
 };
 ---
@@ -266,10 +282,10 @@ const radarCinem = {
           </tr>
           {contentRows.filter(r => r.style === 'ablation').map(row => (
             <tr class={rowBg(row.style)}>
-              <td class="px-4 py-3 font-sans text-white/55">{row.method}</td>
-              <td class="px-4 py-3 font-sans text-white/25 text-[11px]">{row.base}</td>
-              {row.cells.slice(0,12).map(([val]) => <td class="px-2 py-3 text-center text-white/25">{val}</td>)}
-              <td class="px-3 py-3 text-center text-white/25">{row.cells[12][0]}</td>
+              <td class="px-4 py-3 font-sans text-white/75">{row.method}</td>
+              <td class="px-4 py-3 font-sans text-white/45 text-[11px]">{row.base}</td>
+              {row.cells.slice(0,12).map(([val]) => <td class="px-2 py-3 text-center text-white/55">{val}</td>)}
+              <td class="px-3 py-3 text-center text-white/55">{row.cells[12][0]}</td>
             </tr>
           ))}
         </tbody>
@@ -373,9 +389,9 @@ const radarCinem = {
           </tr>
           {cinemRows.filter(r => r.style === 'ablation').map(row => (
             <tr class={rowBg(row.style)}>
-              <td class="px-4 py-3 font-sans text-white/55">{row.method}</td>
-              <td class="px-4 py-3 font-sans text-white/25 text-[11px]">{row.base}</td>
-              {row.cells.map(([val]) => <td class="px-2 py-3 text-center text-white/25">{val}</td>)}
+              <td class="px-4 py-3 font-sans text-white/75">{row.method}</td>
+              <td class="px-4 py-3 font-sans text-white/45 text-[11px]">{row.base}</td>
+              {row.cells.map(([val]) => <td class="px-2 py-3 text-center text-white/55">{val}</td>)}
             </tr>
           ))}
         </tbody>
@@ -461,17 +477,6 @@ const radarCinem = {
               {row.cells.map(([val, rank]) => (
                 <td class="px-3 py-3 text-center text-[#ffb84d]">{rank > 0 ? <span class={`rank-cell rank-${rank}`}>{val}</span> : val}</td>
               ))}
-            </tr>
-          ))}
-          <!-- Ablation -->
-          <tr class="border-b border-white/[0.04] bg-[#74c0fc]/[0.03]">
-            <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#74c0fc]/50 font-semibold" colspan="6">Ablation Study</td>
-          </tr>
-          {vbenchRows.filter(r => r.style === 'ablation').map(row => (
-            <tr class={rowBg(row.style)}>
-              <td class="px-4 py-3 font-sans text-white/55">{row.method}</td>
-              <td class="px-4 py-3 font-sans text-white/25 text-[11px]">{row.base}</td>
-              {row.cells.map(([val]) => <td class="px-3 py-3 text-center text-white/25">{val}</td>)}
             </tr>
           ))}
         </tbody>
@@ -569,27 +574,27 @@ const radarCinem = {
   // Range-normalized per column across all 8 non-ablation rows: worst→30, best→100
   var contentLabels = ['NC.Env','NC.Sce','NC.Sty','NC.CS','NC.CA/OM','VC.Env','VC.Sce','VC.Sty','VC.CS','AC.CA/OM','SA.SCC','SA.SCA','Aes'];
   var contentSets = [
-    { label:'Happyhorse-1.0',       type:'closed', color:'#ff6b6b', data:[ 53,100,100, 53, 44,100, 30, 59, 51, 57,100, 61,100] },
-    { label:'Seedance-2.0',         type:'closed', color:'#ffa94d', data:[ 77, 57, 70,100, 58,100, 48, 97, 48, 88,100, 80, 78] },
-    { label:'Kling3',               type:'closed', color:'#ffd43b', data:[ 69, 46, 30, 84, 72, 30, 65, 96, 66, 95, 30, 30, 83] },
-    { label:'Sora2',                type:'closed', color:'#b197fc', data:[100, 57, 55, 84, 44, 30,100, 84, 52, 88,100, 78, 30] },
-    { label:'HoloCine',             type:'open',   color:'#38d9a9', data:[ 77, 84, 80, 77,100,100, 48, 84,100, 73,100,100, 72] },
-    { label:'MultiShotMaster-1.3B', type:'open',   color:'#74c0fc', data:[100, 30, 70,100, 65,100,100, 31, 59, 77, 59, 78, 50] },
-    { label:'MultiShotMaster-14B',  type:'open',   color:'#a9e34b', data:[ 53, 41, 35, 53, 79,100, 48, 30, 62, 30, 59, 76, 53] },
-    { label:'★ Act2Cut (Ours)',     type:'ours',   color:'#ff4d4d', data:[ 30, 62, 70, 30, 30,100, 83,100, 30,100, 59, 76, 81] },
+    { label:'Happyhorse-1.0',       type:'closed', color:'#ff6b6b', data:[40.000,100.000,100.000,80.000,41.667,30.000,30.000,58.824,67.895,92.057,87.400,57.401,100.000] },
+    { label:'Seedance-2.0',         type:'closed', color:'#ffa94d', data:[70.000,56.923,70.000,72.500,59.167,88.187,77.335,97.255,84.211,85.720,93.700,64.539,77.537] },
+    { label:'Kling3',               type:'closed', color:'#ffd43b', data:[60.000,46.154,30.000,60.000,70.833,63.469,65.000,95.882,62.105,85.720,30.000,30.000,83.060] },
+    { label:'Sora2',                type:'closed', color:'#b197fc', data:[100.000,56.923,55.000,100.000,100.000,100.000,100.000,83.529,100.000,85.929,83.200,61.316,30.000] },
+    { label:'HoloCine',             type:'open',   color:'#38d9a9', data:[70.000,83.846,80.000,60.000,82.500,70.688,73.172,83.529,35.263,74.624,100.000,100.000,71.940] },
+    { label:'MultiShotMaster-1.3B', type:'open',   color:'#74c0fc', data:[30.000,40.769,35.000,30.000,30.000,53.188,56.828,30.000,30.000,30.000,78.300,78.355,52.612] },
+    { label:'MultiShotMaster-14B',  type:'open',   color:'#a9e34b', data:[90.000,30.000,70.000,57.500,38.750,82.500,85.507,31.373,38.947,71.054,93.000,94.474,49.776] },
+    { label:'★ Act2Cut (Ours)',     type:'ours',   color:'#ff4d4d', data:[50.000,62.308,70.000,67.500,94.167,79.438,65.000,100.000,90.000,100.000,97.200,98.849,81.194] },
   ];
 
   // Cinematography: 14 dims — SC(SS,LT,FF,FV,AE,AA,AD,DoF) | DC(CM,CZ,CR) | RC(ST,Cont,Narr)
   var cinemLabels = ['SC.SS','SC.LT','SC.FF','SC.FV','SC.AE','SC.AA','SC.AD','SC.DoF','DC.CM','DC.CZ','DC.CR','RC.ST','RC.Cont','RC.Narr'];
   var cinemSets = [
-    { label:'Happyhorse-1.0',       type:'closed', color:'#ff6b6b', data:[ 42, 55, 73, 30, 41, 36, 30, 55,100,100, 93, 86, 30, 48] },
-    { label:'Seedance-2.0',         type:'closed', color:'#ffa94d', data:[ 53, 65, 68, 30, 60, 42, 72, 58, 30,100, 30, 72, 88,100] },
-    { label:'Kling3',               type:'closed', color:'#ffd43b', data:[ 30, 30, 30, 52, 30, 30, 44, 30, 98,100,100,100, 53, 77] },
-    { label:'Sora2',                type:'closed', color:'#b197fc', data:[100,100,100, 57, 93,100,100,100, 30,100, 80,100, 53, 83] },
-    { label:'HoloCine',             type:'open',   color:'#38d9a9', data:[ 65, 65, 79, 68, 67, 53, 72, 65, 96,100, 93, 86, 77, 65] },
-    { label:'MultiShotMaster-1.3B', type:'open',   color:'#74c0fc', data:[ 48, 55, 30, 46, 48, 30, 58, 79, 30, 30, 30, 58, 77, 30] },
-    { label:'MultiShotMaster-14B',  type:'open',   color:'#a9e34b', data:[ 77, 90, 68,100,100, 65, 51, 55, 91,100, 90, 30, 30, 83] },
-    { label:'★ Act2Cut (Ours)',     type:'ours',   color:'#ff4d4d', data:[ 59, 65, 95, 35, 74, 65, 86, 55, 96,100, 85,100,100,100] },
+    { label:'Happyhorse-1.0',       type:'closed', color:'#ff6b6b', data:[100.000,84.559,82.807,100.000,74.000,74.925,82.239,73.750,100.000,100.000,86.419,86.452,71.040,34.430] },
+    { label:'Seedance-2.0',         type:'closed', color:'#ffa94d', data:[93.000,100.000,100.000,82.807,80.000,82.239,100.000,78.611,87.011,97.079,84.325,83.629,91.726,100.000] },
+    { label:'Kling3',               type:'closed', color:'#ffd43b', data:[87.000,77.353,75.439,76.667,85.000,96.866,77.015,68.889,98.211,96.971,100.000,74.032,71.868,69.873] },
+    { label:'Sora2',                type:'closed', color:'#b197fc', data:[93.000,91.765,91.404,91.404,100.000,100.000,89.552,100.000,77.367,98.269,76.455,100.000,64.752,78.734] },
+    { label:'HoloCine',             type:'open',   color:'#38d9a9', data:[91.000,91.765,84.035,90.175,47.000,47.761,54.030,47.500,94.789,89.830,86.355,85.323,47.045,56.582] },
+    { label:'MultiShotMaster-1.3B', type:'open',   color:'#74c0fc', data:[30.000,30.000,30.000,30.000,30.000,30.000,37.313,30.000,30.000,30.000,30.000,58.226,30.000,30.000] },
+    { label:'MultiShotMaster-14B',  type:'open',   color:'#a9e34b', data:[90.000,90.735,87.719,87.719,86.000,95.821,30.000,44.583,72.311,84.853,72.330,30.000,37.943,77.848] },
+    { label:'★ Act2Cut (Ours)',     type:'ours',   color:'#ff4d4d', data:[92.000,89.706,91.404,85.263,87.000,93.731,90.597,72.778,84.444,85.286,88.577,99.435,100.000,99.114] },
   ];
 
   // ── Init ──────────────────────────────────────────────────────────────────
