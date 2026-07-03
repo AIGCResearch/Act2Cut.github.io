@@ -55,6 +55,16 @@ export const comparisonMethods: ComparisonMethod[] = [
     "isOurs": false
   },
   {
+    "key": "cinetrans",
+    "label": "CineTrans",
+    "isOurs": false
+  },
+  {
+    "key": "wan2_2_ti2v_5b",
+    "label": "Wan2.2-TI2V-5B",
+    "isOurs": false
+  },
+  {
     "key": "act2cut",
     "label": "★ Act2Cut (Ours)",
     "isOurs": true
@@ -87,7 +97,9 @@ export const comparisonItems: ComparisonItem[] = [
       "sora2": "qualitative_comparison/Sora2/Your_name/group_0009/group_0009.mp4",
       "act2cut": "qualitative_comparison/Act2Cut/Your_Name/group_0009/group_0009.mp4",
       "happyhorse1": "qualitative_comparison/Happyhorse1/Your_Name/group_0009/group_0009.mp4",
-      "seedance2": "qualitative_comparison/Seedance2/Your_name/group_0009/group_0009.mp4"
+      "seedance2": "qualitative_comparison/Seedance2/Your_name/group_0009/group_0009.mp4",
+      "cinetrans": "qualitative_comparison/CineTrans/Your_Name/group_0009/group_0009.mp4",
+      "wan2_2_ti2v_5b": "qualitative_comparison/Wan2.2-TI2V-5B/Your_Name/group_0009/group_0009.mp4"
     }
   },
   {
@@ -117,7 +129,9 @@ export const comparisonItems: ComparisonItem[] = [
       "sora2": "qualitative_comparison/Sora2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "act2cut": "qualitative_comparison/Act2Cut/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
       "happyhorse1": "qualitative_comparison/Happyhorse1/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
-      "seedance2": "qualitative_comparison/Seedance2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4"
+      "seedance2": "qualitative_comparison/Seedance2/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
+      "cinetrans": "qualitative_comparison/CineTrans/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4",
+      "wan2_2_ti2v_5b": "qualitative_comparison/Wan2.2-TI2V-5B/Harry_Potter_The_Chamber_of_Secrets/group_0014/group_0014.mp4"
     }
   },
   {
@@ -145,7 +159,9 @@ export const comparisonItems: ComparisonItem[] = [
       "sora2": "qualitative_comparison/Sora2/Good_Will_Hunting/group_0038/group_0038.mp4",
       "act2cut": "qualitative_comparison/Act2Cut/Good_Will_Hunting/group_0038/group_0038.mp4",
       "happyhorse1": "qualitative_comparison/Happyhorse1/Good_Will_Hunting/group_0038/group_0038.mp4",
-      "seedance2": "qualitative_comparison/Seedance2/Good_Will_Hunting/group_0038/group_0038.mp4"
+      "seedance2": "qualitative_comparison/Seedance2/Good_Will_Hunting/group_0038/group_0038.mp4",
+      "cinetrans": "qualitative_comparison/CineTrans/Good_Will_Hunting/group_0038/group_0038.mp4",
+      "wan2_2_ti2v_5b": "qualitative_comparison/Wan2.2-TI2V-5B/Good_Will_Hunting/group_0038/group_0038.mp4"
     }
   },
   {
@@ -175,7 +191,9 @@ export const comparisonItems: ComparisonItem[] = [
       "sora2": "qualitative_comparison/Sora2/Your_name/group_0014/group_0014.mp4",
       "act2cut": "qualitative_comparison/Act2Cut/Your_Name/group_0014/group_0014.mp4",
       "happyhorse1": "qualitative_comparison/Happyhorse1/Your_Name/group_0014/group_0014.mp4",
-      "seedance2": "qualitative_comparison/Seedance2/Your_name/group_0014/group_0014.mp4"
+      "seedance2": "qualitative_comparison/Seedance2/Your_name/group_0014/group_0014.mp4",
+      "cinetrans": "qualitative_comparison/CineTrans/Your_Name/group_0014/group_0014.mp4",
+      "wan2_2_ti2v_5b": "qualitative_comparison/Wan2.2-TI2V-5B/Your_Name/group_0014/group_0014.mp4"
     }
   }
 ];
