@@ -409,11 +409,11 @@ html:not(.dark) .glass-arch {
   }
 }
 .hero-meta-marker {
-  color: #ffb84d;
-}
-html:not(.dark) .hero-meta-marker {
-  color: #b7791f;
-  text-shadow: none;
+  color: transparent;
+  background-image: linear-gradient(to right, #ff4d4d, #ffb84d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .poster-series-badge {
   border-color: transparent !important;
