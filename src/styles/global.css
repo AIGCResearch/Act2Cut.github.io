@@ -482,24 +482,6 @@ html:not(.dark) .section-heading-float {
   text-shadow: none;
 }
 
-/* Hero title dark halo — larger than ambient-scrim, hidden in light mode */
-.hero-scrim {
-  position: absolute;
-  pointer-events: none;
-  inset: -60px -160px;
-  background: radial-gradient(
-    ellipse 55% 70% at 50% 60%,
-    rgba(4, 2, 10, 0.60) 0%,
-    rgba(4, 2, 10, 0.30) 50%,
-    transparent 72%
-  );
-  border-radius: 50%;
-  z-index: 0;
-}
-html:not(.dark) .hero-scrim {
-  display: none;
-}
-
 /* Ambient scrim — feathered radial gradient behind floating text blocks.
    Peaks at 0.18 opacity so the background remains visible; works for both
    large headings and small-text lines where text-shadow alone is insufficient. */

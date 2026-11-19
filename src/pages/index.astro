@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import HeroSection from '../components/HeroSection.astro';
 import AbstractSection from '../components/AbstractSection.astro';
+import ProblemDefinitionSection from '../components/ProblemDefinitionSection.astro';
 import OverviewSection from '../components/OverviewSection.astro';
 import CitationSection from '../components/CitationSection.astro';
 import PosterSection from '../components/PosterSection.astro';
@@ -202,6 +203,7 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
     <HeroSection />
     {!isAnonymous && <PosterSection />}
     <AbstractSection />
+    <ProblemDefinitionSection />
     <OverviewSection />
 
     <!-- Performance Comparison teaser (mini table) -->
