@@ -541,7 +541,7 @@ html:not(.dark) .hero-team-footer {
   margin-inline: auto;
   border-radius: 999px;
   background: linear-gradient(
-    90deg,
+    calc(90deg + var(--team-border-angle)),
     transparent 0%,
     #ff4d4d 18%,
     #ff7a3d 36%,
@@ -550,13 +550,8 @@ html:not(.dark) .hero-team-footer {
     #ff4d4d 82%,
     transparent 100%
   );
-  background-size: 200% 100%;
   box-shadow: 0 0 18px rgba(255, 184, 77, 0.28);
-  animation: hero-content-divider-flow 4.5s linear infinite;
-}
-@keyframes hero-content-divider-flow {
-  from { background-position: 100% 0; }
-  to { background-position: 0 0; }
+  animation: hero-team-border-flow 5s linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-team-footer::before {
