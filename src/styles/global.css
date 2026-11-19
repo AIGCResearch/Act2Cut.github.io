@@ -21,8 +21,8 @@
 }
 
 #site-background .site-bg-soften {
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
 }
 
 /* A translucent film grain over the collage, behind the page content. */
