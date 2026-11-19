@@ -597,7 +597,7 @@ html:not(.dark) .rank-5 { color: #861f4f; background: rgba(255, 120, 180, 0.25);
 }
 
 html.dark .theme-vignette {
-  background: rgba(0, 0, 0, 0.90) !important;
+  background: rgba(0, 0, 0, 0.50) !important;
 }
 
 @media (max-width: 640px) {
@@ -630,7 +630,7 @@ html:not(.dark) .theme-overlay {
 }
 
 html:not(.dark) .theme-vignette {
-  background: rgba(255, 255, 255, 0.90) !important;
+  background: rgba(255, 255, 255, 0.50) !important;
 }
 
 /* "Action-Cut" title uses from-white to-white/30 gradient — make it dark in light mode */
@@ -845,7 +845,7 @@ html:not(.dark) .theme-overlay {
 }
 
 html:not(.dark) .theme-vignette {
-  background: rgba(255, 255, 255, 0.90) !important;
+  background: rgba(255, 255, 255, 0.50) !important;
 }
 
 /* --- text-white variants → near-black --- */
