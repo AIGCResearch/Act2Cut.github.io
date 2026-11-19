@@ -38,6 +38,13 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
   </div>
 
   {!isAnonymous && (
+  <div class="hero-team-logo flex items-center justify-center" data-reveal style="transition-delay:80ms" aria-label="ActXCut Team logo">
+    <img src={`${base}/images/actxcut-team-light.png`} class="block h-[48px] w-[280px] max-w-full object-contain sm:h-[58px] sm:w-[320px] xl:h-[68px] xl:w-[360px] dark:hidden" alt="ActXCut Team" loading="eager" />
+    <img src={`${base}/images/actxcut-team-dark.png`} class="hidden h-[48px] w-[280px] max-w-full object-contain sm:h-[58px] sm:w-[320px] xl:h-[68px] xl:w-[360px] dark:block" alt="ActXCut Team" loading="eager" />
+  </div>
+  )}
+
+  {!isAnonymous && (
   <div class="relative" data-reveal style="transition-delay:100ms">
     <!-- Soft dark halo — larger feathered ellipse for readability; hidden in light mode -->
     <div class="hero-scrim"></div>
@@ -106,13 +113,6 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
       </a>
       )}
     </div>
-
-    {!isAnonymous && (
-    <div class="hero-team-logo flex items-center justify-center" data-reveal style="transition-delay:260ms" aria-label="ActXCut Team logo">
-      <img src={`${base}/images/actxcut-team-light.png`} class="block h-[48px] w-[280px] max-w-full object-contain sm:h-[58px] sm:w-[320px] xl:h-[68px] xl:w-[360px] dark:hidden" alt="ActXCut Team" loading="eager" />
-      <img src={`${base}/images/actxcut-team-dark.png`} class="hidden h-[48px] w-[280px] max-w-full object-contain sm:h-[58px] sm:w-[320px] xl:h-[68px] xl:w-[360px] dark:block" alt="ActXCut Team" loading="eager" />
-    </div>
-    )}
 
     {!isAnonymous && (
     <div class="glass-arch hero-logo-reveal -mx-2 flex w-[calc(100%+1rem)] flex-col items-stretch gap-y-3 rounded-2xl px-6 py-4 sm:-mx-4 sm:w-[calc(100%+2rem)] sm:rounded-3xl sm:px-8 sm:py-5 md:px-12 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-x-3 xl:gap-x-6" aria-label="Institution logos" data-reveal style="transition-delay:300ms">
