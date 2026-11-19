@@ -67,6 +67,18 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
     </script>
 
+    <!-- Keep the floating team mark tucked away at the top of the page. -->
+    <script>
+      const teamFooter = document.querySelector<HTMLElement>('.hero-team-footer');
+      if (teamFooter) {
+        const syncTeamFooter = () => {
+          teamFooter.classList.toggle('team-footer-scrolled', window.scrollY > 8);
+        };
+        window.addEventListener('scroll', syncTeamFooter, { passive: true });
+        syncTeamFooter();
+      }
+    </script>
+
     <!-- Parallax background.
          JS only writes to the --parallax-y custom property; the actual transform is composed in
          CSS so the mobile centering translateX(-50%) is preserved. Mobile uses a smaller rate
