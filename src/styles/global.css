@@ -72,6 +72,16 @@ html:not(.dark) ::selection {
   filter: blur(0);
 }
 
+/* Animate the glass panel itself without filtering its backdrop. */
+[data-reveal].hero-logo-reveal,
+[data-reveal].hero-logo-reveal.is-visible {
+  filter: none;
+  will-change: opacity, transform;
+  transition:
+    opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .stat-bar-fill {
   height: 2px;
   background: linear-gradient(to right, #ff4d4d, #ffb84d);
