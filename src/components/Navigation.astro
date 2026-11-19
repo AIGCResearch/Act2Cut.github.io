@@ -92,7 +92,7 @@ const pageLinks = [
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" />
               </svg>
             </button>
-            <nav id="section-menu" class="hidden absolute right-0 top-[calc(100%+10px)] w-48 rounded-2xl border border-white/20 bg-[#0a0a0a] p-2 shadow-[0_14px_38px_rgba(0,0,0,0.38)] backdrop-blur-xl" aria-label="On-page sections">
+            <nav id="section-menu" class="absolute right-0 top-[calc(100%+10px)] w-48 rounded-2xl border border-white/20 bg-[#0a0a0a] p-2 shadow-[0_14px_38px_rgba(0,0,0,0.38)] backdrop-blur-xl" aria-label="On-page sections" aria-hidden="true" inert>
               {homeAnchors.map(link => (
                 <a href={link.href} data-nav-link class="section-menu-link block rounded-xl px-3 py-2.5 text-[11px] font-semibold tracking-[0.14em] uppercase transition-colors">
                   {link.label}
@@ -253,12 +253,13 @@ const pageLinks = [
 
   function setSectionMenu(open: boolean) {
     if (!sectionToggle || !sectionMenu) return;
-    sectionMenu.classList.toggle('hidden', !open);
     sectionToggle.setAttribute('aria-expanded', String(open));
+    sectionMenu.setAttribute('aria-hidden', String(!open));
+    sectionMenu.toggleAttribute('inert', !open);
   }
 
   sectionToggle?.addEventListener('click', () => {
-    setSectionMenu(sectionMenu?.classList.contains('hidden') ?? false);
+    setSectionMenu(sectionToggle.getAttribute('aria-expanded') !== 'true');
   });
   sectionMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => setSectionMenu(false));
@@ -312,7 +313,16 @@ const pageLinks = [
     const wasScrolled = header?.classList.contains('nav-scrolled') ?? false;
     header?.classList.toggle('nav-scrolled', scrolled);
     document.documentElement.classList.toggle('nav-scrolled', scrolled);
-    if (scrolled !== wasScrolled) setSectionMenu(scrolled);
+    if (scrolled !== wasScrolled) {
+      if (scrolled) {
+        // Let the island render first so the dropdown has a visible opening transition.
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          if (header?.classList.contains('nav-scrolled')) setSectionMenu(true);
+        }));
+      } else {
+        setSectionMenu(false);
+      }
+    }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -359,6 +369,22 @@ const pageLinks = [
   }
   #top-nav #section-menu-toggle[aria-expanded="true"] .section-chevron {
     transform: rotate(180deg);
+  }
+  #top-nav #section-menu {
+    opacity: 0;
+    visibility: hidden;
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: clip-path 320ms cubic-bezier(0.22, 1, 0.36, 1), transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease, visibility 0s linear 320ms;
+  }
+  #top-nav #section-menu-toggle[aria-expanded="true"] + #section-menu {
+    opacity: 1;
+    visibility: visible;
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: clip-path 320ms cubic-bezier(0.22, 1, 0.36, 1), transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease, visibility 0s;
   }
   #top-nav #section-menu .section-menu-link {
     color: rgba(255, 255, 255, 0.72);
@@ -447,6 +473,11 @@ const pageLinks = [
   @media (min-width: 768px) and (max-width: 820px) {
     #top-nav.nav-scrolled .brand-tagline {
       display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #top-nav #section-menu {
+      transition: none;
     }
   }
 </style>

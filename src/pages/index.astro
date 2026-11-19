@@ -5,6 +5,7 @@ import HeroSection from '../components/HeroSection.astro';
 import AbstractSection from '../components/AbstractSection.astro';
 import OverviewSection from '../components/OverviewSection.astro';
 import CitationSection from '../components/CitationSection.astro';
+import PosterSection from '../components/PosterSection.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
@@ -377,6 +378,7 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
       </div>
     </div>
 
+    {!isAnonymous && <PosterSection />}
     {!isAnonymous && <CitationSection />}
   </main>
 </Layout>
