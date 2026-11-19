@@ -543,9 +543,11 @@ html:not(.dark) .hero-team-footer {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 184, 77, 0.45) 18%,
-    #ffe8a8 50%,
-    rgba(255, 184, 77, 0.45) 82%,
+    #ff4d4d 18%,
+    #ff7a3d 36%,
+    #ffb84d 50%,
+    #ff7a3d 64%,
+    #ff4d4d 82%,
     transparent 100%
   );
   background-size: 200% 100%;
