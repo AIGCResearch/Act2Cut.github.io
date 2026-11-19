@@ -105,9 +105,11 @@ html:not(.dark) ::selection {
   filter: blur(0);
 }
 
-/* Animate the glass panel itself without filtering its backdrop. */
+/* Animate glass panels without filtering their backdrops. */
 [data-reveal].hero-logo-reveal,
-[data-reveal].hero-logo-reveal.is-visible {
+[data-reveal].hero-logo-reveal.is-visible,
+[data-reveal].abstract-card-reveal,
+[data-reveal].abstract-card-reveal.is-visible {
   filter: none;
   will-change: opacity, transform;
   transition:
