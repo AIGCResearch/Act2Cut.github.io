@@ -509,7 +509,7 @@ html:not(.dark) .hero-team-footer {
   mask-composite: exclude;
   pointer-events: none;
 }
-.hero-team-footer > img {
+.hero-team-footer > * {
   position: relative;
   z-index: 1;
 }
