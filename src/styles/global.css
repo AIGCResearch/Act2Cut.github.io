@@ -535,8 +535,32 @@ html:not(.dark) .hero-team-footer {
 @keyframes hero-team-border-flow {
   to { --team-border-angle: 360deg; }
 }
+.hero-content-divider {
+  width: min(100%, 56rem);
+  height: 2px;
+  margin-inline: auto;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 184, 77, 0.45) 18%,
+    #ffe8a8 50%,
+    rgba(255, 184, 77, 0.45) 82%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  box-shadow: 0 0 18px rgba(255, 184, 77, 0.28);
+  animation: hero-content-divider-flow 4.5s linear infinite;
+}
+@keyframes hero-content-divider-flow {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   .hero-team-footer::before {
+    animation: none;
+  }
+  .hero-content-divider {
     animation: none;
   }
 }
