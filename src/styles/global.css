@@ -419,6 +419,12 @@ html:not(.dark) .poster-kicker,
 html:not(.dark) .poster-series-badge {
   color: #b7791f !important;
 }
+.poster-series-badge {
+  border-color: #ffb84d !important;
+}
+html:not(.dark) .poster-series-badge {
+  border-color: #b7791f !important;
+}
 .hero-action-cut {
   color: inherit;
   background-image: linear-gradient(to bottom, currentColor, color-mix(in srgb, currentColor 30%, transparent));
