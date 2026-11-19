@@ -502,16 +502,26 @@ html:not(.dark) .hero-team-footer {
   inset: -1px;
   z-index: 0;
   border-radius: inherit;
-  background: linear-gradient(90deg, #ff4d4d, #ffb84d);
+  background: conic-gradient(from 0deg, #ff4d4d, #ff7a3d, #ffb84d, #ff4d4d);
   padding: 1px;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+  transform-origin: center;
+  animation: hero-team-border-spin 5s linear infinite;
 }
 .hero-team-footer > * {
   position: relative;
   z-index: 1;
+}
+@keyframes hero-team-border-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-team-footer::before {
+    animation: none;
+  }
 }
 .hero-resource-group a::before {
   content: '';
