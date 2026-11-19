@@ -430,7 +430,7 @@ html:not(.dark) .poster-series-badge {
   position: relative;
   isolation: isolate;
   background: rgba(255, 184, 77, 0.12);
-  border-color: rgba(255, 184, 77, 0.72) !important;
+  border-color: #ffb84d !important;
   -webkit-backdrop-filter: blur(12px) saturate(135%);
   backdrop-filter: blur(12px) saturate(135%);
   box-shadow: inset 0 1px 0 rgba(255, 220, 140, 0.36), 0 0 0 1px rgba(255, 184, 77, 0.10), 0 0 14px rgba(255, 184, 77, 0.08);
@@ -440,7 +440,7 @@ html:not(.dark) .poster-series-badge {
 }
 html:not(.dark) .hero-resource-group a {
   background: rgba(255, 196, 100, 0.24) !important;
-  border-color: rgba(183, 121, 31, 0.72) !important;
+  border-color: #b7791f !important;
   -webkit-backdrop-filter: blur(12px) saturate(135%);
   backdrop-filter: blur(12px) saturate(135%);
   box-shadow: inset 0 1px 0 rgba(255, 238, 180, 0.78), 0 0 0 1px rgba(183, 121, 31, 0.10), 0 0 14px rgba(183, 121, 31, 0.10);
