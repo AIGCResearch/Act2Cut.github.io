@@ -415,8 +415,7 @@ html:not(.dark) .hero-meta-marker {
   color: #b7791f;
   text-shadow: none;
 }
-html:not(.dark) .poster-kicker,
-html:not(.dark) .poster-series-badge {
+html:not(.dark) .poster-kicker {
   color: #b7791f !important;
 }
 .poster-series-badge {
