@@ -114,6 +114,15 @@ const pageLinks = [
           </div>
         )}
 
+        <!-- SIGGRAPH Asia mark appears between the page tabs and Sections when floating -->
+        <a
+          href={url('/#poster')}
+          class="desktop-siga-mark flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+          aria-label="SIGGRAPH Asia 2026 Poster"
+        >
+          <img src={`${base}/images/siggraph-asia-mark.png`} class="h-6 w-6 object-contain" alt="SIGGRAPH Asia" loading="eager" />
+        </a>
+
         <!-- Theme toggle -->
         <button
           id="theme-toggle"
@@ -466,6 +475,22 @@ const pageLinks = [
     pointer-events: none;
     transition: width 380ms cubic-bezier(0.22, 1, 0.36, 1), margin-left 380ms cubic-bezier(0.22, 1, 0.36, 1), transform 380ms cubic-bezier(0.22, 1, 0.36, 1), opacity 280ms ease, visibility 0s linear 380ms;
   }
+  #top-nav .desktop-siga-mark {
+    display: none;
+    opacity: 0;
+    transform: scale(0.82);
+    transition: opacity 280ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @media (min-width: 768px) {
+    #top-nav.nav-scrolled .desktop-siga-mark {
+      display: flex;
+      opacity: 0.86;
+      transform: scale(1);
+    }
+    #top-nav.nav-scrolled .desktop-siga-mark:hover {
+      opacity: 1;
+    }
+  }
   #top-nav #section-menu-toggle {
     width: 100%;
     min-width: 0;
@@ -621,6 +646,9 @@ const pageLinks = [
     #top-nav .section-dropdown,
     #top-nav #section-menu,
     #top-nav #section-menu .section-menu-link {
+      transition: none;
+    }
+    #top-nav .desktop-siga-mark {
       transition: none;
     }
     #top-nav .nav-glass::before {
