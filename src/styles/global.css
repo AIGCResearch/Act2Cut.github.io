@@ -536,25 +536,27 @@ html:not(.dark) .hero-team-footer {
   to { --team-border-angle: 360deg; }
 }
 .hero-content-divider {
-  position: relative;
   width: 100%;
   height: 2px;
   margin-inline: auto;
   border-radius: 999px;
-  background: conic-gradient(
-    from var(--team-border-angle),
-    #ff4d4d 0deg,
-    #ff4d4d 90deg,
-    #ff7a3d 145deg,
-    #ffb84d 190deg,
-    #ff7a3d 235deg,
-    #ff4d4d 290deg,
-    #ff4d4d 360deg
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #ff4d4d 18%,
+    #ff7a3d 36%,
+    #ffb84d 50%,
+    #ff7a3d 64%,
+    #ff4d4d 82%,
+    transparent 100%
   );
-  background-position: 0 0;
-  background-size: 100% 100%;
+  background-size: 200% 100%;
   box-shadow: 0 0 18px rgba(255, 184, 77, 0.28);
-  animation: hero-team-border-flow 5s linear infinite;
+  animation: hero-content-divider-flow 4.5s ease-in-out infinite alternate;
+}
+@keyframes hero-content-divider-flow {
+  from { background-position: 0% 0; }
+  to { background-position: 100% 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-team-footer::before {
