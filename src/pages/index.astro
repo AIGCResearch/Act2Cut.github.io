@@ -392,5 +392,11 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
     </section>
 
     {!isAnonymous && <CitationSection />}
+    {!isAnonymous && (
+      <div class="glass-arch hero-team-footer mx-auto flex w-full max-w-3xl items-center justify-center rounded-2xl px-6 py-4 sm:rounded-3xl sm:px-8 sm:py-5" data-reveal style="transition-delay:120ms" aria-label="ActXCut Team">
+        <img src={`${base}/images/actxcut-team-light.png`} class="block h-[48px] w-[280px] max-w-full object-contain sm:h-[58px] sm:w-[340px] xl:h-[68px] xl:w-[400px] dark:hidden" alt="ActXCut Team" loading="lazy" />
+        <img src={`${base}/images/actxcut-team-dark.png`} class="hidden h-[48px] w-[280px] max-w-full object-contain sm:h-[58px] sm:w-[340px] xl:h-[68px] xl:w-[400px] dark:block" alt="ActXCut Team" loading="lazy" />
+      </div>
+    )}
   </main>
 </Layout>
