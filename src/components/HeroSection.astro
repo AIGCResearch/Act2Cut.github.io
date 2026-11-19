@@ -110,22 +110,22 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
     </div>
 
     {!isAnonymous && (
-    <div class="glass-arch hero-institution-glass hero-logo-reveal mx-auto flex w-[calc(100%+1rem)] max-w-5xl flex-col items-stretch gap-y-3 rounded-2xl px-6 py-4 sm:w-[calc(100%+2rem)] sm:rounded-3xl sm:px-8 sm:py-5 md:px-12 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-x-3 xl:gap-x-6" aria-label="Institution logos" data-reveal style="transition-delay:300ms">
+    <div class="glass-arch hero-institution-glass hero-logo-reveal mx-auto flex w-full max-w-4xl flex-col items-stretch gap-y-3 rounded-2xl px-6 py-4 sm:w-[calc(100%+1rem)] sm:rounded-3xl sm:px-8 sm:py-5 md:px-12 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-x-3 xl:gap-x-6" aria-label="Institution logos" data-reveal style="transition-delay:300ms">
       <div class="flex items-center justify-center">
-        <img src={`${base}/images/siggraph-asia-2026-light.png`} class="block h-[72px] w-[190px] max-w-full object-contain xl:h-[80px] xl:w-[210px] dark:hidden" alt="SIGGRAPH Asia 2026" loading="eager" />
-        <img src={`${base}/images/siggraph-asia-2026-dark.png`} class="hidden h-[72px] w-[190px] max-w-full object-contain xl:h-[80px] xl:w-[210px] dark:block" alt="SIGGRAPH Asia 2026" loading="eager" />
+        <img src={`${base}/images/siggraph-asia-2026-light.png`} class="block h-[68px] w-[180px] max-w-full object-contain xl:h-[76px] xl:w-[200px] dark:hidden" alt="SIGGRAPH Asia 2026" loading="eager" />
+        <img src={`${base}/images/siggraph-asia-2026-dark.png`} class="hidden h-[68px] w-[180px] max-w-full object-contain xl:h-[76px] xl:w-[200px] dark:block" alt="SIGGRAPH Asia 2026" loading="eager" />
       </div>
       <div class="flex items-center justify-center">
-        <img src={`${base}/images/aigc-research-light.png`} class="block h-[72px] w-[270px] max-w-full object-contain xl:h-[80px] xl:w-[300px] dark:hidden" alt="AIGC Research" loading="eager" />
-        <img src={`${base}/images/aigc-research-dark.png`} class="hidden h-[72px] w-[270px] max-w-full object-contain xl:h-[80px] xl:w-[300px] dark:block" alt="AIGC Research" loading="eager" />
+        <img src={`${base}/images/aigc-research-light.png`} class="block h-[68px] w-[255px] max-w-full object-contain xl:h-[76px] xl:w-[285px] dark:hidden" alt="AIGC Research" loading="eager" />
+        <img src={`${base}/images/aigc-research-dark.png`} class="hidden h-[68px] w-[255px] max-w-full object-contain xl:h-[76px] xl:w-[285px] dark:block" alt="AIGC Research" loading="eager" />
       </div>
       <div class="flex flex-wrap items-center justify-center gap-2 xl:gap-3">
-        <img src={`${base}/images/teleai-logo.png`} class="hero-institution-logo block h-[72px] w-[72px] object-contain dark:hidden xl:h-[80px] xl:w-[80px]" alt="TeleAI, Institute of Artificial Intelligence, China Telecom" loading="eager" />
-        <img src={`${base}/images/teleai-logo-dark.png`} class="hero-institution-logo hidden h-[72px] w-[72px] object-contain dark:block xl:h-[80px] xl:w-[80px]" alt="TeleAI, Institute of Artificial Intelligence, China Telecom" loading="eager" />
-        <img src={`${base}/images/fudan-university.png`} class="hero-institution-logo block h-[72px] w-[72px] object-contain dark:hidden xl:h-[80px] xl:w-[80px]" alt="Fudan University" loading="eager" />
-        <img src={`${base}/images/fudan-university-dark.png`} class="hero-institution-logo hidden h-[72px] w-[72px] object-contain dark:block xl:h-[80px] xl:w-[80px]" alt="Fudan University" loading="eager" />
-        <img src={`${base}/images/shanghaitech-university.svg`} class="hero-institution-logo block h-[72px] w-[72px] object-contain dark:hidden xl:h-[80px] xl:w-[80px]" alt="ShanghaiTech University" loading="eager" />
-        <img src={`${base}/images/shanghaitech-university-dark.svg`} class="hero-institution-logo hidden h-[72px] w-[72px] object-contain dark:block xl:h-[80px] xl:w-[80px]" alt="ShanghaiTech University" loading="eager" />
+        <img src={`${base}/images/teleai-logo.png`} class="hero-institution-logo block h-[68px] w-[68px] object-contain dark:hidden xl:h-[76px] xl:w-[76px]" alt="TeleAI, Institute of Artificial Intelligence, China Telecom" loading="eager" />
+        <img src={`${base}/images/teleai-logo-dark.png`} class="hero-institution-logo hidden h-[68px] w-[68px] object-contain dark:block xl:h-[76px] xl:w-[76px]" alt="TeleAI, Institute of Artificial Intelligence, China Telecom" loading="eager" />
+        <img src={`${base}/images/fudan-university.png`} class="hero-institution-logo block h-[68px] w-[68px] object-contain dark:hidden xl:h-[76px] xl:w-[76px]" alt="Fudan University" loading="eager" />
+        <img src={`${base}/images/fudan-university-dark.png`} class="hero-institution-logo hidden h-[68px] w-[68px] object-contain dark:block xl:h-[76px] xl:w-[76px]" alt="Fudan University" loading="eager" />
+        <img src={`${base}/images/shanghaitech-university.svg`} class="hero-institution-logo block h-[68px] w-[68px] object-contain dark:hidden xl:h-[76px] xl:w-[76px]" alt="ShanghaiTech University" loading="eager" />
+        <img src={`${base}/images/shanghaitech-university-dark.svg`} class="hero-institution-logo hidden h-[68px] w-[68px] object-contain dark:block xl:h-[76px] xl:w-[76px]" alt="ShanghaiTech University" loading="eager" />
       </div>
     </div>
     )}
