@@ -47,15 +47,17 @@ const methodCards = [
     <div class="absolute inset-0 pointer-events-none z-10"
          style="background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 40%, transparent 70%, rgba(255,255,255,0.06) 100%);"></div>
     <div class="relative w-full overflow-hidden" style="aspect-ratio: 1615 / 862;">
-      <img
-        src={`${base}/images/architecture.avif`}
-        alt="Act2Cut architecture: GLoS-RoPE, Transitional Boundary Residual, Shot Causal Mask and Hierarchical Context Mask working together for continuous multi-shot video generation."
-        class="absolute inset-0 w-full h-full object-contain"
-        width="1615"
-        height="862"
-        loading="lazy"
-        decoding="async"
-      />
+      <div class="absolute inset-4 sm:inset-6">
+        <img
+          src={`${base}/images/architecture.avif`}
+          alt="Act2Cut architecture: GLoS-RoPE, Transitional Boundary Residual, Shot Causal Mask and Hierarchical Context Mask working together for continuous multi-shot video generation."
+          class="block w-full h-full object-contain"
+          width="1615"
+          height="862"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
     </div>
     <figcaption class="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3 text-[10px] sm:text-[11px] pointer-events-none z-20">
       <span class="px-2 py-0.5 rounded-md bg-white/20 border border-white/35 backdrop-blur-sm tracking-[0.18em] uppercase font-semibold text-white/90">Architecture</span>
