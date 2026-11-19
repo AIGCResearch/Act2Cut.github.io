@@ -39,7 +39,7 @@ const pageLinks = [
         </span>
         <span class="font-semibold text-[20px] sm:text-[22px] tracking-tight text-white/95 leading-none">Cut</span>
         <!-- micro tagline -->
-        <span class="hidden sm:inline-block ml-2.5 self-center text-[8.5px] tracking-[0.32em] uppercase text-white/30 font-semibold border-l border-white/15 pl-2.5">Match&nbsp;on&nbsp;Action</span>
+        <span class="brand-tagline hidden sm:inline-block ml-2.5 self-center text-[8.5px] tracking-[0.32em] uppercase text-white/30 font-semibold border-l border-white/15 pl-2.5">Match&nbsp;on&nbsp;Action</span>
       </a>
 
       <!-- Center: page nav (desktop) — absolutely centered so position never shifts between pages -->
@@ -64,7 +64,7 @@ const pageLinks = [
 
         <!-- Home anchors only on home page (desktop) -->
         {page === 'home' && (
-          <nav class="hidden lg:flex items-center gap-0.5 mr-1" aria-label="On-page sections">
+          <nav class="top-section-links hidden lg:flex items-center gap-0.5 mr-1" aria-label="On-page sections">
             {homeAnchors.map(link => (
               <a
                 href={link.href}
@@ -75,6 +75,31 @@ const pageLinks = [
               </a>
             ))}
           </nav>
+        )}
+
+        {page === 'home' && (
+          <div id="section-dropdown" class="section-dropdown relative">
+            <button
+              id="section-menu-toggle"
+              type="button"
+              aria-label="Show page sections"
+              aria-controls="section-menu"
+              aria-expanded="false"
+              class="flex items-center gap-2 px-3 py-2 rounded-xl border border-white/[0.1] bg-white/[0.04] text-[10px] font-semibold tracking-[0.16em] uppercase text-white/65 hover:text-white/90 hover:bg-white/[0.09] transition-colors"
+            >
+              Sections
+              <svg class="section-chevron w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <nav id="section-menu" class="hidden absolute right-0 top-[calc(100%+10px)] w-48 rounded-2xl border border-white/20 bg-[#0a0a0a] p-2 shadow-[0_14px_38px_rgba(0,0,0,0.38)] backdrop-blur-xl" aria-label="On-page sections">
+              {homeAnchors.map(link => (
+                <a href={link.href} data-nav-link class="section-menu-link block rounded-xl px-3 py-2.5 text-[11px] font-semibold tracking-[0.14em] uppercase transition-colors">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
         )}
 
         <!-- Theme toggle -->
@@ -221,6 +246,33 @@ const pageLinks = [
     link.addEventListener('click', () => setMobileMenu(false));
   });
 
+  // ── Scrolled section dropdown ────────────────────────────────────────────
+  const sectionDropdown = document.getElementById('section-dropdown');
+  const sectionToggle = document.getElementById('section-menu-toggle');
+  const sectionMenu = document.getElementById('section-menu');
+
+  function setSectionMenu(open: boolean) {
+    if (!sectionToggle || !sectionMenu) return;
+    sectionMenu.classList.toggle('hidden', !open);
+    sectionToggle.setAttribute('aria-expanded', String(open));
+  }
+
+  sectionToggle?.addEventListener('click', () => {
+    setSectionMenu(sectionMenu?.classList.contains('hidden') ?? false);
+  });
+  sectionMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setSectionMenu(false));
+  });
+  document.addEventListener('click', event => {
+    if (sectionDropdown && !sectionDropdown.contains(event.target as Node)) setSectionMenu(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && sectionToggle?.getAttribute('aria-expanded') === 'true') {
+      setSectionMenu(false);
+      sectionToggle.focus();
+    }
+  });
+
   // ── Scroll spy (homepage anchor links) ───────────────────────────────────
   const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
 
@@ -256,11 +308,11 @@ const pageLinks = [
   // ── Scroll shadow on nav ──────────────────────────────────────────────────
   const header = document.getElementById('top-nav');
   function onScroll() {
-    if (window.scrollY > 8) {
-      header?.classList.add('nav-scrolled');
-    } else {
-      header?.classList.remove('nav-scrolled');
-    }
+    const scrolled = window.scrollY > 8;
+    const wasScrolled = header?.classList.contains('nav-scrolled') ?? false;
+    header?.classList.toggle('nav-scrolled', scrolled);
+    document.documentElement.classList.toggle('nav-scrolled', scrolled);
+    if (scrolled !== wasScrolled) setSectionMenu(scrolled);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -293,6 +345,28 @@ const pageLinks = [
     border-radius: 999px;
     background-color: rgba(10, 10, 10, 0.84);
     box-shadow: 0 14px 38px rgba(0, 0, 0, 0.38), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  }
+  #top-nav.nav-scrolled .top-section-links {
+    display: none;
+  }
+  #top-nav .section-dropdown {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    #top-nav.nav-scrolled .section-dropdown {
+      display: block;
+    }
+  }
+  #top-nav #section-menu-toggle[aria-expanded="true"] .section-chevron {
+    transform: rotate(180deg);
+  }
+  #top-nav #section-menu .section-menu-link {
+    color: rgba(255, 255, 255, 0.72);
+  }
+  #top-nav #section-menu .section-menu-link:hover,
+  #top-nav #section-menu .section-menu-link.text-white\/85 {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
   }
   #top-nav #mobile-menu {
     width: 100%;
@@ -331,6 +405,19 @@ const pageLinks = [
     border-color: rgba(45, 36, 28, 0.24);
     box-shadow: 0 14px 38px rgba(68, 48, 28, 0.22);
   }
+  :global(html:not(.dark)) #top-nav #section-menu {
+    background: #f5f0e8;
+    border-color: rgba(45, 36, 28, 0.18);
+    box-shadow: 0 14px 38px rgba(68, 48, 28, 0.22);
+  }
+  :global(html:not(.dark)) #top-nav #section-menu .section-menu-link {
+    color: rgba(26, 21, 18, 0.74);
+  }
+  :global(html:not(.dark)) #top-nav #section-menu .section-menu-link:hover,
+  :global(html:not(.dark)) #top-nav #section-menu .section-menu-link.text-white\/85 {
+    color: #1a1512;
+    background: rgba(26, 21, 18, 0.07);
+  }
   :global(html:not(.dark)) #top-nav #mobile-menu {
     background: rgba(235, 228, 215, 0.96);
     border-top-color: rgba(0, 0, 0, 0.10);
@@ -355,6 +442,11 @@ const pageLinks = [
     #top-nav.nav-scrolled {
       top: 10px;
       width: calc(100% - 20px);
+    }
+  }
+  @media (min-width: 768px) and (max-width: 820px) {
+    #top-nav.nav-scrolled .brand-tagline {
+      display: none;
     }
   }
 </style>

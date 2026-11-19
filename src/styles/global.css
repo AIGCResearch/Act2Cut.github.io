@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fill the space left by the full-width bar when it shrinks into an island. */
+html.nav-scrolled #site-background {
+  top: 0;
+}
+
 @layer base {
   body {
     @apply bg-canvas-light text-ink-light transition-colors duration-500 ease-in-out font-sans antialiased;
