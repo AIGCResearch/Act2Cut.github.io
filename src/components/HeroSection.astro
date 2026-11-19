@@ -103,7 +103,9 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
     </div>
 
     {!isAnonymous && (
-    <div class="glass-arch hero-logo-reveal mx-auto flex w-full max-w-[720px] flex-wrap items-center justify-center gap-3 rounded-2xl px-3 py-4 sm:rounded-3xl sm:px-10 sm:py-5" aria-label="Institution logos" data-reveal style="transition-delay:300ms">
+    <div class="glass-arch hero-logo-reveal mx-auto flex w-full max-w-[1000px] flex-wrap items-center justify-center gap-3 rounded-2xl px-3 py-4 sm:rounded-3xl sm:px-10 sm:py-5" aria-label="Institution logos" data-reveal style="transition-delay:300ms">
+      <img src={`${base}/images/siggraph-asia-2026-light.png`} class="block h-[80px] w-[210px] max-w-full object-contain sm:h-[88px] sm:w-[230px] dark:hidden" alt="SIGGRAPH Asia 2026" loading="eager" />
+      <img src={`${base}/images/siggraph-asia-2026-dark.png`} class="hidden h-[80px] w-[210px] max-w-full object-contain sm:h-[88px] sm:w-[230px] dark:block" alt="SIGGRAPH Asia 2026" loading="eager" />
       <img src={`${base}/images/aigc-research-light.png`} class="block h-[80px] w-[300px] max-w-full object-contain sm:h-[88px] sm:w-[330px] dark:hidden" alt="AIGC Research" loading="eager" />
       <img src={`${base}/images/aigc-research-dark.png`} class="hidden h-[80px] w-[300px] max-w-full object-contain sm:h-[88px] sm:w-[330px] dark:block" alt="AIGC Research" loading="eager" />
       <img src={`${base}/images/teleai-logo.png`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="TeleAI, Institute of Artificial Intelligence, China Telecom" loading="eager" />
