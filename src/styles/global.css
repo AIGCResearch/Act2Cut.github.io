@@ -571,7 +571,7 @@ html:not(.dark) .hero-team-footer {
   z-index: -1;
   border-radius: inherit;
   background: linear-gradient(to right, #ff4d4d, #ffb84d);
-  opacity: 0.5;
+  opacity: 0.4;
   pointer-events: none;
   transition: opacity 280ms ease;
 }

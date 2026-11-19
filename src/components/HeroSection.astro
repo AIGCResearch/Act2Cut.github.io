@@ -57,7 +57,7 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
         <span class="inline-flex max-w-full items-baseline justify-center gap-1.5 leading-snug"><span class="hero-meta-marker shrink-0 font-extrabold">{affiliations[0].id}</span><span>{affiliations[0].name}</span></span>
         <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
           {affiliations.slice(1).map(affil => (
-            <span class="inline-flex items-baseline gap-1.5 leading-snug"><span class="hero-meta-marker font-extrabold">{affil.id}</span><span>{affil.name}</span></span>
+            <span class="inline-flex items-baseline gap-1.5 leading-snug"><span class="hero-meta-marker font-extrabold">{affil.id}</span><span>{affil.id === '2' ? <>ActXCut Team, <a href="https://aigcresearch.github.io" target="_blank" rel="noopener noreferrer" class="text-inherit underline decoration-[#ffb84d]/50 underline-offset-4 transition-colors hover:text-[#9a4d19] dark:hover:text-[#ffb84d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb84d]">AIGC Research</a></> : affil.name}</span></span>
           ))}
         </div>
       </div>
