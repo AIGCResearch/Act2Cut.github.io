@@ -455,7 +455,7 @@ html:not(.dark) .hero-institution-glass {
 .hero-resource-group a {
   position: relative;
   isolation: isolate;
-  background: rgba(255, 184, 77, 0.12);
+  background: transparent !important;
   border-color: transparent !important;
   -webkit-backdrop-filter: blur(12px) saturate(135%);
   backdrop-filter: blur(12px) saturate(135%);
@@ -465,7 +465,7 @@ html:not(.dark) .hero-institution-glass {
   stroke-width: 2.5;
 }
 html:not(.dark) .hero-resource-group a {
-  background: rgba(255, 196, 100, 0.24) !important;
+  background: transparent !important;
   border-color: transparent !important;
   -webkit-backdrop-filter: blur(12px) saturate(135%);
   backdrop-filter: blur(12px) saturate(135%);
@@ -571,7 +571,7 @@ html:not(.dark) .hero-team-footer {
   z-index: -1;
   border-radius: inherit;
   background: linear-gradient(to right, #ff4d4d, #ffb84d);
-  opacity: 0;
+  opacity: 0.22;
   pointer-events: none;
   transition: opacity 280ms ease;
 }
