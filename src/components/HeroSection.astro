@@ -83,19 +83,12 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     </div>
 
     {!isAnonymous && (
-    <div class="mx-auto w-full max-w-[720px] px-3 sm:px-10">
-      <img
-        src={`${base}/images/institution-logos.avif`}
-        class="institution-logos mx-auto hidden w-full object-contain opacity-75 sm:block"
-        alt="Institute of Artificial Intelligence, China Telecom and AIGC Research"
-        loading="eager"
-      />
-      <img
-        src={`${base}/images/institution-logos-mobile.avif`}
-        class="institution-logos mx-auto w-full max-w-[340px] object-contain opacity-78 sm:hidden"
-        alt="Institute of Artificial Intelligence, China Telecom and AIGC Research"
-        loading="eager"
-      />
+    <div class="mx-auto flex w-full max-w-[720px] flex-wrap items-center justify-center gap-3 px-3 sm:px-10" aria-label="Institution logos">
+      <img src={`${base}/images/aigc-research-light.png`} class="block h-[80px] w-[300px] max-w-full object-contain sm:h-[88px] sm:w-[330px] dark:hidden" alt="AIGC Research" loading="eager" />
+      <img src={`${base}/images/aigc-research-dark.png`} class="hidden h-[80px] w-[300px] max-w-full object-contain sm:h-[88px] sm:w-[330px] dark:block" alt="AIGC Research" loading="eager" />
+      <img src={`${base}/images/teleai-logo.png`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="TeleAI, Institute of Artificial Intelligence, China Telecom" loading="eager" />
+      <img src={`${base}/images/fudan-university.png`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="Fudan University" loading="eager" />
+      <img src={`${base}/images/shanghaitech-university.svg`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="ShanghaiTech University" loading="eager" />
     </div>
     )}
   </div>
