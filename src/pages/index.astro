@@ -227,26 +227,32 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
           style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);"
         ></div>
 
-        <!-- Card header: title + dataset pill -->
-        <div class="flex items-start justify-between gap-3 flex-wrap px-5 sm:px-7 pt-5 sm:pt-6 pb-4 border-b border-white/[0.06]">
-          <div class="space-y-1.5">
+        <!-- Card header: title + benchmark link -->
+        <div class="px-5 sm:px-7 pt-5 sm:pt-6 pb-4 border-b border-white/[0.06]">
+          <div class="flex flex-wrap items-center justify-between gap-3">
             <h3 class="text-[13px] sm:text-sm font-semibold text-white/90 tracking-wide">
               Quantitative Results — ActCutBench
             </h3>
-            <p class="text-[10.5px] sm:text-[11px] text-white/45 leading-relaxed max-w-3xl">
-              Baseline and Ablation. <strong class="text-white/65 font-semibold">Global Content</strong>: <strong class="text-white/65 font-semibold">NC</strong> (G1: Environment, Scene, Style; G2: Character, Action, Object), <strong class="text-white/65 font-semibold">VC</strong> (G1: Environment, Scene; Sty: Style; CS: Character), <strong class="text-white/65 font-semibold">AC</strong> (CA/OM), <strong class="text-white/65 font-semibold">SA</strong> (SCC/SCA), <strong class="text-white/65 font-semibold">Aes</strong>. <strong class="text-white/65 font-semibold">Cinematography</strong>: <strong class="text-white/65 font-semibold">SC</strong> (SS, SF, CA), <strong class="text-white/65 font-semibold">DC</strong> (CM, CZ, CR), <strong class="text-white/65 font-semibold">RC</strong>. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).
-            </p>
-            <div class="flex items-center gap-1.5 pt-1 text-[9.5px] text-white/40">
+            <a href={`${base}/benchmark`} class="group ml-auto inline-flex min-h-11 shrink-0 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#ff7a3d] to-[#ffb84d] px-5 py-3 text-xs font-bold tracking-[0.14em] uppercase text-[#20140f] shadow-[0_6px_22px_rgba(255,122,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(255,122,61,0.38)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb84d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#181411]">
+              Full benchmarks
+              <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <p class="mt-3 text-[10.5px] sm:text-[11px] text-white/45 leading-relaxed">
+            Baseline and Ablation. <strong class="text-white/65 font-semibold">Global Content</strong>: <strong class="text-white/65 font-semibold">NC</strong> (G1: Environment, Scene, Style; G2: Character, Action, Object), <strong class="text-white/65 font-semibold">VC</strong> (G1: Environment, Scene; Sty: Style; CS: Character), <strong class="text-white/65 font-semibold">AC</strong> (CA/OM), <strong class="text-white/65 font-semibold">SA</strong> (SCC/SCA), <strong class="text-white/65 font-semibold">Aes</strong>. <strong class="text-white/65 font-semibold">Cinematography</strong>: <strong class="text-white/65 font-semibold">SC</strong> (SS, SF, CA), <strong class="text-white/65 font-semibold">DC</strong> (CM, CZ, CR), <strong class="text-white/65 font-semibold">RC</strong>. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).
+          </p>
+          <div class="mt-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-1.5 text-[9.5px] text-white/40">
               <span class="rank-cell rank-1 text-[9.5px]" style="min-width:0;padding:1px 5px;">1st</span>
               <span class="rank-cell rank-2 text-[9.5px]" style="min-width:0;padding:1px 5px;">2nd</span>
               <span class="rank-cell rank-3 text-[9.5px]" style="min-width:0;padding:1px 5px;">3rd</span>
               <span class="rank-cell rank-4 text-[9.5px]" style="min-width:0;padding:1px 5px;">4th</span>
               <span class="rank-cell rank-5 text-[9.5px]" style="min-width:0;padding:1px 5px;">5th</span>
             </div>
+            <span class="px-2.5 py-1 rounded-md text-[8.5px] sm:text-[9px] font-bold tracking-[0.22em] uppercase text-white/55 bg-white/[0.04] border border-white/[0.08] whitespace-nowrap">
+              Dataset · ActCutVid-1M
+            </span>
           </div>
-          <span class="px-2.5 py-1 rounded-md text-[8.5px] sm:text-[9px] font-bold tracking-[0.22em] uppercase text-white/55 bg-white/[0.04] border border-white/[0.08] whitespace-nowrap">
-            Dataset · ActCutVid-1M
-          </span>
         </div>
 
         <!-- Table (compact summary; full per-dimension table lives on the benchmark page) -->
@@ -374,15 +380,11 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
           </table>
         </div>
 
-        <!-- Card footer / link -->
-        <div class="px-5 sm:px-7 py-3.5 border-t border-white/[0.06] flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+        <!-- Card footer -->
+        <div class="px-5 sm:px-7 py-3.5 border-t border-white/[0.06]">
           <p class="text-[11px] text-white/35 leading-snug">
             Summary values are means derived from the benchmark page tables.
           </p>
-          <a href={`${base}/benchmark`} class="group inline-flex min-h-11 shrink-0 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#ff7a3d] to-[#ffb84d] px-5 py-3 text-xs font-bold tracking-[0.14em] uppercase text-[#20140f] shadow-[0_6px_22px_rgba(255,122,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(255,122,61,0.38)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb84d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#181411]">
-            Full benchmarks
-            <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-          </a>
         </div>
       </div>
     </div>
