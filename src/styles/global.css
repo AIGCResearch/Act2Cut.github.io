@@ -415,6 +415,10 @@ html:not(.dark) .hero-meta-marker {
   color: #b7791f;
   text-shadow: none;
 }
+html:not(.dark) .poster-kicker,
+html:not(.dark) .poster-series-badge {
+  color: #b7791f !important;
+}
 .hero-action-cut {
   color: inherit;
   background-image: linear-gradient(to bottom, currentColor, color-mix(in srgb, currentColor 30%, transparent));
