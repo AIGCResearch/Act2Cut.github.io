@@ -566,6 +566,10 @@ html:not(.dark) .rank-5 { color: #861f4f; background: rgba(255, 120, 180, 0.25);
   transform: translate3d(0, var(--parallax-y, 0px), 0);
 }
 
+html.dark .theme-vignette {
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.82) 100%) !important;
+}
+
 @media (max-width: 640px) {
   .site-bg-image {
     width: 180%;
@@ -596,7 +600,7 @@ html:not(.dark) .theme-overlay {
 }
 
 html:not(.dark) .theme-vignette {
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(180,160,130,0.7) 100%) !important;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(255, 255, 255, 0.78) 100%) !important;
 }
 
 /* "Action-Cut" title uses from-white to-white/30 gradient — make it dark in light mode */
@@ -811,7 +815,7 @@ html:not(.dark) .theme-overlay {
 }
 
 html:not(.dark) .theme-vignette {
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(180,160,130,0.7) 100%) !important;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(255, 255, 255, 0.78) 100%) !important;
 }
 
 /* --- text-white variants → near-black --- */
