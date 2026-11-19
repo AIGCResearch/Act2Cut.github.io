@@ -72,13 +72,6 @@ html:not(.dark) ::selection {
   filter: blur(0);
 }
 
-/* Let the hero glass sample the page background after its entrance animation. */
-[data-reveal].hero-resource-group.is-visible {
-  transform: none;
-  filter: none;
-  will-change: auto;
-}
-
 .stat-bar-fill {
   height: 2px;
   background: linear-gradient(to right, #ff4d4d, #ffb84d);
