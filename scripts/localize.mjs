@@ -28,9 +28,9 @@ const ABS_RE = /((?:href|src|srcset|poster|data-src)=")\/(?!\/)/g;
 
 // ── Pass 2: bare directory hrefs → explicit index.html ───────────────────
 
-// Real file extension: at least 2 alpha chars after a dot at end of segment
+// Real file extension: 2–5 alphanumeric chars after a dot at end of segment
 // Excludes bare "." and ".." directory refs
-const FILE_EXT_RE = /\.[a-zA-Z0-9]{2,4}$/;
+const FILE_EXT_RE = /\.[a-zA-Z0-9]{2,5}$/;
 
 function fixDirHref(href) {
   // Skip external, protocol-relative, mailto, bare hash

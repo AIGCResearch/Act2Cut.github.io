@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import outfitLatin from '../assets/fonts/outfit-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -17,9 +18,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL.replace(/\/+$/, '')}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="font" type="font/woff2" href={outfitLatin} crossorigin="anonymous" />
     <title>{title}</title>
     <!-- Anti-FOUC: apply saved theme before first paint. Default = dark; only switch to light if explicitly set. -->
     <script is:inline>

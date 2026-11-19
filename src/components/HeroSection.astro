@@ -78,15 +78,15 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
       )}
       <a href="#" class={heroResourceClass}>
         <svg class="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-        Paper（Coming Soon）
+        Paper（Coming）
       </a>
       <a href="#" class={heroResourceClass}>
         <svg class="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-        Code（Coming Soon）
+        Code（Coming）
       </a>
       <a href={isAnonymous ? '#' : 'https://huggingface.co/datasets/AIGC-Research/ActCutVid'} target={isAnonymous ? undefined : '_blank'} rel={isAnonymous ? undefined : 'noopener noreferrer'} class={heroResourceClass}>
         <svg class="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3" stroke-width="2" stroke-linecap="round"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v6c0 1.657 4.03 3 9 3s9-1.343 9-3V5"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 11v6c0 1.657 4.03 3 9 3s9-1.343 9-3v-6"/></svg>
-        {isAnonymous ? 'Dataset（Coming Soon）' : 'Dataset'}
+        {isAnonymous ? 'Dataset（Coming）' : 'Dataset'}
       </a>
       {!isAnonymous && (
       <a href="https://huggingface.co/AIGC-Research/Act2Cut" target="_blank" rel="noopener noreferrer" class={heroResourceClass}>
@@ -103,14 +103,18 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
     </div>
 
     {!isAnonymous && (
-    <div class="glass-arch hero-logo-reveal mx-auto flex w-full max-w-[1000px] flex-wrap items-center justify-center gap-3 rounded-2xl px-3 py-4 sm:rounded-3xl sm:px-10 sm:py-5" aria-label="Institution logos" data-reveal style="transition-delay:300ms">
-      <img src={`${base}/images/siggraph-asia-2026-light.png`} class="block h-[80px] w-[210px] max-w-full object-contain sm:h-[88px] sm:w-[230px] dark:hidden" alt="SIGGRAPH Asia 2026" loading="eager" />
-      <img src={`${base}/images/siggraph-asia-2026-dark.png`} class="hidden h-[80px] w-[210px] max-w-full object-contain sm:h-[88px] sm:w-[230px] dark:block" alt="SIGGRAPH Asia 2026" loading="eager" />
-      <img src={`${base}/images/aigc-research-light.png`} class="block h-[80px] w-[300px] max-w-full object-contain sm:h-[88px] sm:w-[330px] dark:hidden" alt="AIGC Research" loading="eager" />
-      <img src={`${base}/images/aigc-research-dark.png`} class="hidden h-[80px] w-[300px] max-w-full object-contain sm:h-[88px] sm:w-[330px] dark:block" alt="AIGC Research" loading="eager" />
-      <img src={`${base}/images/teleai-logo.png`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="TeleAI, Institute of Artificial Intelligence, China Telecom" loading="eager" />
-      <img src={`${base}/images/fudan-university.png`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="Fudan University" loading="eager" />
-      <img src={`${base}/images/shanghaitech-university.svg`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="ShanghaiTech University" loading="eager" />
+    <div class="glass-arch hero-logo-reveal -mx-2 flex w-[calc(100%+1rem)] flex-wrap items-center justify-between gap-x-3 gap-y-3 rounded-2xl px-6 py-4 sm:-mx-4 sm:w-[calc(100%+2rem)] sm:rounded-3xl sm:px-8 sm:py-5 md:px-12 xl:gap-x-6" aria-label="Institution logos" data-reveal style="transition-delay:300ms">
+      <div class="flex shrink-0 items-center">
+        <img src={`${base}/images/siggraph-asia-2026-light.png`} class="block h-[80px] w-[210px] max-w-full object-contain sm:h-[88px] sm:w-[230px] dark:hidden" alt="SIGGRAPH Asia 2026" loading="eager" />
+        <img src={`${base}/images/siggraph-asia-2026-dark.png`} class="hidden h-[80px] w-[210px] max-w-full object-contain sm:h-[88px] sm:w-[230px] dark:block" alt="SIGGRAPH Asia 2026" loading="eager" />
+      </div>
+      <div class="flex w-full flex-wrap items-center justify-end gap-2 lg:w-auto lg:flex-1 xl:gap-3">
+        <img src={`${base}/images/aigc-research-light.png`} class="block h-[80px] w-[300px] max-w-full object-contain sm:h-[88px] sm:w-[330px] dark:hidden" alt="AIGC Research" loading="eager" />
+        <img src={`${base}/images/aigc-research-dark.png`} class="hidden h-[80px] w-[300px] max-w-full object-contain sm:h-[88px] sm:w-[330px] dark:block" alt="AIGC Research" loading="eager" />
+        <img src={`${base}/images/teleai-logo.png`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="TeleAI, Institute of Artificial Intelligence, China Telecom" loading="eager" />
+        <img src={`${base}/images/fudan-university.png`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="Fudan University" loading="eager" />
+        <img src={`${base}/images/shanghaitech-university.svg`} class="h-[80px] w-[80px] object-contain sm:h-[88px] sm:w-[88px]" alt="ShanghaiTech University" loading="eager" />
+      </div>
     </div>
     )}
   </div>
