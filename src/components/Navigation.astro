@@ -62,6 +62,15 @@ const pageLinks = [
         ))}
       </nav>
 
+      <!-- SIGGRAPH Asia mark on compact navigation -->
+      <a
+        href={url('/#poster')}
+        class="mobile-siga-mark md:hidden ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full opacity-80 transition-opacity duration-200 hover:opacity-100"
+        aria-label="SIGGRAPH Asia 2026 Poster"
+      >
+        <img src={`${base}/images/siggraph-asia-mark.png`} class="h-7 w-7 object-contain" alt="SIGGRAPH Asia" loading="eager" />
+      </a>
+
       <!-- Right: anchor links + theme toggle -->
       <div class="flex items-center gap-2 shrink-0">
 
