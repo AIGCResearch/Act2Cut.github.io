@@ -387,8 +387,7 @@ html:not(.dark) .glass-arch {
 .hero-resource-group a:hover,
 html:not(.dark) .hero-resource-group a:hover {
   color: #20140f !important;
-  background-color: #ffb84d !important;
-  background-image: linear-gradient(to right, #ff4d4d, #ffb84d);
+  background: linear-gradient(to right, #ff4d4d, #ffb84d) !important;
   border-color: transparent !important;
 }
 /* Floating headings — text-shadow halo for readability against parallax background */
