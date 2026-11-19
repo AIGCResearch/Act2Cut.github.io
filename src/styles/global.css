@@ -37,7 +37,7 @@
   background-size: 192px 192px;
 }
 html:not(.dark) #site-background::after {
-  opacity: 0.4;
+  opacity: 0.55;
 }
 
 @layer base {
@@ -581,7 +581,7 @@ html:not(.dark) .theme-overlay {
 }
 
 html:not(.dark) .theme-vignette {
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(180,160,130,0.3) 100%) !important;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(180,160,130,0.7) 100%) !important;
 }
 
 /* "Action-Cut" title uses from-white to-white/30 gradient — make it dark in light mode */
@@ -796,7 +796,7 @@ html:not(.dark) .theme-overlay {
 }
 
 html:not(.dark) .theme-vignette {
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(180,160,130,0.3) 100%) !important;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(180,160,130,0.7) 100%) !important;
 }
 
 /* --- text-white variants → near-black --- */
