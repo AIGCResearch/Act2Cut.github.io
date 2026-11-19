@@ -190,11 +190,34 @@ const pageLinks = [
     document.querySelectorAll<HTMLElement>('.theme-icon-light').forEach(el => el.classList.toggle('hidden', dark));
   }
 
+  let heroInkFrame: number | null = null;
+  function syncHeroTitleInk() {
+    const title = document.getElementById('hero-title');
+    const icon = document.querySelector<SVGElement>('.hero-resource-group a:not(:hover) svg')
+      ?? document.querySelector<SVGElement>('.hero-resource-group a svg');
+    if (!title || !icon) return;
+
+    if (heroInkFrame !== null) cancelAnimationFrame(heroInkFrame);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      title.style.setProperty('--hero-title-ink', isDark() ? '#ededed' : '#0f0c0a');
+      heroInkFrame = null;
+      return;
+    }
+
+    const started = performance.now();
+    const sampleIcon = () => {
+      title.style.setProperty('--hero-title-ink', getComputedStyle(icon).color);
+      heroInkFrame = performance.now() - started < 1200 ? requestAnimationFrame(sampleIcon) : null;
+    };
+    sampleIcon();
+  }
+
   function toggleTheme() {
     const html = document.documentElement;
     if (isDark()) { html.classList.remove('dark'); localStorage.setItem('theme', 'light'); }
     else          { html.classList.add('dark');    localStorage.setItem('theme', 'dark');  }
     syncUI();
+    syncHeroTitleInk();
   }
 
   document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);

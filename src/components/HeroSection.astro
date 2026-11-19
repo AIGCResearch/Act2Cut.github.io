@@ -21,20 +21,20 @@ const affiliations = [
 ];
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
-const heroPosterClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-[#ffb84d]/15 hover:bg-[#ffb84d]/25 active:bg-[#ffb84d]/35 active:scale-95 border border-[#ffb84d]/40 hover:border-[#ffb84d]/65 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium group select-none';
-const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/[0.07] hover:bg-white/[0.18] active:bg-white/[0.28] active:scale-95 border border-white/25 hover:border-white/50 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium group shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_20px_rgba(255,255,255,0.12)] select-none';
+const heroPosterClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-[#ffb84d]/15 active:scale-95 border border-[#ffb84d]/40 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium group select-none';
+const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/[0.07] active:scale-95 border border-white/25 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-sm font-medium group shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_20px_rgba(255,255,255,0.12)] select-none';
 ---
 
 <!-- HEADER / TITLE -->
 <header class="text-center space-y-8 sm:space-y-10 mt-8 sm:mt-12 md:mt-16 mb-8 sm:mb-12 px-2 sm:px-4">
   <div data-reveal>
-    <h1 class="text-[1.72rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.12] max-w-5xl mx-auto">
+    <h1 id="hero-title" class="text-[1.72rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.12] max-w-5xl mx-auto">
       <span class="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 mb-3 sm:mb-4">
         <span class="clapperboard text-[2.1rem] sm:text-5xl md:text-6xl lg:text-7xl leading-none drop-shadow-[0_4px_14px_rgba(255,77,77,0.25)] select-none" aria-hidden="true">🎬</span>
         <span class="text-[2.05rem] sm:text-5xl md:text-6xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] leading-none">Act2Cut</span>
       </span>
-      <span class="block whitespace-nowrap mb-1 text-[1.35rem] sm:text-[2.35rem] md:text-[2.875rem] lg:text-[4.25rem] transition-all duration-200">Continuous Multi-Shot Video</span>
-      <span class="block whitespace-nowrap text-[1rem] sm:text-[2.35rem] md:text-[2.875rem] lg:text-[4.25rem] transition-all duration-200">Narrative Match on <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30 transition-all duration-200">Action-Cut</span></span>
+      <span class="block whitespace-nowrap mb-1 text-[1.35rem] sm:text-[2.35rem] md:text-[2.875rem] lg:text-[4.25rem]"><span class="hero-title-flicker">Continuous Multi-Shot Video</span></span>
+      <span class="block whitespace-nowrap text-[1rem] sm:text-[2.35rem] md:text-[2.875rem] lg:text-[4.25rem]"><span class="hero-title-flicker">Narrative Match on <span class="hero-action-cut">Action-Cut</span></span></span>
     </h1>
   </div>
 
@@ -54,10 +54,13 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
           </div>
         ))}
       </div>
-      <div class="mx-auto grid max-w-4xl grid-cols-1 gap-x-8 gap-y-2 text-left text-[12px] sm:text-[13px] md:grid-cols-2 md:text-[14px] text-white/75">
-        {affiliations.map(affil => (
-          <span class="flex items-start gap-2 leading-snug"><span class="w-3 shrink-0 text-right font-bold text-[#9a4d19] dark:text-[#ffb84d]">{affil.id}</span><span>{affil.name}</span></span>
-        ))}
+      <div class="mx-auto flex max-w-5xl flex-col items-center gap-2 text-center text-[12px] sm:text-[13px] md:text-[14px] text-white/75">
+        <span class="inline-flex max-w-full items-baseline justify-center gap-1.5 leading-snug"><span class="shrink-0 font-bold text-[#9a4d19] dark:text-[#ffb84d]">{affiliations[0].id}</span><span>{affiliations[0].name}</span></span>
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          {affiliations.slice(1).map(affil => (
+            <span class="inline-flex items-baseline gap-1.5 leading-snug"><span class="font-bold text-[#9a4d19] dark:text-[#ffb84d]">{affil.id}</span><span>{affil.name}</span></span>
+          ))}
+        </div>
       </div>
       <div class="flex flex-wrap justify-center gap-2 text-[12px] sm:text-[13px] font-medium">
         <span class="inline-flex max-w-full items-start gap-2 rounded-full border border-white/[0.14] bg-white/[0.06] px-3 py-1.5 text-white/80 shadow-sm"><span class="font-bold text-[#9a4d19] dark:text-[#ffb84d]">*</span>Work done during internship at TeleAI.</span>

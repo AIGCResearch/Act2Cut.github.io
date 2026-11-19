@@ -373,6 +373,26 @@ html:not(.dark) .glass-arch {
   box-shadow: 0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.80);
 }
 
+/* The heading samples the unchanged resource icon color during theme changes. */
+.hero-title-flicker {
+  color: var(--hero-title-ink, inherit);
+}
+.hero-action-cut {
+  color: inherit;
+  background-image: linear-gradient(to bottom, currentColor, color-mix(in srgb, currentColor 30%, transparent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-resource-group a:hover,
+html:not(.dark) .hero-resource-group a:hover {
+  color: #20140f !important;
+  background-color: #ffb84d !important;
+  border-color: #ffb84d !important;
+}
+.hero-resource-group a:active {
+  background-color: #f6a43d !important;
+}
 /* Floating headings — text-shadow halo for readability against parallax background */
 .section-heading-float {
   text-shadow:
