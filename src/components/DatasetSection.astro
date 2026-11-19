@@ -6,7 +6,7 @@ const pipelineSteps = [
   { n: '2', title: 'Shot Segmentation',       desc: 'TransNetV2 detects initial temporal boundaries, then SCBO refines them' },
   { n: '3', title: 'AC Detection',            desc: 'Gemini-3 scores action-cut continuity by assessing action state consistency and action flow continuity across adjacent shot' },
   { n: '4', title: 'Hierarchical Annotation', desc: 'Global content (setting & action) + local static/dynamic cinematography + shot relation cinematography' },
-  { n: '5', title: 'Quality Filtering',       desc: 'LLM-based annotation verification and expert review to ensure label accuracy and clip quality' },
+  { n: '5', title: 'Quality Filtering',       desc: 'LLM-based annotation verification and expert review to ensure action continuity, annotation accuracy and clip quality' },
 ];
 
 const statGroups = [
