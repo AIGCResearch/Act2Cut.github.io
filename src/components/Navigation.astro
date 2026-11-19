@@ -190,17 +190,10 @@ const pageLinks = [
     document.querySelectorAll<HTMLElement>('.theme-icon-light').forEach(el => el.classList.toggle('hidden', dark));
   }
 
-  let themeFlashTimer: number | undefined;
-
   function toggleTheme() {
     const html = document.documentElement;
     if (isDark()) { html.classList.remove('dark'); localStorage.setItem('theme', 'light'); }
     else          { html.classList.add('dark');    localStorage.setItem('theme', 'dark');  }
-    window.clearTimeout(themeFlashTimer);
-    html.classList.remove('theme-switching');
-    void html.offsetWidth;
-    html.classList.add('theme-switching');
-    themeFlashTimer = window.setTimeout(() => html.classList.remove('theme-switching'), 620);
     syncUI();
   }
 

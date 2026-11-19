@@ -345,20 +345,6 @@ html:not(.dark) .glass-arch {
   box-shadow: 0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.80);
 }
 
-html.theme-switching .hero-action-label {
-  animation: hero-action-flash 620ms ease-in-out;
-}
-
-@keyframes hero-action-flash {
-  0%, 100% { opacity: 1; text-shadow: none; }
-  16%, 43% { opacity: 0.3; text-shadow: none; }
-  27%, 57% { opacity: 1; text-shadow: 0 0 8px currentColor; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html.theme-switching .hero-action-label { animation: none; }
-}
-
 /* Floating headings — text-shadow halo for readability against parallax background */
 .section-heading-float {
   text-shadow:
