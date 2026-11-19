@@ -62,10 +62,20 @@ const pageLinks = [
         ))}
       </nav>
 
-      <!-- SIGGRAPH Asia mark on compact navigation -->
+      <!-- Partner marks on compact navigation -->
+      <a
+        href="https://aigcresearch.github.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-aigc-mark md:hidden ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full opacity-80 transition-opacity duration-200 hover:opacity-100"
+        aria-label="AIGC Research"
+      >
+        <img src={`${base}/images/aigc-research-mark-light.png`} class="block h-7 w-7 object-contain dark:hidden" alt="AIGC Research" loading="eager" />
+        <img src={`${base}/images/aigc-research-mark-dark.png`} class="hidden h-7 w-7 object-contain dark:block" alt="AIGC Research" loading="eager" />
+      </a>
       <a
         href={url('/#poster')}
-        class="mobile-siga-mark md:hidden ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full opacity-80 transition-opacity duration-200 hover:opacity-100"
+        class="mobile-siga-mark md:hidden flex h-8 w-8 shrink-0 items-center justify-center rounded-full opacity-80 transition-opacity duration-200 hover:opacity-100"
         aria-label="SIGGRAPH Asia 2026 Poster"
       >
         <img src={`${base}/images/siggraph-asia-mark.png`} class="h-7 w-7 object-contain" alt="SIGGRAPH Asia" loading="eager" />
