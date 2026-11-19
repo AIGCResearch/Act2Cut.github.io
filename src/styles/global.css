@@ -415,14 +415,22 @@ html:not(.dark) .hero-meta-marker {
   color: #b7791f;
   text-shadow: none;
 }
-html:not(.dark) .poster-kicker {
-  color: #b7791f !important;
-}
 .poster-series-badge {
-  border-color: #ffb84d !important;
+  border-color: transparent !important;
+  isolation: isolate;
 }
-html:not(.dark) .poster-series-badge {
-  border-color: #b7791f !important;
+.poster-series-badge::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff4d4d, #ffb84d);
+  padding: 1px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 .hero-action-cut {
   color: inherit;
