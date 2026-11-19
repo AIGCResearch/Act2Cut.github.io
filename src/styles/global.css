@@ -394,6 +394,20 @@ html:not(.dark) .glass-arch {
 .hero-title-flicker {
   color: var(--hero-title-ink, inherit);
 }
+.hero-brand-gradient {
+  background-size: 220% 100%;
+  animation: hero-brand-gradient-flow 5s ease-in-out infinite;
+  will-change: background-position;
+}
+@keyframes hero-brand-gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-brand-gradient {
+    animation: none;
+  }
+}
 .hero-meta-marker {
   color: #ffb84d;
 }
