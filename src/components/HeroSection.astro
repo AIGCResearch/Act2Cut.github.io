@@ -1,8 +1,8 @@
 ---
 const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
 
-const authors = [
-  { name: 'Cailin Zhuang', affil: '1,2,3,4', notes: '*†' },
+const authors: { name: string; affil: string; notes: string; url?: string }[] = [
+  { name: 'Cailin Zhuang', affil: '1,2,3,4', notes: '*†', url: 'https://journey-zhuang.github.io/' },
   { name: 'Yaoqi Hu',      affil: '2',       notes: ''   },
   { name: 'Zheng Dong',    affil: '2',       notes: ''   },
   { name: 'Shiwen Zhang',  affil: '1',       notes: ''   },
@@ -47,7 +47,9 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
           <div class="flex flex-wrap justify-center gap-x-4 sm:gap-x-5 gap-y-2">
             {row.map(author => (
               <span class="whitespace-nowrap font-semibold text-white/90">
-                {author.name}<sup class="ml-1 text-[10px] sm:text-[11px] font-bold tracking-[0.04em] text-[#9a4d19] dark:text-[#ffb84d]">{author.affil}{author.notes && <span class="ml-0.5">{author.notes}</span>}</sup>
+                {author.url
+                  ? <a href={author.url} target="_blank" rel="noopener noreferrer" class="text-inherit underline decoration-[#ffb84d]/50 underline-offset-4 transition-colors hover:text-[#9a4d19] dark:hover:text-[#ffb84d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb84d]">{author.name}</a>
+                  : author.name}<sup class="ml-1 text-[10px] sm:text-[11px] font-bold tracking-[0.04em] text-[#9a4d19] dark:text-[#ffb84d]">{author.affil}{author.notes && <span class="ml-0.5">{author.notes}</span>}</sup>
               </span>
             ))}
           </div>
