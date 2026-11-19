@@ -388,10 +388,8 @@ html:not(.dark) .glass-arch {
 html:not(.dark) .hero-resource-group a:hover {
   color: #20140f !important;
   background-color: #ffb84d !important;
-  border-color: #ffb84d !important;
-}
-.hero-resource-group a:active {
-  background-color: #f6a43d !important;
+  background-image: linear-gradient(to right, #ff4d4d, #ffb84d);
+  border-color: transparent !important;
 }
 /* Floating headings — text-shadow halo for readability against parallax background */
 .section-heading-float {
