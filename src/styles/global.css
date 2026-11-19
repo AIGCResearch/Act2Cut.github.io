@@ -502,21 +502,34 @@ html:not(.dark) .hero-team-footer {
   inset: -1px;
   z-index: 0;
   border-radius: inherit;
-  background: conic-gradient(from 0deg, #ff4d4d, #ff7a3d, #ffb84d, #ff4d4d);
+  background: conic-gradient(
+    from var(--team-border-angle),
+    #ff4d4d 0deg,
+    #ff4d4d 90deg,
+    #ff7a3d 145deg,
+    #ffb84d 190deg,
+    #ff7a3d 235deg,
+    #ff4d4d 290deg,
+    #ff4d4d 360deg
+  );
   padding: 1px;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-  transform-origin: center;
-  animation: hero-team-border-spin 5s linear infinite;
+  animation: hero-team-border-flow 5s linear infinite;
 }
 .hero-team-footer > * {
   position: relative;
   z-index: 1;
 }
-@keyframes hero-team-border-spin {
-  to { transform: rotate(360deg); }
+@property --team-border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes hero-team-border-flow {
+  to { --team-border-angle: 360deg; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-team-footer::before {
