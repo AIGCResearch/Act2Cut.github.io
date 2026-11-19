@@ -443,7 +443,7 @@ html:not(.dark) .glass-arch {
   position: relative;
   isolation: isolate;
   background: rgba(255, 184, 77, 0.12);
-  border-color: #ffb84d !important;
+  border-color: transparent !important;
   -webkit-backdrop-filter: blur(12px) saturate(135%);
   backdrop-filter: blur(12px) saturate(135%);
   box-shadow: inset 0 1px 0 rgba(255, 220, 140, 0.36), 0 0 0 1px rgba(255, 184, 77, 0.10), 0 0 14px rgba(255, 184, 77, 0.08);
@@ -453,7 +453,7 @@ html:not(.dark) .glass-arch {
 }
 html:not(.dark) .hero-resource-group a {
   background: rgba(255, 196, 100, 0.24) !important;
-  border-color: #b7791f !important;
+  border-color: transparent !important;
   -webkit-backdrop-filter: blur(12px) saturate(135%);
   backdrop-filter: blur(12px) saturate(135%);
   box-shadow: inset 0 1px 0 rgba(255, 238, 180, 0.78), 0 0 0 1px rgba(183, 121, 31, 0.10), 0 0 14px rgba(183, 121, 31, 0.10);
@@ -493,8 +493,25 @@ html:not(.dark) .hero-team-footer {
   pointer-events: none;
   transition: opacity 280ms ease;
 }
+.hero-resource-group a::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff4d4d, #ffb84d);
+  padding: 1px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+}
 .hero-resource-group a:hover::before {
   opacity: 1;
+}
+.hero-resource-group a:hover::after {
+  opacity: 0;
 }
 .hero-resource-group a:hover,
 html:not(.dark) .hero-resource-group a:hover {
