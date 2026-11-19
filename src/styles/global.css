@@ -20,11 +20,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Fill the space left by the full-width bar when it shrinks into an island. */
-html.nav-scrolled #site-background {
-  top: 0;
-}
-
 #site-background .site-bg-soften {
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
@@ -398,6 +393,13 @@ html:not(.dark) .glass-arch {
 /* The heading samples the unchanged resource icon color during theme changes. */
 .hero-title-flicker {
   color: var(--hero-title-ink, inherit);
+}
+.hero-meta-marker {
+  color: #ffb84d;
+}
+html:not(.dark) .hero-meta-marker {
+  color: #c2410c;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
 }
 .hero-action-cut {
   color: inherit;

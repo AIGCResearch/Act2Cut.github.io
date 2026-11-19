@@ -42,31 +42,31 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
     <!-- Soft dark halo — larger feathered ellipse for readability; hidden in light mode -->
     <div class="hero-scrim"></div>
     <div class="relative space-y-4 sm:space-y-5">
-      <div class="space-y-2.5 text-[15px] sm:text-[16px] md:text-[17px]">
+      <div class="space-y-2.5 text-[16px] sm:text-[18px] md:text-[20px]">
         {authorRows.map(row => (
           <div class="flex flex-wrap justify-center gap-x-4 sm:gap-x-5 gap-y-2">
             {row.map(author => (
               <span class="whitespace-nowrap font-semibold text-white/90">
                 {author.url
                   ? <a href={author.url} target="_blank" rel="noopener noreferrer" class="text-inherit underline decoration-[#ffb84d]/50 underline-offset-4 transition-colors hover:text-[#9a4d19] dark:hover:text-[#ffb84d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb84d]">{author.name}</a>
-                  : author.name}<sup class="ml-1 text-[10px] sm:text-[11px] font-bold tracking-[0.04em] text-[#9a4d19] dark:text-[#ffb84d]">{author.affil}{author.notes && <span class="ml-0.5">{author.notes}</span>}</sup>
+                  : author.name}<sup class="hero-meta-marker ml-1 text-[13px] sm:text-[14px] md:text-[15px] font-extrabold tracking-[0.02em]">{author.affil}{author.notes && <span class="ml-0.5">{author.notes}</span>}</sup>
               </span>
             ))}
           </div>
         ))}
       </div>
-      <div class="mx-auto flex max-w-5xl flex-col items-center gap-2 text-center text-[12px] sm:text-[13px] md:text-[14px] text-white/75">
-        <span class="inline-flex max-w-full items-baseline justify-center gap-1.5 leading-snug"><span class="shrink-0 font-bold text-[#9a4d19] dark:text-[#ffb84d]">{affiliations[0].id}</span><span>{affiliations[0].name}</span></span>
+      <div class="mx-auto flex max-w-5xl flex-col items-center gap-2 text-center text-[14px] sm:text-[15px] md:text-[16px] text-white/75">
+        <span class="inline-flex max-w-full items-baseline justify-center gap-1.5 leading-snug"><span class="hero-meta-marker shrink-0 font-extrabold">{affiliations[0].id}</span><span>{affiliations[0].name}</span></span>
         <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
           {affiliations.slice(1).map(affil => (
-            <span class="inline-flex items-baseline gap-1.5 leading-snug"><span class="font-bold text-[#9a4d19] dark:text-[#ffb84d]">{affil.id}</span><span>{affil.name}</span></span>
+            <span class="inline-flex items-baseline gap-1.5 leading-snug"><span class="hero-meta-marker font-extrabold">{affil.id}</span><span>{affil.name}</span></span>
           ))}
         </div>
       </div>
       <div class="flex flex-wrap justify-center gap-2 text-[12px] sm:text-[13px] font-medium">
-        <span class="inline-flex max-w-full items-start gap-2 rounded-full border border-white/[0.14] bg-white/[0.06] px-3 py-1.5 text-white/80 shadow-sm"><span class="font-bold text-[#9a4d19] dark:text-[#ffb84d]">*</span>Work done during internship at TeleAI.</span>
-        <span class="inline-flex max-w-full items-start gap-2 rounded-full border border-white/[0.14] bg-white/[0.06] px-3 py-1.5 text-white/80 shadow-sm"><span class="font-bold text-[#9a4d19] dark:text-[#ffb84d]">†</span>Project Lead.</span>
-        <span class="inline-flex max-w-full items-start gap-2 rounded-full border border-white/[0.14] bg-white/[0.06] px-3 py-1.5 text-white/80 shadow-sm"><span class="font-bold text-[#9a4d19] dark:text-[#ffb84d]">‡</span>Corresponding author.</span>
+        <span class="inline-flex max-w-full items-start gap-2 rounded-full border border-white/[0.14] bg-white/[0.06] px-3 py-1.5 text-white/80 shadow-sm"><span class="hero-meta-marker font-extrabold">*</span>Work done during internship at TeleAI.</span>
+        <span class="inline-flex max-w-full items-start gap-2 rounded-full border border-white/[0.14] bg-white/[0.06] px-3 py-1.5 text-white/80 shadow-sm"><span class="hero-meta-marker font-extrabold">†</span>Project Lead.</span>
+        <span class="inline-flex max-w-full items-start gap-2 rounded-full border border-white/[0.14] bg-white/[0.06] px-3 py-1.5 text-white/80 shadow-sm"><span class="hero-meta-marker font-extrabold">‡</span>Corresponding author.</span>
       </div>
     </div>
   </div>
