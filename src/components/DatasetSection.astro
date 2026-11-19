@@ -2,7 +2,7 @@
 import DualVideo from './DualVideo.astro';
 
 const pipelineSteps = [
-  { n: '1', title: 'Source Collection',       desc: 'sourced from films, television series, anime, variety shows, and short-form dramas' },
+  { n: '1', title: 'Source Collection',       desc: 'Video sequences are sourced from films, television series, anime, variety shows, and short-form dramas.' },
   { n: '2', title: 'Shot Segmentation',       desc: 'TransNetV2 detects initial temporal boundaries, then SCBO refines them' },
   { n: '3', title: 'AC Detection',            desc: 'Gemini-3 scores action-cut continuity by assessing action state consistency and action flow continuity across adjacent shot' },
   { n: '4', title: 'Hierarchical Annotation', desc: 'Global content (setting & action) + local static/dynamic cinematography + shot relation cinematography' },
@@ -105,7 +105,7 @@ const samples = sampleFiles.map(file => {
       <span class="inline-block w-1 h-6 sm:h-7 bg-gradient-to-b from-[#ff4d4d] to-[#ffb84d] rounded-sm" style="transform: skewX(-6deg);"></span>
       Large-Scale Dataset: ActCutVid-1M
     </h2>
-    <p class="text-white/50 text-[13px] sm:text-sm mt-2 section-heading-float">Large-scale multi-shot video corpus with hierarchical cinematographic annotation.</p>
+    <p class="text-white/50 text-[13px] sm:text-sm mt-2 section-heading-float">Large-scale multi-shot video sequence with hierarchical cinematographic annotation.</p>
   </div>
 
   <!-- Construction pipeline -->
