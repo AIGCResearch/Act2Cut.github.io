@@ -25,6 +25,11 @@ html.nav-scrolled #site-background {
   top: 0;
 }
 
+#site-background .site-bg-soften {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
 /* A translucent film grain over the collage, behind the page content. */
 #site-background::after {
   content: '';

@@ -1,6 +1,7 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 const poster = `${base}/images/act2cut-sa-poster.png`;
+const siggraphMark = `${base}/images/siggraph-asia-mark.png`;
 ---
 
 <section id="poster" class="space-y-5 sm:space-y-6 scroll-mt-24">
@@ -22,18 +23,21 @@ const poster = `${base}/images/act2cut-sa-poster.png`;
       />
     </a>
 
-    <div class="space-y-5 sm:space-y-6">
-      <div class="space-y-3">
-        <p class="text-[10px] font-bold uppercase tracking-[0.24em] text-[#ffb84d]">One Action · Multiple Views</p>
-        <h3 class="text-xl font-semibold text-white sm:text-2xl">SIGGRAPH Asia 2026｜Act2Cut Poster</h3>
-        <p class="max-w-md text-sm leading-relaxed text-white/60">The conference poster brings together the Action-Cut problem, prompt design, dataset, architecture, and results on one page.</p>
-      </div>
+    <div class="relative isolate">
+      <img src={siggraphMark} alt="" aria-hidden="true" width="391" height="391" loading="lazy" decoding="async" class="pointer-events-none absolute right-0 top-1/2 z-0 w-40 -translate-y-1/2 opacity-[0.16] sm:w-48 lg:w-56 dark:opacity-[0.22]" />
+      <div class="relative z-10 space-y-5 sm:space-y-6">
+        <div class="space-y-3">
+          <p class="text-[10px] font-bold uppercase tracking-[0.24em] text-[#ffb84d]">One Action · Multiple Views</p>
+          <h3 class="text-xl font-semibold text-white sm:text-2xl">SIGGRAPH Asia 2026｜Act2Cut Poster</h3>
+          <p class="max-w-md text-sm leading-relaxed text-white/60">The conference poster brings together the Action-Cut problem, prompt design, dataset, architecture, and results on one page.</p>
+        </div>
 
-      <div class="flex flex-wrap gap-3">
-        <a href={poster} target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-[#ffb84d]/45 bg-[#ffb84d]/15 px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#ffb84d]/25">View full-size poster</a>
-        <a href={poster} download="Act2Cut_SA_poster.png" class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.05] px-5 py-2.5 text-xs font-semibold text-white/75 transition-colors hover:bg-white/[0.1] hover:text-white">Download PNG</a>
+        <div class="flex flex-wrap gap-3">
+          <a href={poster} target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-[#ffb84d]/45 bg-[#ffb84d]/15 px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#ffb84d]/25">View full-size poster</a>
+          <a href={poster} download="Act2Cut_SA_poster.png" class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.05] px-5 py-2.5 text-xs font-semibold text-white/75 transition-colors hover:bg-white/[0.1] hover:text-white">Download PNG</a>
+        </div>
+        <p class="text-xs text-white/40">Click the image to open the original resolution.</p>
       </div>
-      <p class="text-xs text-white/40">Click the image to open the original resolution.</p>
     </div>
   </div>
 </section>
