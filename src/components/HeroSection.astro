@@ -3,7 +3,7 @@ const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
 
 const authors = [
   { name: 'Cailin Zhuang', affil: '1,2,3*†' },
-  { name: 'Yaoqi Hu',      affil: '2*'   },
+  { name: 'Yaoqi Hu',      affil: '2'    },
   { name: 'Zheng Dong',    affil: '2'    },
   { name: 'Shiwen Zhang',  affil: '1'      },
   { name: 'Haibin Huang',  affil: '1†'     },
@@ -57,8 +57,8 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
         ))}
       </div>
       <div class="text-[11.5px] sm:text-[13px] text-white/40 font-light flex flex-wrap justify-center gap-x-5 gap-y-1">
-        <span>* Equal contribution.</span>
-        <span>† Work done during internship at TeleAI.</span>
+        <span>* Work done during internship at TeleAI.</span>
+        <span>† Project Lead.</span>
         <span>‡ Corresponding author.</span>
       </div>
     </div>

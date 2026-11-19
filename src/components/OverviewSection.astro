@@ -7,14 +7,14 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
 const methodCards = [
   {
-    abbr: 'TBR',
-    title: 'Transitional Boundary Residual',
-    desc: `Enhances spatial and kinetic consistency at the edit point between adjacent shots. Ensures the terminal frame of shot <em>n</em> and the initial frame of shot <em>n+1</em> maintain rigorous 3D spatial alignment and smooth momentum continuity, preventing visual "popping" at hard cuts.`
-  },
-  {
     abbr: 'GLoS-RoPE',
     title: 'Global-Local Shot RoPE',
     desc: `Decouples temporal position encoding across shot boundaries. Global tokens carry sequence-level context while local tokens remain precisely positioned within their own shot — enabling cross-shot coherence without RoPE bleed between unrelated frames.`
+  },
+  {
+    abbr: 'TBR',
+    title: 'Transitional Boundary Residual',
+    desc: `Enhances spatial and kinetic consistency at the edit point between adjacent shots. Ensures the terminal frame of shot <em>n</em> and the initial frame of shot <em>n+1</em> maintain rigorous 3D spatial alignment and smooth momentum continuity, preventing visual "popping" at hard cuts.`
   },
   {
     abbr: 'SCM',
