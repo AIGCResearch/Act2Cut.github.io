@@ -135,7 +135,7 @@ const pageLinks = [
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" />
               </svg>
             </button>
-            <nav id="section-menu" class="absolute right-0 top-[calc(100%+10px)] w-56 overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-white/20 bg-[#0a0a0a] p-2 shadow-[0_14px_38px_rgba(0,0,0,0.38)] backdrop-blur-xl" aria-label="On-page sections" aria-hidden="true" inert>
+            <nav id="section-menu" class="absolute right-0 top-[calc(100%+10px)] w-56 rounded-2xl border border-white/20 bg-[#0a0a0a] p-2 shadow-[0_14px_38px_rgba(0,0,0,0.38)] backdrop-blur-xl" aria-label="On-page sections" aria-hidden="true" inert>
               {homeAnchors.map(link => (
                 <a href={link.href} data-nav-link class="section-menu-link block rounded-xl px-3 py-2.5 text-[13px] font-semibold tracking-[0.03em] transition-colors">
                   {link.label}
