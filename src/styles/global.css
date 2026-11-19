@@ -536,7 +536,7 @@ html:not(.dark) .hero-team-footer {
   to { --team-border-angle: 360deg; }
 }
 .hero-content-divider {
-  width: min(100%, 56rem);
+  width: 100%;
   height: 2px;
   margin-inline: auto;
   border-radius: 999px;
