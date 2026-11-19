@@ -425,6 +425,16 @@ html:not(.dark) .hero-meta-marker {
 .hero-resource-group a {
   position: relative;
   isolation: isolate;
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: blur(12px) saturate(135%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+html:not(.dark) .hero-resource-group a {
+  background: rgba(255, 255, 255, 0.38) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: blur(12px) saturate(135%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
 }
 .hero-resource-group a::before {
   content: '';
