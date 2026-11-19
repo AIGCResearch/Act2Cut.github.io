@@ -572,6 +572,11 @@ html:not(.dark) .hero-resource-group a:hover {
   color: #20140f !important;
   border-color: transparent !important;
 }
+html:not(.dark) .coming-soon-label {
+  color: #b7791f !important;
+  border-color: rgba(183, 121, 31, 0.42) !important;
+  background: rgba(255, 255, 255, 0.36) !important;
+}
 /* Floating headings — text-shadow halo for readability against parallax background */
 .section-heading-float {
   text-shadow:
