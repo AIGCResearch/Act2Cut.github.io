@@ -390,14 +390,18 @@ html:not(.dark) .glass-arch {
   box-shadow: 0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.80);
 }
 .dark .hero-institution-glass {
-  background: rgba(10, 10, 10, 0.58);
+  background: rgba(10, 10, 10, 0.42);
+  -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(108%);
+  backdrop-filter: blur(32px) saturate(200%) brightness(108%);
   border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 html:not(.dark) .hero-institution-glass {
-  background: rgba(255, 255, 255, 0.36);
-  border-color: rgba(255, 255, 255, 0.52);
-  box-shadow: 0 8px 40px rgba(68, 48, 28, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.42);
+  -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(108%);
+  backdrop-filter: blur(32px) saturate(200%) brightness(108%);
+  border-color: rgba(45, 36, 28, 0.22);
+  box-shadow: 0 8px 40px rgba(68, 48, 28, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 /* The heading samples the unchanged resource icon color during theme changes. */
 .hero-title-flicker {
