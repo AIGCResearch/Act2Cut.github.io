@@ -200,6 +200,7 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
   <Navigation page="home" />
   <main class="w-full max-w-7xl mx-auto px-4 sm:px-8 pt-8 pb-16 md:pb-24 flex flex-col gap-16 relative z-10">
     <HeroSection />
+    {!isAnonymous && <PosterSection />}
     <AbstractSection />
     <OverviewSection />
 
@@ -390,7 +391,6 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
     </div>
     </section>
 
-    {!isAnonymous && <PosterSection />}
     {!isAnonymous && <CitationSection />}
   </main>
 </Layout>
