@@ -1276,19 +1276,3 @@ html:not(.dark) .layer-row {
   transform: translate(-50%, 0) scale(1);
 }
 
-/* Keep the dataset divider brand-colored after all light-mode overrides. */
-html .film-strip-divider.dataset-curation-divider {
-  height: 2px;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    #ff4d4d 0%,
-    #ff7a3d 25%,
-    #ffb84d 50%,
-    #ff7a3d 75%,
-    #ff4d4d 100%
-  ) !important;
-  background-size: 200% 100% !important;
-  animation: hero-content-divider-flow 4.5s ease-in-out infinite alternate;
-}
