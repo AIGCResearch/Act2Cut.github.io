@@ -700,9 +700,9 @@ html:not(.dark) .team-logo-glow::before {
 }
 .hero-content-divider {
   width: 100%;
-  height: 2px;
+  height: 4px;
   margin-inline: auto;
-  border-radius: 999px;
+  border-radius: 0.125rem;
   background: linear-gradient(
     90deg,
     #ff4d4d 0%,
