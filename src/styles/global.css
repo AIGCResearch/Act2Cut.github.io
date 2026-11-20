@@ -530,12 +530,12 @@ html:not(.dark) .hero-team-footer {
 .team-logo-glow::before {
   content: '';
   position: absolute;
-  inset: 12% 4%;
+  inset: 8% 2%;
   z-index: 0;
   border-radius: 999px;
-  background: radial-gradient(ellipse at center, rgba(255, 184, 77, 0.46) 0%, rgba(255, 122, 61, 0.26) 42%, rgba(255, 77, 77, 0) 78%);
-  filter: blur(16px);
-  opacity: 0.82;
+  background: radial-gradient(ellipse at center, rgba(255, 184, 77, 0.7) 0%, rgba(255, 122, 61, 0.42) 42%, rgba(255, 77, 77, 0) 80%);
+  filter: blur(20px);
+  opacity: 0.94;
   pointer-events: none;
   animation: team-logo-glow-pulse 5s ease-in-out infinite;
 }
@@ -544,11 +544,19 @@ html:not(.dark) .hero-team-footer {
   z-index: 1;
 }
 html:not(.dark) .team-logo-glow::before {
-  opacity: 0.62;
+  opacity: 0.78;
 }
 @keyframes team-logo-glow-pulse {
   0%, 100% { transform: scaleX(0.94); opacity: 0.68; }
   50% { transform: scaleX(1.04); opacity: 0.9; }
+}
+.hero-title-glow {
+  animation: hero-brand-gradient-flow 5s ease-in-out infinite, hero-title-glow-pulse 4.5s ease-in-out infinite;
+  will-change: filter;
+}
+@keyframes hero-title-glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.22)) drop-shadow(0 0 12px rgba(255, 184, 77, 0.12)); }
+  50% { filter: drop-shadow(0 0 10px rgba(255, 122, 61, 0.5)) drop-shadow(0 0 24px rgba(255, 184, 77, 0.28)); }
 }
 @property --team-border-angle {
   syntax: '<angle>';
@@ -581,6 +589,10 @@ html:not(.dark) .team-logo-glow::before {
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-team-footer::before {
+    animation: none;
+  }
+  .team-logo-glow::before,
+  .hero-title-glow {
     animation: none;
   }
   .hero-content-divider {
