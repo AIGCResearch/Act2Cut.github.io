@@ -72,8 +72,21 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       const teamFooter = document.querySelector<HTMLElement>('.hero-team-footer');
       if (teamFooter) {
         const syncTeamFooter = () => {
-          teamFooter.classList.toggle('team-footer-scrolled', window.scrollY > 8);
+          const scrolled = window.scrollY > 8;
+          teamFooter.classList.toggle('team-footer-scrolled', scrolled);
+          if (!scrolled) teamFooter.classList.remove('team-footer-returning');
         };
+        teamFooter.addEventListener('pointerenter', () => teamFooter.classList.remove('team-footer-returning'));
+        teamFooter.addEventListener('pointerleave', () => {
+          if (teamFooter.classList.contains('team-footer-scrolled')) {
+            teamFooter.classList.remove('team-footer-returning');
+            void teamFooter.offsetWidth;
+            teamFooter.classList.add('team-footer-returning');
+          }
+        });
+        teamFooter.addEventListener('animationend', event => {
+          if (event.animationName === 'hero-team-hover-return') teamFooter.classList.remove('team-footer-returning');
+        });
         window.addEventListener('scroll', syncTeamFooter, { passive: true });
         syncTeamFooter();
       }
