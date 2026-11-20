@@ -486,7 +486,7 @@ html:not(.dark) .hero-resource-group a {
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, calc(100% + 1rem)) scale(0.95);
-  transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 560ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 html:not(.dark) .hero-team-footer {
   background: rgba(255, 255, 255, 0.78);
@@ -502,21 +502,43 @@ html:not(.dark) .hero-team-footer {
 }
 @media (hover: hover) and (pointer: fine) {
   [data-reveal].hero-team-footer.team-footer-scrolled:hover {
-    animation: hero-team-hover-bounce 980ms both;
+    animation: hero-team-hover-bounce 760ms both;
     will-change: transform;
+  }
+  [data-reveal].hero-team-footer.team-footer-scrolled:hover::after {
+    animation: hero-team-light-scatter 760ms ease-out both;
   }
 }
 @keyframes hero-team-hover-bounce {
   0% { transform: translate(-50%, 0) scale(1); }
-  12% { transform: translate(-50%, 3px) scale(1); }
-  23% { transform: translate(-50%, 5px) scale(1); }
-  38% { transform: translate(-50%, -2px) scale(1); }
-  55% { transform: translate(-50%, -13px) scale(1); }
-  68% { transform: translate(-50%, -15px) scale(1); }
-  82% { transform: translate(-50%, -7px) scale(1); }
-  91% { transform: translate(-50%, -5px) scale(1); }
-  97% { transform: translate(-50%, -9px) scale(1); }
-  100% { transform: translate(-50%, -8px) scale(1); }
+  10% { transform: translate(-50%, 3px) scale(1); }
+  18% { transform: translate(-50%, 5px) scale(1); }
+  28% { transform: translate(-50%, -1px) scale(1); }
+  42% { transform: translate(-50%, -22px) scale(1); }
+  52% { transform: translate(-50%, -24px) scale(1); }
+  63% { transform: translate(-50%, -15px) scale(1); }
+  72% { transform: translate(-50%, -13px) scale(1); }
+  82% { transform: translate(-50%, -17px) scale(1); }
+  91% { transform: translate(-50%, -15px) scale(1); }
+  100% { transform: translate(-50%, -16px) scale(1); }
+}
+.hero-team-footer::after {
+  content: '';
+  position: absolute;
+  inset: -28%;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, rgba(255, 184, 77, 0.52) 0%, rgba(255, 122, 61, 0.24) 25%, rgba(255, 77, 77, 0.08) 45%, transparent 68%);
+  filter: blur(12px);
+  opacity: 0;
+  transform: scale(0.12);
+  pointer-events: none;
+}
+@keyframes hero-team-light-scatter {
+  0% { opacity: 0; transform: scale(0.12); }
+  18% { opacity: 0.9; }
+  58% { opacity: 0.42; transform: scale(0.88); }
+  100% { opacity: 0; transform: scale(1.18); }
 }
 .hero-team-footer::before {
   content: '';
@@ -610,6 +632,9 @@ html:not(.dark) .team-logo-glow::before {
     animation: none;
   }
   .hero-team-footer {
+    animation: none !important;
+  }
+  .hero-team-footer::after {
     animation: none !important;
   }
   .team-logo-glow::before,
