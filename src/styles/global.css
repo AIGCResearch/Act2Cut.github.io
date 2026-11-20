@@ -554,13 +554,13 @@ html:not(.dark) .hero-team-footer {
   10% { transform: translate(-50%, 3px) scale(1); }
   18% { transform: translate(-50%, 5px) scale(1); }
   28% { transform: translate(-50%, -1px) scale(1); }
-  42% { transform: translate(-50%, -28px) scale(1); }
-  52% { transform: translate(-50%, -32px) scale(1); }
-  72% { transform: translate(-50%, -23px) scale(1); }
-  100% { transform: translate(-50%, -24px) scale(1); }
+  42% { transform: translate(-50%, -20px) scale(1); }
+  52% { transform: translate(-50%, -24px) scale(1); }
+  72% { transform: translate(-50%, -15px) scale(1); }
+  100% { transform: translate(-50%, -16px) scale(1); }
 }
 @keyframes hero-team-hover-return {
-  0% { transform: translate(-50%, -24px) scale(1); }
+  0% { transform: translate(-50%, -16px) scale(1); }
   58% { transform: translate(-50%, 2px) scale(1); }
   82% { transform: translate(-50%, -1px) scale(1); }
   100% { transform: translate(-50%, 0) scale(1); }
@@ -638,44 +638,41 @@ html:not(.dark) .hero-team-footer {
     transform: scale(1);
   }
 }
-/* Touch devices use the static capsule from before hover expansion was added. */
+/* Touch uses the same flex layout and motion, activated by tapping. */
 @media (hover: none), (pointer: coarse) {
-  [data-reveal].hero-team-footer {
-    width: min(72vw, 30rem);
-    transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  [data-reveal].hero-team-footer .team-logo-core {
+    transform: scale(1.5);
   }
-  .hero-team-footer .team-side-logo {
+  [data-reveal].hero-team-footer.team-footer-touch-active {
+    width: min(72vw, 30rem);
+    animation: hero-team-hover-bounce 760ms both;
+  }
+  [data-reveal].hero-team-footer.team-footer-touch-active::after {
+    animation: hero-team-light-scatter 760ms ease-out both;
+  }
+  [data-reveal].hero-team-footer.team-footer-returning {
+    animation: hero-team-hover-return 560ms both;
+  }
+  .hero-team-footer.team-footer-touch-active .team-logo-core {
+    transform: scale(1);
+  }
+  .hero-team-footer.team-footer-touch-active .team-side-logo {
     width: 2rem;
     height: 2rem;
     opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .hero-team-footer .team-logo-core {
-    width: 205px;
-    height: 32px;
-    transform: none;
-    transition: none;
+    transform: translateX(0) rotate(0deg);
   }
 }
 @media (min-width: 640px) and (hover: none), (min-width: 640px) and (pointer: coarse) {
-  .hero-team-footer .team-side-logo {
+  .hero-team-footer.team-footer-touch-active .team-side-logo {
     width: 2.5rem;
     height: 2.5rem;
   }
-  .hero-team-footer .team-logo-core {
-    width: 245px;
-    height: 38px;
-  }
 }
 @media (min-width: 1280px) and (hover: none), (min-width: 1280px) and (pointer: coarse) {
-  .hero-team-footer .team-side-logo {
+  .hero-team-footer.team-footer-touch-active .team-side-logo {
     width: 3rem;
     height: 3rem;
-  }
-  .hero-team-footer .team-logo-core {
-    width: 285px;
-    height: 44px;
   }
 }
 html:not(.dark) .team-logo-glow::before {
