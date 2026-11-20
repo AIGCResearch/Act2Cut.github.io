@@ -746,6 +746,63 @@ html:not(.dark) .team-logo-glow::before {
   transform-origin: top center;
   animation: hero-divider-spark-fall var(--divider-spark-duration, 3.2s) ease-in-out var(--divider-spark-delay, 0s) infinite;
 }
+.hero-content-divider.has-spark-particles::after {
+  display: none;
+}
+.divider-spark-particle {
+  position: absolute;
+  top: var(--spark-y);
+  left: var(--spark-x);
+  width: var(--spark-size);
+  height: var(--spark-size);
+  border-radius: 50%;
+  background: var(--spark-color);
+  box-shadow: 0 0 2px var(--spark-color);
+  pointer-events: none;
+  will-change: transform, opacity;
+  opacity: 0;
+  animation-play-state: paused;
+  animation: divider-particle-flow var(--spark-duration) ease-in-out var(--spark-delay) infinite;
+}
+.hero-content-divider.spark-active .divider-spark-particle {
+  animation-play-state: running;
+}
+@keyframes divider-particle-flow {
+  0% { opacity: 0; transform: translate3d(0, -2px, 0) scale(0.35); }
+  16% { opacity: 0.95; transform: translate3d(var(--spark-mid-x), var(--spark-mid-y), 0) scale(0.8); }
+  52% { opacity: 0.75; transform: translate3d(var(--spark-mid-x), var(--spark-mid-y), 0) scale(1); }
+  78% { opacity: 0.48; transform: translate3d(var(--spark-end-x), var(--spark-end-y), 0) scale(0.72); }
+  100% { opacity: 0; transform: translate3d(var(--spark-end-x), var(--spark-end-y), 0) scale(0.2); }
+}
+#top-nav .nav-glass.has-nav-particles::after {
+  display: none;
+}
+#top-nav .nav-glass .nav-spark-particle {
+  position: absolute !important;
+  top: var(--nav-y);
+  left: var(--nav-x);
+  z-index: 0 !important;
+  width: var(--nav-size);
+  height: var(--nav-size);
+  border-radius: 50%;
+  background: var(--nav-color);
+  box-shadow: 0 0 2px var(--nav-color);
+  pointer-events: none;
+  will-change: transform, opacity;
+  opacity: 0;
+  animation-play-state: paused;
+  animation: nav-particle-inward var(--nav-duration) ease-in-out var(--nav-delay) infinite;
+}
+#top-nav.nav-scrolled .nav-glass .nav-spark-particle {
+  animation-play-state: running;
+}
+@keyframes nav-particle-inward {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.35); }
+  18% { opacity: 0.96; transform: translate3d(var(--nav-mid-x), var(--nav-mid-y), 0) scale(0.8); }
+  54% { opacity: 0.72; transform: translate3d(var(--nav-mid-x), var(--nav-mid-y), 0) scale(1); }
+  82% { opacity: 0.4; transform: translate3d(var(--nav-end-x), var(--nav-end-y), 0) scale(0.72); }
+  100% { opacity: 0; transform: translate3d(var(--nav-end-x), var(--nav-end-y), 0) scale(0.2); }
+}
 @keyframes hero-content-divider-flow {
   from { background-position: 0% 0; }
   to { background-position: 100% 0; }
@@ -781,6 +838,11 @@ html:not(.dark) .team-logo-glow::before {
   .hero-content-divider::before,
   .hero-content-divider::after {
     animation: none;
+  }
+  .divider-spark-particle,
+  #top-nav .nav-glass .nav-spark-particle {
+    animation: none;
+    opacity: 0.55;
   }
 }
 .hero-resource-group a::before {
