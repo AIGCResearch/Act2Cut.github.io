@@ -90,10 +90,17 @@ html:not(.dark) ::selection {
 }
 
 .dataset-curation-divider {
-  height: 2px;
-  border: 0;
-  background: linear-gradient(90deg, transparent 0%, #ff4d4d 18%, #ffb84d 50%, #ff4d4d 82%, transparent 100%);
-  box-shadow: 0 0 16px rgba(255, 184, 77, 0.42);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 12px,
+    rgba(255, 184, 77, 0.28) 12px,
+    rgba(255, 184, 77, 0.28) 18px,
+    transparent 18px,
+    transparent 30px
+  );
+  border-top-color: rgba(255, 184, 77, 0.34);
+  border-bottom-color: rgba(255, 184, 77, 0.34);
 }
 
 [data-reveal] {
