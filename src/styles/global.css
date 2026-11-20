@@ -523,47 +523,6 @@ html:not(.dark) .hero-team-footer {
   pointer-events: none;
   animation: hero-team-border-flow 5s linear infinite;
 }
-.hero-team-flow {
-  position: absolute;
-  inset: 0;
-  z-index: 0 !important;
-  overflow: hidden;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0.72;
-  mix-blend-mode: screen;
-}
-.hero-team-flow svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.hero-team-flow path {
-  fill: none;
-  stroke: url(#team-flow-gradient);
-  stroke-width: 1.25;
-  stroke-linecap: round;
-  stroke-dasharray: 14 18;
-  animation: hero-team-flow-drift 7s linear infinite;
-}
-.hero-team-flow path:nth-of-type(3),
-.hero-team-flow path:nth-of-type(4) {
-  animation-delay: -2.4s;
-}
-.hero-team-flow .hero-team-flow-bottom {
-  stroke-width: 0.9;
-  opacity: 0.42;
-  stroke-dasharray: 10 24;
-  animation-duration: 9s;
-  animation-delay: -4s;
-}
-html:not(.dark) .hero-team-flow {
-  opacity: 0.48;
-  mix-blend-mode: multiply;
-}
-@keyframes hero-team-flow-drift {
-  to { stroke-dashoffset: -128; }
-}
 .hero-team-footer > * {
   position: relative;
   z-index: 1;
