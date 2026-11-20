@@ -666,6 +666,44 @@ html:not(.dark) .hero-team-footer {
     height: 3rem;
   }
 }
+@media (hover: none), (pointer: coarse) {
+  .hero-team-footer {
+    justify-content: center;
+  }
+  .hero-team-footer .team-logo-glow {
+    position: absolute;
+    left: 50%;
+    width: min(230px, calc(100% - 32px));
+    flex: none;
+    transform: translateX(-50%);
+    transition: width 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-team-footer .team-side-logo {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    margin: 0;
+  }
+  .hero-team-footer .team-side-logo-left {
+    left: 50%;
+    transform: translate(24px, -50%) rotate(90deg);
+  }
+  .hero-team-footer .team-side-logo-right {
+    right: 50%;
+    transform: translate(-24px, -50%) rotate(-90deg);
+  }
+  .hero-team-footer.team-footer-touch-active .team-logo-glow {
+    width: min(230px, calc(100% - 96px));
+  }
+  .hero-team-footer.team-footer-touch-active .team-side-logo-left {
+    left: 16px;
+    transform: translate(0, -50%) rotate(0deg);
+  }
+  .hero-team-footer.team-footer-touch-active .team-side-logo-right {
+    right: 16px;
+    transform: translate(0, -50%) rotate(0deg);
+  }
+}
 @media (hover: hover) and (pointer: fine) {
   [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-logo-core,
   [data-reveal].hero-team-footer.team-footer-touch-active .team-logo-core {
