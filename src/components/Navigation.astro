@@ -331,9 +331,18 @@ const pageLinks = [
   const topSectionLinks = document.getElementById('top-section-links');
   const sectionDropdownMedia = window.matchMedia('(min-width: 768px)');
   let sectionOpenTimer: number | undefined;
+  let sectionCloseTimer: number | undefined;
+
+  function scheduleSectionClose() {
+    window.clearTimeout(sectionCloseTimer);
+    sectionCloseTimer = window.setTimeout(() => {
+      setSectionMenu(false);
+    }, 3000);
+  }
 
   function setSectionMenu(open: boolean) {
     if (!sectionToggle || !sectionMenu) return;
+    if (!open) window.clearTimeout(sectionCloseTimer);
     sectionToggle.setAttribute('aria-expanded', String(open));
     sectionMenu.setAttribute('aria-hidden', String(!open));
     sectionMenu.toggleAttribute('inert', !open);
@@ -341,7 +350,9 @@ const pageLinks = [
 
   sectionToggle?.addEventListener('click', () => {
     window.clearTimeout(sectionOpenTimer);
-    setSectionMenu(sectionToggle.getAttribute('aria-expanded') !== 'true');
+    const open = sectionToggle.getAttribute('aria-expanded') !== 'true';
+    setSectionMenu(open);
+    if (open) scheduleSectionClose();
   });
   sectionMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => setSectionMenu(false));
@@ -357,7 +368,9 @@ const pageLinks = [
   });
   sectionDropdownMedia.addEventListener('change', event => {
     window.clearTimeout(sectionOpenTimer);
-    setSectionMenu(event.matches && document.getElementById('top-nav')?.classList.contains('nav-scrolled') === true);
+    const open = event.matches && document.getElementById('top-nav')?.classList.contains('nav-scrolled') === true;
+    setSectionMenu(open);
+    if (open) scheduleSectionClose();
   });
 
   // ── Scroll spy (homepage anchor links) ───────────────────────────────────
@@ -406,7 +419,10 @@ const pageLinks = [
       if (scrolled && sectionDropdownMedia.matches) {
         // Open the list as the horizontal links finish moving into the trigger.
         sectionOpenTimer = window.setTimeout(() => {
-          if (header?.classList.contains('nav-scrolled')) setSectionMenu(true);
+          if (header?.classList.contains('nav-scrolled')) {
+            setSectionMenu(true);
+            scheduleSectionClose();
+          }
         }, 280);
       } else {
         setSectionMenu(false);
