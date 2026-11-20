@@ -514,9 +514,9 @@ html:not(.dark) .hero-team-footer {
   55% { transform: translate(-50%, -13px) scale(1); }
   68% { transform: translate(-50%, -15px) scale(1); }
   82% { transform: translate(-50%, -7px) scale(1); }
-  91% { transform: translate(-50%, 2px) scale(1); }
-  97% { transform: translate(-50%, 3px) scale(1); }
-  100% { transform: translate(-50%, 0) scale(1); }
+  91% { transform: translate(-50%, -5px) scale(1); }
+  97% { transform: translate(-50%, -9px) scale(1); }
+  100% { transform: translate(-50%, -8px) scale(1); }
 }
 .hero-team-footer::before {
   content: '';
