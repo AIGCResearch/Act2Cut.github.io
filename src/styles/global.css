@@ -699,6 +699,7 @@ html:not(.dark) .team-logo-glow::before {
   to { --team-border-angle: 360deg; }
 }
 .hero-content-divider {
+  position: relative;
   width: 100%;
   height: 4px;
   margin-inline: auto;
@@ -715,9 +716,55 @@ html:not(.dark) .team-logo-glow::before {
   box-shadow: 0 0 18px rgba(255, 184, 77, 0.28);
   animation: hero-content-divider-flow 4.5s ease-in-out infinite alternate;
 }
+.hero-content-divider::before,
+.hero-content-divider::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  pointer-events: none;
+}
+.hero-content-divider::before {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(255, 77, 77, 0.32), transparent 34%),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 184, 77, 0.36), transparent 38%),
+    radial-gradient(ellipse at 86% 0%, rgba(255, 122, 61, 0.3), transparent 34%),
+    linear-gradient(180deg, rgba(255, 184, 77, 0.16), transparent 90%);
+  filter: blur(2px);
+  opacity: 0.72;
+  transform-origin: top center;
+  animation: hero-divider-glow-fall 3.8s ease-in-out infinite;
+}
+.hero-content-divider::after {
+  background:
+    radial-gradient(circle at 8% 5%, rgba(255, 184, 77, 0.95) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 19% 25%, rgba(255, 122, 61, 0.82) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 33% 10%, rgba(255, 77, 77, 0.9) 0 0.9px, transparent 1.7px),
+    radial-gradient(circle at 47% 32%, rgba(255, 184, 77, 0.86) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 62% 8%, rgba(255, 122, 61, 0.9) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 76% 27%, rgba(255, 184, 77, 0.82) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 91% 12%, rgba(255, 77, 77, 0.9) 0 0.9px, transparent 1.7px);
+  filter: drop-shadow(0 0 4px rgba(255, 184, 77, 0.5));
+  opacity: 0.8;
+  transform-origin: top center;
+  animation: hero-divider-spark-fall 3.2s ease-in-out infinite;
+}
 @keyframes hero-content-divider-flow {
   from { background-position: 0% 0; }
   to { background-position: 100% 0; }
+}
+@keyframes hero-divider-glow-fall {
+  0%, 100% { opacity: 0.36; transform: scaleY(0.35); }
+  45% { opacity: 0.72; transform: scaleY(0.85); }
+  72% { opacity: 0.5; transform: scaleY(1); }
+}
+@keyframes hero-divider-spark-fall {
+  0% { opacity: 0; transform: translateY(-1px) scaleY(0.35); }
+  24% { opacity: 0.82; }
+  68% { opacity: 0.58; transform: translateY(10px) scaleY(0.9); }
+  100% { opacity: 0; transform: translateY(22px) scaleY(1.15); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-team-footer::before {
@@ -734,6 +781,10 @@ html:not(.dark) .team-logo-glow::before {
     animation: none;
   }
   .hero-content-divider {
+    animation: none;
+  }
+  .hero-content-divider::before,
+  .hero-content-divider::after {
     animation: none;
   }
 }
