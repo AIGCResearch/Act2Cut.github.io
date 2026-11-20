@@ -71,16 +71,20 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     <script>
       const teamFooter = document.querySelector<HTMLElement>('.hero-team-footer');
       if (teamFooter) {
-        const touchMode = window.matchMedia('(hover: none), (pointer: coarse)');
+        const desktopMode = window.matchMedia('(hover: hover) and (pointer: fine)');
         const syncTeamFooter = () => {
           const scrolled = window.scrollY > 8;
           teamFooter.classList.toggle('team-footer-scrolled', scrolled);
           if (!scrolled) {
-            teamFooter.classList.remove('team-footer-returning', 'team-footer-touch-active');
+            teamFooter.classList.remove('team-footer-returning');
           }
         };
-        teamFooter.addEventListener('pointerenter', () => teamFooter.classList.remove('team-footer-returning'));
-        teamFooter.addEventListener('pointerleave', () => {
+        teamFooter.addEventListener('pointerenter', event => {
+          if (event.pointerType !== 'mouse' || !desktopMode.matches) return;
+          teamFooter.classList.remove('team-footer-returning');
+        });
+        teamFooter.addEventListener('pointerleave', event => {
+          if (event.pointerType !== 'mouse' || !desktopMode.matches) return;
           if (teamFooter.classList.contains('team-footer-scrolled')) {
             teamFooter.classList.remove('team-footer-returning');
             void teamFooter.offsetWidth;
@@ -90,26 +94,8 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
         teamFooter.addEventListener('animationend', event => {
           if (event.animationName === 'hero-team-hover-return') teamFooter.classList.remove('team-footer-returning');
         });
-        teamFooter.addEventListener('click', event => {
-          if (!touchMode.matches || !teamFooter.classList.contains('team-footer-scrolled')) return;
-          event.stopPropagation();
-          const active = teamFooter.classList.toggle('team-footer-touch-active');
-          if (!active) {
-            teamFooter.classList.remove('team-footer-returning');
-            void teamFooter.offsetWidth;
-            teamFooter.classList.add('team-footer-returning');
-          }
-        });
-        document.addEventListener('pointerdown', event => {
-          if (!touchMode.matches || !teamFooter.classList.contains('team-footer-touch-active')) return;
-          if (event.target instanceof Node && !teamFooter.contains(event.target)) {
-            teamFooter.classList.remove('team-footer-touch-active', 'team-footer-returning');
-            void teamFooter.offsetWidth;
-            teamFooter.classList.add('team-footer-returning');
-          }
-        });
-        touchMode.addEventListener('change', () => {
-          teamFooter.classList.remove('team-footer-touch-active', 'team-footer-returning');
+        desktopMode.addEventListener('change', () => {
+          teamFooter.classList.remove('team-footer-returning');
         });
         window.addEventListener('scroll', syncTeamFooter, { passive: true });
         syncTeamFooter();

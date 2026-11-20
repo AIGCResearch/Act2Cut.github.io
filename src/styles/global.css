@@ -515,18 +515,6 @@ html:not(.dark) .hero-team-footer {
     will-change: transform;
   }
 }
-[data-reveal].hero-team-footer.team-footer-touch-active {
-  width: min(72vw, 30rem);
-  animation: hero-team-hover-bounce 760ms both;
-  will-change: transform;
-}
-[data-reveal].hero-team-footer.team-footer-returning {
-  animation: hero-team-hover-return 560ms both;
-  will-change: transform;
-}
-[data-reveal].hero-team-footer.team-footer-touch-active::after {
-  animation: hero-team-light-scatter 760ms ease-out both;
-}
 .team-side-logo {
   width: 0;
   height: 0;
@@ -542,8 +530,7 @@ html:not(.dark) .hero-team-footer {
   transform: translateX(-24px) rotate(-90deg);
 }
 @media (hover: hover) and (pointer: fine) {
-  [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-side-logo,
-  [data-reveal].hero-team-footer.team-footer-touch-active .team-side-logo {
+  [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-side-logo {
     width: 2rem;
     height: 2rem;
     opacity: 1;
@@ -551,15 +538,13 @@ html:not(.dark) .hero-team-footer {
   }
 }
 @media (min-width: 640px) and (hover: hover) and (pointer: fine) {
-  [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-side-logo,
-  [data-reveal].hero-team-footer.team-footer-touch-active .team-side-logo {
+  [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-side-logo {
     width: 2.5rem;
     height: 2.5rem;
   }
 }
 @media (min-width: 1280px) and (hover: hover) and (pointer: fine) {
-  [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-side-logo,
-  [data-reveal].hero-team-footer.team-footer-touch-active .team-side-logo {
+  [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-side-logo {
     width: 3rem;
     height: 3rem;
   }
@@ -645,69 +630,52 @@ html:not(.dark) .hero-team-footer {
   transform: scale(1);
   transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.hero-team-footer.team-footer-touch-active .team-side-logo {
-  width: 2rem;
-  height: 2rem;
-  opacity: 1;
-  transform: translateX(0) rotate(0deg);
+@media (hover: hover) and (pointer: fine) {
+  [data-reveal].hero-team-footer.team-footer-scrolled:not(:hover) .team-logo-core {
+    transform: scale(2.0);
+  }
+  [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-logo-core {
+    transform: scale(1);
+  }
 }
-.hero-team-footer.team-footer-touch-active .team-logo-core {
-  transform: scale(1);
+/* Touch devices use the static capsule from before hover expansion was added. */
+@media (hover: none), (pointer: coarse) {
+  [data-reveal].hero-team-footer {
+    width: min(72vw, 30rem);
+    transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-team-footer .team-side-logo {
+    width: 2rem;
+    height: 2rem;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-team-footer .team-logo-core {
+    width: 205px;
+    height: 32px;
+    transform: none;
+    transition: none;
+  }
 }
-@media (min-width: 640px) {
-  .hero-team-footer.team-footer-touch-active .team-side-logo {
+@media (min-width: 640px) and (hover: none), (min-width: 640px) and (pointer: coarse) {
+  .hero-team-footer .team-side-logo {
     width: 2.5rem;
     height: 2.5rem;
   }
+  .hero-team-footer .team-logo-core {
+    width: 245px;
+    height: 38px;
+  }
 }
-@media (min-width: 1280px) {
-  .hero-team-footer.team-footer-touch-active .team-side-logo {
+@media (min-width: 1280px) and (hover: none), (min-width: 1280px) and (pointer: coarse) {
+  .hero-team-footer .team-side-logo {
     width: 3rem;
     height: 3rem;
   }
-}
-@media (hover: none), (pointer: coarse) {
-  .hero-team-footer {
-    justify-content: center;
-  }
-  .hero-team-footer .team-logo-glow {
-    position: absolute;
-    left: 50%;
-    width: min(230px, calc(100% - 32px));
-    flex: none;
-    transform: translateX(-50%);
-    transition: width 620ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .hero-team-footer .team-side-logo {
-    position: absolute;
-    top: 50%;
-    z-index: 2;
-    margin: 0;
-  }
-  .hero-team-footer .team-side-logo-left {
-    left: 50%;
-    transform: translate(24px, -50%) rotate(90deg);
-  }
-  .hero-team-footer .team-side-logo-right {
-    right: 50%;
-    transform: translate(-24px, -50%) rotate(-90deg);
-  }
-  .hero-team-footer.team-footer-touch-active .team-logo-glow {
-    width: min(230px, calc(100% - 96px));
-  }
-  .hero-team-footer.team-footer-touch-active .team-side-logo-left {
-    left: 16px;
-    transform: translate(0, -50%) rotate(0deg);
-  }
-  .hero-team-footer.team-footer-touch-active .team-side-logo-right {
-    right: 16px;
-    transform: translate(0, -50%) rotate(0deg);
-  }
-}
-@media (hover: hover) and (pointer: fine) {
-  [data-reveal].hero-team-footer.team-footer-scrolled:hover .team-logo-core,
-  [data-reveal].hero-team-footer.team-footer-touch-active .team-logo-core {
-    transform: scale(1);
+  .hero-team-footer .team-logo-core {
+    width: 285px;
+    height: 44px;
   }
 }
 html:not(.dark) .team-logo-glow::before {
