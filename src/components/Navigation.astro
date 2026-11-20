@@ -501,6 +501,30 @@ const pageLinks = [
   #top-nav.nav-scrolled .nav-glass::before {
     opacity: 1;
   }
+  #top-nav .nav-glass::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    z-index: 0;
+    border-radius: inherit;
+    background: var(--nav-spark-field, radial-gradient(circle, rgba(255, 184, 77, 0.8) 0 1px, transparent 2px));
+    filter: drop-shadow(0 0 5px rgba(255, 184, 77, 0.58));
+    opacity: 0;
+    transform-origin: center;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    transition: opacity 300ms ease;
+  }
+  #top-nav.nav-scrolled .nav-glass::after {
+    opacity: 0.82;
+    animation: nav-border-spark-inward var(--nav-spark-duration, 4.2s) ease-in-out var(--nav-spark-delay, 0s) infinite;
+  }
+  @keyframes nav-border-spark-inward {
+    0% { opacity: 0.16; transform: scale(1); }
+    28% { opacity: 0.9; transform: scale(0.985); }
+    66% { opacity: 0.58; transform: scale(0.92); }
+    100% { opacity: 0; transform: scale(0.8); }
+  }
   #top-nav .nav-glass > * {
     position: relative;
     z-index: 1;
