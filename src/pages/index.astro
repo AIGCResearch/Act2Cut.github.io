@@ -204,7 +204,7 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
     {!isAnonymous && <PosterSection />}
     <AbstractSection />
     <ProblemDefinitionSection />
-    <OverviewSection />
+    <OverviewSection>
 
     <!-- Performance Comparison teaser (mini table) -->
     <section id="evaluation" class="scroll-mt-20 space-y-8">
@@ -385,6 +385,7 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
       </div>
     </div>
     </section>
+    </OverviewSection>
 
     {!isAnonymous && <CitationSection />}
     {!isAnonymous && (
