@@ -500,6 +500,24 @@ html:not(.dark) .hero-team-footer {
   pointer-events: auto;
   transform: translate(-50%, 0) scale(1);
 }
+@media (hover: hover) and (pointer: fine) {
+  [data-reveal].hero-team-footer.team-footer-scrolled:hover {
+    animation: hero-team-hover-bounce 980ms both;
+    will-change: transform;
+  }
+}
+@keyframes hero-team-hover-bounce {
+  0% { transform: translate(-50%, 0) scale(1); }
+  12% { transform: translate(-50%, 3px) scale(1); }
+  23% { transform: translate(-50%, 5px) scale(1); }
+  38% { transform: translate(-50%, -2px) scale(1); }
+  55% { transform: translate(-50%, -13px) scale(1); }
+  68% { transform: translate(-50%, -15px) scale(1); }
+  82% { transform: translate(-50%, -7px) scale(1); }
+  91% { transform: translate(-50%, 2px) scale(1); }
+  97% { transform: translate(-50%, 3px) scale(1); }
+  100% { transform: translate(-50%, 0) scale(1); }
+}
 .hero-team-footer::before {
   content: '';
   position: absolute;
@@ -590,6 +608,9 @@ html:not(.dark) .team-logo-glow::before {
 @media (prefers-reduced-motion: reduce) {
   .hero-team-footer::before {
     animation: none;
+  }
+  .hero-team-footer {
+    animation: none !important;
   }
   .team-logo-glow::before,
   .hero-title-glow {
