@@ -352,7 +352,6 @@ const pageLinks = [
     window.clearTimeout(sectionOpenTimer);
     const open = sectionToggle.getAttribute('aria-expanded') !== 'true';
     setSectionMenu(open);
-    if (open) scheduleSectionClose();
   });
   sectionMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => setSectionMenu(false));
