@@ -67,87 +67,102 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
     </script>
 
-    <!-- Seed each glow field independently so particles feel irregular rather than synchronized. -->
+    <!-- Draw dense particle fields on canvas so independent motion does not create thousands of DOM layers. -->
     <script>
       const sparkColors = ['255,184,77', '255,122,61', '255,77,77', '255,235,190'];
       const randomBetween = (min: number, max: number) => min + Math.random() * (max - min);
-      const pickSparkColor = () => sparkColors[Math.floor(Math.random() * sparkColors.length)];
-      const setParticleStyle = (particle: HTMLElement, values: Record<string, string>) => {
-        Object.entries(values).forEach(([name, value]) => particle.style.setProperty(name, value));
+      type Spark = { x: number; y: number; vx: number; vy: number; size: number; alpha: number; color: string; phase: number; side?: number };
+      const makeSpark = (mode: 'divider' | 'nav', width: number, height: number): Spark => {
+        const color = `rgba(${sparkColors[Math.floor(Math.random() * sparkColors.length)]}, ${randomBetween(0.45, 0.95).toFixed(2)})`;
+        if (mode === 'divider') {
+          return {
+            x: randomBetween(0, width), y: randomBetween(-2, 3),
+            vx: randomBetween(-5, 5), vy: randomBetween(8, 26),
+            size: randomBetween(0.3, 0.8), alpha: randomBetween(0.55, 1), color, phase: Math.random() * Math.PI * 2,
+          };
+        }
+        const side = Math.floor(Math.random() * 4);
+        const spark: Spark = {
+          x: randomBetween(0, width), y: randomBetween(0, height), vx: 0, vy: 0,
+          size: randomBetween(0.3, 0.8), alpha: randomBetween(0.55, 1), color, phase: Math.random() * Math.PI * 2, side,
+        };
+        if (side === 0) { spark.x = randomBetween(0, width * 0.08); spark.vx = randomBetween(8, 32); spark.vy = randomBetween(-4, 4); }
+        if (side === 1) { spark.x = randomBetween(width * 0.92, width); spark.vx = randomBetween(-32, -8); spark.vy = randomBetween(-4, 4); }
+        if (side === 2) { spark.y = randomBetween(0, height * 0.08); spark.vx = randomBetween(-5, 5); spark.vy = randomBetween(8, 28); }
+        if (side === 3) { spark.y = randomBetween(height * 0.92, height); spark.vx = randomBetween(-5, 5); spark.vy = randomBetween(-28, -8); }
+        return spark;
+      };
+
+      const initSparkCanvas = (container: HTMLElement, count: number, mode: 'divider' | 'nav') => {
+        const canvas = document.createElement('canvas');
+        canvas.className = mode === 'divider' ? 'divider-spark-canvas' : 'nav-spark-canvas';
+        canvas.setAttribute('aria-hidden', 'true');
+        container.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return { setActive: (_active: boolean) => {} };
+        let width = 1;
+        let height = mode === 'divider' ? 44 : 1;
+        let scale = 1;
+        let particles: Spark[] = [];
+        let active = false;
+        let raf: number | null = null;
+        let last = performance.now();
+        const resize = () => {
+          const rect = container.getBoundingClientRect();
+          width = Math.max(1, rect.width);
+          height = mode === 'divider' ? 44 : Math.max(1, rect.height - 4);
+          scale = Math.min(2, window.devicePixelRatio || 1);
+          canvas.width = Math.round(width * scale);
+          canvas.height = Math.round(height * scale);
+          particles = Array.from({ length: count }, () => makeSpark(mode, width, height));
+          ctx.setTransform(scale, 0, 0, scale, 0, 0);
+        };
+        const frame = (now: number) => {
+          if (!active) { raf = null; return; }
+          const dt = Math.min(0.04, (now - last) / 1000);
+          last = now;
+          ctx.clearRect(0, 0, width, height);
+          particles.forEach((p) => {
+            p.phase += dt * 0.35;
+            p.x += p.vx * dt;
+            p.y += p.vy * dt;
+            if (mode === 'divider' && p.y > height + 2) Object.assign(p, makeSpark(mode, width, height));
+            if (mode === 'nav' && (p.x < -4 || p.x > width + 4 || p.y < -4 || p.y > height + 4)) Object.assign(p, makeSpark(mode, width, height));
+            const shimmer = 0.55 + Math.sin(p.phase) * 0.35;
+            ctx.globalAlpha = p.alpha * shimmer;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+          });
+          ctx.globalAlpha = 1;
+          raf = requestAnimationFrame(frame);
+        };
+        const setActive = (next: boolean) => {
+          active = next;
+          if (active && raf === null) { last = performance.now(); raf = requestAnimationFrame(frame); }
+        };
+        resize();
+        new ResizeObserver(resize).observe(container);
+        return { setActive };
       };
 
       document.querySelectorAll<HTMLElement>('.hero-content-divider').forEach((divider) => {
         const glowDuration = randomBetween(3.2, 5.8);
         divider.style.setProperty('--divider-glow-duration', `${glowDuration.toFixed(2)}s`);
         divider.style.setProperty('--divider-glow-delay', `${(-Math.random() * glowDuration).toFixed(2)}s`);
-        divider.classList.add('has-spark-particles');
-        for (let i = 0; i < 600; i += 1) {
-          const particle = document.createElement('i');
-          particle.className = 'divider-spark-particle';
-          const size = randomBetween(0.25, 0.68);
-          const startX = randomBetween(0, 100);
-          const startY = randomBetween(0, 4);
-          const midX = randomBetween(-18, 18);
-          const endX = randomBetween(-34, 34);
-          const midY = randomBetween(8, 24);
-          const endY = randomBetween(26, 52);
-          const particleDuration = randomBetween(2.2, 6.5);
-          setParticleStyle(particle, {
-            '--spark-x': `${startX.toFixed(2)}%`,
-            '--spark-y': `${startY.toFixed(2)}px`,
-            '--spark-mid-x': `${midX.toFixed(2)}px`,
-            '--spark-mid-y': `${midY.toFixed(2)}px`,
-            '--spark-end-x': `${endX.toFixed(2)}px`,
-            '--spark-end-y': `${endY.toFixed(2)}px`,
-            '--spark-size': `${size.toFixed(2)}px`,
-            '--spark-color': `rgba(${pickSparkColor()}, ${randomBetween(0.45, 0.98).toFixed(2)})`,
-            '--spark-duration': `${particleDuration.toFixed(2)}s`,
-            '--spark-delay': `${(-Math.random() * particleDuration).toFixed(2)}s`,
-          });
-          divider.appendChild(particle);
-        }
+        divider.classList.add('has-spark-canvas');
+        const sparkCanvas = initSparkCanvas(divider, 600, 'divider');
+        new IntersectionObserver((entries) => sparkCanvas.setActive(entries[0]?.isIntersecting ?? false), { rootMargin: '120px 0px' }).observe(divider);
       });
 
       document.querySelectorAll<HTMLElement>('#top-nav .nav-glass').forEach((navGlass) => {
-        navGlass.classList.add('has-nav-particles');
-        for (let i = 0; i < 800; i += 1) {
-          const particle = document.createElement('i');
-          particle.className = 'nav-spark-particle';
-          const side = Math.floor(Math.random() * 4);
-          let startX = randomBetween(0, 100);
-          let startY = randomBetween(0, 100);
-          let midX = randomBetween(-18, 18);
-          let midY = randomBetween(-12, 12);
-          let endX = randomBetween(-42, 42);
-          let endY = randomBetween(-30, 30);
-          if (side === 0) { startX = randomBetween(0, 8); midX = randomBetween(12, 32); endX = randomBetween(28, 74); }
-          if (side === 1) { startX = randomBetween(92, 100); midX = randomBetween(-32, -12); endX = randomBetween(-74, -28); }
-          if (side === 2) { startY = randomBetween(0, 8); midY = randomBetween(10, 24); endY = randomBetween(24, 58); }
-          if (side === 3) { startY = randomBetween(92, 100); midY = randomBetween(-24, -10); endY = randomBetween(-58, -24); }
-          const particleDuration = randomBetween(2.6, 7.2);
-          const size = randomBetween(0.25, 0.68);
-          setParticleStyle(particle, {
-            '--nav-x': `${startX.toFixed(2)}%`,
-            '--nav-y': `${startY.toFixed(2)}%`,
-            '--nav-mid-x': `${midX.toFixed(2)}px`,
-            '--nav-mid-y': `${midY.toFixed(2)}px`,
-            '--nav-end-x': `${endX.toFixed(2)}px`,
-            '--nav-end-y': `${endY.toFixed(2)}px`,
-            '--nav-size': `${size.toFixed(2)}px`,
-            '--nav-color': `rgba(${pickSparkColor()}, ${randomBetween(0.45, 0.96).toFixed(2)})`,
-            '--nav-duration': `${particleDuration.toFixed(2)}s`,
-            '--nav-delay': `${(-Math.random() * particleDuration).toFixed(2)}s`,
-          });
-          navGlass.appendChild(particle);
-        }
+        navGlass.classList.add('has-spark-canvas');
+        const sparkCanvas = initSparkCanvas(navGlass, 800, 'nav');
+        const sync = () => sparkCanvas.setActive(document.getElementById('top-nav')?.classList.contains('nav-scrolled') ?? false);
+        new MutationObserver(sync).observe(document.getElementById('top-nav')!, { attributes: true, attributeFilter: ['class'] });
+        sync();
       });
-
-      const dividerSparkObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle('spark-active', entry.isIntersecting);
-        });
-      }, { rootMargin: '120px 0px' });
-      document.querySelectorAll<HTMLElement>('.hero-content-divider').forEach((divider) => dividerSparkObserver.observe(divider));
     </script>
 
     <!-- Keep the floating team mark tucked away at the top of the page. -->

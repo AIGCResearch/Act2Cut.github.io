@@ -749,6 +749,17 @@ html:not(.dark) .team-logo-glow::before {
 .hero-content-divider.has-spark-particles::after {
   display: none;
 }
+.hero-content-divider.has-spark-canvas::after {
+  display: none;
+}
+.divider-spark-canvas {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  pointer-events: none;
+}
 .divider-spark-particle {
   position: absolute;
   top: var(--spark-y);
@@ -776,6 +787,17 @@ html:not(.dark) .team-logo-glow::before {
 }
 #top-nav .nav-glass.has-nav-particles::after {
   display: none;
+}
+#top-nav .nav-glass.has-spark-canvas::after {
+  display: none;
+}
+#top-nav .nav-glass .nav-spark-canvas {
+  position: absolute;
+  inset: 2px;
+  z-index: 0;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  pointer-events: none;
 }
 #top-nav .nav-glass .nav-spark-particle {
   position: absolute !important;
