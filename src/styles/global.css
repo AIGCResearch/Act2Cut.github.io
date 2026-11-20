@@ -641,7 +641,7 @@ html:not(.dark) .hero-team-footer {
 /* Touch uses the same flex layout and motion, activated by tapping. */
 @media (hover: none), (pointer: coarse) {
   [data-reveal].hero-team-footer .team-logo-core {
-    transform: scale(1.5);
+    transform: scale(1);
   }
   [data-reveal].hero-team-footer.team-footer-touch-active {
     width: min(72vw, 30rem);
