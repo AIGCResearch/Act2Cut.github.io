@@ -67,6 +67,45 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
     </script>
 
+    <!-- Seed each glow field independently so particles feel irregular rather than synchronized. -->
+    <script>
+      const sparkColors = ['255,184,77', '255,122,61', '255,77,77', '255,235,190'];
+      const randomBetween = (min: number, max: number) => min + Math.random() * (max - min);
+      const buildSparkField = (count: number, edgeBias = false) => {
+        return Array.from({ length: count }, () => {
+          let x = randomBetween(0, 100);
+          let y = randomBetween(0, 100);
+          if (edgeBias) {
+            const edge = Math.random();
+            if (edge < 0.25) { x = randomBetween(0, 18); }
+            else if (edge < 0.5) { x = randomBetween(82, 100); }
+            else if (edge < 0.75) { y = randomBetween(0, 18); }
+            else { y = randomBetween(82, 100); }
+          }
+          const size = randomBetween(0.55, 1.45);
+          const color = sparkColors[Math.floor(Math.random() * sparkColors.length)];
+          const opacity = randomBetween(0.42, 0.95).toFixed(2);
+          return `radial-gradient(circle at ${x.toFixed(2)}% ${y.toFixed(2)}%, rgba(${color}, ${opacity}) 0 ${size.toFixed(2)}px, transparent ${(size * 2.1).toFixed(2)}px)`;
+        }).join(',');
+      };
+
+      document.querySelectorAll<HTMLElement>('.hero-content-divider').forEach((divider) => {
+        divider.style.setProperty('--divider-spark-field', buildSparkField(120));
+        const duration = randomBetween(2.8, 5.4);
+        divider.style.setProperty('--divider-glow-duration', `${randomBetween(3.2, 5.8).toFixed(2)}s`);
+        divider.style.setProperty('--divider-glow-delay', `${(-Math.random() * duration).toFixed(2)}s`);
+        divider.style.setProperty('--divider-spark-duration', `${duration.toFixed(2)}s`);
+        divider.style.setProperty('--divider-spark-delay', `${(-Math.random() * duration).toFixed(2)}s`);
+      });
+
+      document.querySelectorAll<HTMLElement>('#top-nav .nav-glass').forEach((navGlass) => {
+        navGlass.style.setProperty('--nav-spark-field', buildSparkField(160, true));
+        const duration = randomBetween(3.6, 6.2);
+        navGlass.style.setProperty('--nav-spark-duration', `${duration.toFixed(2)}s`);
+        navGlass.style.setProperty('--nav-spark-delay', `${(-Math.random() * duration).toFixed(2)}s`);
+      });
+    </script>
+
     <!-- Keep the floating team mark tucked away at the top of the page. -->
     <script>
       const teamFooter = document.querySelector<HTMLElement>('.hero-team-footer');
