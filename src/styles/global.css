@@ -89,6 +89,13 @@ html:not(.dark) ::selection {
   margin: 0;
 }
 
+.dataset-curation-divider {
+  height: 2px;
+  border: 0;
+  background: linear-gradient(90deg, transparent 0%, #ff4d4d 18%, #ffb84d 50%, #ff4d4d 82%, transparent 100%);
+  box-shadow: 0 0 16px rgba(255, 184, 77, 0.42);
+}
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(44px) scale(0.95);
