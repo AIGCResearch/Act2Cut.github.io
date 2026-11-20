@@ -751,15 +751,15 @@ html:not(.dark) .team-logo-glow::before {
   to { background-position: 100% 0; }
 }
 @keyframes hero-divider-glow-fall {
-  0%, 100% { opacity: 0.52; transform: scaleY(0.35); }
-  45% { opacity: 1; transform: scaleY(0.9); }
-  72% { opacity: 0.72; transform: scaleY(1); }
+  0%, 100% { opacity: 0.52; transform: translateX(var(--divider-flow-a, 0%)) scaleY(0.35); }
+  45% { opacity: 1; transform: translateX(var(--divider-flow-b, 0%)) scaleY(0.9); }
+  72% { opacity: 0.72; transform: translateX(var(--divider-flow-c, 0%)) scaleY(1); }
 }
 @keyframes hero-divider-spark-fall {
-  0% { opacity: 0.08; transform: translateY(-1px) scaleY(0.35); }
+  0% { opacity: 0.08; transform: translate3d(var(--divider-flow-a, 0%), -1px, 0) scaleY(0.35) skewX(-2deg); }
   24% { opacity: 1; }
-  68% { opacity: 0.74; transform: translateY(16px) scaleY(0.95); }
-  100% { opacity: 0; transform: translateY(34px) scaleY(1.2); }
+  68% { opacity: 0.74; transform: translate3d(var(--divider-flow-b, 0%), 16px, 0) scaleY(0.95) skewX(2deg); }
+  100% { opacity: 0; transform: translate3d(var(--divider-flow-c, 0%), 44px, 0) scaleY(1.2) skewX(-1deg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-team-footer::before {

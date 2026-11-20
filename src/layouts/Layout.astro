@@ -90,7 +90,10 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       };
 
       document.querySelectorAll<HTMLElement>('.hero-content-divider').forEach((divider) => {
-        divider.style.setProperty('--divider-spark-field', buildSparkField(120));
+        divider.style.setProperty('--divider-spark-field', buildSparkField(600));
+        divider.style.setProperty('--divider-flow-a', `${randomBetween(-2.5, 0).toFixed(2)}%`);
+        divider.style.setProperty('--divider-flow-b', `${randomBetween(-1, 2.5).toFixed(2)}%`);
+        divider.style.setProperty('--divider-flow-c', `${randomBetween(-2.5, 2.5).toFixed(2)}%`);
         const duration = randomBetween(2.8, 5.4);
         divider.style.setProperty('--divider-glow-duration', `${randomBetween(3.2, 5.8).toFixed(2)}s`);
         divider.style.setProperty('--divider-glow-delay', `${(-Math.random() * duration).toFixed(2)}s`);
@@ -99,7 +102,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
       });
 
       document.querySelectorAll<HTMLElement>('#top-nav .nav-glass').forEach((navGlass) => {
-        navGlass.style.setProperty('--nav-spark-field', buildSparkField(160, true));
+        navGlass.style.setProperty('--nav-spark-field', buildSparkField(800, true));
         const duration = randomBetween(3.6, 6.2);
         navGlass.style.setProperty('--nav-spark-duration', `${duration.toFixed(2)}s`);
         navGlass.style.setProperty('--nav-spark-delay', `${(-Math.random() * duration).toFixed(2)}s`);
