@@ -734,14 +734,14 @@ html:not(.dark) .team-logo-glow::before {
     radial-gradient(ellipse at 74% 0%, rgba(255, 122, 61, 0.42), transparent 34%),
     radial-gradient(ellipse at 92% 0%, rgba(255, 77, 77, 0.44), transparent 32%),
     linear-gradient(180deg, rgba(255, 184, 77, 0.26), transparent 92%);
-  filter: blur(2.5px);
+  filter: blur(2px);
   opacity: 0.9;
   transform-origin: top center;
   animation: hero-divider-glow-fall var(--divider-glow-duration, 3.8s) ease-in-out var(--divider-glow-delay, 0s) infinite;
 }
 .hero-content-divider::after {
   background: var(--divider-spark-field, radial-gradient(circle, rgba(255, 184, 77, 0.9) 0 1px, transparent 2px));
-  filter: drop-shadow(0 0 6px rgba(255, 184, 77, 0.7));
+  filter: drop-shadow(0 0 2.5px rgba(255, 184, 77, 0.62));
   opacity: 0.96;
   transform-origin: top center;
   animation: hero-divider-spark-fall var(--divider-spark-duration, 3.2s) ease-in-out var(--divider-spark-delay, 0s) infinite;
