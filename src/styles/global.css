@@ -131,7 +131,7 @@ html:not(.dark) ::selection {
 
 .act-marker {
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -1184,7 +1184,7 @@ html:not(.dark) .backdrop-blur-xl {
 
 .act-marker {
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.35em;
   text-transform: uppercase;
