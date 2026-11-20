@@ -642,7 +642,7 @@ html:not(.dark) .hero-team-footer {
   z-index: 1;
 }
 .team-logo-core {
-  transform: scale(0.92);
+  transform: scale(1);
   transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .hero-team-footer.team-footer-touch-active .team-side-logo {
