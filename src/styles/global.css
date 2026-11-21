@@ -1429,6 +1429,17 @@ html:not(.dark) header#top-nav .bg-white.text-black {
   box-shadow: 0 2px 14px rgba(26, 21, 18, 0.18) !important;
 }
 
+.qg-tab-btn:not(.bg-white):hover {
+  background: linear-gradient(110deg, rgba(255, 77, 77, 0.22), rgba(255, 184, 77, 0.3));
+  color: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 4px 14px rgba(255, 137, 61, 0.16);
+}
+html:not(.dark) .qg-tab-btn:not(.bg-white):hover {
+  background: linear-gradient(110deg, rgba(255, 77, 77, 0.16), rgba(255, 184, 77, 0.28));
+  color: rgba(48, 32, 20, 0.96) !important;
+  box-shadow: 0 4px 14px rgba(194, 126, 32, 0.14);
+}
+
 /* Dark pill (qg tabs) — same idea */
 html:not(.dark) .qg-tab-btn.bg-white {
   background-color: #1a1512 !important;
