@@ -473,8 +473,10 @@ html:not(.dark) .hero-institution-glass {
   pointer-events: none;
 }
 .hero-action-cut {
-  color: inherit;
-  background-image: linear-gradient(to bottom, currentColor, color-mix(in srgb, currentColor 30%, transparent));
+  color: transparent;
+  background-image: linear-gradient(90deg, #ff4d4d, #ffb84d);
+  background-size: 220% 100%;
+  animation: hero-brand-gradient-flow 5s ease-in-out infinite;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
