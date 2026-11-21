@@ -486,6 +486,29 @@ const pageLinks = [
     background: rgba(255, 255, 255, 0.9);
     color: rgba(48, 32, 20, 0.9);
   }
+  /* Make every navigation control's hover state visible against the glass bar. */
+  #top-nav .nav-page-item > a:not(.bg-white):hover,
+  #top-nav .nav-link:hover,
+  #top-nav #section-menu-toggle:hover,
+  #top-nav #theme-toggle:hover,
+  #top-nav #nav-hamburger:hover,
+  #top-nav #mobile-menu .mobile-nav-link:hover {
+    background: linear-gradient(110deg, rgba(255, 77, 77, 0.22), rgba(255, 184, 77, 0.3)) !important;
+    border-color: rgba(255, 184, 77, 0.42);
+    color: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 4px 14px rgba(255, 137, 61, 0.16);
+  }
+  :global(html:not(.dark)) #top-nav .nav-page-item > a:not(.bg-white):hover,
+  :global(html:not(.dark)) #top-nav .nav-link:hover,
+  :global(html:not(.dark)) #top-nav #section-menu-toggle:hover,
+  :global(html:not(.dark)) #top-nav #theme-toggle:hover,
+  :global(html:not(.dark)) #top-nav #nav-hamburger:hover,
+  :global(html:not(.dark)) #top-nav #mobile-menu .mobile-nav-link:hover {
+    background: linear-gradient(110deg, rgba(255, 77, 77, 0.16), rgba(255, 184, 77, 0.28)) !important;
+    border-color: rgba(194, 126, 32, 0.48);
+    color: rgba(48, 32, 20, 0.96) !important;
+    box-shadow: 0 4px 14px rgba(194, 126, 32, 0.14);
+  }
   #top-nav.nav-scrolled .nav-glass {
     border-color: transparent;
     border-radius: 999px;
