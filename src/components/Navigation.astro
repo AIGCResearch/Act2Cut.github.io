@@ -338,6 +338,7 @@ const pageLinks = [
   const sectionDropdownMedia = window.matchMedia('(min-width: 768px)');
   let sectionOpenTimer: number | undefined;
   let sectionCloseTimer: number | undefined;
+  let sectionHoverOpen = false;
 
   function scheduleSectionClose() {
     window.clearTimeout(sectionCloseTimer);
@@ -358,6 +359,18 @@ const pageLinks = [
     window.clearTimeout(sectionOpenTimer);
     const open = sectionToggle.getAttribute('aria-expanded') !== 'true';
     setSectionMenu(open);
+  });
+  sectionDropdown?.addEventListener('pointerenter', event => {
+    if (event.pointerType !== 'mouse' || !sectionDropdownMedia.matches) return;
+    if (!document.getElementById('top-nav')?.classList.contains('nav-scrolled')) return;
+    sectionHoverOpen = true;
+    window.clearTimeout(sectionCloseTimer);
+    setSectionMenu(true);
+  });
+  sectionDropdown?.addEventListener('pointerleave', event => {
+    if (event.pointerType !== 'mouse' || !sectionHoverOpen) return;
+    sectionHoverOpen = false;
+    scheduleSectionClose();
   });
   sectionMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => setSectionMenu(false));
