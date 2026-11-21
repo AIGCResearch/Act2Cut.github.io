@@ -19,8 +19,8 @@ const homeAnchors = [
 
 const pageLinks = [
   { id: 'home',      label: 'Home',      href: url('/') },
-  { id: 'dataset',   label: 'Dataset',   href: url('/dataset') },
-  { id: 'benchmark', label: 'Benchmark', href: url('/benchmark') },
+  { id: 'dataset',   label: 'Dataset',   href: url('/dataset'),   hint: 'ActCutVid-1M' },
+  { id: 'benchmark', label: 'Benchmark', href: url('/benchmark'), hint: 'ActCutBench' },
 ];
 ---
 
@@ -48,17 +48,25 @@ const pageLinks = [
       <!-- Center: page nav (desktop) — absolutely centered so position never shifts between pages -->
       <nav class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-1 p-1 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl pointer-events-auto" aria-label="Primary">
         {pageLinks.map(link => (
-          <a
-            href={link.href}
-            class:list={[
-              'relative px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.18em] uppercase transition-all duration-300',
-              page === link.id
-                ? 'text-black bg-white shadow-[0_2px_14px_rgba(255,255,255,0.18)]'
-                : 'text-white/55 hover:text-white/90 hover:bg-white/[0.05]',
-            ]}
-          >
-            {link.label}
-          </a>
+          <div class="nav-page-item group relative">
+            <a
+              href={link.href}
+              aria-describedby={link.hint ? `nav-hint-${link.id}` : undefined}
+              class:list={[
+                'relative block px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.18em] uppercase transition-all duration-300',
+                page === link.id
+                  ? 'text-black bg-white shadow-[0_2px_14px_rgba(255,255,255,0.18)]'
+                  : 'text-white/55 hover:text-white/90 hover:bg-white/[0.05]',
+              ]}
+            >
+              {link.label}
+            </a>
+            {link.hint && (
+              <span id={`nav-hint-${link.id}`} role="tooltip" class="nav-hover-hint pointer-events-none absolute left-1/2 top-[calc(100%+0.65rem)] z-20 -translate-x-1/2 translate-y-1 scale-95 whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] font-semibold tracking-[0.08em] opacity-0 shadow-[0_8px_22px_rgba(0,0,0,0.3)] transition-[opacity,transform] duration-200 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:opacity-100">
+                {link.hint}
+              </span>
+            )}
+          </div>
         ))}
       </nav>
 
@@ -466,6 +474,18 @@ const pageLinks = [
     height: 76%;
     border-radius: 999px;
     background: linear-gradient(180deg, #ff4d4d 0%, #ff7a3d 50%, #ffb84d 100%);
+  }
+  #top-nav .nav-hover-hint {
+    border: 1px solid rgba(255, 184, 77, 0.5);
+    background: rgba(8, 8, 8, 0.88);
+    color: rgba(255, 255, 255, 0.88);
+    -webkit-backdrop-filter: blur(16px) saturate(135%);
+    backdrop-filter: blur(16px) saturate(135%);
+  }
+  :global(html:not(.dark)) #top-nav .nav-hover-hint {
+    border-color: rgba(194, 126, 32, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+    color: rgba(48, 32, 20, 0.9);
   }
   #top-nav.nav-scrolled .nav-glass {
     border-color: transparent;
