@@ -367,10 +367,10 @@ const pageLinks = [
     window.clearTimeout(sectionCloseTimer);
     setSectionMenu(true);
   });
-  sectionDropdown?.addEventListener('pointerleave', event => {
-    if (event.pointerType !== 'mouse' || !sectionHoverOpen) return;
+  sectionDropdown?.addEventListener('mouseleave', () => {
+    if (!sectionHoverOpen) return;
     sectionHoverOpen = false;
-    scheduleSectionClose();
+    setSectionMenu(false);
   });
   sectionMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => setSectionMenu(false));
