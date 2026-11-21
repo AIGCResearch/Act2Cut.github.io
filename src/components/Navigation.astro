@@ -347,6 +347,13 @@ const pageLinks = [
     }, 1000);
   }
 
+  function scheduleHoverSectionClose() {
+    window.clearTimeout(sectionCloseTimer);
+    sectionCloseTimer = window.setTimeout(() => {
+      if (!sectionHoverOpen) setSectionMenu(false);
+    }, 260);
+  }
+
   function setSectionMenu(open: boolean) {
     if (!sectionToggle || !sectionMenu) return;
     if (!open) window.clearTimeout(sectionCloseTimer);
@@ -370,7 +377,16 @@ const pageLinks = [
   sectionDropdown?.addEventListener('mouseleave', () => {
     if (!sectionHoverOpen) return;
     sectionHoverOpen = false;
-    setSectionMenu(false);
+    scheduleHoverSectionClose();
+  });
+  sectionMenu?.addEventListener('mouseenter', () => {
+    sectionHoverOpen = true;
+    window.clearTimeout(sectionCloseTimer);
+    setSectionMenu(true);
+  });
+  sectionMenu?.addEventListener('mouseleave', () => {
+    sectionHoverOpen = false;
+    scheduleHoverSectionClose();
   });
   sectionMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => setSectionMenu(false));
