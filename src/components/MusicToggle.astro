@@ -1,0 +1,86 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
+---
+
+<button
+  id="music-toggle"
+  type="button"
+  aria-label="Background music"
+  aria-pressed="true"
+  title="Turn background music off"
+  class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.04] text-white/55 transition-colors duration-200 hover:text-white/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#ffb84d] max-[400px]:h-8 max-[400px]:w-8"
+>
+  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+    <path class="music-on" d="M15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13" />
+    <path class="music-off" d="m16 9 6 6m0-6-6 6" />
+  </svg>
+</button>
+<audio id="background-music" src={`${base}/audio/act2cut-theme.mp3`} preload="none" loop hidden></audio>
+
+<style>
+  button[aria-pressed='true'] {
+    color: #ffb84d;
+  }
+  :global(html:not(.dark)) button[aria-pressed='true'] {
+    color: #96551c;
+  }
+  :global(html:not(.dark)) button[aria-pressed='false'] {
+    color: #655247;
+  }
+  button[aria-pressed='true'] .music-off,
+  button[aria-pressed='false'] .music-on {
+    display: none;
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('#music-toggle');
+  const audio = document.querySelector<HTMLAudioElement>('#background-music');
+  if (toggle && audio) {
+    const mobileSlot = document.getElementById('mobile-music-control');
+    if (mobileSlot) {
+      const compactMenu = window.matchMedia('(max-width: 385px)');
+      const placeToggle = () => {
+        if (compactMenu.matches) mobileSlot.append(toggle);
+        else audio.before(toggle);
+      };
+      compactMenu.addEventListener('change', placeToggle);
+      placeToggle();
+    }
+
+    const key = 'act2cut-background-music';
+    let enabled = true;
+    try {
+      enabled = localStorage.getItem(key) !== 'off';
+    } catch {}
+
+    const update = () => {
+      toggle.setAttribute('aria-pressed', String(enabled));
+      toggle.title = enabled ? 'Turn background music off' : 'Turn background music on';
+    };
+    const tryPlay = () => {
+      if (enabled && audio.paused) void audio.play().catch(() => {});
+    };
+
+    toggle.addEventListener('click', () => {
+      enabled = !enabled;
+      try {
+        localStorage.setItem(key, enabled ? 'on' : 'off');
+      } catch {}
+      update();
+      if (enabled) tryPlay();
+      else audio.pause();
+    });
+
+    const retryAfterInteraction = (event: Event) => {
+      if (event.target instanceof Node && toggle.contains(event.target)) return;
+      tryPlay();
+    };
+    // Browsers that block autoplay allow playback after an interaction.
+    document.addEventListener('click', retryAfterInteraction);
+    document.addEventListener('keydown', retryAfterInteraction);
+    update();
+    tryPlay();
+  }
+</script>
