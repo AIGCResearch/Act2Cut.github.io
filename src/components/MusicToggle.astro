@@ -59,13 +59,16 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
     audio.addEventListener('play', update);
     audio.addEventListener('pause', update);
-    const retryAfterInteraction = (event: Event) => {
-      if (event.target instanceof Node && toggle.contains(event.target)) return;
+    let lastScrollActivation: boolean | undefined;
+    const retryOnScroll = () => {
+      if (!enabled || !audio.paused) return;
+      // Retry on the first scroll, and once more if the browser gains user activation.
+      const hasActivation = navigator.userActivation?.hasBeenActive ?? false;
+      if (hasActivation === lastScrollActivation) return;
+      lastScrollActivation = hasActivation;
       tryPlay();
     };
-    // Browsers that block autoplay allow playback after an interaction.
-    document.addEventListener('click', retryAfterInteraction);
-    document.addEventListener('keydown', retryAfterInteraction);
+    window.addEventListener('scroll', retryOnScroll, { passive: true });
     update();
     tryPlay();
   }
