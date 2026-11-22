@@ -655,7 +655,7 @@ html:not(.dark) .hero-team-footer {
   filter: blur(17px);
   opacity: 0.94;
   pointer-events: none;
-  animation: team-logo-glow-pulse 5s ease-in-out infinite;
+  animation: team-logo-glow-pulse 3s ease-in-out infinite;
 }
 .team-logo-glow img {
   position: relative;
