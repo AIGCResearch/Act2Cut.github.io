@@ -26,7 +26,7 @@ const layers = [
   <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 md:gap-10 items-stretch">
 
     <!-- LEFT: copy -->
-    <div class="flex flex-col justify-center gap-4 sm:gap-5">
+    <div class="flex h-full flex-col justify-between gap-4 sm:gap-5">
       <div>
         <span class="text-[10px] font-bold tracking-[0.32em] uppercase text-white/40 block mb-2">A large-scale dataset designed specifically for AC tasks</span>
         <h3 class="text-xl sm:text-2xl font-semibold tracking-tight">
@@ -34,7 +34,7 @@ const layers = [
         </h3>
       </div>
 
-      <ul class="space-y-3 sm:space-y-3.5 text-sm font-semibold text-white/90">
+      <ul class="flex flex-1 flex-col justify-evenly gap-3 py-3 sm:py-5 text-sm font-semibold text-white/90">
         {curationSteps.map((step) => (
           <li class="flex items-center gap-3">
             <span class="inline-flex w-5 h-5 rounded-md bg-[#ffb84d]/15 border border-[#ffb84d]/30 items-center justify-center shrink-0" aria-hidden="true">
