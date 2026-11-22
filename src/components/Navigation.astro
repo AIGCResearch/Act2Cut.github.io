@@ -13,6 +13,7 @@ const homeAnchors = [
   { label: 'Dataset',       href: url('/#dataset-curation') },
   { label: 'Model',         href: url('/#model-architecture') },
   { label: 'Experiment',    href: url('/#results')  },
+  ...(import.meta.env.BUILD_MODE === 'anonymous' ? [] : [{ label: 'Cite', href: url('/#citation') }]),
 ];
 
 const pageLinks = [
