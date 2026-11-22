@@ -826,13 +826,17 @@ html:not(.dark) .team-logo-glow::before {
 #top-nav .nav-glass.has-spark-canvas::after {
   display: none;
 }
-#top-nav .nav-glass .nav-spark-canvas {
+#top-nav .nav-glass .nav-spark-canvas,
+.hero-team-footer > .nav-spark-canvas {
   position: absolute;
   inset: 2px;
   z-index: 0;
   width: calc(100% - 4px);
   height: calc(100% - 4px);
   pointer-events: none;
+}
+.hero-team-footer > .nav-spark-canvas {
+  border-radius: inherit;
 }
 #top-nav .nav-glass .nav-spark-particle {
   position: absolute !important;
@@ -876,6 +880,9 @@ html:not(.dark) .team-logo-glow::before {
   100% { opacity: 0; transform: translate3d(var(--divider-flow-c, 0%), 44px, 0) scaleY(1.2) skewX(-1deg); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .hero-team-footer > .nav-spark-canvas {
+    display: none;
+  }
   .hero-team-footer::before {
     animation: none;
   }
