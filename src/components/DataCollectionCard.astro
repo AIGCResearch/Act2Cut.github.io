@@ -5,6 +5,13 @@
 
 const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
+const curationSteps = [
+  'Data Collection and Preprocessing',
+  'Continuous Action Detection',
+  'Hierarchical Annotations',
+  'Human-in-the-Loop Check',
+];
+
 const layers = [
   { tag: 'Global Setting',       dot: '#ff4d4d', body: 'Soft, warm sunlight filters through large windows of a quiet apartment.', sub: 'Env · Scene · Style' },
   { tag: 'Global Action',        dot: '#ff7a3d', body: '[Character 1] is tying up her hair, then turns slightly toward [Character 2].', sub: 'Subject behaviour · Motion' },
@@ -27,9 +34,16 @@ const layers = [
         </h3>
       </div>
 
-      <p class="max-w-sm text-sm sm:text-base text-white/70 leading-relaxed">
-        A large-scale multi-shot video dataset for Action-Cut generation, with hierarchical cinematography annotations and Focus of Attention (FoA) guidance.
-      </p>
+      <ul class="space-y-3 sm:space-y-3.5 text-sm font-semibold text-white/90">
+        {curationSteps.map((step) => (
+          <li class="flex items-center gap-3">
+            <span class="inline-flex w-5 h-5 rounded-md bg-[#ffb84d]/15 border border-[#ffb84d]/30 items-center justify-center shrink-0" aria-hidden="true">
+              <svg class="w-3 h-3 text-[#ffb84d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span>{step}</span>
+          </li>
+        ))}
+      </ul>
 
       <div>
         <a href={`${base}/dataset`} class="group inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#ff7a3d] to-[#ffb84d] px-5 py-3 text-xs font-bold tracking-[0.14em] uppercase text-[#20140f] shadow-[0_6px_22px_rgba(255,122,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(255,122,61,0.38)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb84d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#181411]">
