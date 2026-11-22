@@ -23,7 +23,7 @@ const layers = [
 
 <section class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border border-white/[0.12] shadow-2xl" data-reveal>
 
-  <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 md:gap-10 items-stretch">
+  <div class="grid grid-cols-1 lg:grid-cols-[0.8fr_0.85fr_1.35fr] gap-7 md:gap-9 items-stretch">
 
     <!-- LEFT: copy -->
     <div class="flex flex-col gap-4 sm:gap-5">
@@ -34,23 +34,26 @@ const layers = [
         </h3>
       </div>
 
-      <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 text-sm font-semibold text-white/90">
-        {curationSteps.map((step) => (
-          <li class="flex min-h-14 items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] px-3 py-3">
-            <span class="inline-flex w-5 h-5 rounded-md bg-[#ffb84d]/15 border border-[#ffb84d]/30 items-center justify-center shrink-0" aria-hidden="true">
-              <svg class="w-3 h-3 text-[#ffb84d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span>{step}</span>
-          </li>
-        ))}
-      </ul>
-
       <div>
         <a href={`${base}/dataset`} class="group inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#ff7a3d] to-[#ffb84d] px-5 py-3 text-xs font-bold tracking-[0.14em] uppercase text-[#20140f] shadow-[0_6px_22px_rgba(255,122,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(255,122,61,0.38)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb84d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#181411]">
           Explore the dataset
           <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
         </a>
       </div>
+    </div>
+
+    <!-- CENTER: curation steps -->
+    <div class="flex items-center">
+      <ul class="relative w-full space-y-4 border-l border-[#ffb84d]/25 pl-5 text-sm font-semibold text-white/90">
+        {curationSteps.map((step) => (
+          <li class="relative flex items-center gap-3">
+            <span class="absolute -left-[1.65rem] inline-flex w-5 h-5 rounded-md bg-[#ffb84d]/15 border border-[#ffb84d]/45 items-center justify-center" aria-hidden="true">
+              <svg class="w-3 h-3 text-[#ffb84d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span>{step}</span>
+          </li>
+        ))}
+      </ul>
     </div>
 
     <!-- RIGHT: hierarchical prompting visual demo -->
@@ -68,9 +71,8 @@ const layers = [
           <span class="font-mono text-[8.5px] tracking-[0.18em] text-white/25 uppercase">S1 → S2</span>
         </div>
 
-        <div class="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <!-- Two-shot strip -->
-        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
+        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
           <!-- Shot 1 -->
           <div class="relative rounded-lg overflow-hidden border border-white/10 bg-black/50 aspect-[16/10]">
             <!-- viewfinder corners -->
@@ -124,7 +126,6 @@ const layers = [
             </li>
           ))}
         </ul>
-        </div>
       </div>
     </div>
 
