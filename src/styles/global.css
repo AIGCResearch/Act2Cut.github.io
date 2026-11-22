@@ -502,7 +502,7 @@ html:not(.dark) .hero-resource-group a {
 }
 .dark img[src$='/teleai-logo-dark.png'],
 .dark img[src$='/fudan-university-dark.png'] {
-  filter: saturate(0.75);
+  filter: saturate(0.6);
 }
 
 /* Keep the team mark floating at the bottom of the viewport without affecting flow. */
