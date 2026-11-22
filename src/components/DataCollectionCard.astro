@@ -1,5 +1,5 @@
 ---
-// Data Collection & Processing — featured on the home page.
+// ActCutVid-1M — featured on the home page.
 // Right pane shows an actual visual demo of hierarchical prompting,
 // not a screenshot.
 
@@ -8,7 +8,8 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 const layers = [
   { tag: 'Global Setting',       dot: '#ff4d4d', body: 'Soft, warm sunlight filters through large windows of a quiet apartment.', sub: 'Env · Scene · Style' },
   { tag: 'Global Action',        dot: '#ff7a3d', body: '[Character 1] is tying up her hair, then turns slightly toward [Character 2].', sub: 'Subject behaviour · Motion' },
-  { tag: 'Local Cinematography', dot: '#ffa14d', body: 'Shot 1: Medium Close-Up, focus on hand.   Shot 2: Over-the-Shoulder, focus on face.', sub: 'Static / Dynamic Cinematography' },
+  { tag: 'Local Cinematography', dot: '#ffa14d', body: 'Shot 1: Medium Close-Up.   Shot 2: Over-the-Shoulder.', sub: 'Static / Dynamic Cinematography' },
+  { tag: 'Focus of Attention (FoA)', dot: '#ffad4d', body: 'Shot 1: The hand tying the hair.   Shot 2: The face turning.', sub: 'Per-shot focus' },
   { tag: 'Transition',           dot: '#ffb84d', body: 'Hard Cut、Shot Reverse Shot、Action Match、Action-Reaction',                                       sub: 'Edit-point relation' },
 ];
 ---
@@ -22,19 +23,23 @@ const layers = [
       <div>
         <span class="text-[10px] font-bold tracking-[0.32em] uppercase text-white/40 block mb-2">Dataset · ActCutVid-1M</span>
         <h3 class="text-xl sm:text-2xl font-semibold tracking-tight">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]">Data Collection</span>
-          <span class="text-white/85">&amp; Processing</span>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d]">ActCutVid-1M</span>
         </h3>
       </div>
 
-      <p class="text-[13px] sm:text-sm text-white/75 leading-relaxed font-light">
-        Sourced from films, TV series, and AI-generated content (Sora2, Seedance2.0).
-        We pair <strong class="text-white">TransNetV2</strong> with our novel
-        <strong class="text-white">Similarity Clustering Boundary Optimizer (SCBO)</strong>
-        via CLIP/DINO to precisely calibrate shot boundaries.
-      </p>
-
       <ul class="space-y-3 sm:space-y-3.5 text-[13px] sm:text-sm text-white/70 font-light">
+        <li class="flex items-start gap-3">
+          <span class="mt-0.5 inline-flex w-5 h-5 rounded-md bg-[#ffb84d]/15 border border-[#ffb84d]/30 items-center justify-center shrink-0">
+            <svg class="w-3 h-3 text-[#ffb84d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span>
+            <strong class="text-white/90">Data Collection and Preprocessing:</strong>
+            Sourced from films, TV series, and AI-generated content (Sora2, Seedance2.0).
+            We pair <strong class="text-white">TransNetV2</strong> with our novel
+            <strong class="text-white">Similarity Clustering Boundary Optimizer (SCBO)</strong>
+            via CLIP/DINO to precisely calibrate shot boundaries.
+          </span>
+        </li>
         <li class="flex items-start gap-3">
           <span class="mt-0.5 inline-flex w-5 h-5 rounded-md bg-[#ffb84d]/15 border border-[#ffb84d]/30 items-center justify-center shrink-0">
             <svg class="w-3 h-3 text-[#ffb84d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
@@ -45,7 +50,7 @@ const layers = [
           <span class="mt-0.5 inline-flex w-5 h-5 rounded-md bg-[#ffb84d]/15 border border-[#ffb84d]/30 items-center justify-center shrink-0">
             <svg class="w-3 h-3 text-[#ffb84d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
           </span>
-          <span><strong class="text-white/90">Hierarchical Annotations:</strong> decoupled cinematographic shot-language across Global Setting · Global Action · Local Cinematography · Transition layers.</span>
+          <span><strong class="text-white/90">Hierarchical Annotations:</strong> decoupled cinematographic shot-language across Global Setting · Global Action · Local Cinematography · Focus of Attention (FoA) · Transition layers.</span>
         </li>
       </ul>
 
