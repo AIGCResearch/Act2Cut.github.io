@@ -31,7 +31,7 @@ const pageLinks = [
   class:list={['fixed z-50', { 'nav-with-music': page === 'home' }]}
 >
   <div class="nav-glass relative">
-    <div class="nav-row relative max-w-[1440px] mx-auto px-4 max-[440px]:px-2 sm:px-6 h-16 flex items-center justify-between gap-3 max-[440px]:gap-1">
+    <div class="nav-row relative max-w-[1440px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
 
       <!-- Brand — typographic wordmark, no icon -->
       <a href={url('/')} class="brand-mark group flex items-baseline gap-0.5 shrink-0 select-none" aria-label="Act2Cut — Home">
@@ -43,7 +43,7 @@ const pageLinks = [
         </span>
         <span class="font-semibold text-[20px] sm:text-[22px] tracking-tight text-white/95 leading-none">Cut</span>
         <!-- micro tagline -->
-        <span class="brand-tagline relative inline-block ml-1.5 sm:ml-2.5 self-center text-[7px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] font-semibold pl-1.5 sm:pl-2.5">Match&nbsp;on&nbsp;Action</span>
+        <span class="brand-tagline relative inline-block ml-1.5 sm:ml-2.5 self-center text-[7px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] font-semibold pl-1.5 sm:pl-2.5">Match&nbsp;on<br class="md:hidden" /><span class="hidden md:inline">&nbsp;</span>Action</span>
       </a>
 
       <!-- Center: page nav (desktop) — absolutely centered so position never shifts between pages -->
@@ -833,13 +833,19 @@ const pageLinks = [
       width: calc(100% - 20px);
     }
   }
+  @media (max-width: 767px) {
+    #top-nav .nav-row {
+      max-width: 34rem;
+      padding-inline: clamp(18px, calc(8vw - 12px), 28px);
+      gap: 4px;
+    }
+    #top-nav .brand-tagline {
+      line-height: 1.2;
+    }
+  }
   @media (max-width: 385px) {
     #top-nav.nav-with-music.nav-scrolled {
       width: 100%;
-    }
-    #top-nav .nav-row {
-      padding-inline: 4px;
-      gap: 2px;
     }
   }
   @media (min-width: 768px) {
