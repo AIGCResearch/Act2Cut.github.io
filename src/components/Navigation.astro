@@ -154,7 +154,7 @@ const pageLinks = [
           </div>
         )}
 
-        <div id="desktop-nav-controls" class="hidden shrink-0 items-center gap-2 md:flex">
+        <div id="nav-controls" class="flex shrink-0 items-center gap-1 md:gap-2">
           {page === 'home' && <MusicToggle />}
           <button
             id="theme-toggle"
@@ -198,7 +198,9 @@ const pageLinks = [
       inert
     >
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
-        <div id="mobile-nav-controls" role="group" aria-label="Display and audio settings" class="flex items-center justify-end gap-2 px-3 pb-2"></div>
+        {page === 'home' && (
+          <div id="mobile-music-control" class="hidden max-[350px]:flex justify-end px-3 pb-2"></div>
+        )}
         <div class="text-[8.5px] font-bold tracking-[0.32em] uppercase text-white/30 px-3 pb-2 pt-1">Pages</div>
         {pageLinks.map(link => (
           <a
@@ -323,22 +325,22 @@ const pageLinks = [
     }
   }
 
-  const desktopControls = document.getElementById('desktop-nav-controls');
-  const mobileControls = document.getElementById('mobile-nav-controls');
-  if (desktopControls && mobileControls) {
-    const controls = [...desktopControls.querySelectorAll('button')];
-    const wideNav = window.matchMedia('(min-width: 768px)');
-    const placeControls = () => {
-      if (wideNav.matches) {
-        desktopControls.append(...controls);
-        if (hamburger?.getAttribute('aria-expanded') === 'true') setMobileMenu(false);
-      } else {
-        mobileControls.append(...controls);
-      }
+  const navControls = document.getElementById('nav-controls');
+  const mobileMusic = document.getElementById('mobile-music-control');
+  const musicToggle = document.getElementById('music-toggle');
+  if (navControls && mobileMusic && musicToggle) {
+    const narrowNav = window.matchMedia('(max-width: 350px)');
+    const placeMusic = () => {
+      if (narrowNav.matches) mobileMusic.append(musicToggle);
+      else navControls.prepend(musicToggle);
     };
-    wideNav.addEventListener('change', placeControls);
-    placeControls();
+    narrowNav.addEventListener('change', placeMusic);
+    placeMusic();
   }
+  const wideNav = window.matchMedia('(min-width: 768px)');
+  wideNav.addEventListener('change', event => {
+    if (event.matches && hamburger?.getAttribute('aria-expanded') === 'true') setMobileMenu(false);
+  });
 
   hamburger?.addEventListener('click', () => {
     const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
@@ -846,6 +848,19 @@ const pageLinks = [
   @media (max-width: 385px) {
     #top-nav.nav-with-music.nav-scrolled {
       width: 100%;
+    }
+  }
+  @media (max-width: 350px) {
+    #top-nav.nav-scrolled {
+      width: 100%;
+    }
+  }
+  @media (max-width: 400px) {
+    #top-nav #nav-controls button,
+    #top-nav #nav-controls :global(#music-toggle),
+    #top-nav #nav-hamburger {
+      width: 30px;
+      height: 30px;
     }
   }
   @media (min-width: 768px) {
