@@ -648,11 +648,11 @@ html:not(.dark) .hero-team-footer {
 .team-logo-glow::before {
   content: '';
   position: absolute;
-  inset: 8% 2%;
+  inset: 3% 0;
   z-index: 0;
   border-radius: 999px;
-  background: radial-gradient(ellipse at center, rgba(255, 184, 77, 0.7) 0%, rgba(255, 122, 61, 0.42) 42%, rgba(255, 77, 77, 0) 80%);
-  filter: blur(20px);
+  background: radial-gradient(ellipse at center, rgba(255, 184, 77, 0.88) 0%, rgba(255, 122, 61, 0.56) 46%, rgba(255, 77, 77, 0) 88%);
+  filter: blur(17px);
   opacity: 0.94;
   pointer-events: none;
   animation: team-logo-glow-pulse 5s ease-in-out infinite;
