@@ -219,6 +219,14 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
     document.addEventListener('click', event => {
       if (!paperMenu.contains(event.target as Node)) setPaperMenu(false);
     });
+    const closePaperOnTouchOutside = (event: TouchEvent) => {
+      if (!paperMenu.classList.contains('is-open')) return;
+      const touch = event.touches[0] ?? event.changedTouches[0];
+      const target = touch ? document.elementFromPoint(touch.clientX, touch.clientY) : event.target;
+      if (!(target instanceof Node) || !paperMenu.contains(target)) setPaperMenu(false);
+    };
+    document.addEventListener('touchstart', closePaperOnTouchOutside, { passive: true });
+    document.addEventListener('touchmove', closePaperOnTouchOutside, { passive: true });
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') setPaperMenu(false);
     });

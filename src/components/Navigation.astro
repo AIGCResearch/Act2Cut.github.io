@@ -352,6 +352,16 @@ const pageLinks = [
       setMobileMenu(false);
     }
   });
+  const closeMobileMenuOnTouchOutside = (event: TouchEvent) => {
+    if (hamburger?.getAttribute('aria-expanded') !== 'true') return;
+    const touch = event.touches[0] ?? event.changedTouches[0];
+    const target = touch ? document.elementFromPoint(touch.clientX, touch.clientY) : event.target;
+    if (!(target instanceof Node) || (!mobileMenu?.contains(target) && !hamburger?.contains(target))) {
+      setMobileMenu(false);
+    }
+  };
+  document.addEventListener('touchstart', closeMobileMenuOnTouchOutside, { passive: true });
+  document.addEventListener('touchmove', closeMobileMenuOnTouchOutside, { passive: true });
 
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', () => setMobileMenu(false));
@@ -421,6 +431,14 @@ const pageLinks = [
   document.addEventListener('click', event => {
     if (sectionDropdown && !sectionDropdown.contains(event.target as Node)) setSectionMenu(false);
   });
+  const closeSectionOnTouchOutside = (event: TouchEvent) => {
+    if (sectionToggle?.getAttribute('aria-expanded') !== 'true') return;
+    const touch = event.touches[0] ?? event.changedTouches[0];
+    const target = touch ? document.elementFromPoint(touch.clientX, touch.clientY) : event.target;
+    if (!(target instanceof Node) || !sectionDropdown?.contains(target)) setSectionMenu(false);
+  };
+  document.addEventListener('touchstart', closeSectionOnTouchOutside, { passive: true });
+  document.addEventListener('touchmove', closeSectionOnTouchOutside, { passive: true });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && sectionToggle?.getAttribute('aria-expanded') === 'true') {
       setSectionMenu(false);
