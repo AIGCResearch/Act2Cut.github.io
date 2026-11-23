@@ -2,11 +2,11 @@
 import DualVideo from './DualVideo.astro';
 
 const pipelineSteps = [
-  { title: 'Source Collection', desc: 'Video sequences come from films, television series, anime, variety shows, short-form dramas, and AI-generated content.' },
-  { title: 'Shot Segmentation', desc: 'TransNetV2 detects initial shot boundaries. The Similarity Clustering Boundary Optimizer (SCBO) uses CLIP/DINO features to refine them.' },
-  { title: 'Continuous Action Detection', desc: 'Gemini-3-Pro scores action continuity on a 0–4 Likert scale by assessing action state consistency and motion flow continuity across adjacent shots. A score of 4 indicates Strong Action-Cut, and scores of 1–3 indicate Weak Action-Cut.' },
-  { title: 'Hierarchical Annotations', desc: 'Annotations separate global setting, global action, local cinematography, Focus of Attention (FoA), and shot transitions.' },
-  { title: 'Human-in-the-Loop Check', desc: 'LLMs verify annotations, and experts review action continuity, annotation accuracy, and clip quality.' },
+  { title: 'Source Collection', points: ['Video sequences come from films, television series, anime, variety shows, short-form dramas, and AI-generated content.'] },
+  { title: 'Shot Segmentation', points: ['TransNetV2 detects initial shot boundaries.', 'SCBO uses CLIP/DINO features to refine them.'] },
+  { title: 'Continuous Action Detection', points: ['Gemini-3-Pro scores action continuity on a 0–4 Likert scale by assessing action state consistency and motion flow continuity across adjacent shots.', 'A score of 4 indicates Strong Action-Cut; scores of 1–3 indicate Weak Action-Cut.'] },
+  { title: 'Hierarchical Annotations', points: ['Annotations separate global setting, global action, local cinematography, Focus of Attention (FoA), and shot transitions.'] },
+  { title: 'Human-in-the-Loop Check', points: ['LLMs verify annotations.', 'Experts review action continuity, annotation accuracy, and clip quality.'] },
 ];
 
 const statGroups = [
@@ -123,7 +123,9 @@ const samples = sampleFiles.map(file => {
               </div>
               <div>
                 <h4 class="text-sm font-semibold text-white mb-1.5">{step.title}</h4>
-                <p class="text-[13px] text-white/70 leading-relaxed">{step.desc}</p>
+                <ul class="list-disc pl-4 space-y-1 text-left text-[13px] text-white/70 leading-relaxed">
+                  {step.points.map(point => <li>{point}</li>)}
+                </ul>
               </div>
             </li>
           ))}
