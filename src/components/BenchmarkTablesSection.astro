@@ -140,7 +140,7 @@ function rowBg(style: string) {
   return 'border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors';
 }
 
-// ─── Radar data (range-normalized: worst→30, best→100) ─────────────────────
+// ─── Radar data (range-normalized per dimension) ────────────────────────────
 // Global Content 5-dim: VC.CS | VC.Sty | AC | SA | Aes
 // Cinematography 6-dim: RC-ST | RC-Cont. | RC-Narr. | DC-CM | DC-CR | SC
 // Order: Happyhorse, Seedance, Kling3, Sora2, HoloCine, MSM-1.3B, MSM-14B, Act2Cut
@@ -293,8 +293,8 @@ const radarCinem = {
 
     <!-- Radar chart for Global Content -->
     <div class="border-t border-white/[0.06] p-5 sm:p-8">
-      <p class="text-[10px] text-white/40 mb-4 leading-relaxed">
-        Radar chart: scores range-normalized per dimension (worst→30, best→100) for visual comparability across metrics with different scales.
+      <p class="text-[11px] text-white/40 mb-4 leading-relaxed">
+        Radar chart: scores are range-normalized per dimension for visual comparability across metrics with different scales.
         <span class="text-white/25">|</span>
         <span class="ml-1" style="display:inline-flex;align-items:center;gap:4px">
           <span style="display:inline-block;width:16px;height:1.5px;border-top:2px dashed rgba(255,150,150,0.7);margin-bottom:1px"></span>closed-source
@@ -408,9 +408,8 @@ const radarCinem = {
 
     <!-- Radar chart for Cinematography -->
     <div class="border-t border-white/[0.06] p-5 sm:p-8">
-      <p class="text-[10px] text-white/40 mb-4 leading-relaxed">
+      <p class="text-[11px] text-white/40 mb-4 leading-relaxed">
         Radar chart: range-normalized per dimension.
-        Act2Cut achieves best-in-class across all three Relation Cinematography dimensions and strong Dynamic Cinematography.
         <span class="text-white/25">|</span>
         <span class="ml-1" style="display:inline-flex;align-items:center;gap:4px">
           <span style="display:inline-block;width:16px;height:1.5px;border-top:2px dashed rgba(255,150,150,0.7);margin-bottom:1px"></span>closed-source
@@ -515,7 +514,7 @@ const radarCinem = {
 
     <!-- Radar chart for VBench -->
     <div class="border-t border-white/[0.06] p-5 sm:p-8">
-      <p class="text-[10px] text-white/40 mb-4 leading-relaxed">
+      <p class="text-[11px] text-white/40 mb-4 leading-relaxed">
         Radar chart: VBench metrics shown on a 0–100 scale; TF, MS, and DD are converted from 0–1 values.
         <span class="text-white/25">|</span>
         <span class="ml-1" style="display:inline-flex;align-items:center;gap:4px">
@@ -607,7 +606,7 @@ const radarCinem = {
             angleLines: { color: theme.gridColor },
             pointLabels: {
               color: theme.pointLabelColor,
-              font:  { size: 9 },
+              font:  { size: 11 },
             },
           }
         },
@@ -619,7 +618,7 @@ const radarCinem = {
               padding:         14,
               usePointStyle:   true,
               pointStyleWidth: 10,
-              font: { size: 10 },
+              font: { size: 11 },
             }
           },
           tooltip: {
@@ -637,7 +636,7 @@ const radarCinem = {
 
   // ── Data ──────────────────────────────────────────────────────────────────
   // Content: 13 dims — NC(Env,Sce,Sty,CS,CA/OM) | VC(Env,Sce,Sty,CS) | AC(CA/OM) | SA(SCC,SCA) | Aes
-  // Range-normalized per column across all 8 non-ablation rows: worst→30, best→100
+  // Range-normalized per column across all 8 non-ablation rows
   var contentLabels = ['NC.Env','NC.Sce','NC.Sty','NC.CS','NC.CA/OM','VC.Env','VC.Sce','VC.Sty','VC.CS','AC.CA/OM','SA.SCC','SA.SCA','Aes'];
   var contentSets = [
     { label:'Happyhorse-1.0',       type:'closed', color:'#ff6b6b', data:[40.000,100.000,100.000,80.000,41.667,30.000,30.000,58.824,67.895,92.057,87.400,57.401,100.000] },
