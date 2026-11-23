@@ -9,22 +9,22 @@ const methodCards = [
   {
     abbr: 'GLoS-RoPE',
     title: 'Global-Local Shot RoPE',
-    desc: `Factorizes the temporal rotary channels into three disjoint groups: global order, normalized shot progress, and shot identity. At a shot cut, the global coordinate remains continuous while the local coordinate resets and the shot representation changes.`,
+    desc: `Splits time information into three parts: frame order across the video, progress within each shot, and shot identity. At a cut, the overall time keeps moving, while the within-shot progress starts again for the new shot.`,
   },
   {
     abbr: 'TBR',
     title: 'Transitional Boundary Residual',
-    desc: `A lightweight targeted attention enhancement within the self-attention layers that explicitly injects information from the tail-frame of the previous shot into the head-frame of the next shot. A decoupled boundary loss further stabilizes cross-shot continuity.`,
+    desc: `Adds a small attention step at each cut. It sends information from the last frame of the previous shot to the first frame of the next shot. A boundary loss helps keep the transition stable.`,
   },
   {
     abbr: 'SCM',
     title: 'Shot Causal Mask',
-    desc: `Within a single shot, all patches and frames remain fully bidirectionally visible. Between shots, a unidirectional causal constraint lets shot <em>x<sub>i</sub></em> attend to the history of shot <em>x<sub>i-1</sub></em>, while <em>x<sub>i-1</sub></em> remains blind to the future shot, preventing semantic leakage from future compositions.`,
+    desc: `Frames in one shot can attend to each other. Across shots, each shot can use past shots, but past shots cannot see future shots. This keeps future content from leaking backward.`,
   },
   {
     abbr: 'HCM',
     title: 'Hierarchical Context Mask',
-    desc: `A selective window mechanism within the cross-attention layers. Global descriptions persist throughout the sequence, shot-specific language is isolated to its shot, and shot relations influence only the shots they bridge - unifying 'what is happening' and 'how to transition' while independently modulating 'how it is seen.'`,
+    desc: `Controls which text each shot can use. Global descriptions stay active for all shots. Shot-specific camera and framing text stays in its own shot, and relation text only affects the shots it connects. This separates what happens, how shots connect, and how each shot looks.`,
   },
 ];
 ---
