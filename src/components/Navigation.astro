@@ -28,7 +28,7 @@ const pageLinks = [
 <!-- Full-width navigation at the top; floating island after scrolling -->
 <header
   id="top-nav"
-  class:list={['fixed z-50', { 'nav-with-music': page === 'home' }]}
+  class="fixed z-50 nav-with-music"
 >
   <div class="nav-glass relative">
     <div class="nav-row relative max-w-[1440px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
@@ -155,7 +155,7 @@ const pageLinks = [
         )}
 
         <div id="nav-controls" class="flex shrink-0 items-center gap-1 md:gap-2">
-          {page === 'home' && <MusicToggle />}
+          <MusicToggle />
           <button
             id="theme-toggle"
             type="button"
@@ -198,9 +198,7 @@ const pageLinks = [
       inert
     >
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
-        {page === 'home' && (
-          <div id="mobile-music-control" class="hidden max-[350px]:flex justify-end px-3 pb-2"></div>
-        )}
+        <div id="mobile-music-control" class="hidden max-[350px]:flex justify-end px-3 pb-2"></div>
         <div class="text-[8.5px] font-bold tracking-[0.32em] uppercase text-white/30 px-3 pb-2 pt-1">Pages</div>
         {pageLinks.map(link => (
           <a
