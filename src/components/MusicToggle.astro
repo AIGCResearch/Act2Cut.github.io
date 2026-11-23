@@ -42,33 +42,40 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     let fadeFrame = 0;
 
     const update = () => {
-      const playing = !audio.paused;
+      const playing = !audio.paused && audio.volume > 0.01;
       toggle.setAttribute('aria-pressed', String(playing));
       toggle.title = playing ? 'Turn background music off' : 'Turn background music on';
     };
-    const tryPlay = async () => {
-      if (!enabled || !audio.paused) return;
+    const fadeIn = () => {
       cancelAnimationFrame(fadeFrame);
-      audio.volume = 0;
-      try {
-        await audio.play();
-      } catch {
-        return;
-      }
-      if (!enabled || audio.paused || audio.volume !== 0) return;
-
       const started = performance.now();
       const targetVolume = 0.48;
-      const fadeIn = (now: number) => {
-        if (audio.paused) return;
+      const tick = (now: number) => {
+        if (audio.paused || !enabled) return;
         audio.volume = targetVolume * Math.min(1, (now - started) / 1400);
-        if (audio.volume < targetVolume) fadeFrame = requestAnimationFrame(fadeIn);
+        update();
+        if (audio.volume < targetVolume) fadeFrame = requestAnimationFrame(tick);
       };
-      fadeFrame = requestAnimationFrame(fadeIn);
+      fadeFrame = requestAnimationFrame(tick);
+    };
+    const tryPlay = async () => {
+      if (!enabled) return;
+      if (!audio.paused && audio.volume > 0.01) return;
+      try {
+        if (audio.paused) {
+          audio.volume = 0;
+          await audio.play();
+        }
+      } catch {
+        update();
+        return;
+      }
+      if (!enabled || audio.paused) return;
+      fadeIn();
     };
 
     toggle.addEventListener('click', () => {
-      enabled = audio.paused;
+      enabled = audio.paused || audio.volume <= 0.01;
       if (enabled) void tryPlay();
       else {
         cancelAnimationFrame(fadeFrame);
@@ -79,8 +86,9 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
     audio.addEventListener('play', update);
     audio.addEventListener('pause', update);
+    audio.addEventListener('volumechange', update);
     const startAfterGesture = (event: Event) => {
-      if (!enabled || !audio.paused) return;
+      if (!enabled) return;
       if (event.target instanceof Element && event.target.closest('#music-toggle')) return;
       void tryPlay();
     };
@@ -91,7 +99,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     document.addEventListener('click', startAfterGesture, { capture: true });
     let scrollAttempted = false;
     const retryOnScroll = () => {
-      if (!enabled || !audio.paused) return;
+      if (!enabled) return;
       // Start on the first real wheel or touch scroll on both desktop and mobile.
       if (scrollAttempted) return;
       scrollAttempted = true;
