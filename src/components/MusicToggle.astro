@@ -79,15 +79,25 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
     audio.addEventListener('play', update);
     audio.addEventListener('pause', update);
-    let lastScrollActivation: boolean | undefined;
-    const retryOnScroll = () => {
+    const startAfterGesture = (event: Event) => {
       if (!enabled || !audio.paused) return;
-      // Retry on the first scroll, and once more if the browser gains user activation.
-      const hasActivation = navigator.userActivation?.hasBeenActive ?? false;
-      if (hasActivation === lastScrollActivation) return;
-      lastScrollActivation = hasActivation;
+      if (event.target instanceof Element && event.target.closest('#music-toggle')) return;
       void tryPlay();
     };
+    // Match AIGC Research: retry during the gesture, before the click or scroll settles.
+    document.addEventListener('pointerdown', startAfterGesture, { capture: true });
+    document.addEventListener('keydown', startAfterGesture, { capture: true });
+    document.addEventListener('click', startAfterGesture, { capture: true });
+    let scrollAttempted = false;
+    const retryOnScroll = () => {
+      if (!enabled || !audio.paused) return;
+      // Start on the first real wheel or touch scroll on both desktop and mobile.
+      if (scrollAttempted) return;
+      scrollAttempted = true;
+      void tryPlay();
+    };
+    window.addEventListener('wheel', retryOnScroll, { passive: true });
+    window.addEventListener('touchmove', retryOnScroll, { passive: true });
     window.addEventListener('scroll', retryOnScroll, { passive: true });
     update();
     void tryPlay();
