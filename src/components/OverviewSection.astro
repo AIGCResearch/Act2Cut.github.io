@@ -9,22 +9,22 @@ const methodCards = [
   {
     abbr: 'GLoS-RoPE',
     title: 'Global-Local Shot RoPE',
-    desc: `Decouples temporal position encoding across shot boundaries. Global tokens carry sequence-level context while local tokens remain precisely positioned within their own shot — enabling cross-shot coherence without RoPE bleed between unrelated frames.`
+    desc: `Factorizes the temporal rotary channels into three disjoint groups: global order, normalized shot progress, and shot identity. At a shot cut, the global coordinate remains continuous while the local coordinate resets and the shot representation changes.`,
   },
   {
     abbr: 'TBR',
     title: 'Transitional Boundary Residual',
-    desc: `Enhances spatial and kinetic consistency at the edit point between adjacent shots. Ensures the terminal frame of shot <em>n</em> and the initial frame of shot <em>n+1</em> maintain rigorous 3D spatial alignment and smooth momentum continuity, preventing visual "popping" at hard cuts.`
+    desc: `A lightweight targeted attention enhancement within the self-attention layers that explicitly injects information from the tail-frame of the previous shot into the head-frame of the next shot. A decoupled boundary loss further stabilizes cross-shot continuity.`,
   },
   {
     abbr: 'SCM',
     title: 'Shot Causal Mask',
-    desc: `Applies a unidirectional causal constraint in self-attention so that shot <em>x<sub>i</sub></em> can attend to the history of <em>x<sub>i−1</sub></em>, but not vice versa. Prevents "semantic leakage" where future shot compositions contaminate earlier frames.`
+    desc: `Within a single shot, all patches and frames remain fully bidirectionally visible. Between shots, a unidirectional causal constraint lets shot <em>x<sub>i</sub></em> attend to the history of shot <em>x<sub>i-1</sub></em>, while <em>x<sub>i-1</sub></em> remains blind to the future shot, preventing semantic leakage from future compositions.`,
   },
   {
     abbr: 'HCM',
     title: 'Hierarchical Context Mask',
-    desc: `Partitions cross-attention into global, relational, and local windows. Global tokens act as universal anchors; per-shot cinematic language remains independently modulated, ensuring precise control over "what happens" vs. "how it is framed" for each shot.`
+    desc: `A selective window mechanism within the cross-attention layers. Global descriptions persist throughout the sequence, shot-specific language is isolated to its shot, and shot relations influence only the shots they bridge - unifying 'what is happening' and 'how to transition' while independently modulating 'how it is seen.'`,
   },
 ];
 ---
