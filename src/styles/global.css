@@ -493,6 +493,50 @@ html:not(.dark) .hero-institution-glass {
 .hero-resource-group a svg {
   stroke-width: 2.5;
 }
+.paper-resource-menu {
+  position: relative;
+  z-index: 120;
+}
+.paper-resource-panel {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -4px);
+  transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 220ms;
+}
+.paper-resource-menu.is-open .paper-resource-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+  transition-delay: 0s;
+}
+.paper-resource-panel a {
+  position: static !important;
+  isolation: auto !important;
+  border: 0 !important;
+  background: transparent !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none !important;
+}
+.paper-resource-panel a::before,
+.paper-resource-panel a::after {
+  display: none;
+}
+html:not(.dark) .paper-resource-panel {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(183, 121, 31, 0.34);
+}
+html:not(.dark) .paper-resource-panel .paper-resource-empty {
+  color: rgba(45, 36, 28, 0.46);
+}
+html:not(.dark) .paper-resource-panel .paper-resource-empty .text-white\/30 {
+  color: rgba(45, 36, 28, 0.32);
+}
+html:not(.dark) .paper-resource-panel .paper-resource-link {
+  color: rgba(45, 36, 28, 0.82);
+}
 html:not(.dark) .hero-resource-group a {
   background: transparent !important;
   border-color: transparent !important;
@@ -943,6 +987,12 @@ html:not(.dark) .team-logo-glow::before {
 .hero-resource-group a:hover,
 html:not(.dark) .hero-resource-group a:hover {
   color: #20140f !important;
+  border-color: transparent !important;
+}
+.paper-resource-panel a:hover,
+html:not(.dark) .paper-resource-panel a:hover {
+  color: #ffb84d !important;
+  background: rgba(255, 184, 77, 0.15) !important;
   border-color: transparent !important;
 }
 html:not(.dark) .coming-soon-label {
