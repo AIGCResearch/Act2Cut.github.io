@@ -16,7 +16,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     <path class="music-off" d="m16 9 6 6m0-6-6 6" />
   </svg>
 </button>
-<audio id="background-music" src={`${base}/audio/act2cut-theme.mp3`} preload="auto" loop hidden></audio>
+<audio id="background-music" src={`${base}/audio/act2cut-theme.mp3`} preload="auto" loop aria-hidden="true"></audio>
 
 <style>
   button[aria-pressed='true'] {
@@ -86,6 +86,7 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
     };
     // Match AIGC Research: retry during the gesture, before the click or scroll settles.
     document.addEventListener('pointerdown', startAfterGesture, { capture: true });
+    document.addEventListener('touchstart', startAfterGesture, { capture: true, passive: true });
     document.addEventListener('keydown', startAfterGesture, { capture: true });
     document.addEventListener('click', startAfterGesture, { capture: true });
     let scrollAttempted = false;
