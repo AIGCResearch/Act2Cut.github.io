@@ -329,18 +329,6 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
               <tr class="border-b border-white/[0.04] bg-[#74c0fc]/[0.03]">
                 <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#74c0fc]/50 font-semibold" colspan="17">Ablation Study</td>
               </tr>
-              {oursRow && (
-                <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
-                  <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
-                  {metricOrder.map((metric, index) => {
-                    const value = oursRow.metrics[metric];
-                    const rank = rankFor(oursRow, metric);
-                    const text = formatValue(value);
-                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-3 text-center text-[#ffb84d]' : 'px-2 py-3 text-center text-[#ffb84d]';
-                    return <td class={cellClass}>{rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}</td>;
-                  })}
-                </tr>
-              )}
               {ablationRows.map((row) => (
                 <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
                   <td class="px-4 py-3 font-sans text-white/75">{row.method}</td>
