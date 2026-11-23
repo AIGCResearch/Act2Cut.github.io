@@ -187,14 +187,6 @@ function rankFor(row: SummaryRow, metric: SummaryMetric) {
   return row.style === 'ablation' ? 0 : (rankMaps[metric].get(row.method) ?? 0);
 }
 
-function baseModelFor(row: SummaryRow) {
-  if (row.method === 'HoloCine-14B') return 'Wan2.2-T2V-14B';
-  if (row.method === 'MSM-1.3B') return 'Wan2.1-TI2V-1.3B';
-  if (row.method === 'MSM-14B') return 'Wan2.1-T2V-14B';
-  if (row.style === 'ours' || row.style === 'ablation') return 'Wan2.2-TI2V-5B';
-  return '—';
-}
-
 const metricOrder: SummaryMetric[] = [
   'ncG1', 'ncG2', 'vcG1', 'vcSty', 'vcCs', 'ac', 'saScc', 'saSca', 'aes', 'scSs', 'scSf', 'scCa', 'dcCm', 'dcCz', 'dcCr', 'rc',
 ];
@@ -265,7 +257,6 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
             <thead>
               <tr class="text-white/40 border-b border-white/10">
                 <th class="px-4 py-3 font-normal text-left" rowspan="2">Method</th>
-                <th class="px-4 py-3 font-normal text-left" rowspan="2">Base Model Ver.</th>
                 <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="2">NC ↑</th>
                 <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="3">VC ↑</th>
                 <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="1">AC ↑</th>
@@ -288,12 +279,11 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
             <tbody class="text-white/60 font-mono">
               <!-- Closed-Source -->
               <tr class="bg-white/[0.04] border-y border-white/[0.05]">
-                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#ff9999]/60 font-semibold" colspan="18">Closed-Source</td>
+                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#ff9999]/60 font-semibold" colspan="17">Closed-Source</td>
               </tr>
               {closedRows.map((row) => (
                 <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
                   <td class="px-4 py-3 font-sans">{row.method}</td>
-                  <td class="px-4 py-3 font-sans text-white/30 text-[11px]">{baseModelFor(row)}</td>
                   {metricOrder.map((metric, index) => {
                     const value = row.metrics[metric];
                     const rank = rankFor(row, metric);
@@ -306,12 +296,11 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
 
               <!-- Open-Source -->
               <tr class="border-b border-white/[0.04] bg-[#38d9a9]/[0.04]">
-                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#38d9a9]/60 font-semibold" colspan="18">Open-Source</td>
+                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#38d9a9]/60 font-semibold" colspan="17">Open-Source</td>
               </tr>
               {openRows.map((row) => (
                 <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
                   <td class="px-4 py-3 font-sans">{row.method}</td>
-                  <td class="px-4 py-3 font-sans text-white/30 text-[11px]">{baseModelFor(row)}</td>
                   {metricOrder.map((metric, index) => {
                     const value = row.metrics[metric];
                     const rank = rankFor(row, metric);
@@ -326,7 +315,6 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
               {oursRow && (
                 <tr class="border-y border-[#ff4d4d]/20 bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.13] transition-colors">
                   <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/45 font-normal text-[11px]">(Ours)</span></td>
-                  <td class="px-4 py-3 font-sans text-white/50 text-[11px]">{baseModelFor(oursRow)}</td>
                   {metricOrder.map((metric, index) => {
                     const value = oursRow.metrics[metric];
                     const rank = rankFor(oursRow, metric);
@@ -339,12 +327,11 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
 
               <!-- Ablation -->
               <tr class="border-b border-white/[0.04] bg-[#74c0fc]/[0.03]">
-                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#74c0fc]/50 font-semibold" colspan="18">Ablation Study</td>
+                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#74c0fc]/50 font-semibold" colspan="17">Ablation Study</td>
               </tr>
               {oursRow && (
                 <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
                   <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
-                  <td class="px-4 py-3 font-sans text-white/50 text-[11px]">{baseModelFor(oursRow)}</td>
                   {metricOrder.map((metric, index) => {
                     const value = oursRow.metrics[metric];
                     const rank = rankFor(oursRow, metric);
@@ -357,7 +344,6 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
               {ablationRows.map((row) => (
                 <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
                   <td class="px-4 py-3 font-sans text-white/75">{row.method}</td>
-                  <td class="px-4 py-3 font-sans text-white/45 text-[11px]">{baseModelFor(row)}</td>
                   {metricOrder.map((metric, index) => {
                     const text = formatValue(row.metrics[metric]);
                     const cellClass = index === metricOrder.length - 1 ? 'px-3 py-3 text-center' : 'px-2 py-3 text-center';
@@ -406,9 +392,6 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
     font-size: 0.8rem;
   }
   .benchmark-data-table tbody td:first-child,
-  .benchmark-data-table tbody td:nth-child(2) {
-    font-size: 0.8rem;
-  }
   .benchmark-data-table tbody td[colspan] {
     font-size: 0.7rem;
   }
