@@ -123,8 +123,13 @@ const samples = sampleFiles.map(file => {
               </div>
               <div>
                 <h4 class="text-sm font-semibold text-white mb-1.5">{step.title}</h4>
-                <ul class="list-disc pl-4 space-y-1 text-left text-[13px] text-white/70 leading-relaxed">
-                  {step.points.map(point => <li>{point}</li>)}
+                <ul class="space-y-1 text-left text-[13px] text-white/70 leading-relaxed">
+                  {step.points.map(point => (
+                    <li class="flex items-start gap-2">
+                      <span class="mt-[0.42rem] w-2 h-2 rounded-full shrink-0 bg-[#ffb84d] text-[#ffb84d] shadow-[0_0_10px_currentColor]" aria-hidden="true"></span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </li>
