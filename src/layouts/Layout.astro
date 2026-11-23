@@ -156,13 +156,24 @@ const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
         new IntersectionObserver((entries) => sparkCanvas.setActive(entries[0]?.isIntersecting ?? false), { rootMargin: '120px 0px' }).observe(divider);
       });
 
+      const floatingSparkCount = 800;
       document.querySelectorAll<HTMLElement>('#top-nav .nav-glass').forEach((navGlass) => {
         navGlass.classList.add('has-spark-canvas');
-        const sparkCanvas = initSparkCanvas(navGlass, 800, 'nav');
+        const sparkCanvas = initSparkCanvas(navGlass, floatingSparkCount, 'nav');
         const sync = () => sparkCanvas.setActive(document.getElementById('top-nav')?.classList.contains('nav-scrolled') ?? false);
         new MutationObserver(sync).observe(document.getElementById('top-nav')!, { attributes: true, attributeFilter: ['class'] });
         sync();
       });
+
+      const teamFloat = document.querySelector<HTMLElement>('.hero-team-footer');
+      if (teamFloat) {
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const sparkCanvas = initSparkCanvas(teamFloat, floatingSparkCount, 'nav');
+        const sync = () => sparkCanvas.setActive(teamFloat.classList.contains('team-footer-scrolled') && !reducedMotion.matches);
+        new MutationObserver(sync).observe(teamFloat, { attributes: true, attributeFilter: ['class'] });
+        reducedMotion.addEventListener('change', sync);
+        sync();
+      }
     </script>
 
     <!-- Keep the floating team mark tucked away at the top of the page. -->

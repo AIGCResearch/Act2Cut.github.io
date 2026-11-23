@@ -195,6 +195,50 @@ const openRows = summaryRows.filter((row) => row.style === 'open');
 const ablationRows = summaryRows.filter((row) => row.style === 'ablation');
 const closedRows = summaryRows.filter((row) => row.style === 'closed');
 const oursRow = summaryRows.find((row) => row.style === 'ours');
+
+const overallRadarGroups: { label: string; metrics: SummaryMetric[] }[] = [
+  { label: 'NC', metrics: ['ncG1', 'ncG2'] },
+  { label: 'VC', metrics: ['vcG1', 'vcSty', 'vcCs'] },
+  { label: 'AC', metrics: ['ac'] },
+  { label: 'SA', metrics: ['saScc', 'saSca'] },
+  { label: 'Aes', metrics: ['aes'] },
+  { label: 'SC', metrics: ['scSs', 'scSf', 'scCa'] },
+  { label: 'DC', metrics: ['dcCm', 'dcCz', 'dcCr'] },
+  { label: 'RC', metrics: ['rc'] },
+];
+
+const overallRadarBaseline = summaryRows.filter((row) => row.style !== 'ablation');
+const overallRadarRaw = overallRadarBaseline.map((row) => ({
+  row,
+  values: overallRadarGroups.map((group) => mean(group.metrics.map((metric) => row.metrics[metric]).filter((value): value is number => value !== null))),
+}));
+const overallRadarData = {
+  labels: overallRadarGroups.map((group) => group.label),
+  datasets: overallRadarRaw.map(({ row, values }) => {
+    const normalized = values.map((value, index) => {
+      const range = overallRadarRaw.map((entry) => entry.values[index]);
+      const min = Math.min(...range);
+      const max = Math.max(...range);
+      return max === min ? 100 : 30 + ((value - min) / (max - min)) * 70;
+    });
+    const colors: Record<string, string> = {
+      'Happyhorse-1.0': '#ff6b6b',
+      'Seedance-2.0': '#ffa94d',
+      Kling3: '#ffd43b',
+      Sora2: '#b197fc',
+      'HoloCine-14B': '#38d9a9',
+      'MSM-1.3B': '#74c0fc',
+      'MSM-14B': '#a9e34b',
+      Act2Cut: '#ff4d4d',
+    };
+    return {
+      label: row.style === 'ours' ? '★ Act2Cut (Ours)' : row.method,
+      type: row.style,
+      color: colors[row.method] ?? '#74c0fc',
+      data: normalized,
+    };
+  }),
+};
 ---
 
 <Layout title="Act2Cut: Continuous Multi-Shot Video Narrative Match on Action-Cut">
@@ -211,8 +255,8 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
     <div data-reveal>
       <div class="text-center mb-6 sm:mb-8 ambient-scrim">
         <span class="text-[12px] sm:text-[13px] font-bold tracking-[0.32em] uppercase text-white/40 block mb-3">Quantitative Experiment</span>
-        <h3 class="text-2xl md:text-3xl font-semibold tracking-tight">Performance Comparison</h3>
-        <p class="text-white/45 text-base sm:text-lg mt-2 max-w-md mx-auto">Quantitative evaluation of Act2Cut against existing multi-shot generation methods.</p>
+        <h3 class="text-2xl md:text-3xl font-semibold tracking-tight">Benchmark Performance</h3>
+        <p class="text-white/45 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Comparison of Act2Cut against existing open-source and closed-source models.</p>
       </div>
 
       <!-- Glass card with native HTML table -->
@@ -226,24 +270,26 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
         <!-- Card header: title + benchmark link -->
         <div class="px-5 sm:px-7 pt-5 sm:pt-6 pb-4 border-b border-white/[0.06]">
           <div class="flex flex-wrap items-center justify-between gap-3">
-            <h3 class="text-[13px] sm:text-sm font-semibold text-white/90 tracking-wide">
-              Quantitative Results — ActCutBench
+            <h3 class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1">
+              ActCutBench - Overall Main-Bench (Avg.)
             </h3>
-            <a href={`${base}/benchmark`} class="group ml-auto inline-flex min-h-11 shrink-0 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#ff7a3d] to-[#ffb84d] px-5 py-3 text-xs font-bold tracking-[0.14em] uppercase text-[#20140f] shadow-[0_6px_22px_rgba(255,122,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(255,122,61,0.38)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb84d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#181411]">
-              Full benchmarks
-              <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-            </a>
           </div>
-          <p class="mt-3 text-[10.5px] sm:text-[11px] text-white/45 leading-relaxed">
-            Baseline and Ablation. <strong class="text-white/65 font-semibold">Global Content</strong>: <strong class="text-white/65 font-semibold">NC</strong> (G1: Environment, Scene, Style; G2: Character, Action, Object), <strong class="text-white/65 font-semibold">VC</strong> (G1: Environment, Scene; Sty: Style; CS: Character), <strong class="text-white/65 font-semibold">AC</strong> (CA/OM), <strong class="text-white/65 font-semibold">SA</strong> (SCC/SCA), <strong class="text-white/65 font-semibold">Aes</strong>. <strong class="text-white/65 font-semibold">Cinematography</strong>: <strong class="text-white/65 font-semibold">SC</strong> (SS, SF, CA), <strong class="text-white/65 font-semibold">DC</strong> (CM, CZ, CR), <strong class="text-white/65 font-semibold">RC</strong>. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).
+          <p class="mt-3 text-sm text-white/60 leading-relaxed max-w-none">
+            Baseline and Ablation on ActCutBench (T2V Task).
+            <strong class="text-white/80">Global Content:</strong> Narrative Consistency (NC) (G1: Environment, Scene, Style, G2: Character, Action, Object); Visual Coherence (VC) (G1: Environment, Scene, Sty: Style, CS: Character); Action Continuity (AC) (CA: Character Action, OM: Object Motion); Shot Alignment (SA) (SCC: Shot Count Correctness, SCA: Shot Cutting Accuracy); Aesthetics (Aes).
+            <strong class="text-white/80">Cinematography:</strong> Static Cinematography (SC) (SS: Shot Size, SF: Shot Framing Avg., CA: Camera Angle Avg.); Dynamic Cinematography (DC) (CM: Camera Movement, CZ: Camera Zoom, CR: Camera Rotation); Relation Cinematography (RC).
           </p>
+          <a href={`${base}/benchmark`} class="group mt-4 inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#ff7a3d] to-[#ffb84d] px-5 py-3 text-xs font-bold tracking-[0.14em] uppercase text-[#20140f] shadow-[0_6px_22px_rgba(255,122,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(255,122,61,0.38)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb84d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#181411]">
+            All Benchmarks
+            <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+          </a>
           <div class="mt-3 flex flex-wrap items-center justify-between gap-3">
-            <div class="flex items-center gap-1.5 text-[9.5px] text-white/40">
-              <span class="rank-cell rank-1 text-[9.5px]" style="min-width:0;padding:1px 5px;">1st</span>
-              <span class="rank-cell rank-2 text-[9.5px]" style="min-width:0;padding:1px 5px;">2nd</span>
-              <span class="rank-cell rank-3 text-[9.5px]" style="min-width:0;padding:1px 5px;">3rd</span>
-              <span class="rank-cell rank-4 text-[9.5px]" style="min-width:0;padding:1px 5px;">4th</span>
-              <span class="rank-cell rank-5 text-[9.5px]" style="min-width:0;padding:1px 5px;">5th</span>
+            <div class="flex items-center gap-2 text-[10px] text-white/40">
+              <span class="rank-cell rank-1 text-[10px]" style="min-width:0;padding:1px 6px;">1st</span>
+              <span class="rank-cell rank-2 text-[10px]" style="min-width:0;padding:1px 6px;">2nd</span>
+              <span class="rank-cell rank-3 text-[10px]" style="min-width:0;padding:1px 6px;">3rd</span>
+              <span class="rank-cell rank-4 text-[10px]" style="min-width:0;padding:1px 6px;">4th</span>
+              <span class="rank-cell rank-5 text-[10px]" style="min-width:0;padding:1px 6px;">5th</span>
             </div>
             <span class="px-2.5 py-1 rounded-md text-[8.5px] sm:text-[9px] font-bold tracking-[0.22em] uppercase text-white/55 bg-white/[0.04] border border-white/[0.08] whitespace-nowrap">
               Dataset · ActCutVid-1M
@@ -253,127 +299,109 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
 
         <!-- Table (compact summary; full per-dimension table lives on the benchmark page) -->
         <div class="overflow-x-auto thin-scroll">
-          <table class="w-full text-left border-collapse text-[12px] whitespace-nowrap">
+          <table class="benchmark-data-table w-full text-left border-collapse text-xs whitespace-nowrap">
             <thead>
               <tr class="text-white/40 border-b border-white/10">
-                <th class="px-4 sm:px-5 py-3 font-normal text-left" rowspan="2">Method</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">NC ↑</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">VC ↑</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="1">AC ↑</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">SA ↑</th>
-                <th class="px-3 py-3 text-center font-normal" rowspan="2">Aes ↑</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">SC ↑</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">DC ↑</th>
-                <th class="px-2 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="1">RC ↑</th>
+                <th class="px-4 py-3 font-normal text-left" rowspan="2">Method</th>
+                <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="2">NC ↑</th>
+                <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="3">VC ↑</th>
+                <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="1">AC ↑</th>
+                <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="2">SA ↑</th>
+                <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" rowspan="2">Aes ↑</th>
+                <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="3">SC ↑</th>
+                <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="3">DC ↑</th>
+                <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" rowspan="2">RC ↑</th>
               </tr>
               <tr class="text-white/30 border-b border-white/10 text-center">
-                <th class="px-2.5 py-2 font-normal">G1</th><th class="px-2.5 py-2 font-normal">G2</th>
-                <th class="px-2.5 py-2 font-normal">G1</th><th class="px-2.5 py-2 font-normal">Sty</th><th class="px-2.5 py-2 font-normal">CS</th>
-                <th class="px-2.5 py-2 font-normal">CA/OM</th>
-                <th class="px-2.5 py-2 font-normal">SCC</th><th class="px-2.5 py-2 font-normal">SCA</th>
-                <th class="px-2.5 py-2 font-normal">SS</th><th class="px-2.5 py-2 font-normal">SF</th><th class="px-2.5 py-2 font-normal">CA</th>
-                <th class="px-2.5 py-2 font-normal">CM</th><th class="px-2.5 py-2 font-normal">CZ</th><th class="px-2.5 py-2 font-normal">CR</th>
-                <th class="px-2.5 py-2 font-normal"></th>
+                <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">G1</th><th class="px-2 py-2 font-normal">G2</th>
+                <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">G1</th><th class="px-2 py-2 font-normal">Sty</th><th class="px-2 py-2 font-normal">CS</th>
+                <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">CA/OM</th>
+                <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">SCC</th><th class="px-2 py-2 font-normal">SCA</th>
+                <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">SS</th><th class="px-2 py-2 font-normal">SF</th><th class="px-2 py-2 font-normal">CA</th>
+                <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">CM</th><th class="px-2 py-2 font-normal">CZ</th><th class="px-2 py-2 font-normal">CR</th>
               </tr>
             </thead>
             <tbody class="text-white/60 font-mono">
-              <!-- ActCutBench · Open-Source Method -->
-              <tr class="border-b border-white/[0.07]">
-                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="17">The following results are obtained on ActCutBench</td>
-              </tr>
-              <tr class="border-b border-white/[0.04] bg-[#38d9a9]/[0.04]">
-                <td class="px-4 sm:px-5 py-1.5 text-[9px] tracking-wider text-[#38d9a9]/60 font-semibold" colspan="17">Open-Source Method</td>
-              </tr>
-              {openRows.map((row) => (
-                <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                  <td class="px-4 sm:px-5 py-2.5 font-sans">{row.method}</td>
-                  {metricOrder.map((metric, index) => {
-                    const value = row.metrics[metric];
-                    const rank = rankFor(row, metric);
-                    const text = formatValue(value);
-                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-2.5 text-center' : 'px-2.5 py-2.5 text-center';
-                    return (
-                      <td class={cellClass}>
-                        {rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-              {oursRow && (
-                <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
-                  <td class="px-4 sm:px-5 py-2.5 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/55 font-medium">(Ours)</span></td>
-                  {metricOrder.map((metric, index) => {
-                    const value = oursRow.metrics[metric];
-                    const rank = rankFor(oursRow, metric);
-                    const text = formatValue(value);
-                    const cellClass = index === metricOrder.length - 1
-                      ? 'px-3 py-2.5 text-center text-[#ffb84d]'
-                      : 'px-2.5 py-2.5 text-center text-[#ffb84d]';
-                    return (
-                      <td class={cellClass}>
-                        {rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}
-                      </td>
-                    );
-                  })}
-                </tr>
-              )}
-
-              <!-- ActCutBench-Lite · Ablation -->
-              <tr class="border-y border-white/[0.07]">
-                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-white/35 uppercase font-semibold italic" colspan="17">Ablation Study</td>
-              </tr>
-              {oursRow && (
-                <tr class="border-b border-white/[0.05] bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.12] transition-colors">
-                  <td class="px-4 sm:px-5 py-2.5 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut (full)</td>
-                  {metricOrder.map((metric, index) => {
-                    const value = oursRow.metrics[metric];
-                    const rank = rankFor(oursRow, metric);
-                    const text = formatValue(value);
-                    const cellClass = index === metricOrder.length - 1
-                      ? 'px-3 py-2.5 text-center text-[#ffb84d]'
-                      : 'px-2.5 py-2.5 text-center text-[#ffb84d]';
-                    return (
-                      <td class={cellClass}>
-                        {rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}
-                      </td>
-                    );
-                  })}
-                </tr>
-              )}
-              {ablationRows.map((row) => (
-                <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                  <td class="px-4 sm:px-5 py-2.5 font-sans text-white/75">{row.method}</td>
-                  {metricOrder.map((metric, index) => {
-                    const text = formatValue(row.metrics[metric]);
-                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-2.5 text-center' : 'px-2.5 py-2.5 text-center';
-                    return <td class={cellClass}>{text}</td>;
-                  })}
-                </tr>
-              ))}
-
-              <!-- Closed-Source Method -->
+              <!-- Closed-Source -->
               <tr class="bg-white/[0.04] border-y border-white/[0.05]">
-                <td class="px-4 sm:px-5 py-2 text-[9px] tracking-widest text-[#ff9999]/60 uppercase font-semibold italic" colspan="17">Closed-Source Method</td>
+                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#ff9999]/60 font-semibold" colspan="17">Closed-Source</td>
               </tr>
               {closedRows.map((row) => (
                 <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
-                  <td class="px-4 sm:px-5 py-2.5 font-sans">{row.method}</td>
+                  <td class="px-4 py-3 font-sans">{row.method}</td>
                   {metricOrder.map((metric, index) => {
                     const value = row.metrics[metric];
                     const rank = rankFor(row, metric);
                     const text = formatValue(value);
-                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-2.5 text-center' : 'px-2.5 py-2.5 text-center';
-                    return (
-                      <td class={cellClass}>
-                        {rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}
-                      </td>
-                    );
+                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-3 text-center' : 'px-2 py-3 text-center';
+                    return <td class={cellClass}>{rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}</td>;
+                  })}
+                </tr>
+              ))}
+
+              <!-- Open-Source -->
+              <tr class="border-b border-white/[0.04] bg-[#38d9a9]/[0.04]">
+                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#38d9a9]/60 font-semibold" colspan="17">Open-Source</td>
+              </tr>
+              {openRows.map((row) => (
+                <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                  <td class="px-4 py-3 font-sans">{row.method}</td>
+                  {metricOrder.map((metric, index) => {
+                    const value = row.metrics[metric];
+                    const rank = rankFor(row, metric);
+                    const text = formatValue(value);
+                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-3 text-center' : 'px-2 py-3 text-center';
+                    return <td class={cellClass}>{rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}</td>;
+                  })}
+                </tr>
+              ))}
+
+              <!-- Act2Cut -->
+              {oursRow && (
+                <tr class="border-y border-[#ff4d4d]/20 bg-[#ff4d4d]/[0.08] hover:bg-[#ff4d4d]/[0.13] transition-colors">
+                  <td class="px-4 py-3 font-sans font-bold text-white border-l-2 border-[#ff4d4d]">★ Act2Cut <span class="text-white/45 font-normal text-[11px]">(Ours)</span></td>
+                  {metricOrder.map((metric, index) => {
+                    const value = oursRow.metrics[metric];
+                    const rank = rankFor(oursRow, metric);
+                    const text = formatValue(value);
+                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-3 text-center text-[#ffb84d]' : 'px-2 py-3 text-center text-[#ffb84d]';
+                    return <td class={cellClass}>{rank > 0 ? <span class={`rank-cell rank-${rank}`}>{text}</span> : text}</td>;
+                  })}
+                </tr>
+              )}
+
+              <!-- Ablation -->
+              <tr class="border-b border-white/[0.04] bg-[#74c0fc]/[0.03]">
+                <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#74c0fc]/50 font-semibold" colspan="17">Ablation Study</td>
+              </tr>
+              {ablationRows.map((row) => (
+                <tr class="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors">
+                  <td class="px-4 py-3 font-sans text-white/75">{row.method}</td>
+                  {metricOrder.map((metric, index) => {
+                    const text = formatValue(row.metrics[metric]);
+                    const cellClass = index === metricOrder.length - 1 ? 'px-3 py-3 text-center' : 'px-2 py-3 text-center';
+                    return <td class={cellClass}>{text}</td>;
                   })}
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+
+        <!-- Overall radar chart using the same range-normalized group means as the sub-bench charts. -->
+        <div class="border-t border-white/[0.06] p-5 sm:p-8">
+          <p class="text-[12px] text-white/40 mb-4 leading-relaxed">
+            Radar chart: range-normalized overall group means for visual comparison.
+          </p>
+          <div class="flex justify-center">
+            <div class="w-full max-w-xl">
+              <canvas id="radarOverall"></canvas>
+            </div>
+          </div>
+          <div class="mt-3 flex justify-end items-center gap-3 text-[12px] text-white/40 flex-wrap">
+            <span class="inline-flex items-center gap-1.5"><span class="w-4 border-t-2 border-dashed border-[#ff9696]/70"></span>Closed-source</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-4 h-px bg-[#38d9a9]/70"></span>Open-source</span>
+          </div>
         </div>
 
         <!-- Card footer -->
@@ -395,8 +423,8 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
           <img src={`${base}/images/aigc-research-mark-dark.png`} class="hidden h-full w-full object-contain dark:block" alt="AIGC Research" loading="lazy" />
         </span>
         <span class="team-logo-glow flex min-w-0 flex-1 items-center justify-center">
-          <img src={`${base}/images/actxcut-team-fire.png`} class="team-logo-core block h-[36px] w-[230px] max-w-full object-contain object-center sm:h-[42px] sm:w-[270px] xl:h-[48px] xl:w-[310px] dark:hidden" alt="ActXCut Team" loading="lazy" />
-          <img src={`${base}/images/actxcut-team-fire.png`} class="team-logo-core hidden h-[36px] w-[230px] max-w-full object-contain object-center sm:h-[42px] sm:w-[270px] xl:h-[48px] xl:w-[310px] dark:block" alt="ActXCut Team" loading="lazy" />
+          <img src={`${base}/images/actxcut-team-fire-eng.png?v=3`} class="team-logo-core block h-[36px] w-[230px] max-w-full object-contain object-center sm:h-[42px] sm:w-[270px] xl:h-[48px] xl:w-[310px] dark:hidden" alt="ActXCut Team" loading="lazy" />
+          <img src={`${base}/images/actxcut-team-fire-eng.png?v=3`} class="team-logo-core hidden h-[36px] w-[230px] max-w-full object-contain object-center sm:h-[42px] sm:w-[270px] xl:h-[48px] xl:w-[310px] dark:block" alt="ActXCut Team" loading="lazy" />
         </span>
         <span class="team-side-logo team-side-logo-right flex h-8 w-8 shrink-0 items-center justify-center sm:h-10 sm:w-10 xl:h-12 xl:w-12" aria-label="Fudan University">
           <img src={`${base}/images/fudan-university.png`} class="block h-full w-full object-contain dark:hidden" alt="Fudan University" loading="lazy" />
@@ -406,3 +434,122 @@ const oursRow = summaryRows.find((row) => row.style === 'ours');
     )}
   </main>
 </Layout>
+
+<style>
+  /* Keep the homepage summary table's labels and row rhythm aligned with Benchmark. */
+  .benchmark-data-table thead th {
+    font-size: 0.8rem;
+  }
+  .benchmark-data-table tbody td:first-child,
+  .benchmark-data-table tbody td[colspan] {
+    font-size: 0.7rem;
+  }
+</style>
+
+<script id="overall-radar-data" type="application/json" set:html={JSON.stringify(overallRadarData)}></script>
+
+<script is:inline>
+  (function () {
+    var charts = [];
+
+    function makeDatasets(rawSets) {
+      return rawSets.map(function (s) {
+        var isClosed = s.type === 'closed';
+        var isOurs = s.type === 'ours';
+        var hex = s.color;
+        var r = parseInt(hex.slice(1, 3), 16);
+        var g = parseInt(hex.slice(3, 5), 16);
+        var b = parseInt(hex.slice(5, 7), 16);
+        return {
+          label: s.label,
+          data: s.data,
+          borderColor: hex,
+          backgroundColor: isOurs ? 'rgba(' + r + ',' + g + ',' + b + ',0.15)' : 'rgba(' + r + ',' + g + ',' + b + ',0.05)',
+          borderWidth: isOurs ? 2.5 : 1.5,
+          borderDash: isClosed ? [5, 4] : [],
+          pointBackgroundColor: hex,
+          pointBorderColor: hex,
+          pointRadius: isOurs ? 4 : 2.5,
+          pointStyle: isClosed ? 'rect' : (isOurs ? 'star' : 'circle'),
+        };
+      });
+    }
+
+    function getTheme() {
+      var isDark = document.documentElement.classList.contains('dark');
+      return {
+        gridColor: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.12)',
+        pointLabelColor: isDark ? 'rgba(255,255,255,0.65)' : 'rgba(15,23,42,0.72)',
+        legendColor: isDark ? 'rgba(255,255,255,0.72)' : 'rgba(15,23,42,0.76)',
+      };
+    }
+
+    function buildRadar() {
+      var canvas = document.getElementById('radarOverall');
+      var dataNode = document.getElementById('overall-radar-data');
+      if (!canvas || !dataNode || !window.Chart) return;
+      var payload;
+      try { payload = JSON.parse(dataNode.textContent || '{}'); } catch (_) { return; }
+      var theme = getTheme();
+      var chartFont = "'Outfit Variable', sans-serif";
+      Chart.defaults.font.family = chartFont;
+      charts.push(new Chart(canvas.getContext('2d'), {
+        type: 'radar',
+        data: { labels: payload.labels, datasets: makeDatasets(payload.datasets) },
+        options: {
+          font: { family: chartFont },
+          responsive: true,
+          scales: {
+            r: {
+              min: 0,
+              max: 100,
+              ticks: { display: false, stepSize: 25 },
+              grid: { color: theme.gridColor },
+              angleLines: { color: theme.gridColor },
+              pointLabels: { color: theme.pointLabelColor, font: { family: chartFont, size: 12 } },
+            },
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: theme.legendColor, padding: 14, usePointStyle: true, pointStyleWidth: 10, font: { family: chartFont, size: 12 } },
+            },
+            tooltip: {
+              titleFont: { family: chartFont },
+              bodyFont: { family: chartFont },
+              callbacks: { label: function (ctx) { return ' ' + ctx.dataset.label + ': ' + ctx.parsed.r; } },
+            },
+          },
+        },
+      }));
+    }
+
+    function destroyCharts() {
+      charts.forEach(function (chart) { chart.destroy(); });
+      charts = [];
+    }
+
+    function init() {
+      destroyCharts();
+      buildRadar();
+    }
+
+    function load() {
+      if (window.Chart) { init(); return; }
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js';
+      script.onload = init;
+      document.head.appendChild(script);
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load);
+    else load();
+
+    new MutationObserver(function (mutations) {
+      if (!window.Chart) return;
+      for (var i = 0; i < mutations.length; i += 1) {
+        if (mutations[i].attributeName === 'class') { init(); break; }
+      }
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  })();
+</script>

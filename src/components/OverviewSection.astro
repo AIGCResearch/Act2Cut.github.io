@@ -9,22 +9,22 @@ const methodCards = [
   {
     abbr: 'GLoS-RoPE',
     title: 'Global-Local Shot RoPE',
-    desc: `Decouples temporal position encoding across shot boundaries. Global tokens carry sequence-level context while local tokens remain precisely positioned within their own shot — enabling cross-shot coherence without RoPE bleed between unrelated frames.`
+    desc: `Builds three frequency bands from the original temporal RoPE: a high-frequency band for the global action timeline (the original temporal RoPE), a mid-frequency band for local shot progression, and a low-frequency band for shot identity. At a cut, the global timeline keeps moving, while the local shot progression starts again.`,
   },
   {
     abbr: 'TBR',
     title: 'Transitional Boundary Residual',
-    desc: `Enhances spatial and kinetic consistency at the edit point between adjacent shots. Ensures the terminal frame of shot <em>n</em> and the initial frame of shot <em>n+1</em> maintain rigorous 3D spatial alignment and smooth momentum continuity, preventing visual "popping" at hard cuts.`
+    desc: `Adds a small attention step at each cut. It sends information from the last frame of the previous shot to the first frame of the next shot. A boundary loss helps keep the transition stable.`,
   },
   {
     abbr: 'SCM',
     title: 'Shot Causal Mask',
-    desc: `Applies a unidirectional causal constraint in self-attention so that shot <em>x<sub>i</sub></em> can attend to the history of <em>x<sub>i−1</sub></em>, but not vice versa. Prevents "semantic leakage" where future shot compositions contaminate earlier frames.`
+    desc: `Frames in one shot can attend to each other. Across shots, each shot can use past shots, but past shots cannot see future shots. This keeps future content from leaking backward.`,
   },
   {
     abbr: 'HCM',
     title: 'Hierarchical Context Mask',
-    desc: `Partitions cross-attention into global, relational, and local windows. Global tokens act as universal anchors; per-shot cinematic language remains independently modulated, ensuring precise control over "what happens" vs. "how it is framed" for each shot.`
+    desc: `Controls which text each shot can use. Global descriptions stay active for all shots. Shot-specific camera and framing text stays in its own shot, and relation text only affects the shots it connects. This separates what happens, how shots connect, and how each shot looks.`,
   },
 ];
 ---
@@ -73,16 +73,15 @@ const methodCards = [
         />
       </div>
     </div>
-    <figcaption class="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3 text-[10px] sm:text-[11px] pointer-events-none z-20">
-      <span class="px-2 py-0.5 rounded-md bg-white/20 border border-white/35 backdrop-blur-sm tracking-[0.18em] uppercase font-semibold text-white/90">Architecture</span>
+    <figcaption class="relative flex justify-center px-4 pb-3 text-xs">
       <a
         href={`${base}/images/architecture.pdf`}
         target="_blank"
         rel="noopener"
-        class="pointer-events-auto hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/20 border border-white/35 backdrop-blur-sm italic font-light text-white/80 hover:text-[#ffb84d] hover:border-[#ffb84d]/50 transition-colors"
+        class="inline-flex min-h-8 items-center justify-center gap-1.5 rounded-full border border-white/35 bg-white/20 px-3 py-1.5 text-center font-medium text-white/90 backdrop-blur-sm transition-colors hover:border-[#ffb84d]/50 hover:text-[#ffb84d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb84d]"
       >
         Fig. 3 — Act2Cut framework overview
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5h5v5M19 5l-9 9M5 19h7"/></svg>
+        <svg class="h-3 w-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5h5v5M19 5l-9 9M5 19h7"/></svg>
       </a>
     </figcaption>
   </figure>

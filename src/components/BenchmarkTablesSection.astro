@@ -140,7 +140,7 @@ function rowBg(style: string) {
   return 'border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors';
 }
 
-// ─── Radar data (range-normalized: worst→30, best→100) ─────────────────────
+// ─── Radar data (range-normalized per dimension) ────────────────────────────
 // Global Content 5-dim: VC.CS | VC.Sty | AC | SA | Aes
 // Cinematography 6-dim: RC-ST | RC-Cont. | RC-Narr. | DC-CM | DC-CR | SC
 // Order: Happyhorse, Seedance, Kling3, Sora2, HoloCine, MSM-1.3B, MSM-14B, Act2Cut
@@ -180,64 +180,61 @@ const radarCinem = {
   <!-- Section header -->
   <div data-reveal class="ambient-scrim">
     <div class="hero-content-divider mb-2" aria-hidden="true"></div>
-    <span class="act-marker">ACT Ⅳ</span>
+    <span class="act-marker">Section 4</span>
     <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight flex items-center gap-3 mt-1 section-heading-float">
       <span class="inline-block w-1 h-6 sm:h-7 bg-gradient-to-b from-[#ff4d4d] to-[#ffb84d] rounded-sm" style="transform: skewX(-6deg);"></span>
-      ActCutBench &amp; VBench Results
+      Benchmark Results
     </h2>
-    <p class="text-white/50 text-sm sm:text-base mt-2 section-heading-float">ActCutBench evaluation across global content and cinematography. <span class="text-[#ffb84d]">★</span> = Act2Cut (Ours).</p>
-    <div class="flex items-center gap-3 pt-3 text-[10px] text-white/40 flex-wrap">
-      <span class="text-white/35 mr-1">Rank badges:</span>
-      <span class="rank-cell rank-1 text-[10px]" style="min-width:0;padding:1px 6px;">1st</span>
-      <span class="rank-cell rank-2 text-[10px]" style="min-width:0;padding:1px 6px;">2nd</span>
-      <span class="rank-cell rank-3 text-[10px]" style="min-width:0;padding:1px 6px;">3rd</span>
-      <span class="rank-cell rank-4 text-[10px]" style="min-width:0;padding:1px 6px;">4th</span>
-      <span class="rank-cell rank-5 text-[10px]" style="min-width:0;padding:1px 6px;">5th</span>
-      <span class="mx-1 text-white/20">|</span>
-      <span class="text-white/35 mr-1">Radar lines:</span>
-      <span class="flex items-center gap-1"><span style="display:inline-block;width:18px;height:2px;background:rgba(255,255,255,0.4);border-top:2px dashed rgba(255,255,255,0.5);margin-top:1px"></span><span>Closed-source</span></span>
-      <span class="flex items-center gap-1"><span style="display:inline-block;width:18px;height:2px;background:rgba(255,255,255,0.5)"></span><span>Open-source</span></span>
-      <span class="flex items-center gap-1"><span style="display:inline-block;width:18px;height:2.5px;background:#ff4d4d"></span><span class="text-[#ff7070]">Act2Cut (Ours)</span></span>
-    </div>
+    <p class="text-white/50 text-sm sm:text-base mt-2 section-heading-float">ActCutBench evaluation across global content and cinematography.<br />VBench evaluates general video quality.</p>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════════════
        TABLE 1 — Global Content Sub-Bench
        ═══════════════════════════════════════════════════════════════════ -->
+  <div class="text-center" data-reveal>
+    <span class="text-[12px] sm:text-[13px] font-bold tracking-[0.32em] uppercase text-white/40 block mb-3">ActCutBench</span>
+    <h3 class="text-2xl md:text-3xl font-semibold tracking-tight">Global Content</h3>
+    <p class="text-white/45 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Inter-shot Global Content Sub-Bench.</p>
+  </div>
   <div class="glass-table-card rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl overflow-hidden" data-reveal style="transition-delay:80ms">
     <div class="p-5 sm:p-8 border-b border-white/10">
       <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">ActCutBench — Global Content Sub-Bench</span>
-      <p class="text-sm text-white/60 leading-relaxed max-w-3xl">
-        <strong class="text-white/80">NC</strong> Narrative Consistency (<em>Env</em>, <em>Sce</em>, <em>Sty</em>, <em>CS</em>, <em>CA/OM</em>).
-        <strong class="text-white/80">VC</strong> Visual Coherence (<em>Env</em>, <em>Sce</em>, <em>Sty</em>, <em>CS</em>).
-        <strong class="text-white/80">AC</strong> Action Continuity.
-        <strong class="text-white/80">SA</strong> Shot Alignment (<em>SCC</em>, <em>SCA</em>).
-        <strong class="text-white/80">Aes</strong> Aesthetics. All ↑ higher is better.
+      <p class="text-sm text-white/60 leading-relaxed max-w-none">
+        Baseline and Ablation on ActCutBench (Global Content Sub-Bench, T2V Task).
+        <strong class="text-white/80">Narrative Consistency (NC)</strong> for Global Text-Visual Alignment (Env: Environment Setting, Sce: Scene Setting, Sty: Style Setting, CS: Character Setting, CA: Character Action, OM: Object Motion);
+        <strong class="text-white/80">Visual Coherence (VC)</strong> for Inter-shots Static Visual Similarity (Env: Environment Setting, Sce: Scene Setting, Sty: Style Setting, CS: Character Setting);
+        <strong class="text-white/80">Action Continuity (AC)</strong> for Adjacent-shots Dynamic Visual Continuity (CA: Character Action, OM: Object Motion);
+        <strong class="text-white/80">Shot Alignment (SA)</strong> for Multi-shot Structural Integrity (SCC: Shot Count Correctness, SCA: Shot Cutting Accuracy);
+        <strong class="text-white/80">Aesthetics (Aes)</strong> score for Visual Quality. Rank colors indicate the first, second, third, fourth, and fifth performance, respectively.
       </p>
+      <div class="flex items-center gap-2 pt-3 text-[10px] text-white/40 flex-wrap">
+        <span class="rank-cell rank-1 text-[10px]" style="min-width:0;padding:1px 6px;">1st</span>
+        <span class="rank-cell rank-2 text-[10px]" style="min-width:0;padding:1px 6px;">2nd</span>
+        <span class="rank-cell rank-3 text-[10px]" style="min-width:0;padding:1px 6px;">3rd</span>
+        <span class="rank-cell rank-4 text-[10px]" style="min-width:0;padding:1px 6px;">4th</span>
+        <span class="rank-cell rank-5 text-[10px]" style="min-width:0;padding:1px 6px;">5th</span>
+      </div>
     </div>
     <div class="overflow-x-auto thin-scroll">
-      <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
+      <table class="benchmark-data-table w-full text-left border-collapse text-xs whitespace-nowrap">
         <thead>
           <tr class="text-white/40 border-b border-white/10">
             <th class="px-4 py-3 font-normal text-left" rowspan="2">Method</th>
             <th class="px-4 py-3 font-normal text-left" rowspan="2">Base Model Ver.</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="5">NC ↑</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="4">VC ↑</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="1">AC ↑</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="2">SA ↑</th>
-            <th class="px-3 py-3 text-center font-normal" rowspan="2">Aes ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="5">NC ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="4">VC ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="1">AC ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="2">SA ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" rowspan="2">Aes ↑</th>
           </tr>
           <tr class="text-white/30 border-b border-white/10 text-center">
-            <th class="px-2 py-2 font-normal">Env</th><th class="px-2 py-2 font-normal">Sce</th><th class="px-2 py-2 font-normal">Sty</th><th class="px-2 py-2 font-normal">CS</th><th class="px-2 py-2 font-normal">CA/OM</th>
-            <th class="px-2 py-2 font-normal">Env</th><th class="px-2 py-2 font-normal">Sce</th><th class="px-2 py-2 font-normal">Sty</th><th class="px-2 py-2 font-normal">CS</th>
-            <th class="px-2 py-2 font-normal">CA/OM</th>
-            <th class="px-2 py-2 font-normal">SCC</th><th class="px-2 py-2 font-normal">SCA</th>
+            <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">Env</th><th class="px-2 py-2 font-normal">Sce</th><th class="px-2 py-2 font-normal">Sty</th><th class="px-2 py-2 font-normal">CS</th><th class="px-2 py-2 font-normal">CA/OM</th>
+            <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">Env</th><th class="px-2 py-2 font-normal">Sce</th><th class="px-2 py-2 font-normal">Sty</th><th class="px-2 py-2 font-normal">CS</th>
+            <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">CA/OM</th>
+            <th class="px-2 py-2 font-normal border-l border-[#ffb84d]/20">SCC</th><th class="px-2 py-2 font-normal">SCA</th>
           </tr>
         </thead>
         <tbody class="text-white/60 font-mono">
-          <tr class="border-b border-white/[0.07]">
-            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold italic" colspan="15">Results on ActCutBench</td>
-          </tr>
           <!-- Closed-Source -->
           <tr class="border-b border-white/[0.04] bg-[#ff6b6b]/[0.04]">
             <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#ff9999]/60 font-semibold" colspan="15">Closed-Source</td>
@@ -295,23 +292,17 @@ const radarCinem = {
 
     <!-- Radar chart for Global Content -->
     <div class="border-t border-white/[0.06] p-5 sm:p-8">
-      <p class="text-[10px] text-white/40 mb-4 leading-relaxed">
-        Radar chart: scores range-normalized per dimension (worst→30, best→100) for visual comparability across metrics with different scales.
-        <span class="text-white/25">|</span>
-        <span class="ml-1" style="display:inline-flex;align-items:center;gap:4px">
-          <span style="display:inline-block;width:16px;height:1.5px;border-top:2px dashed rgba(255,150,150,0.7);margin-bottom:1px"></span>closed-source
-        </span>
-        <span class="ml-2" style="display:inline-flex;align-items:center;gap:4px">
-          <span style="display:inline-block;width:16px;height:1.5px;background:rgba(56,217,169,0.7);margin-bottom:1px"></span>open-source
-        </span>
-        <span class="ml-2" style="display:inline-flex;align-items:center;gap:4px">
-          <span style="display:inline-block;width:16px;height:2.5px;background:#ff4d4d;margin-bottom:1px"></span><span class="text-[#ff7070]">Act2Cut</span>
-        </span>
+      <p class="text-[12px] text-white/40 mb-4 leading-relaxed">
+        Radar chart: scores are range-normalized per dimension for visual comparability across metrics with different scales.
       </p>
       <div class="flex justify-center">
         <div class="w-full max-w-xl">
           <canvas id="radarContent"></canvas>
         </div>
+      </div>
+      <div class="mt-3 flex justify-end items-center gap-3 text-[12px] text-white/40 flex-wrap">
+        <span class="inline-flex items-center gap-1.5"><span class="w-4 border-t-2 border-dashed border-[#ff9696]/70"></span>Closed-source</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-4 h-px bg-[#38d9a9]/70"></span>Open-source</span>
       </div>
     </div>
   </div>
@@ -319,35 +310,45 @@ const radarCinem = {
   <!-- ═══════════════════════════════════════════════════════════════════
        TABLE 2 — Cinematography Sub-Bench
        ═══════════════════════════════════════════════════════════════════ -->
+  <div class="text-center" data-reveal>
+    <span class="text-[12px] sm:text-[13px] font-bold tracking-[0.32em] uppercase text-white/40 block mb-3">ActCutBench</span>
+    <h3 class="text-2xl md:text-3xl font-semibold tracking-tight">Cinematography</h3>
+    <p class="text-white/45 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Intra-shot Cinematography and Inter-shot Relation Sub-Bench.</p>
+  </div>
   <div class="glass-table-card rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl overflow-hidden" data-reveal style="transition-delay:100ms">
     <div class="p-5 sm:p-8 border-b border-white/10">
       <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">ActCutBench — Cinematography Sub-Bench</span>
-      <p class="text-sm text-white/60 leading-relaxed max-w-3xl">
-        <strong class="text-white/80">SC</strong> Static Cinematography (<em>SS</em> Shot Size, <em>LT</em> Lens Type, <em>FF</em> Framing Func., <em>FV</em> Framing View, <em>AE</em> Angle Elev., <em>AA</em> Angle Azimuth, <em>AD</em> Angle Dutch, <em>DoF</em>).
-        <strong class="text-white/80">DC</strong> Dynamic Cine (<em>CM</em> Movement, <em>CZ</em> Zoom, <em>CR</em> Rotation).
-        <strong class="text-white/80">RC</strong> Relation Cine (<em>ST</em> Spatio-temporal, <em>Cont.</em> Continuity, <em>Narr.</em> Narrativity). All ↑ higher is better.
+      <p class="text-sm text-white/60 leading-relaxed max-w-none">
+        Baseline and Ablation on ActCutBench (Cinematography Sub-Bench, T2V Task).
+        <strong class="text-white/80">Static Cinematography (SC)</strong> (SS: Shot Size, LT: Lens Type, FF: Shot Framing Function, FV: Shot Framing View, AE: Camera Angle Elevation, AA: Camera Angle Azimuth, AD: Camera Angle Dutch, DoF: Depth-of-Field);
+        <strong class="text-white/80">Dynamic Cinematography (DC)</strong> (CM: Camera Movement, CZ: Camera Zoom, CR: Camera Rotation);
+        <strong class="text-white/80">Relation Cinematography (RC)</strong> (ST: Spatio-temporal, Cont.: Continuity, Narr.: Narrativity). Rank colors indicate the first, second, third, fourth, and fifth performance, respectively.
       </p>
+      <div class="flex items-center gap-2 pt-3 text-[10px] text-white/40 flex-wrap">
+        <span class="rank-cell rank-1 text-[10px]" style="min-width:0;padding:1px 6px;">1st</span>
+        <span class="rank-cell rank-2 text-[10px]" style="min-width:0;padding:1px 6px;">2nd</span>
+        <span class="rank-cell rank-3 text-[10px]" style="min-width:0;padding:1px 6px;">3rd</span>
+        <span class="rank-cell rank-4 text-[10px]" style="min-width:0;padding:1px 6px;">4th</span>
+        <span class="rank-cell rank-5 text-[10px]" style="min-width:0;padding:1px 6px;">5th</span>
+      </div>
     </div>
     <div class="overflow-x-auto thin-scroll">
-      <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
+      <table class="benchmark-data-table w-full text-left border-collapse text-xs whitespace-nowrap">
         <thead>
           <tr class="text-white/40 border-b border-white/10">
             <th class="px-4 py-3 font-normal text-left" rowspan="2">Method</th>
             <th class="px-4 py-3 font-normal text-left" rowspan="2">Base Model Ver.</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="8">Static Cine (SC) ↑</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">Dynamic (DC) ↑</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">Relation (RC) ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="8">SC ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="3">DC ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="3">RC ↑</th>
           </tr>
           <tr class="text-white/30 border-b border-white/10 text-center">
-            {['SS','LT','FF','FV','AE','AA','AD','DoF','CM','CZ','CR','ST','Cont.','Narr.'].map(h => (
-              <th class="px-2 py-2 font-normal">{h}</th>
+            {['SS','LT','FF','FV','AE','AA','AD','DoF','CM','CZ','CR','ST','Cont.','Narr.'].map((h, i) => (
+              <th class:list={['px-2 py-2 font-normal', [0, 8, 11].includes(i) && 'border-l border-[#ffb84d]/20']}>{h}</th>
             ))}
           </tr>
         </thead>
         <tbody class="text-white/60 font-mono">
-          <tr class="border-b border-white/[0.07]">
-            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold italic" colspan="16">Results on ActCutBench</td>
-          </tr>
           <!-- Closed-Source -->
           <tr class="border-b border-white/[0.04] bg-[#ff6b6b]/[0.04]">
             <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#ff9999]/60 font-semibold" colspan="16">Closed-Source</td>
@@ -401,36 +402,49 @@ const radarCinem = {
 
     <!-- Radar chart for Cinematography -->
     <div class="border-t border-white/[0.06] p-5 sm:p-8">
-      <p class="text-[10px] text-white/40 mb-4 leading-relaxed">
+      <p class="text-[12px] text-white/40 mb-4 leading-relaxed">
         Radar chart: range-normalized per dimension.
-        Act2Cut achieves best-in-class across all three Relation Cinematography dimensions and strong Dynamic Cinematography.
       </p>
       <div class="flex justify-center">
         <div class="w-full max-w-xl">
           <canvas id="radarCinem"></canvas>
         </div>
       </div>
+      <div class="mt-3 flex justify-end items-center gap-3 text-[12px] text-white/40 flex-wrap">
+        <span class="inline-flex items-center gap-1.5"><span class="w-4 border-t-2 border-dashed border-[#ff9696]/70"></span>Closed-source</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-4 h-px bg-[#38d9a9]/70"></span>Open-source</span>
+      </div>
     </div>
   </div>
 
   <!-- VBench -->
+  <div class="text-center" data-reveal>
+    <span class="text-[12px] sm:text-[13px] font-bold tracking-[0.32em] uppercase text-white/40 block mb-3">VBench</span>
+    <h3 class="text-2xl md:text-3xl font-semibold tracking-tight">Video Quality</h3>
+    <p class="text-white/45 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Video quality metrics evaluated with VBench.</p>
+  </div>
   <div class="glass-table-card rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl overflow-hidden" data-reveal style="transition-delay:140ms">
     <div class="p-5 sm:p-8 border-b border-white/10">
-      <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">VBench — Video Quality Metrics</span>
-      <p class="text-sm text-white/60 leading-relaxed max-w-3xl">
-        <strong class="text-white/80">TF</strong> Temporal Flickering,
-        <strong class="text-white/80">MS</strong> Motion Smoothness,
-        <strong class="text-white/80">DD</strong> Dynamic Degree,
-        <strong class="text-white/80">IQ</strong> Imaging Quality. All ↑ higher is better.
+      <span class="inline-block text-[9px] font-bold tracking-[0.32em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d4d] to-[#ffb84d] border border-[#ff4d4d]/30 px-2.5 py-1 mb-3">VBench — Video Quality</span>
+      <p class="text-sm text-white/60 leading-relaxed max-w-none">
+        Baseline on VBench metrics (T2V Task).
+        <strong class="text-white/80">Temporal Flickering (TF)</strong>, <strong class="text-white/80">Motion Smoothness (MS)</strong>, <strong class="text-white/80">Dynamic Degree (DD)</strong>, and <strong class="text-white/80">Imaging Quality (IQ)</strong>. Rank colors indicate the first, second, third, fourth, and fifth performance, respectively.
       </p>
+      <div class="flex items-center gap-2 pt-3 text-[10px] text-white/40 flex-wrap">
+        <span class="rank-cell rank-1 text-[10px]" style="min-width:0;padding:1px 6px;">1st</span>
+        <span class="rank-cell rank-2 text-[10px]" style="min-width:0;padding:1px 6px;">2nd</span>
+        <span class="rank-cell rank-3 text-[10px]" style="min-width:0;padding:1px 6px;">3rd</span>
+        <span class="rank-cell rank-4 text-[10px]" style="min-width:0;padding:1px 6px;">4th</span>
+        <span class="rank-cell rank-5 text-[10px]" style="min-width:0;padding:1px 6px;">5th</span>
+      </div>
     </div>
     <div class="overflow-x-auto thin-scroll">
-      <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
+      <table class="benchmark-data-table w-full text-left border-collapse text-xs whitespace-nowrap">
         <thead>
           <tr class="text-white/40 border-b border-white/10">
             <th class="px-4 py-3 font-normal text-left">Method</th>
             <th class="px-4 py-3 font-normal text-left">Base Model Ver.</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="4">VBench Metrics ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="4">VBench ↑</th>
           </tr>
           <tr class="text-white/30 border-b border-white/10 text-center">
             <th class="px-4 py-2 font-normal text-left" colspan="2"></th>
@@ -483,9 +497,39 @@ const radarCinem = {
         </tbody>
       </table>
     </div>
+
+    <!-- Radar chart for VBench -->
+    <div class="border-t border-white/[0.06] p-5 sm:p-8">
+      <p class="text-[12px] text-white/40 mb-4 leading-relaxed">
+        Radar chart: VBench metrics shown on a 0–100 scale; TF, MS, and DD are converted from 0–1 values.
+      </p>
+      <div class="flex justify-center">
+        <div class="w-full max-w-xl">
+          <canvas id="radarVbench"></canvas>
+        </div>
+      </div>
+      <div class="mt-3 flex justify-end items-center gap-3 text-[12px] text-white/40 flex-wrap">
+        <span class="inline-flex items-center gap-1.5"><span class="w-4 border-t-2 border-dashed border-[#ff9696]/70"></span>Closed-source</span>
+        <span class="inline-flex items-center gap-1.5"><span class="w-4 h-px bg-[#38d9a9]/70"></span>Open-source</span>
+      </div>
+    </div>
   </div>
 
 </section>
+
+<style>
+  /* Enlarge labels and headers while leaving numeric cells at their existing size. */
+  .benchmark-data-table thead th {
+    font-size: 0.8rem !important;
+  }
+  .benchmark-data-table tbody td:first-child,
+  .benchmark-data-table tbody td:nth-child(2) {
+    font-size: 0.8rem !important;
+  }
+  .benchmark-data-table tbody td[colspan] {
+    font-size: 0.7rem !important;
+  }
+</style>
 
 <script is:inline>
 (function () {
@@ -529,10 +573,13 @@ const radarCinem = {
     var canvas = document.getElementById(canvasId);
     if (!canvas) return;
     var theme = getRadarTheme();
+    var chartFont = "'Outfit Variable', sans-serif";
+    Chart.defaults.font.family = chartFont;
     var chart = new Chart(canvas.getContext('2d'), {
       type: 'radar',
       data: { labels: labels, datasets: makeDatasets(rawSets) },
       options: {
+        font: { family: chartFont },
         responsive: true,
         scales: {
           r: {
@@ -542,7 +589,7 @@ const radarCinem = {
             angleLines: { color: theme.gridColor },
             pointLabels: {
               color: theme.pointLabelColor,
-              font:  { size: 9 },
+              font:  { family: chartFont, size: 12 },
             },
           }
         },
@@ -554,10 +601,12 @@ const radarCinem = {
               padding:         14,
               usePointStyle:   true,
               pointStyleWidth: 10,
-              font: { size: 10 },
+              font: { family: chartFont, size: 12 },
             }
           },
           tooltip: {
+            titleFont: { family: chartFont },
+            bodyFont: { family: chartFont },
             callbacks: {
               label: function(ctx) {
                 return ' ' + ctx.dataset.label + ': ' + ctx.parsed.r;
@@ -572,7 +621,7 @@ const radarCinem = {
 
   // ── Data ──────────────────────────────────────────────────────────────────
   // Content: 13 dims — NC(Env,Sce,Sty,CS,CA/OM) | VC(Env,Sce,Sty,CS) | AC(CA/OM) | SA(SCC,SCA) | Aes
-  // Range-normalized per column across all 8 non-ablation rows: worst→30, best→100
+  // Range-normalized per column across all 8 non-ablation rows
   var contentLabels = ['NC.Env','NC.Sce','NC.Sty','NC.CS','NC.CA/OM','VC.Env','VC.Sce','VC.Sty','VC.CS','AC.CA/OM','SA.SCC','SA.SCA','Aes'];
   var contentSets = [
     { label:'Happyhorse-1.0',       type:'closed', color:'#ff6b6b', data:[40.000,100.000,100.000,80.000,41.667,30.000,30.000,58.824,67.895,92.057,87.400,57.401,100.000] },
@@ -598,6 +647,18 @@ const radarCinem = {
     { label:'★ Act2Cut (Ours)',     type:'ours',   color:'#ff4d4d', data:[92.000,89.706,91.404,85.263,87.000,93.731,90.597,72.778,84.444,85.286,88.577,99.435,100.000,99.114] },
   ];
 
+  var vbenchLabels = ['TF', 'MS', 'DD', 'IQ'];
+  var vbenchSets = [
+    { label:'Happyhorse-1.0',       type:'closed', color:'#ff6b6b', data:[98.3, 98.9, 70.8, 66.827] },
+    { label:'Seedance-2.0',         type:'closed', color:'#ffa94d', data:[98.8, 99.3, 41.7, 63.301] },
+    { label:'Kling3',               type:'closed', color:'#ffd43b', data:[97.6, 99.0, 62.5, 65.683] },
+    { label:'Sora2',                type:'closed', color:'#b197fc', data:[99.2, 99.2, 70.8, 48.100] },
+    { label:'HoloCine',             type:'open',   color:'#38d9a9', data:[98.1, 98.6, 87.5, 62.409] },
+    { label:'MultiShotMaster-1.3B', type:'open',   color:'#74c0fc', data:[98.0, 98.8, 66.7, 62.816] },
+    { label:'MultiShotMaster-14B',  type:'open',   color:'#a9e34b', data:[99.0, 99.3, 66.7, 63.952] },
+    { label:'★ Act2Cut (Ours)',     type:'ours',   color:'#ff4d4d', data:[98.7, 99.1, 70.8, 61.292] },
+  ];
+
   // ── Init ──────────────────────────────────────────────────────────────────
   function destroyCharts() {
     charts.forEach(function (chart) { chart.destroy(); });
@@ -608,6 +669,7 @@ const radarCinem = {
     destroyCharts();
     buildRadar('radarContent', contentLabels, contentSets);
     buildRadar('radarCinem',   cinemLabels,   cinemSets);
+    buildRadar('radarVbench',  vbenchLabels,  vbenchSets);
   }
 
   function load() {
