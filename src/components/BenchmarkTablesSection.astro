@@ -359,13 +359,13 @@ const radarCinem = {
           <tr class="text-white/40 border-b border-white/10">
             <th class="px-4 py-3 font-normal text-left" rowspan="2">Method</th>
             <th class="px-4 py-3 font-normal text-left" rowspan="2">Base Model Ver.</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="8">Static Cine (SC) ↑</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">Dynamic (DC) ↑</th>
-            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-[#ffb84d]/20 bg-[#ff4d4d]/5" colspan="3">Relation (RC) ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="8">SC ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="3">DC ↑</th>
+            <th class="px-3 py-2 text-center text-[9px] tracking-widest text-[#ffb84d]/80 border-b border-l-2 border-[#ffb84d]/30 bg-[#ff4d4d]/5" colspan="3">RC ↑</th>
           </tr>
           <tr class="text-white/30 border-b border-white/10 text-center">
-            {['SS','LT','FF','FV','AE','AA','AD','DoF','CM','CZ','CR','ST','Cont.','Narr.'].map(h => (
-              <th class="px-2 py-2 font-normal">{h}</th>
+            {['SS','LT','FF','FV','AE','AA','AD','DoF','CM','CZ','CR','ST','Cont.','Narr.'].map((h, i) => (
+              <th class:list={['px-2 py-2 font-normal', [0, 8, 11].includes(i) && 'border-l border-[#ffb84d]/20']}>{h}</th>
             ))}
           </tr>
         </thead>
