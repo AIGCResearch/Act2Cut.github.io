@@ -236,9 +236,6 @@ const radarCinem = {
           </tr>
         </thead>
         <tbody class="text-white/60 font-mono">
-          <tr class="border-b border-white/[0.07]">
-            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold italic" colspan="15">Results on ActCutBench</td>
-          </tr>
           <!-- Closed-Source -->
           <tr class="border-b border-white/[0.04] bg-[#ff6b6b]/[0.04]">
             <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#ff9999]/60 font-semibold" colspan="15">Closed-Source</td>
@@ -358,9 +355,6 @@ const radarCinem = {
           </tr>
         </thead>
         <tbody class="text-white/60 font-mono">
-          <tr class="border-b border-white/[0.07]">
-            <td class="px-4 py-2 text-[9px] tracking-widest text-white/30 uppercase font-semibold italic" colspan="16">Results on ActCutBench</td>
-          </tr>
           <!-- Closed-Source -->
           <tr class="border-b border-white/[0.04] bg-[#ff6b6b]/[0.04]">
             <td class="px-4 py-1.5 text-[9px] tracking-wider text-[#ff9999]/60 font-semibold" colspan="16">Closed-Source</td>
@@ -518,6 +512,28 @@ const radarCinem = {
         </tbody>
       </table>
     </div>
+
+    <!-- Radar chart for VBench -->
+    <div class="border-t border-white/[0.06] p-5 sm:p-8">
+      <p class="text-[10px] text-white/40 mb-4 leading-relaxed">
+        Radar chart: VBench metrics shown on a 0–100 scale; TF, MS, and DD are converted from 0–1 values.
+        <span class="text-white/25">|</span>
+        <span class="ml-1" style="display:inline-flex;align-items:center;gap:4px">
+          <span style="display:inline-block;width:16px;height:1.5px;border-top:2px dashed rgba(255,150,150,0.7);margin-bottom:1px"></span>closed-source
+        </span>
+        <span class="ml-2" style="display:inline-flex;align-items:center;gap:4px">
+          <span style="display:inline-block;width:16px;height:1.5px;background:rgba(56,217,169,0.7);margin-bottom:1px"></span>open-source
+        </span>
+        <span class="ml-2" style="display:inline-flex;align-items:center;gap:4px">
+          <span style="display:inline-block;width:16px;height:2.5px;background:#ff4d4d;margin-bottom:1px"></span><span class="text-[#ff7070]">Act2Cut</span>
+        </span>
+      </p>
+      <div class="flex justify-center">
+        <div class="w-full max-w-xl">
+          <canvas id="radarVbench"></canvas>
+        </div>
+      </div>
+    </div>
   </div>
 
 </section>
@@ -633,6 +649,18 @@ const radarCinem = {
     { label:'★ Act2Cut (Ours)',     type:'ours',   color:'#ff4d4d', data:[92.000,89.706,91.404,85.263,87.000,93.731,90.597,72.778,84.444,85.286,88.577,99.435,100.000,99.114] },
   ];
 
+  var vbenchLabels = ['TF', 'MS', 'DD', 'IQ'];
+  var vbenchSets = [
+    { label:'Happyhorse-1.0',       type:'closed', color:'#ff6b6b', data:[98.3, 98.9, 70.8, 66.827] },
+    { label:'Seedance-2.0',         type:'closed', color:'#ffa94d', data:[98.8, 99.3, 41.7, 63.301] },
+    { label:'Kling3',               type:'closed', color:'#ffd43b', data:[97.6, 99.0, 62.5, 65.683] },
+    { label:'Sora2',                type:'closed', color:'#b197fc', data:[99.2, 99.2, 70.8, 48.100] },
+    { label:'HoloCine',             type:'open',   color:'#38d9a9', data:[98.1, 98.6, 87.5, 62.409] },
+    { label:'MultiShotMaster-1.3B', type:'open',   color:'#74c0fc', data:[98.0, 98.8, 66.7, 62.816] },
+    { label:'MultiShotMaster-14B',  type:'open',   color:'#a9e34b', data:[99.0, 99.3, 66.7, 63.952] },
+    { label:'★ Act2Cut (Ours)',     type:'ours',   color:'#ff4d4d', data:[98.7, 99.1, 70.8, 61.292] },
+  ];
+
   // ── Init ──────────────────────────────────────────────────────────────────
   function destroyCharts() {
     charts.forEach(function (chart) { chart.destroy(); });
@@ -643,6 +671,7 @@ const radarCinem = {
     destroyCharts();
     buildRadar('radarContent', contentLabels, contentSets);
     buildRadar('radarCinem',   cinemLabels,   cinemSets);
+    buildRadar('radarVbench',  vbenchLabels,  vbenchSets);
   }
 
   function load() {
