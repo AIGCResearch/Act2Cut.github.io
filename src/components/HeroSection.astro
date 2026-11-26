@@ -3,19 +3,19 @@ const isAnonymous = import.meta.env.BUILD_MODE === 'anonymous';
 
 const authors: { name: string; affil: string; notes: string; url?: string }[] = [
   { name: 'Cailin Zhuang', affil: '1,2,3,4', notes: '*†', url: 'https://journey-zhuang.github.io/' },
-  { name: 'Yaoqi Hu',      affil: '2',       notes: '', url: 'https://scholar.google.com/citations?hl=zh-CN&user=V47Xa8IAAAAJ' },
-  { name: 'Zheng Dong',    affil: '2',       notes: '', url: 'https://scholar.google.com/citations?hl=zh-CN&user=azjmKy8AAAAJ' },
-  { name: 'Shiwen Zhang',  affil: '1',       notes: '', url: 'https://openreview.net/profile?id=~Shiwen_Zhang1' },
-  { name: 'Haibin Huang',  affil: '1',       notes: '†', url: 'https://scholar.google.com/citations?user=YDl1M80AAAAJ&hl=en' },
-  { name: 'Chi Zhang',     affil: '1',       notes: '', url: 'https://openreview.net/profile?id=~Chi_Zhang14' },
-  { name: 'Xuelong Li',    affil: '1',       notes: '‡', url: 'https://scholar.google.com/citations?user=ahUibskAAAAJ&hl=zh-CN' },
+  { name: 'Yaoqi Hu',      affil: '1',       notes: '', url: 'https://scholar.google.com/citations?hl=zh-CN&user=V47Xa8IAAAAJ' },
+  { name: 'Zheng Dong',    affil: '1',       notes: '', url: 'https://scholar.google.com/citations?hl=zh-CN&user=azjmKy8AAAAJ' },
+  { name: 'Shiwen Zhang',  affil: '2',       notes: '', url: 'https://openreview.net/profile?id=~Shiwen_Zhang1' },
+  { name: 'Haibin Huang',  affil: '2',       notes: '†', url: 'https://scholar.google.com/citations?user=YDl1M80AAAAJ&hl=en' },
+  { name: 'Chi Zhang',     affil: '2',       notes: '', url: 'https://openreview.net/profile?id=~Chi_Zhang14' },
+  { name: 'Xuelong Li',    affil: '2',       notes: '‡', url: 'https://scholar.google.com/citations?user=ahUibskAAAAJ&hl=zh-CN' },
 ];
 
 const authorRows = [authors.slice(0, 3), authors.slice(3)];
 
 const affiliations = [
-  { id: '1', name: 'Institute of Artificial Intelligence, China Telecom (TeleAI)' },
-  { id: '2', name: 'ActXCut Team, AIGC Research' },
+  { id: '1', name: 'ActXCut Team, AIGC Research' },
+  { id: '2', name: 'Institute of Artificial Intelligence, China Telecom (TeleAI)' },
   { id: '3', name: 'Fudan University' },
   { id: '4', name: 'ShanghaiTech University' },
 ];
@@ -54,10 +54,10 @@ const heroResourceClass = 'px-4 sm:px-7 md:px-8 py-2.5 sm:py-3.5 rounded-full bg
         ))}
       </div>
       <div class="mx-auto flex max-w-5xl flex-col items-center gap-2 text-center text-[14px] sm:text-[15px] md:text-[16px] font-semibold text-white/75">
-        <span class="inline-flex max-w-full items-baseline justify-center gap-1.5 leading-snug"><span class="hero-meta-marker shrink-0 font-extrabold">{affiliations[0].id}</span><span>{affiliations[0].name}</span></span>
+        <span class="inline-flex max-w-full items-baseline justify-center gap-1.5 leading-snug"><span class="hero-meta-marker shrink-0 font-extrabold">{affiliations[0].id}</span><span>ActXCut Team, <a href="https://aigcresearch.github.io" target="_blank" rel="noopener noreferrer" class="hero-meta-link text-inherit transition-colors hover:text-[#9a4d19] dark:hover:text-[#ffb84d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb84d]">AIGC Research</a></span></span>
         <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
           {affiliations.slice(1).map(affil => (
-            <span class="inline-flex items-baseline gap-1.5 leading-snug"><span class="hero-meta-marker font-extrabold">{affil.id}</span><span>{affil.id === '2' ? <>ActXCut Team, <a href="https://aigcresearch.github.io" target="_blank" rel="noopener noreferrer" class="hero-meta-link text-inherit transition-colors hover:text-[#9a4d19] dark:hover:text-[#ffb84d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb84d]">AIGC Research</a></> : affil.name}</span></span>
+            <span class="inline-flex items-baseline gap-1.5 leading-snug"><span class="hero-meta-marker font-extrabold">{affil.id}</span><span>{affil.name}</span></span>
           ))}
         </div>
       </div>
